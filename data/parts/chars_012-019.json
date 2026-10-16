@@ -1,0 +1,154 @@
+[
+  {
+    "id": "80072320", "source_url": "https://appmedia.jp/inazuma-cross/80072320",
+    "name_ja": "風丸一郎太", "name_en": "Ichirouta Kazemaru", "version": "雷門中",
+    "rarity": 2, "element": "Wind", "position": "DF", "type_ja": "サイドバック", "team_ja": "雷門中", "series_ja": "イナイレ1",
+    "tags_ja": ["雷門中"], "rating": { "best": "B", "reroll": "B" },
+    "stats_max": { "tp": 100, "kick": 2238, "technique": 4694, "block": 6424, "catch": 4446, "speed": 4 },
+    "skills": [
+      { "name_ja": "疾風ダッシュ", "name_en": "Shippuu Dash", "unlock": "Lv1", "tp": 40, "power": 143, "crit": 12, "range": 2, "chain": null, "category": "dribble", "foul": 5 },
+      { "name_ja": "クイックドロウ", "name_en": "Quick Draw", "unlock": "Lv31", "tp": 30, "power": 127, "crit": 13, "range": 5, "chain": null, "category": "block", "foul": 5 }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時 自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "【破竹/累】ドリブルパワー+", "effect_ja": "自身のドリブル技が成功するたび、自身のドリブル技の技威力を18上昇　終了条件：味方がゴールを入れた時", "effect_en": "Each time own dribble skill succeeds, own dribble skill power +18 (cumulative). Ends when an ally scores", "unlock": "ADVANCED+" },
+      { "name_ja": "ドリブルパワー+", "effect_ja": "試合開始時、自身のドリブル技の威力を62上昇", "effect_en": "At match start, own dribble skill power +62", "unlock": "初期" },
+      { "name_ja": "ブロック+", "effect_ja": "試合開始時、自身のブロックを2016上昇", "effect_en": "At match start, own Block +2016", "unlock": "Lv11" },
+      { "name_ja": "【結束】ブロック+", "effect_ja": "試合開始時、雷門タグの味方が3人以上いる場合、味方DFのブロックを945上昇", "effect_en": "At match start, if 3+ allies have the Raimon tag, allied DFs' Block +945", "unlock": "Lv41" }
+    ],
+    "verified": "ok", "notes": ["Elemento, rating e categoria tecniche dall'alt-text delle immagini.", "Statistiche identiche a Kogure (80072314): sembra un modello di statistiche condiviso."], "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072323", "source_url": "https://appmedia.jp/inazuma-cross/80072323",
+    "name_ja": "染岡竜吾", "name_en": "Ryuugo Someoka", "version": "雷門中",
+    "rarity": 2, "element": "Forest", "position": "FW", "type_ja": "セカンドトップ", "team_ja": "雷門中", "series_ja": "イナイレ1",
+    "tags_ja": ["雷門中"], "rating": { "best": "B", "reroll": "B" },
+    "stats_max": { "tp": 100, "kick": 6424, "technique": 5308, "block": 3634, "catch": 2432, "speed": 4 },
+    "skills": [
+      { "name_ja": "ドラゴンクラッシュ", "name_en": "Dragon Crash", "unlock": "Lv1", "tp": 30, "power": 112, "crit": 10, "range": 19, "chain": true, "category": "shoot" },
+      { "name_ja": "ジグザグスパーク", "name_en": "Zigzag Spark", "unlock": "Lv31", "tp": 30, "power": 139, "crit": 16, "range": 2, "chain": null, "category": "dribble", "foul": 15 }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "パワー+", "effect_ja": "試合開始時、自身の林属性の威力を66上昇", "effect_en": "At match start, own Forest-element skill power +66", "unlock": "ADVANCED+" },
+      { "name_ja": "雷門キック+", "effect_ja": "試合開始時、雷門タグの味方のキックを860上昇", "effect_en": "At match start, Raimon-tag allies' Kick +860", "unlock": "初期" },
+      { "name_ja": "キック+", "effect_ja": "試合開始時、自身のキックを2016上昇", "effect_en": "At match start, own Kick +2016", "unlock": "Lv11" },
+      { "name_ja": "林テクニック+", "effect_ja": "試合開始時、林属性の味方のテクニックを453上昇", "effect_en": "At match start, Forest-element allies' Technique +453", "unlock": "Lv41" }
+    ],
+    "verified": "ok", "notes": ["Elemento, rating e categoria tecniche dall'alt-text delle immagini."], "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072326", "source_url": "https://appmedia.jp/inazuma-cross/80072326",
+    "name_ja": "土門飛鳥", "name_en": "Asuka Domon", "version": null,
+    "rarity": 2, "element": "Forest", "position": "DF", "type_ja": "ストッパー", "team_ja": "雷門中", "series_ja": "イナイレ1",
+    "tags_ja": ["雷門中"], "rating": { "best": "S", "reroll": "A" },
+    "stats_max": { "tp": 100, "kick": 2364, "technique": 4582, "block": 6286, "catch": 4570, "speed": 4 },
+    "skills": [
+      { "name_ja": "キラースライド", "name_en": "Killer Slide", "unlock": "Lv1", "tp": 30, "power": 168, "crit": 26, "range": 5, "chain": null, "category": "block", "foul": 30 },
+      { "name_ja": "スピニングカット", "name_en": "Spinning Cut", "unlock": "Lv31", "tp": 30, "power": 123, "crit": 19, "range": 5, "chain": null, "category": "block", "foul": 15 }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "雷門・帝国ブロック&テクニック+", "effect_ja": "試合開始時、雷門と帝国タグの味方のブロックとテクニックを249上昇", "effect_en": "At match start, Raimon and Teikoku tag allies' Block and Technique +249", "unlock": "ADVANCED+" },
+      { "name_ja": "DFブロック+", "effect_ja": "試合開始時、味方DFのブロックを860上昇", "effect_en": "At match start, allied DFs' Block +860", "unlock": "初期" },
+      { "name_ja": "ブロック+", "effect_ja": "試合開始時、自身のブロックを2016上昇", "effect_en": "At match start, own Block +2016", "unlock": "Lv11" },
+      { "name_ja": "【結束】DFブロックパワー+", "effect_ja": "試合開始時、雷門タグの味方が3人以上いる場合、味方DFのブロック技の威力を23上昇", "effect_en": "At match start, if 3+ allies have the Raimon tag, allied DFs' block skill power +23", "unlock": "Lv41" }
+    ],
+    "verified": "ok", "notes": ["Statistiche identiche a Hidaka e Tsunami: modello condiviso tra i DF ★2.", "Elemento, rating e categoria tecniche dall'alt-text delle immagini."], "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072329", "source_url": "https://appmedia.jp/inazuma-cross/80072329",
+    "name_ja": "一之瀬一哉", "name_en": "Kazuya Ichinose", "version": null,
+    "rarity": 2, "element": "Forest", "position": "MF", "type_ja": "ディフェンシブハーフ", "team_ja": "雷門中", "series_ja": "イナイレ1",
+    "tags_ja": ["雷門中"], "rating": { "best": "S", "reroll": "A" },
+    "stats_max": { "tp": 100, "kick": 4642, "technique": 6564, "block": 3982, "catch": 2322, "speed": 6 },
+    "skills": [
+      { "name_ja": "スピニングシュート", "name_en": "Spinning Shoot", "unlock": "Lv1", "tp": 30, "power": 106, "crit": 11, "range": 19, "chain": true, "category": "shoot" },
+      { "name_ja": "イリュージョンボール", "name_en": "Illusion Ball", "unlock": "Lv31", "tp": 40, "power": 143, "crit": 12, "range": 2, "chain": null, "category": "dribble", "foul": 5 }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "スピニングシュートパワー+", "effect_ja": "試合開始時、自身のスピニングシュートの威力を89上昇", "effect_en": "At match start, own Spinning Shoot power +89", "unlock": "ADVANCED+" },
+      { "name_ja": "【結束】林ブロック&キック+", "effect_ja": "試合開始時、雷門タグの味方が3人以上いる場合、林属性の味方のブロックとキックを249上昇", "effect_en": "At match start, if 3+ allies have the Raimon tag, Forest-element allies' Block and Kick +249", "unlock": "初期" },
+      { "name_ja": "テクニック+", "effect_ja": "試合開始時、自身のテクニックを2016上昇", "effect_en": "At match start, own Technique +2016", "unlock": "Lv11" },
+      { "name_ja": "MF・DFパワー+", "effect_ja": "試合開始時、味方MFとDFの技の威力を13上昇", "effect_en": "At match start, allied MFs' and DFs' skill power +13", "unlock": "Lv41" }
+    ],
+    "verified": "ok", "notes": ["Statistiche identiche a Kidou ★2 Teikoku (80072332): modello condiviso.", "Elemento, rating e categoria tecniche dall'alt-text delle immagini."], "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072332", "source_url": "https://appmedia.jp/inazuma-cross/80072332",
+    "name_ja": "鬼道有人", "name_en": "Yuuto Kidou", "version": "帝国学園",
+    "rarity": 2, "element": "Wind", "position": "MF", "type_ja": "プレイメイカー", "team_ja": "帝国学園", "series_ja": "イナイレ1",
+    "tags_ja": ["帝国学園"], "rating": { "best": "A", "reroll": "B" },
+    "stats_max": { "tp": 100, "kick": 4642, "technique": 6564, "block": 3982, "catch": 2322, "speed": 6 },
+    "skills": [
+      { "name_ja": "イリュージョンボール", "name_en": "Illusion Ball", "unlock": "Lv1", "tp": 40, "power": 143, "crit": 12, "range": 2, "chain": null, "category": "dribble", "foul": 5 },
+      { "name_ja": "ツインブースト", "name_en": "Twin Boost", "unlock": "Lv31", "tp": 50, "power": 130, "crit": 11, "range": 29, "chain": true, "category": "shoot" }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPが30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "イリュージョンボールパワー+", "effect_ja": "試合開始時、自身のイリュージョンボールの威力が89上昇", "effect_en": "At match start, own Illusion Ball power +89", "unlock": "ADVANCED+" },
+      { "name_ja": "【破竹/累】テクニック+", "effect_ja": "自身のドリブル技が成功するたび、自身のテクニックが955上昇", "effect_en": "Each time own dribble skill succeeds, own Technique +955 (cumulative)", "unlock": "初期" },
+      { "name_ja": "テクニック+", "effect_ja": "試合開始時、自身のテクニックが2016上昇", "effect_en": "At match start, own Technique +2016", "unlock": "Lv11" },
+      { "name_ja": "【破竹/累】FWシュートパワー+", "effect_ja": "自身のドリブル技が成功するたび、味方FWの林属性シュート技の威力が17上昇。味方がゴールを決めた時に終了", "effect_en": "Each time own dribble skill succeeds, allied FWs' Forest-element shot skill power +17 (cumulative). Ends when an ally scores", "unlock": "Lv41" }
+    ],
+    "verified": "ok", "notes": ["Elemento, rating e categoria tecniche dall'alt-text delle immagini.", "Raggio 29 di Twin Boost coerente con altre tecniche di tiro a catena (es. Emperor Penguin No. 2)."], "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072335", "source_url": "https://appmedia.jp/inazuma-cross/80072335",
+    "name_ja": "佐久間次郎", "name_en": "Jirou Sakuma", "version": "帝国学園",
+    "rarity": 2, "element": "Forest", "position": "FW", "type_ja": "セカンドトップ", "team_ja": "帝国学園", "series_ja": "イナイレ1",
+    "tags_ja": ["帝国学園"], "rating": { "best": "B", "reroll": "B" },
+    "stats_max": { "tp": 100, "kick": 6144, "technique": 5390, "block": 3672, "catch": 2448, "speed": 5 },
+    "skills": [
+      { "name_ja": "皇帝ペンギン2号", "name_en": "Emperor Penguin No. 2", "unlock": "Lv1", "tp": 60, "power": 160, "crit": 11, "range": 29, "chain": true, "category": "shoot" },
+      { "name_ja": "キラースライド", "name_en": "Killer Slide", "unlock": "Lv31", "tp": 30, "power": 168, "crit": 26, "range": 5, "chain": null, "category": "block", "foul": 30 }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "シュートパワー+", "effect_ja": "試合開始時、自身のシュート技の威力を65上昇", "effect_en": "At match start, own shot skill power +65", "unlock": "ADVANCED+" },
+      { "name_ja": "テクニック+", "effect_ja": "試合開始時、自身のテクニックを2580上昇", "effect_en": "At match start, own Technique +2580", "unlock": "初期" },
+      { "name_ja": "キック+", "effect_ja": "試合開始時、自身のキックを2016上昇", "effect_en": "At match start, own Kick +2016", "unlock": "Lv11" },
+      { "name_ja": "【破竹/累】シュートパワー+", "effect_ja": "自身のドリブル技が成功するたび、自身の林属性シュート技の威力を24上昇。終了条件: 味方がゴールを入れた時", "effect_en": "Each time own dribble skill succeeds, own Forest-element shot skill power +24 (cumulative). Ends when an ally scores", "unlock": "Lv41" }
+    ],
+    "verified": "ok", "notes": ["Esiste anche una versione Inazuma Japan (id 80355724).", "Elemento, rating e categoria tecniche dall'alt-text delle immagini."], "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072338", "source_url": "https://appmedia.jp/inazuma-cross/80072338",
+    "name_ja": "半田真一", "name_en": "Shinichi Handa", "version": null,
+    "rarity": 1, "element": "Wind", "position": "MF", "type_ja": "プレイメイカー", "team_ja": "雷門中", "series_ja": "イナイレ1",
+    "tags_ja": ["雷門中"], "rating": { "best": "A", "reroll": "B" },
+    "stats_max": { "tp": 100, "kick": 4548, "technique": 5670, "block": 3136, "catch": 2100, "speed": 6 },
+    "skills": [
+      { "name_ja": "ジグザグスパーク", "name_en": "Zigzag Spark", "unlock": "Lv1", "tp": 30, "power": 139, "crit": 16, "range": 2, "chain": null, "category": "dribble", "foul": 15 },
+      { "name_ja": "サイクロン", "name_en": "Cyclone", "unlock": "Lv31", "tp": 40, "power": 168, "crit": 18, "range": 5, "chain": null, "category": "block", "foul": 15 }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "【結束】林FWシュートパワー+", "effect_ja": "試合開始時、雷門タグの味方が3人以上居る場合、林属性の味方FWのシュート技の威力を27上昇", "effect_en": "At match start, if 3+ allies have the Raimon tag, Forest-element allied FWs' shot skill power +27", "unlock": "ADVANCED+" },
+      { "name_ja": "チームキック+", "effect_ja": "試合開始時、味方のキックを268上昇", "effect_en": "At match start, allies' Kick +268", "unlock": "初期" },
+      { "name_ja": "テクニック+", "effect_ja": "試合開始時、自身のテクニックを2016上昇", "effect_en": "At match start, own Technique +2016", "unlock": "Lv11" },
+      { "name_ja": "【結束】DFブロック+", "effect_ja": "試合開始時、雷門タグの味方が3人以上いる場合、味方DFのブロックを756上昇", "effect_en": "At match start, if 3+ allies have the Raimon tag, allied DFs' Block +756", "unlock": "Lv41" }
+    ],
+    "verified": "ok", "notes": ["Elemento, rating e categoria tecniche dall'alt-text delle immagini.", "La pagina cita tecniche apprese col risveglio, ma senza dati: non incluse."], "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072341", "source_url": "https://appmedia.jp/inazuma-cross/80072341",
+    "name_ja": "宍戸佐吉", "name_en": "Sakichi Shishido", "version": null,
+    "rarity": 1, "element": "Fire", "position": "MF", "type_ja": "プレイメイカー", "team_ja": "雷門中", "series_ja": "イナイレ1",
+    "tags_ja": ["雷門中"], "rating": { "best": "B", "reroll": "B" },
+    "stats_max": { "tp": 100, "kick": 4418, "technique": 5546, "block": 3292, "catch": 2196, "speed": 6 },
+    "skills": [
+      { "name_ja": "グレネードショット", "name_en": "Grenade Shot", "unlock": "Lv1", "tp": 30, "power": 107, "crit": 10, "range": 20, "chain": true, "category": "shoot" },
+      { "name_ja": "分身フェイント", "name_en": "Bunshin Feint", "unlock": "Lv31", "tp": 30, "power": 123, "crit": 11, "range": 2, "chain": null, "category": "dribble", "foul": 5 }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "【結束】パワー+", "effect_ja": "試合開始時、雷門タグの味方が3人以上いる場合、自身の火属性技の威力を55上昇", "effect_en": "At match start, if 3+ allies have the Raimon tag, own Fire-element skill power +55", "unlock": "ADVANCED+" },
+      { "name_ja": "MFブロック+", "effect_ja": "試合開始時、味方MFのブロックを716上昇", "effect_en": "At match start, allied MFs' Block +716", "unlock": "初期" },
+      { "name_ja": "テクニック+", "effect_ja": "試合開始時、自身のテクニックを2016上昇", "effect_en": "At match start, own Technique +2016", "unlock": "Lv11" },
+      { "name_ja": "【結束】キック+", "effect_ja": "試合開始時、雷門タグの味方が3人以上いる場合、自身のキックを2268上昇", "effect_en": "At match start, if 3+ allies have the Raimon tag, own Kick +2268", "unlock": "Lv41" }
+    ],
+    "verified": "ok", "notes": ["Elemento, rating e categoria tecniche dall'alt-text delle immagini."], "checked_on": "2026-10-12"
+  }
+]

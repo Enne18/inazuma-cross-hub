@@ -1,0 +1,1453 @@
+{
+ "_doc": "Tecnici (監督). Ogni tecnico ha una formazione fissa. 'formation_condition' = requisiti sul GIOCATORE posto negli slot numerati (1-11) per attivare la passiva di formazione (interpretazione; i layout dei ruoli per slot sono solo in immagini). 'recommended' (推奨FW/MF/DF/GK) = posizione consigliata del personaggio (campo position), non lo slot: interpretazione. Valori coach = livello 10 (massimo). timing: start | second_half_start | on_event (da stimare come condizionale). 'layout' = giocatori per ruolo (fornito dall'utente); numerazione slot assunta: prima FW, poi MF, poi DF, ultimo GK=⑪ (coerente con le condizioni note, tranne Igashima ⑪=ストッパー). Formazione passiva = tutto-o-niente: si attiva solo se TUTTE le condizioni sono soddisfatte (utente); la passiva del tecnico resta sempre. Nel 5v5 NON c'è il tecnico (utente).",
+ "sources": {
+  "appmedia": "https://appmedia.jp/inazuma-cross/80077612",
+  "game8": "https://game8.jp/inazuma-cross/788266",
+  "gamerch": "https://gamerch.com/inazuma-cross/989697"
+ },
+ "five_vs_five_formations": {
+  "_note": "Fonte conteggi: blog lifeindopows83.exblog.jp (non ufficiale). Nel 5v5 NON c'è il tecnico (utente). Passive delle formazioni B: non note.",
+  "formations": [
+   {
+    "id": "B-initial",
+    "name_ja": "初期フォーメーション",
+    "slots": {
+     "FW": 2,
+     "MF": 1,
+     "DF": 1,
+     "GK": 1
+    }
+   },
+   {
+    "id": "B-standard",
+    "name_ja": "B-スタンダード",
+    "slots": {
+     "FW": 1,
+     "MF": 2,
+     "DF": 1,
+     "GK": 1
+    }
+   },
+   {
+    "id": "B-zigzag",
+    "name_ja": "B-ジグザグ",
+    "slots": {
+     "FW": 2,
+     "MF": 0,
+     "DF": 2,
+     "GK": 1
+    }
+   },
+   {
+    "id": "B-leftwing",
+    "name_ja": "B-レフトウィング",
+    "slots": {
+     "FW": 2,
+     "MF": 1,
+     "DF": 1,
+     "GK": 1
+    }
+   },
+   {
+    "id": "B-rightwing",
+    "name_ja": "B-ライトウィング",
+    "slots": {
+     "FW": 2,
+     "MF": 1,
+     "DF": 1,
+     "GK": 1
+    }
+   },
+   {
+    "id": "B-dia",
+    "name_ja": "B-ダイア",
+    "slots": {
+     "FW": 1,
+     "MF": 2,
+     "DF": 1,
+     "GK": 1
+    }
+   }
+  ]
+ },
+ "coaches": [
+  {
+   "id": "protagonist",
+   "name_ja": "主人公",
+   "formation_ja": "F-ビギナー",
+   "unlock_ja": "初期から解放",
+   "sources": [
+    "https://appmedia.jp/inazuma-cross/80078353",
+    "https://game8.jp/inazuma-cross/788266",
+    "https://gamerch.com/inazuma-cross/989697"
+   ],
+   "formation_condition": [
+    {
+     "slot": 2,
+     "position": "FW"
+    },
+    {
+     "slot": 5,
+     "position": "MF"
+    },
+    {
+     "slot": 11,
+     "position": "GK"
+    }
+   ],
+   "formation_passive": {
+    "text_ja": "試合開始時 味方:キック600上昇 味方:テクニック600上昇",
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "kick",
+      "value": 600
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "technique",
+      "value": 600
+     }
+    ]
+   },
+   "coach_passive": {
+    "name_ja": "DF&GKブースト",
+    "text_ja": "試合開始時 推奨DFの味方:ブロック2800上昇 推奨GKの味方:キャッチ4000上昇",
+    "level_used": 10,
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "DF",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "block",
+      "value": 2800
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "GK",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "catch",
+      "value": 4000
+     }
+    ]
+   },
+   "verified": "parziale",
+   "notes": [
+    "Valori coach = Lv10 (Game8: Lv1 280/400 -> Lv10 2800/4000).",
+    "Condizioni slot: ruolo del giocatore messo in quello slot (interpretazione, non confermata).",
+    "Layout slot di F-ビギナー non pubblicato in testo (ipotesi standard: ①②FW ③-⑧MF ⑨⑩DF ⑪GK)."
+   ],
+   "layout": {
+    "FW": 2,
+    "MF": 4,
+    "DF": 4,
+    "GK": 1
+   },
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+  },
+  {
+   "id": "hibiki",
+   "name_ja": "響木正剛",
+   "formation_ja": "F-ライモン",
+   "unlock_ja": "メイン3章の報酬マスで解放",
+   "sources": [
+    "https://appmedia.jp/inazuma-cross/80078356",
+    "https://gamerch.com/inazuma-cross/989697"
+   ],
+   "formation_condition": [
+    {
+     "slot": 3,
+     "tag": "雷門"
+    },
+    {
+     "slot": 7,
+     "tag": "雷門"
+    },
+    {
+     "slot": 11,
+     "tag": "雷門"
+    }
+   ],
+   "formation_passive": {
+    "text_ja": "試合開始時 推奨GKの味方:キャッチ技威力53上昇 推奨DFの味方:ブロック技威力53上昇",
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "GK",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "catch",
+      "value": 53
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "DF",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "block",
+      "value": 53
+     }
+    ]
+   },
+   "coach_passive": {
+    "name_ja": "DF&GKブースト",
+    "text_ja": "試合開始時 雷門タグ推奨GKの味方:キャッチを3113上昇 雷門タグの味方:テクニック1200上昇",
+    "level_used": 10,
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "GK",
+       "element": null,
+       "tag": "雷門",
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "catch",
+      "value": 3113
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": "雷門",
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "technique",
+      "value": 1200
+     }
+    ]
+   },
+   "verified": "parziale",
+   "notes": [
+    "Valore 3113 (Gamerch Lv1: 311, tecnica 120): coerente con Lv10 ma non esatto x10.",
+    "AppMedia scrive 雷門中 come tag nelle condizioni; Gamerch scrive 雷門."
+   ],
+   "layout": {
+    "FW": 2,
+    "MF": 4,
+    "DF": 4,
+    "GK": 1
+   },
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+  },
+  {
+   "id": "kageyama_teikoku",
+   "name_ja": "影山零治",
+   "formation_ja": "F-デスゾーン",
+   "unlock_ja": "メイン2章の報酬マスで解放",
+   "sources": [
+    "https://appmedia.jp/inazuma-cross/80078359",
+    "https://gamerch.com/inazuma-cross/989697"
+   ],
+   "formation_condition": [
+    {
+     "slot": 2,
+     "tag": "帝国"
+    },
+    {
+     "slot": 5,
+     "tag": "帝国"
+    },
+    {
+     "slot": 7,
+     "tag": "帝国"
+    }
+   ],
+   "formation_passive": {
+    "text_ja": "試合開始時 推奨FWの味方:キック600上昇 推奨DFの味方:ブロック600上昇",
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "FW",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "kick",
+      "value": 600
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "DF",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "block",
+      "value": 600
+     }
+    ]
+   },
+   "coach_passive": {
+    "name_ja": "DF&GKブースト",
+    "text_ja": "試合開始時 プレイメイカータグの味方:シュート・ドリブル技威力59上昇",
+    "level_used": 10,
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": null,
+       "type": "プレイメイカー"
+      },
+      "kind": "power",
+      "skill": "shoot",
+      "value": 59
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": null,
+       "type": "プレイメイカー"
+      },
+      "kind": "power",
+      "skill": "dribble",
+      "value": 59
+     }
+    ]
+   },
+   "verified": "parziale",
+   "notes": [
+    "Nei testi AppMedia la passiva di formazione è intestata 'F-ビギナー' (errore di impaginazione); valori confermati da Gamerch (FW kick 600 / DF block 600).",
+    "Tag プレイメイカー = tipo di giocatore (type_ja).",
+    "Valore 59: AppMedia; Gamerch Lv1 = 5."
+   ],
+   "layout": {
+    "FW": 2,
+    "MF": 3,
+    "DF": 5,
+    "GK": 1
+   },
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+  },
+  {
+   "id": "aida",
+   "name_ja": "会田力",
+   "formation_ja": "F-イナズマKFC",
+   "unlock_ja": "リミテッドサッカーバトル:グループBステ1クリア",
+   "sources": [
+    "https://appmedia.jp/inazuma-cross/80078362",
+    "https://gamerch.com/inazuma-cross/989697"
+   ],
+   "formation_condition": [
+    {
+     "slot": 2,
+     "tag": "稲妻KFC"
+    },
+    {
+     "slot": 7,
+     "tag": "雷門または稲妻KFC"
+    },
+    {
+     "slot": 11,
+     "tag": "雷門または稲妻KFC"
+    }
+   ],
+   "formation_passive": {
+    "text_ja": "(Gamerch) 林属性の味方:シュート技威力22上昇 / 山属性の味方:ブロック技威力20上昇",
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": "Forest",
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "shoot",
+      "value": 22
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": "Mountain",
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "block",
+      "value": 20
+     }
+    ]
+   },
+   "coach_passive": {
+    "name_ja": "DF&GKブースト",
+    "text_ja": "試合開始時 雷門と稲妻KFCタグの推奨FWの味方:キック3300上昇 推奨GKの味方:キャッチ3000上昇",
+    "level_used": 10,
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "FW",
+       "element": null,
+       "tag": "雷門または稲妻KFC",
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "kick",
+      "value": 3300
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "GK",
+       "element": null,
+       "tag": "雷門または稲妻KFC",
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "catch",
+      "value": 3000
+     }
+    ]
+   },
+   "verified": "parziale",
+   "notes": [
+    "Passiva di formazione: testo giapponese non presente su AppMedia (è mostrato quello di F-ビギナー); effetti presi da Gamerch (riassunto italiano).",
+    "Slot ⑦ e ⑪: tag 稲妻KFC o 雷門 (lettura incerta della tabella).",
+    "'雷門と稲妻KFCタグ' interpretato come 'uno dei due' (alias esistente 雷門または稲妻KFC)."
+   ],
+   "layout": {
+    "FW": 2,
+    "MF": 3,
+    "DF": 5,
+    "GK": 1
+   },
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+  },
+  {
+   "id": "jigiryu",
+   "name_ja": "地木流灰人",
+   "formation_ja": "F-オカルト",
+   "unlock_ja": "メイン4章試合2クリア",
+   "sources": [
+    "https://appmedia.jp/inazuma-cross/80078365",
+    "https://gamerch.com/inazuma-cross/989697"
+   ],
+   "formation_condition": [
+    {
+     "slot": 1,
+     "element": "Forest"
+    },
+    {
+     "slot": 2,
+     "position": "MF"
+    },
+    {
+     "slot": 3,
+     "position": "MF"
+    }
+   ],
+   "formation_passive": {
+    "text_ja": "試合開始時 推奨MFの味方:テクニック2000上昇 推奨DFの味方:ブロック1200上昇",
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "MF",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "technique",
+      "value": 2000
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "DF",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "block",
+      "value": 1200
+     }
+    ]
+   },
+   "coach_passive": {
+    "name_ja": "DF&GKブースト",
+    "text_ja": "味方MFのドリブル技が成功するたび 敵GKのキャッチを600低下 終了条件:味方がゴールを入れた時 (ricostruito da AppMedia/Gamerch)",
+    "level_used": 10,
+    "effects": [
+     {
+      "timing": "on_event",
+      "target": {
+       "who": "enemy",
+       "pos": "GK",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "catch",
+      "value": -600,
+      "event": "ogni dribbling riuscito di un MF alleato; termina al gol alleato"
+     }
+    ]
+   },
+   "verified": "parziale",
+   "notes": [
+    "Testo coach: 'MFのドリブル技が成功するたび 敵GKのキャッチを600低下' (parafrasi dalla fonte).",
+    "Layout: slot ① elemento Foresta, ② e ③ MF (quindi ② non è FW in questa formazione: layout diverso da F-ビギナー)."
+   ],
+   "layout": {
+    "FW": 1,
+    "MF": 5,
+    "DF": 4,
+    "GK": 1
+   },
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+  },
+  {
+   "id": "tayama",
+   "name_ja": "他山幸助",
+   "formation_ja": "F-ノセ",
+   "unlock_ja": "メイン4章試合4クリア",
+   "sources": [
+    "https://appmedia.jp/inazuma-cross/80078368",
+    "https://gamerch.com/inazuma-cross/989697"
+   ],
+   "formation_condition": [
+    {
+     "slot": 3,
+     "element": "Wind"
+    },
+    {
+     "slot": 6,
+     "element": "Wind"
+    },
+    {
+     "slot": 7,
+     "element": "Wind"
+    }
+   ],
+   "formation_passive": {
+    "text_ja": "試合開始時 風属性の味方のキックとテクニックを900上昇",
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": "Wind",
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "kick",
+      "value": 900
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": "Wind",
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "technique",
+      "value": 900
+     }
+    ]
+   },
+   "coach_passive": {
+    "name_ja": "DF&GKブースト",
+    "text_ja": "試合開始時 味方の風属性技威力を400上昇",
+    "level_used": 10,
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": "Wind",
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "all",
+      "value": 400,
+      "note": "INCERTO: AppMedia 400, Gamerch Lv1 +4 (rapporto 100 invece di 10). Probabile 40. Da verificare in gioco."
+     }
+    ]
+   },
+   "verified": "parziale",
+   "notes": [
+    "Valore potenza coach incoerente tra fonti (400 vs Lv1=4): verificare."
+   ],
+   "layout": {
+    "FW": 3,
+    "MF": 4,
+    "DF": 3,
+    "GK": 1
+   },
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+  },
+  {
+   "id": "tomiyama",
+   "name_ja": "富山新一郎",
+   "formation_ja": "F-ミカゲセンノウ",
+   "unlock_ja": "リミテッドサッカーバトル:グループBステ10クリア",
+   "sources": [
+    "https://appmedia.jp/inazuma-cross/80078371",
+    "https://gamerch.com/inazuma-cross/989697"
+   ],
+   "formation_condition": [
+    {
+     "slot": 2,
+     "element": "Fire"
+    },
+    {
+     "slot": 6,
+     "position": "MF"
+    },
+    {
+     "slot": 11,
+     "element": "Forest"
+    }
+   ],
+   "formation_passive": {
+    "text_ja": "試合開始時 火属性および林属性の味方の技威力30上昇",
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": "Fire",
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "all",
+      "value": 30
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": "Forest",
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "all",
+      "value": 30
+     }
+    ]
+   },
+   "coach_passive": {
+    "name_ja": "DF&GKブースト",
+    "text_ja": "試合開始時 火属性の推奨FWの味方:シュート技威力80上昇 林属性の推奨GKの味方:キャッチ技威力80上昇",
+    "level_used": 10,
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "FW",
+       "element": "Fire",
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "shoot",
+      "value": 80
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "GK",
+       "element": "Forest",
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "catch",
+      "value": 80
+     }
+    ]
+   },
+   "verified": "parziale",
+   "notes": [
+    "Gamerch Lv1: 8 e 8 -> Lv10 80 coerente."
+   ],
+   "layout": {
+    "FW": 2,
+    "MF": 4,
+    "DF": 4,
+    "GK": 1
+   },
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+  },
+  {
+   "id": "mashiya",
+   "name_ja": "真二屋才人",
+   "formation_ja": "F-シュウヨウメイト",
+   "unlock_ja": "メイン3章試合4クリア",
+   "sources": [
+    "https://appmedia.jp/inazuma-cross/80078374",
+    "https://gamerch.com/inazuma-cross/989697"
+   ],
+   "formation_condition": [
+    {
+     "slot": 2,
+     "tag": "秋葉名戸"
+    },
+    {
+     "slot": 4,
+     "type": "セカンドトップ"
+    },
+    {
+     "slot": 5,
+     "type": "セカンドトップ"
+    }
+   ],
+   "formation_passive": {
+    "text_ja": "後半戦開始時 推奨DFの味方:ブロック2700上昇 推奨GKの味方:キャッチ2700上昇",
+    "effects": [
+     {
+      "timing": "second_half_start",
+      "target": {
+       "who": "ally",
+       "pos": "DF",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "block",
+      "value": 2700
+     },
+     {
+      "timing": "second_half_start",
+      "target": {
+       "who": "ally",
+       "pos": "GK",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "catch",
+      "value": 2700
+     }
+    ]
+   },
+   "coach_passive": {
+    "name_ja": "DF&GKブースト",
+    "text_ja": "後半戦開始時 推奨FWの味方:キック4200上昇 推奨MFの味方:テクニック4200上昇",
+    "level_used": 10,
+    "effects": [
+     {
+      "timing": "second_half_start",
+      "target": {
+       "who": "ally",
+       "pos": "FW",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "kick",
+      "value": 4200
+     },
+     {
+      "timing": "second_half_start",
+      "target": {
+       "who": "ally",
+       "pos": "MF",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "technique",
+      "value": 4200,
+      "note": "AppMedia dice キャッチ4200 per MF; Gamerch dice テクニック: usato テクニック"
+     }
+    ]
+   },
+   "verified": "parziale",
+   "notes": [
+    "Effetti solo a inizio secondo tempo.",
+    "Testo di formazione su AppMedia ambiguo (intestato F-ビギナー); confermato da Gamerch."
+   ],
+   "layout": {
+    "FW": 5,
+    "MF": 3,
+    "DF": 2,
+    "GK": 1
+   },
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+  },
+  {
+   "id": "igashima",
+   "name_ja": "伊賀島仙一",
+   "formation_ja": "F-センゴクイガジマ",
+   "unlock_ja": "リミテッドサッカーバトル:グループBステ5クリア",
+   "sources": [
+    "https://appmedia.jp/inazuma-cross/80078377",
+    "https://gamerch.com/inazuma-cross/989697"
+   ],
+   "formation_condition": [
+    {
+     "slot": 2,
+     "tag": "戦国伊賀島"
+    },
+    {
+     "slot": 6,
+     "type": "ディフェンシブハーフ"
+    },
+    {
+     "slot": 11,
+     "type": "ストッパー"
+    }
+   ],
+   "formation_passive": {
+    "text_ja": "味方のドリブルブロック技成功時 味方全体のテクニックとキック250上昇 終了条件:味方がゴールを入れた時",
+    "effects": [
+     {
+      "timing": "on_event",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "technique",
+      "value": 250,
+      "event": "dopo un dribbling bloccato/tecnica di blocco riuscita; termina al gol"
+     },
+     {
+      "timing": "on_event",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "kick",
+      "value": 250,
+      "event": "idem"
+     }
+    ]
+   },
+   "coach_passive": {
+    "name_ja": "DF&GKブースト",
+    "text_ja": "試合開始時 ディフェンシブハーフ&ストッパーの味方のブロックとテクニック2250上昇",
+    "level_used": 10,
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": null,
+       "type": "ディフェンシブハーフ"
+      },
+      "kind": "stat",
+      "stat": "block",
+      "value": 2250
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": null,
+       "type": "ストッパー"
+      },
+      "kind": "stat",
+      "stat": "block",
+      "value": 2250
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": null,
+       "type": "ディフェンシブハーフ"
+      },
+      "kind": "stat",
+      "stat": "technique",
+      "value": 2250
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": null,
+       "type": "ストッパー"
+      },
+      "kind": "stat",
+      "stat": "technique",
+      "value": 2250
+     }
+    ]
+   },
+   "verified": "parziale",
+   "notes": [
+    "Numeri slot: Gamerch ②⑥⑪, AppMedia 1/5/10 (discordanti): usato Gamerch."
+   ],
+   "layout": {
+    "FW": 2,
+    "MF": 4,
+    "DF": 4,
+    "GK": 1
+   },
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+  },
+  {
+   "id": "nikaido",
+   "name_ja": "二階堂修吾",
+   "formation_ja": "F-キドカワセイシュウ",
+   "unlock_ja": "メイン3章試合2クリア",
+   "sources": [
+    "https://appmedia.jp/inazuma-cross/80078380",
+    "https://game8.jp/inazuma-cross/789400"
+   ],
+   "formation_condition": [
+    {
+     "slot": 1,
+     "element": "Mountain"
+    },
+    {
+     "slot": 2,
+     "element": "Fire"
+    },
+    {
+     "slot": 3,
+     "element": "Wind"
+    }
+   ],
+   "formation_passive": {
+    "text_ja": "味方がシュート技を止められた時 味方全員のキック400上昇 終了条件:味方がゴールを入れた時",
+    "effects": [
+     {
+      "timing": "on_event",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "stat",
+      "stat": "kick",
+      "value": 400,
+      "event": "quando un tiro alleato viene fermato; termina al gol alleato"
+     }
+    ]
+   },
+   "coach_passive": {
+    "name_ja": "FW&ストライカーパワーブースト",
+    "text_ja": "試合開始時 推奨FWの味方:シュート技威力60上昇 ストライカーの味方:シュート技威力89上昇",
+    "level_used": 10,
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "FW",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "shoot",
+      "value": 60
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": null,
+       "type": "ストライカー"
+      },
+      "kind": "power",
+      "skill": "shoot",
+      "value": 89
+     }
+    ]
+   },
+   "verified": "parziale",
+   "notes": [
+    "Game8 tabella Lv10: FW 60, Striker 89; AppMedia: 60 e 85 (discordanza): usato Game8."
+   ],
+   "layout": {
+    "FW": 3,
+    "MF": 3,
+    "DF": 4,
+    "GK": 1
+   },
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+  },
+  {
+   "id": "kuon",
+   "name_ja": "久遠道也",
+   "formation_ja": "F-イナズマジャパン",
+   "unlock_ja": "メイン4章試合6クリア",
+   "sources": [
+    "https://appmedia.jp/inazuma-cross/80078383",
+    "https://game8.jp/inazuma-cross/789408"
+   ],
+   "formation_condition": [
+    {
+     "slot": 1,
+     "tag": "イナズマジャパン"
+    },
+    {
+     "slot": 4,
+     "tag": "イナズマジャパン"
+    },
+    {
+     "slot": 9,
+     "tag": "イナズマジャパン"
+    }
+   ],
+   "formation_passive": {
+    "text_ja": "試合開始時 推奨FWの味方:シュート技威力40上昇 推奨DFの味方:ブロック技威力40上昇",
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "FW",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "shoot",
+      "value": 40
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "DF",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "block",
+      "value": 40
+     }
+    ]
+   },
+   "coach_passive": {
+    "name_ja": "イナズマジャパンパワーブースト",
+    "text_ja": "試合開始時 イナズマジャパンタグの推奨FWの味方:シュート技威力87上昇 推奨MFの味方:ドリブル技威力87上昇",
+    "level_used": 10,
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "FW",
+       "element": null,
+       "tag": "イナズマジャパン",
+       "type": null
+      },
+      "kind": "power",
+      "skill": "shoot",
+      "value": 87
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "MF",
+       "element": null,
+       "tag": "イナズマジャパン",
+       "type": null
+      },
+      "kind": "power",
+      "skill": "dribble",
+      "value": 87
+     }
+    ]
+   },
+   "verified": "parziale",
+   "notes": [
+    "Game8 Lv10 = 87 per tiro e dribbling (MF). AppMedia dice DF per il dribbling: usato Game8 (MF)."
+   ],
+   "layout": {
+    "FW": 2,
+    "MF": 4,
+    "DF": 4,
+    "GK": 1
+   },
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+  },
+  {
+   "id": "kageyama_zeus",
+   "name_ja": "影山零治(世宇子)",
+   "formation_ja": "F-ゼウス",
+   "unlock_ja": "「世宇子降臨」のイベントボードをクリア",
+   "sources": [
+    "https://appmedia.jp/inazuma-cross/80168584",
+    "https://gamerch.com/inazuma-cross/989697"
+   ],
+   "formation_condition": [
+    {
+     "slot": 1,
+     "position": "FW"
+    },
+    {
+     "slot": 4,
+     "tag": "世宇子"
+    },
+    {
+     "slot": 11,
+     "element": "Mountain"
+    }
+   ],
+   "formation_passive": {
+    "text_ja": "味方MFのドリブル技が成功するたび 味方の技威力を10上昇 終了条件:味方がゴールを入れた時",
+    "effects": [
+     {
+      "timing": "on_event",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "all",
+      "value": 10,
+      "event": "ogni dribbling riuscito di un MF alleato; termina al gol"
+     }
+    ]
+   },
+   "coach_passive": {
+    "name_ja": "DF&GKブースト",
+    "text_ja": "試合開始時 推奨MFの味方:ドリブル技威力60上昇 世宇子タグの味方:シュート技威力60上昇",
+    "level_used": 10,
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "MF",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "dribble",
+      "value": 60
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": "世宇子",
+       "type": null
+      },
+      "kind": "power",
+      "skill": "shoot",
+      "value": 60
+     }
+    ]
+   },
+   "verified": "parziale",
+   "notes": [
+    "Gamerch Lv1: 6 e 6 -> Lv10 60 coerente."
+   ],
+   "layout": {
+    "FW": 3,
+    "MF": 3,
+    "DF": 4,
+    "GK": 1
+   },
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+  },
+  {
+   "id": "endou_daisuke",
+   "name_ja": "円堂大介",
+   "formation_ja": "F-ヤングイナズマ",
+   "unlock_ja": "人脈ボードNo5を全てクリア後にミッションから入手",
+   "sources": [
+    "https://appmedia.jp/inazuma-cross/80225539"
+   ],
+   "formation_condition": [
+    {
+     "slot": 2,
+     "element": "Fire"
+    },
+    {
+     "slot": 6,
+     "element": "Mountain"
+    },
+    {
+     "slot": 11,
+     "element": "Mountain"
+    }
+   ],
+   "formation_passive": {
+    "text_ja": "味方のキーパー技が成功するたび 味方のシュート技威力を50上昇 終了条件:味方がゴールを入れた時",
+    "effects": [
+     {
+      "timing": "on_event",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "shoot",
+      "value": 50,
+      "event": "ogni parata riuscita di un alleato; termina al gol"
+     }
+    ]
+   },
+   "coach_passive": {
+    "name_ja": "DF&GKブースト",
+    "text_ja": "試合開始時 推奨DFの味方:ブロック技威力60上昇 推奨GKの山属性の味方:キーパー技威力80上昇",
+    "level_used": 10,
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "DF",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "block",
+      "value": 60
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "GK",
+       "element": "Mountain",
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "keeper",
+      "value": 80
+     }
+    ]
+   },
+   "verified": "parziale",
+   "notes": [
+    "Layout di esempio (Game8): F-ヤングイナズマ = FW①②, MF③-⑧, DF⑨⑩, GK⑪."
+   ],
+   "layout": {
+    "FW": 2,
+    "MF": 3,
+    "DF": 5,
+    "GK": 1
+   },
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+  },
+  {
+   "id": "kira",
+   "name_ja": "吉良瞳子",
+   "formation_ja": "F-ライモン2",
+   "unlock_ja": "「宇宙人が来た」のイベントボード(ノーマル)をクリア",
+   "sources": [
+    "https://appmedia.jp/inazuma-cross/80395981"
+   ],
+   "formation_condition": [
+    {
+     "slot": 1,
+     "element": "Forest"
+    },
+    {
+     "slot": 5,
+     "element": "Wind"
+    },
+    {
+     "slot": 6,
+     "element": "Forest"
+    }
+   ],
+   "formation_passive": {
+    "text_ja": "味方がシュート技を止められるたび 林属性および風属性の味方の技威力を40上昇 終了条件:味方がゴールを入れた時",
+    "effects": [
+     {
+      "timing": "on_event",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": "Forest",
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "all",
+      "value": 40,
+      "event": "quando un tiro alleato viene fermato; termina al gol"
+     },
+     {
+      "timing": "on_event",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": "Wind",
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "all",
+      "value": 40,
+      "event": "idem"
+     }
+    ]
+   },
+   "coach_passive": {
+    "name_ja": "DF&GKブースト",
+    "text_ja": "試合開始時 林属性および風属性の味方:シュート技威力70上昇 推奨MFの味方:ドリブル技威力60上昇",
+    "level_used": 10,
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": "Forest",
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "shoot",
+      "value": 70
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": "Wind",
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "shoot",
+      "value": 70
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "MF",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "dribble",
+      "value": 60
+     }
+    ]
+   },
+   "verified": "parziale",
+   "notes": [
+    "Tabella condizioni poco chiara: seconda riga con ⑥風 (alternativa?) non risolta: usata la prima riga."
+   ],
+   "layout": {
+    "FW": 2,
+    "MF": 4,
+    "DF": 4,
+    "GK": 1
+   },
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+  }
+ ]
+}

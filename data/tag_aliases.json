@@ -1,0 +1,128 @@
+{
+ "_doc": "Risoluzione dei tag citati nelle passive ('XXXタグ') verso i personaggi. Un personaggio ha il tag se il suo team_ja è in 'teams' o il suo type_ja è in 'types'. status: exact = stesso nome della squadra nel database; assumed = deduzione non confermata dalla fonte. 'optional_teams' NON vengono contati di default (il builder può offrire un interruttore). 'any_of' = il tag vale se il personaggio ha almeno uno dei tag elencati (lettura assunta di 'AまたはB' e 'AとB').",
+ "tags": {
+  "雷門": {
+   "teams": [
+    "雷門中"
+   ],
+   "optional_teams": [
+    "雷門OB",
+    "革命の雷門"
+   ],
+   "status": "assumed",
+   "note": "Le passive dicono 雷門タグ; la fonte non elenca chi ha il tag. Squadra 雷門中 assunta; 雷門OB e 革命の雷門 incerti (opzionali)."
+  },
+  "帝国": {
+   "teams": [
+    "帝国学園"
+   ],
+   "status": "assumed",
+   "note": "Passive: 帝国タグ; squadra nel database: 帝国学園."
+  },
+  "世宇子": {
+   "teams": [
+    "世宇子"
+   ],
+   "status": "exact"
+  },
+  "ヤングイナズマ": {
+   "teams": [
+    "ヤングイナズマ"
+   ],
+   "status": "exact"
+  },
+  "ジェミニストーム": {
+   "teams": [
+    "ジェミニストーム"
+   ],
+   "status": "exact"
+  },
+  "カオス": {
+   "teams": [
+    "カオス"
+   ],
+   "status": "exact"
+  },
+  "イナズマジャパン": {
+   "teams": [
+    "イナズマジャパン"
+   ],
+   "optional_teams": [
+    "日本代表2026"
+   ],
+   "status": "exact",
+   "note": "日本代表2026 (2 personaggi) potrebbe condividere il tag: non confermato, opzionale."
+  },
+  "木戸川清修": {
+   "teams": [
+    "木戸川清修"
+   ],
+   "status": "exact"
+  },
+  "稲妻KFC": {
+   "teams": [
+    "稲妻KFC"
+   ],
+   "status": "exact"
+  },
+  "ストライカー": {
+   "types": [
+    "ストライカー"
+   ],
+   "status": "assumed",
+   "note": "Tag di tipo giocatore (type_ja), non di squadra."
+  },
+  "雷門またはイナズマジャパン": {
+   "any_of": [
+    "雷門",
+    "イナズマジャパン"
+   ],
+   "status": "assumed"
+  },
+  "雷門または稲妻KFC": {
+   "any_of": [
+    "雷門",
+    "稲妻KFC"
+   ],
+   "status": "assumed"
+  },
+  "雷門と帝国": {
+   "any_of": [
+    "雷門",
+    "帝国"
+   ],
+   "status": "assumed",
+   "note": "'と' letto come 'uno dei due' (un personaggio ha una sola squadra): da verificare in gioco."
+  },
+  "プレイメイカー": {
+   "types": [
+    "プレイメイカー"
+   ],
+   "status": "assumed",
+   "note": "Tag di tipo giocatore (type_ja)."
+  },
+  "セカンドトップ": {
+   "types": [
+    "セカンドトップ"
+   ],
+   "status": "assumed",
+   "note": "Tag di tipo giocatore (type_ja)."
+  },
+  "ディフェンシブハーフ": {
+   "types": [
+    "ディフェンシブハーフ"
+   ],
+   "status": "assumed",
+   "note": "Tag di tipo giocatore (type_ja)."
+  },
+  "ストッパー": {
+   "types": [
+    "ストッパー"
+   ],
+   "status": "assumed",
+   "note": "Tag di tipo giocatore (type_ja)."
+  }
+ },
+ "character_overrides": {},
+ "_overrides_doc": "Eccezioni per id personaggio: {\"<id>\": [\"tag\", ...]} aggiunge tag che il personaggio ha davvero ma non deducibili dalla squadra (es. personaggi 無所属). Vuoto finché non verificato."
+}

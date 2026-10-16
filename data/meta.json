@@ -1,0 +1,30 @@
+{
+  "game": "Inazuma Eleven Cross (iOS/Android, Japan launch 2026-06-09)",
+  "elements": {
+    "Fire":     { "ja": "火", "it": "Fuoco" },
+    "Wind":     { "ja": "風", "it": "Vento" },
+    "Forest":   { "ja": "林", "it": "Foresta" },
+    "Mountain": { "ja": "山", "it": "Montagna" }
+  },
+  "element_cycle": {
+    "note": "A batte B. Bonus alla potenza della tecnica in caso di vantaggio; la fonte non indica moltiplicatori numerici.",
+    "beats": { "Wind": "Mountain", "Mountain": "Fire", "Fire": "Forest", "Forest": "Wind" },
+    "source": "https://game8.jp/inazuma-cross/789599",
+    "verified": "ok"
+  },
+  "positions": {
+    "GK": { "it": "Portiere" },
+    "DF": { "it": "Difensore" },
+    "MF": { "it": "Centrocampista" },
+    "FW": { "it": "Attaccante" }
+  },
+  "stats": ["tp", "kick", "technique", "block", "catch", "speed"],
+  "stat_labels_it": { "tp": "TP", "kick": "Calcio", "technique": "Tecnica", "block": "Blocco", "catch": "Presa", "speed": "Velocità" },
+  "skill_categories": ["shoot", "dribble", "block", "keeper"],
+  "passive_unlock_order": ["初期", "Lv11", "ADVANCED", "ADVANCED+", "Lv41"],
+  "training_passives_source": "https://game8.jp/inazuma-cross/792803",
+  "notes": [
+    "Le passive di personaggio dipendono spesso dai TAG di squadra (es. イナズマジャパン, 雷門): sono la base delle sinergie del Team Builder.",
+    "Lo stesso personaggio può avere più versioni (pagine diverse): l'id univoco è l'id della pagina fonte."
+  ]
+}

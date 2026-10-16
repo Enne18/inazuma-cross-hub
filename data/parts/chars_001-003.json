@@ -1,0 +1,92 @@
+[
+  {
+    "id": "80072287",
+    "source_url": "https://appmedia.jp/inazuma-cross/80072287",
+    "name_ja": "円堂守",
+    "name_en": "Mamoru Endou",
+    "version": "イナズマジャパン",
+    "rarity": 3,
+    "element": "Mountain",
+    "position": "GK",
+    "type_ja": "モチベーター",
+    "team_ja": "イナズマジャパン",
+    "series_ja": "イナイレ3",
+    "tags_ja": ["イナズマジャパン"],
+    "rating": { "best": "S", "reroll": "A" },
+    "stats_max": { "tp": 100, "kick": 4316, "technique": 3994, "block": 5330, "catch": 7640, "speed": 2 },
+    "skills": [
+      { "name_ja": "ゴッドハンド(山)", "name_en": "God Hand (Mountain)", "unlock": "Lv1", "tp": 40, "power": 123, "crit": 11, "range": 1, "chain": null, "category": "keeper" },
+      { "name_ja": "怒りの鉄槌", "name_en": "Hammer of Wrath", "unlock": "Lv31", "tp": 50, "power": 153, "crit": 10, "range": 1, "chain": null, "category": "keeper" }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "【阻止/累】FWキック+", "effect_ja": "敵のシュートを止めるたび、味方のFWのキックが996上昇", "effect_en": "Each time an enemy shot is stopped, allied FW Kick +996 (cumulative)", "unlock": "ADVANCED+" },
+      { "name_ja": "【失点/累】キャッチ+", "effect_ja": "敵からゴールを入れられるたび、自身のキャッチが1912上昇", "effect_en": "Each time a goal is conceded, own Catch +1912 (cumulative)", "unlock": "初期" },
+      { "name_ja": "キャッチ+", "effect_ja": "試合開始時、自身のキャッチを2016上昇", "effect_en": "At match start, own Catch +2016", "unlock": "Lv11" },
+      { "name_ja": "【阻止/累】チームテクニック+", "effect_ja": "敵のシュートを止めるたび、味方のテクニックが340上昇", "effect_en": "Each time an enemy shot is stopped, allies' Technique +340 (cumulative)", "unlock": "Lv41" }
+    ],
+    "verified": "ok",
+    "notes": ["Chain non indicato nella tabella (null).", "Le tecniche extra consigliate dalla pagina (acquisibili) non sono incluse: solo quelle native."],
+    "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072293",
+    "source_url": "https://appmedia.jp/inazuma-cross/80072293",
+    "name_ja": "豪炎寺修也",
+    "name_en": "Shuuya Gouenji",
+    "version": "イナズマジャパン",
+    "rarity": 3,
+    "element": "Fire",
+    "position": "FW",
+    "type_ja": "ストライカー",
+    "team_ja": "イナズマジャパン",
+    "series_ja": "イナイレ3",
+    "tags_ja": ["イナズマジャパン", "雷門"],
+    "rating": { "best": "SS", "reroll": "SS" },
+    "stats_max": { "tp": 100, "kick": 7804, "technique": 5850, "block": 4388, "catch": 2898, "speed": 4 },
+    "skills": [
+      { "name_ja": "ファイアトルネード", "name_en": "Fire Tornado", "unlock": "Lv1", "tp": 40, "power": 137, "crit": 11, "range": 19, "chain": true, "category": "shoot" },
+      { "name_ja": "爆熱スクリュー", "name_en": "Bakunetsu Screw", "unlock": "Lv31", "tp": 60, "power": 199, "crit": 11, "range": 19, "chain": true, "category": "shoot" }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、最大TPを30上昇", "effect_en": "At match start, max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "【自得点/累】雷門・イナズマジャパン+", "effect_ja": "自分がゴールするたび、雷門またはイナズマジャパンタグの味方全員のパラメータを199上昇", "effect_en": "Each time this player scores, all allies with the Raimon or Inazuma Japan tag get all parameters +199 (cumulative)", "unlock": "ADVANCED+" },
+      { "name_ja": "【結束】キック+", "effect_ja": "雷門またはイナズマジャパンタグの味方が3人以上いる場合、キックを3510上昇", "effect_en": "If 3+ allies have the Raimon or Inazuma Japan tag, own Kick +3510", "unlock": "初期" },
+      { "name_ja": "キック+", "effect_ja": "試合開始時、キックを2016上昇", "effect_en": "At match start, own Kick +2016", "unlock": "Lv11" },
+      { "name_ja": "【決定機】シュートパワー+", "effect_ja": "ペナルティエリア内でシュート技を打つ時、威力を133上昇（エリア外へ移動すると終了）", "effect_en": "When using a shot skill inside the penalty area, power +133 (ends when leaving the area)", "unlock": "Lv41" }
+    ],
+    "verified": "ok",
+    "notes": ["Categoria delle tecniche non indicata in tabella: 'shoot' dedotta (la pagina le tratta come tecniche di tiro).", "Il tag '雷門' è dedotto dal testo delle passive; la pagina mostra come team solo イナズマジャパン."],
+    "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072302",
+    "source_url": "https://appmedia.jp/inazuma-cross/80072302",
+    "name_ja": "鬼道有人",
+    "name_en": "Yuuto Kidou",
+    "version": "イナズマジャパン",
+    "rarity": 3,
+    "element": "Wind",
+    "position": "MF",
+    "type_ja": "プレイメイカー",
+    "team_ja": "イナズマジャパン",
+    "series_ja": "イナイレ3",
+    "tags_ja": ["イナズマジャパン"],
+    "rating": { "best": "S", "reroll": "S" },
+    "stats_max": { "tp": 100, "kick": 5460, "technique": 7722, "block": 4684, "catch": 2730, "speed": 6 },
+    "skills": [
+      { "name_ja": "イリュージョンボール", "name_en": "Illusion Ball", "unlock": "Lv1", "tp": 40, "power": 143, "crit": 12, "range": 2, "chain": null, "category": "dribble", "foul": 5 },
+      { "name_ja": "皇帝ペンギン2号", "name_en": "Emperor Penguin No. 2", "unlock": "Lv31", "tp": 60, "power": 160, "crit": 11, "range": 29, "chain": true, "category": "shoot" }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "【守勢】DFブロック+", "effect_ja": "自身がハーフラインより味方エリア側に居る時、味方DFのブロックが上昇（数値: 1829）。終了条件：ハーフラインより敵エリア側に居る時", "effect_en": "While this player is on the own side of the halfway line, allied DF Block up (value 1829 — see notes). Ends when on the enemy side", "unlock": "ADVANCED+" },
+      { "name_ja": "テクニック+", "effect_ja": "試合開始時、自身のテクニックを3440上昇", "effect_en": "At match start, own Technique +3440", "unlock": "初期" },
+      { "name_ja": "テクニック+", "effect_ja": "試合開始時、自身のテクニックを2016上昇", "effect_en": "At match start, own Technique +2016", "unlock": "Lv11" },
+      { "name_ja": "【攻勢】MFドリブルパワー+", "effect_ja": "自身がハーフラインより敵エリア側に居る時、味方MFのドリブル技の威力を40上昇。終了条件：ハーフラインより味方エリア側に居る時", "effect_en": "While this player is on the enemy side of the halfway line, allied MF dribble skill power +40. Ends when on the own side", "unlock": "Lv41" }
+    ],
+    "verified": "parziale",
+    "notes": ["Nella pagina fonte alcuni numeri risultano concatenati (es. '上昇1829上昇'): il valore 1829 del DFブロック+ è da ricontrollare.", "Categoria delle tecniche dedotta dall'alt-text delle immagini della fonte.", "Chain non indicato per Illusion Ball (null)."],
+    "checked_on": "2026-10-12"
+  }
+]

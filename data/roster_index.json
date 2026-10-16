@@ -1,0 +1,994 @@
+[
+ {
+  "idx": 1,
+  "name_ja": "円堂守",
+  "element_ja": "山",
+  "position": "GK",
+  "id": "80072287",
+  "url": "https://appmedia.jp/inazuma-cross/80072287"
+ },
+ {
+  "idx": 2,
+  "name_ja": "風丸一郎太",
+  "element_ja": "風",
+  "position": "DF",
+  "id": "80072290",
+  "url": "https://appmedia.jp/inazuma-cross/80072290"
+ },
+ {
+  "idx": 3,
+  "name_ja": "豪炎寺修也",
+  "element_ja": "火",
+  "position": "FW",
+  "id": "80072293",
+  "url": "https://appmedia.jp/inazuma-cross/80072293"
+ },
+ {
+  "idx": 4,
+  "name_ja": "染岡竜吾",
+  "element_ja": "林",
+  "position": "FW",
+  "id": "80072296",
+  "url": "https://appmedia.jp/inazuma-cross/80072296"
+ },
+ {
+  "idx": 5,
+  "name_ja": "壁山塀吾郎",
+  "element_ja": "山",
+  "position": "DF",
+  "id": "80072299",
+  "url": "https://appmedia.jp/inazuma-cross/80072299"
+ },
+ {
+  "idx": 6,
+  "name_ja": "鬼道有人",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80072302",
+  "url": "https://appmedia.jp/inazuma-cross/80072302"
+ },
+ {
+  "idx": 7,
+  "name_ja": "立向居勇気",
+  "element_ja": "林",
+  "position": "GK",
+  "id": "80072305",
+  "url": "https://appmedia.jp/inazuma-cross/80072305"
+ },
+ {
+  "idx": 8,
+  "name_ja": "飛鷹征矢",
+  "element_ja": "風",
+  "position": "DF",
+  "id": "80072308",
+  "url": "https://appmedia.jp/inazuma-cross/80072308"
+ },
+ {
+  "idx": 9,
+  "name_ja": "綱海条介",
+  "element_ja": "風",
+  "position": "DF",
+  "id": "80072311",
+  "url": "https://appmedia.jp/inazuma-cross/80072311"
+ },
+ {
+  "idx": 10,
+  "name_ja": "木暮夕弥",
+  "element_ja": "林",
+  "position": "DF",
+  "id": "80072314",
+  "url": "https://appmedia.jp/inazuma-cross/80072314"
+ },
+ {
+  "idx": 11,
+  "name_ja": "円堂守",
+  "element_ja": "山",
+  "position": "GK",
+  "id": "80072317",
+  "url": "https://appmedia.jp/inazuma-cross/80072317"
+ },
+ {
+  "idx": 12,
+  "name_ja": "風丸一郎太",
+  "element_ja": "風",
+  "position": "DF",
+  "id": "80072320",
+  "url": "https://appmedia.jp/inazuma-cross/80072320"
+ },
+ {
+  "idx": 13,
+  "name_ja": "染岡竜吾",
+  "element_ja": "林",
+  "position": "FW",
+  "id": "80072323",
+  "url": "https://appmedia.jp/inazuma-cross/80072323"
+ },
+ {
+  "idx": 14,
+  "name_ja": "土門飛鳥",
+  "element_ja": "林",
+  "position": "DF",
+  "id": "80072326",
+  "url": "https://appmedia.jp/inazuma-cross/80072326"
+ },
+ {
+  "idx": 15,
+  "name_ja": "一之瀬一哉",
+  "element_ja": "林",
+  "position": "MF",
+  "id": "80072329",
+  "url": "https://appmedia.jp/inazuma-cross/80072329"
+ },
+ {
+  "idx": 16,
+  "name_ja": "鬼道有人",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80072332",
+  "url": "https://appmedia.jp/inazuma-cross/80072332"
+ },
+ {
+  "idx": 17,
+  "name_ja": "佐久間次郎",
+  "element_ja": "林",
+  "position": "FW",
+  "id": "80072335",
+  "url": "https://appmedia.jp/inazuma-cross/80072335"
+ },
+ {
+  "idx": 18,
+  "name_ja": "半田真一",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80072338",
+  "url": "https://appmedia.jp/inazuma-cross/80072338"
+ },
+ {
+  "idx": 19,
+  "name_ja": "宍戸佐吉",
+  "element_ja": "火",
+  "position": "MF",
+  "id": "80072341",
+  "url": "https://appmedia.jp/inazuma-cross/80072341"
+ },
+ {
+  "idx": 20,
+  "name_ja": "少林寺歩",
+  "element_ja": "林",
+  "position": "MF",
+  "id": "80072344",
+  "url": "https://appmedia.jp/inazuma-cross/80072344"
+ },
+ {
+  "idx": 21,
+  "name_ja": "松野空介",
+  "element_ja": "風",
+  "position": "FW",
+  "id": "80072347",
+  "url": "https://appmedia.jp/inazuma-cross/80072347"
+ },
+ {
+  "idx": 22,
+  "name_ja": "成神健也",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80072350",
+  "url": "https://appmedia.jp/inazuma-cross/80072350"
+ },
+ {
+  "idx": 23,
+  "name_ja": "咲山修二",
+  "element_ja": "火",
+  "position": "MF",
+  "id": "80072353",
+  "url": "https://appmedia.jp/inazuma-cross/80072353"
+ },
+ {
+  "idx": 24,
+  "name_ja": "洞面秀一郎",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80072356",
+  "url": "https://appmedia.jp/inazuma-cross/80072356"
+ },
+ {
+  "idx": 25,
+  "name_ja": "闇野カゲト",
+  "element_ja": "林",
+  "position": "FW",
+  "id": "80072623",
+  "url": "https://appmedia.jp/inazuma-cross/80072623"
+ },
+ {
+  "idx": 26,
+  "name_ja": "壁山塀吾郎",
+  "element_ja": "山",
+  "position": "DF",
+  "id": "80072359",
+  "url": "https://appmedia.jp/inazuma-cross/80072359"
+ },
+ {
+  "idx": 27,
+  "name_ja": "吹雪士郎",
+  "element_ja": "風",
+  "position": "FW",
+  "id": "80072362",
+  "url": "https://appmedia.jp/inazuma-cross/80072362"
+ },
+ {
+  "idx": 28,
+  "name_ja": "影野仁",
+  "element_ja": "林",
+  "position": "DF",
+  "id": "80072626",
+  "url": "https://appmedia.jp/inazuma-cross/80072626"
+ },
+ {
+  "idx": 29,
+  "name_ja": "不動明王",
+  "element_ja": "火",
+  "position": "MF",
+  "id": "80072911",
+  "url": "https://appmedia.jp/inazuma-cross/80072911"
+ },
+ {
+  "idx": 30,
+  "name_ja": "万丈一道",
+  "element_ja": "林",
+  "position": "DF",
+  "id": "80072986",
+  "url": "https://appmedia.jp/inazuma-cross/80072986"
+ },
+ {
+  "idx": 31,
+  "name_ja": "栗松鉄平",
+  "element_ja": "火",
+  "position": "DF",
+  "id": "80076946",
+  "url": "https://appmedia.jp/inazuma-cross/80076946"
+ },
+ {
+  "idx": 32,
+  "name_ja": "目金欠流",
+  "element_ja": "林",
+  "position": "FW",
+  "id": "80076949",
+  "url": "https://appmedia.jp/inazuma-cross/80076949"
+ },
+ {
+  "idx": 33,
+  "name_ja": "豪炎寺修也",
+  "element_ja": "火",
+  "position": "FW",
+  "id": "80076952",
+  "url": "https://appmedia.jp/inazuma-cross/80076952"
+ },
+ {
+  "idx": 34,
+  "name_ja": "栗松鉄平",
+  "element_ja": "火",
+  "position": "DF",
+  "id": "80076955",
+  "url": "https://appmedia.jp/inazuma-cross/80076955"
+ },
+ {
+  "idx": 35,
+  "name_ja": "宮坂了",
+  "element_ja": "風",
+  "position": "DF",
+  "id": "80076958",
+  "url": "https://appmedia.jp/inazuma-cross/80076958"
+ },
+ {
+  "idx": 36,
+  "name_ja": "如月まこ",
+  "element_ja": "林",
+  "position": "FW",
+  "id": "80076961",
+  "url": "https://appmedia.jp/inazuma-cross/80076961"
+ },
+ {
+  "idx": 37,
+  "name_ja": "源田幸次郎",
+  "element_ja": "火",
+  "position": "GK",
+  "id": "80076964",
+  "url": "https://appmedia.jp/inazuma-cross/80076964"
+ },
+ {
+  "idx": 38,
+  "name_ja": "辺見渡",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80078860",
+  "url": "https://appmedia.jp/inazuma-cross/80078860"
+ },
+ {
+  "idx": 39,
+  "name_ja": "大野伝助",
+  "element_ja": "山",
+  "position": "DF",
+  "id": "80078863",
+  "url": "https://appmedia.jp/inazuma-cross/80078863"
+ },
+ {
+  "idx": 40,
+  "name_ja": "五条勝",
+  "element_ja": "林",
+  "position": "DF",
+  "id": "80081470",
+  "url": "https://appmedia.jp/inazuma-cross/80081470"
+ },
+ {
+  "idx": 41,
+  "name_ja": "霧隠才次",
+  "element_ja": "火",
+  "position": "FW",
+  "id": "80081665",
+  "url": "https://appmedia.jp/inazuma-cross/80081665"
+ },
+ {
+  "idx": 42,
+  "name_ja": "寺門大貴",
+  "element_ja": "林",
+  "position": "FW",
+  "id": "80085709",
+  "url": "https://appmedia.jp/inazuma-cross/80085709"
+ },
+ {
+  "idx": 43,
+  "name_ja": "土方雷電",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80087017",
+  "url": "https://appmedia.jp/inazuma-cross/80087017"
+ },
+ {
+  "idx": 44,
+  "name_ja": "円堂守",
+  "element_ja": "山",
+  "position": "MF",
+  "id": "80087779",
+  "url": "https://appmedia.jp/inazuma-cross/80087779"
+ },
+ {
+  "idx": 45,
+  "name_ja": "鬼道有人",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80087782",
+  "url": "https://appmedia.jp/inazuma-cross/80087782"
+ },
+ {
+  "idx": 46,
+  "name_ja": "漫画萌",
+  "element_ja": "風",
+  "position": "FW",
+  "id": "80111677",
+  "url": "https://appmedia.jp/inazuma-cross/80111677"
+ },
+ {
+  "idx": 47,
+  "name_ja": "杉森威",
+  "element_ja": "林",
+  "position": "GK",
+  "id": "80111680",
+  "url": "https://appmedia.jp/inazuma-cross/80111680"
+ },
+ {
+  "idx": 48,
+  "name_ja": "武方努",
+  "element_ja": "山",
+  "position": "FW",
+  "id": "80111683",
+  "url": "https://appmedia.jp/inazuma-cross/80111683"
+ },
+ {
+  "idx": 49,
+  "name_ja": "武方友",
+  "element_ja": "風",
+  "position": "FW",
+  "id": "80111686",
+  "url": "https://appmedia.jp/inazuma-cross/80111686"
+ },
+ {
+  "idx": 50,
+  "name_ja": "武方勝",
+  "element_ja": "火",
+  "position": "FW",
+  "id": "80111689",
+  "url": "https://appmedia.jp/inazuma-cross/80111689"
+ },
+ {
+  "idx": 51,
+  "name_ja": "緑川リュウジ",
+  "element_ja": "林",
+  "position": "MF",
+  "id": "80111692",
+  "url": "https://appmedia.jp/inazuma-cross/80111692"
+ },
+ {
+  "idx": 52,
+  "name_ja": "基山ヒロト",
+  "element_ja": "火",
+  "position": "FW",
+  "id": "80116660",
+  "url": "https://appmedia.jp/inazuma-cross/80116660"
+ },
+ {
+  "idx": 53,
+  "name_ja": "水前寺馳威太",
+  "element_ja": "風",
+  "position": "FW",
+  "id": "80118559",
+  "url": "https://appmedia.jp/inazuma-cross/80118559"
+ },
+ {
+  "idx": 54,
+  "name_ja": "下鶴改",
+  "element_ja": "火",
+  "position": "FW",
+  "id": "80118562",
+  "url": "https://appmedia.jp/inazuma-cross/80118562"
+ },
+ {
+  "idx": 55,
+  "name_ja": "鉈十三",
+  "element_ja": "風",
+  "position": "GK",
+  "id": "80118565",
+  "url": "https://appmedia.jp/inazuma-cross/80118565"
+ },
+ {
+  "idx": 56,
+  "name_ja": "幽谷博之",
+  "element_ja": "林",
+  "position": "FW",
+  "id": "80118568",
+  "url": "https://appmedia.jp/inazuma-cross/80118568"
+ },
+ {
+  "idx": 57,
+  "name_ja": "宇都宮虎丸",
+  "element_ja": "林",
+  "position": "FW",
+  "id": "80118892",
+  "url": "https://appmedia.jp/inazuma-cross/80118892"
+ },
+ {
+  "idx": 58,
+  "name_ja": "アフロディ",
+  "element_ja": "林",
+  "position": "MF",
+  "id": "80137516",
+  "url": "https://appmedia.jp/inazuma-cross/80137516"
+ },
+ {
+  "idx": 59,
+  "name_ja": "デメテル",
+  "element_ja": "火",
+  "position": "FW",
+  "id": "80164864",
+  "url": "https://appmedia.jp/inazuma-cross/80164864"
+ },
+ {
+  "idx": 60,
+  "name_ja": "ポセイドン",
+  "element_ja": "山",
+  "position": "GK",
+  "id": "80164867",
+  "url": "https://appmedia.jp/inazuma-cross/80164867"
+ },
+ {
+  "idx": 61,
+  "name_ja": "アテナ",
+  "element_ja": "林",
+  "position": "MF",
+  "id": "80169751",
+  "url": "https://appmedia.jp/inazuma-cross/80169751"
+ },
+ {
+  "idx": 62,
+  "name_ja": "ヘラ",
+  "element_ja": "火",
+  "position": "MF",
+  "id": "80168572",
+  "url": "https://appmedia.jp/inazuma-cross/80168572"
+ },
+ {
+  "idx": 63,
+  "name_ja": "アルテミス",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80168869",
+  "url": "https://appmedia.jp/inazuma-cross/80168869"
+ },
+ {
+  "idx": 64,
+  "name_ja": "ヘルメス",
+  "element_ja": "林",
+  "position": "MF",
+  "id": "80168428",
+  "url": "https://appmedia.jp/inazuma-cross/80168428"
+ },
+ {
+  "idx": 65,
+  "name_ja": "アポロン",
+  "element_ja": "林",
+  "position": "DF",
+  "id": "80168434",
+  "url": "https://appmedia.jp/inazuma-cross/80168434"
+ },
+ {
+  "idx": 66,
+  "name_ja": "アレス",
+  "element_ja": "山",
+  "position": "DF",
+  "id": "80168896",
+  "url": "https://appmedia.jp/inazuma-cross/80168896"
+ },
+ {
+  "idx": 67,
+  "name_ja": "ディオ",
+  "element_ja": "風",
+  "position": "DF",
+  "id": "80168440",
+  "url": "https://appmedia.jp/inazuma-cross/80168440"
+ },
+ {
+  "idx": 68,
+  "name_ja": "ヘパイス",
+  "element_ja": "火",
+  "position": "DF",
+  "id": "80168905",
+  "url": "https://appmedia.jp/inazuma-cross/80168905"
+ },
+ {
+  "idx": 69,
+  "name_ja": "松風天馬",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80196472",
+  "url": "https://appmedia.jp/inazuma-cross/80196472"
+ },
+ {
+  "idx": 70,
+  "name_ja": "剣城京介",
+  "element_ja": "火",
+  "position": "FW",
+  "id": "80196511",
+  "url": "https://appmedia.jp/inazuma-cross/80196511"
+ },
+ {
+  "idx": 71,
+  "name_ja": "豪炎寺修也",
+  "element_ja": "火",
+  "position": "FW",
+  "id": "80220718",
+  "url": "https://appmedia.jp/inazuma-cross/80220718"
+ },
+ {
+  "idx": 72,
+  "name_ja": "定良保",
+  "element_ja": "山",
+  "position": "MF",
+  "id": "80225269",
+  "url": "https://appmedia.jp/inazuma-cross/80225269"
+ },
+ {
+  "idx": 73,
+  "name_ja": "民山謡",
+  "element_ja": "風",
+  "position": "FW",
+  "id": "80225272",
+  "url": "https://appmedia.jp/inazuma-cross/80225272"
+ },
+ {
+  "idx": 74,
+  "name_ja": "菅田巌",
+  "element_ja": "火",
+  "position": "MF",
+  "id": "80225629",
+  "url": "https://appmedia.jp/inazuma-cross/80225629"
+ },
+ {
+  "idx": 75,
+  "name_ja": "浮島一人",
+  "element_ja": "林",
+  "position": "DF",
+  "id": "80225860",
+  "url": "https://appmedia.jp/inazuma-cross/80225860"
+ },
+ {
+  "idx": 76,
+  "name_ja": "響木正剛",
+  "element_ja": "山",
+  "position": "GK",
+  "id": "80226178",
+  "url": "https://appmedia.jp/inazuma-cross/80226178"
+ },
+ {
+  "idx": 77,
+  "name_ja": "菜花黄名子",
+  "element_ja": "火",
+  "position": "DF",
+  "id": "80256862",
+  "url": "https://appmedia.jp/inazuma-cross/80256862"
+ },
+ {
+  "idx": 78,
+  "name_ja": "フェイルーン",
+  "element_ja": "林",
+  "position": "FW",
+  "id": "80256895",
+  "url": "https://appmedia.jp/inazuma-cross/80256895"
+ },
+ {
+  "idx": 79,
+  "name_ja": "神童拓人",
+  "element_ja": "林",
+  "position": "MF",
+  "id": "80299675",
+  "url": "https://appmedia.jp/inazuma-cross/80299675"
+ },
+ {
+  "idx": 80,
+  "name_ja": "霧野蘭丸",
+  "element_ja": "林",
+  "position": "DF",
+  "id": "80299648",
+  "url": "https://appmedia.jp/inazuma-cross/80299648"
+ },
+ {
+  "idx": 81,
+  "name_ja": "中間庸",
+  "element_ja": "林",
+  "position": "MF",
+  "id": "80302663",
+  "url": "https://appmedia.jp/inazuma-cross/80302663"
+ },
+ {
+  "idx": 82,
+  "name_ja": "髪村切斗",
+  "element_ja": "風",
+  "position": "DF",
+  "id": "80302690",
+  "url": "https://appmedia.jp/inazuma-cross/80302690"
+ },
+ {
+  "idx": 83,
+  "name_ja": "碇頑五郎",
+  "element_ja": "火",
+  "position": "MF",
+  "id": "80302960",
+  "url": "https://appmedia.jp/inazuma-cross/80302960"
+ },
+ {
+  "idx": 84,
+  "name_ja": "会田力",
+  "element_ja": "山",
+  "position": "DF",
+  "id": "80303173",
+  "url": "https://appmedia.jp/inazuma-cross/80303173"
+ },
+ {
+  "idx": 85,
+  "name_ja": "場寅仕",
+  "element_ja": "林",
+  "position": "MF",
+  "id": "80303329",
+  "url": "https://appmedia.jp/inazuma-cross/80303329"
+ },
+ {
+  "idx": 86,
+  "name_ja": "備流田光一",
+  "element_ja": "火",
+  "position": "FW",
+  "id": "80303875",
+  "url": "https://appmedia.jp/inazuma-cross/80303875"
+ },
+ {
+  "idx": 87,
+  "name_ja": "木野秋",
+  "element_ja": "山",
+  "position": "GK",
+  "id": "80337322",
+  "url": "https://appmedia.jp/inazuma-cross/80337322"
+ },
+ {
+  "idx": 88,
+  "name_ja": "音無春奈",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80337340",
+  "url": "https://appmedia.jp/inazuma-cross/80337340"
+ },
+ {
+  "idx": 89,
+  "name_ja": "雷門夏未",
+  "element_ja": "火",
+  "position": "FW",
+  "id": "80337355",
+  "url": "https://appmedia.jp/inazuma-cross/80337355"
+ },
+ {
+  "idx": 90,
+  "name_ja": "壁山サク",
+  "element_ja": "山",
+  "position": "DF",
+  "id": "80339482",
+  "url": "https://appmedia.jp/inazuma-cross/80339482"
+ },
+ {
+  "idx": 91,
+  "name_ja": "鬼瓦源五郎",
+  "element_ja": "火",
+  "position": "GK",
+  "id": "80339494",
+  "url": "https://appmedia.jp/inazuma-cross/80339494"
+ },
+ {
+  "idx": 92,
+  "name_ja": "西垣守",
+  "element_ja": "火",
+  "position": "DF",
+  "id": "80339563",
+  "url": "https://appmedia.jp/inazuma-cross/80339563"
+ },
+ {
+  "idx": 93,
+  "name_ja": "豪炎寺夕香",
+  "element_ja": "火",
+  "position": "MF",
+  "id": "80339785",
+  "url": "https://appmedia.jp/inazuma-cross/80339785"
+ },
+ {
+  "idx": 94,
+  "name_ja": "雷門総一郎",
+  "element_ja": "山",
+  "position": "FW",
+  "id": "80339815",
+  "url": "https://appmedia.jp/inazuma-cross/80339815"
+ },
+ {
+  "idx": 95,
+  "name_ja": "響木正剛",
+  "element_ja": "山",
+  "position": "GK",
+  "id": "80340130",
+  "url": "https://appmedia.jp/inazuma-cross/80340130"
+ },
+ {
+  "idx": 96,
+  "name_ja": "大谷つくし",
+  "element_ja": "林",
+  "position": "MF",
+  "id": "80340274",
+  "url": "https://appmedia.jp/inazuma-cross/80340274"
+ },
+ {
+  "idx": 97,
+  "name_ja": "佐久間次郎",
+  "element_ja": "林",
+  "position": "FW",
+  "id": "80355724",
+  "url": "https://appmedia.jp/inazuma-cross/80355724"
+ },
+ {
+  "idx": 98,
+  "name_ja": "ウルビダ",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80391358",
+  "url": "https://appmedia.jp/inazuma-cross/80391358"
+ },
+ {
+  "idx": 99,
+  "name_ja": "財前塔子",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80391370",
+  "url": "https://appmedia.jp/inazuma-cross/80391370"
+ },
+ {
+  "idx": 100,
+  "name_ja": "ギグ",
+  "element_ja": "火",
+  "position": "DF",
+  "id": "80394514",
+  "url": "https://appmedia.jp/inazuma-cross/80394514"
+ },
+ {
+  "idx": 101,
+  "name_ja": "イオ",
+  "element_ja": "火",
+  "position": "MF",
+  "id": "80394562",
+  "url": "https://appmedia.jp/inazuma-cross/80394562"
+ },
+ {
+  "idx": 102,
+  "name_ja": "ガニメデ",
+  "element_ja": "山",
+  "position": "DF",
+  "id": "80394598",
+  "url": "https://appmedia.jp/inazuma-cross/80394598"
+ },
+ {
+  "idx": 103,
+  "name_ja": "パンドラ",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80394847",
+  "url": "https://appmedia.jp/inazuma-cross/80394847"
+ },
+ {
+  "idx": 104,
+  "name_ja": "リーム",
+  "element_ja": "林",
+  "position": "FW",
+  "id": "80394856",
+  "url": "https://appmedia.jp/inazuma-cross/80394856"
+ },
+ {
+  "idx": 105,
+  "name_ja": "ゴルレオ",
+  "element_ja": "林",
+  "position": "GK",
+  "id": "80395201",
+  "url": "https://appmedia.jp/inazuma-cross/80395201"
+ },
+ {
+  "idx": 106,
+  "name_ja": "コラル",
+  "element_ja": "風",
+  "position": "DF",
+  "id": "80395717",
+  "url": "https://appmedia.jp/inazuma-cross/80395717"
+ },
+ {
+  "idx": 107,
+  "name_ja": "カロン",
+  "element_ja": "火",
+  "position": "DF",
+  "id": "80395747",
+  "url": "https://appmedia.jp/inazuma-cross/80395747"
+ },
+ {
+  "idx": 108,
+  "name_ja": "グリンゴ",
+  "element_ja": "山",
+  "position": "MF",
+  "id": "80396143",
+  "url": "https://appmedia.jp/inazuma-cross/80396143"
+ },
+ {
+  "idx": 109,
+  "name_ja": "ディアム",
+  "element_ja": "林",
+  "position": "FW",
+  "id": "80396155",
+  "url": "https://appmedia.jp/inazuma-cross/80396155"
+ },
+ {
+  "idx": 110,
+  "name_ja": "レーゼ",
+  "element_ja": "林",
+  "position": "MF",
+  "id": "80396218",
+  "url": "https://appmedia.jp/inazuma-cross/80396218"
+ },
+ {
+  "idx": 111,
+  "name_ja": "鬼道有人",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80399653",
+  "url": "https://appmedia.jp/inazuma-cross/80399653"
+ },
+ {
+  "idx": 112,
+  "name_ja": "バーン",
+  "element_ja": "火",
+  "position": "FW",
+  "id": "80431588",
+  "url": "https://appmedia.jp/inazuma-cross/80431588"
+ },
+ {
+  "idx": 113,
+  "name_ja": "ガゼル",
+  "element_ja": "風",
+  "position": "FW",
+  "id": "80431618",
+  "url": "https://appmedia.jp/inazuma-cross/80431618"
+ },
+ {
+  "idx": 114,
+  "name_ja": "グレント",
+  "element_ja": "火",
+  "position": "GK",
+  "id": "80438257",
+  "url": "https://appmedia.jp/inazuma-cross/80438257"
+ },
+ {
+  "idx": 115,
+  "name_ja": "ボンバ",
+  "element_ja": "火",
+  "position": "MF",
+  "id": "80438266",
+  "url": "https://appmedia.jp/inazuma-cross/80438266"
+ },
+ {
+  "idx": 116,
+  "name_ja": "ヒート",
+  "element_ja": "林",
+  "position": "MF",
+  "id": "80438482",
+  "url": "https://appmedia.jp/inazuma-cross/80438482"
+ },
+ {
+  "idx": 117,
+  "name_ja": "バーラ",
+  "element_ja": "林",
+  "position": "DF",
+  "id": "80438497",
+  "url": "https://appmedia.jp/inazuma-cross/80438497"
+ },
+ {
+  "idx": 118,
+  "name_ja": "ネッパー",
+  "element_ja": "林",
+  "position": "FW",
+  "id": "80438704",
+  "url": "https://appmedia.jp/inazuma-cross/80438704"
+ },
+ {
+  "idx": 119,
+  "name_ja": "ドロル",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80438932",
+  "url": "https://appmedia.jp/inazuma-cross/80438932"
+ },
+ {
+  "idx": 120,
+  "name_ja": "ゴッカ",
+  "element_ja": "山",
+  "position": "DF",
+  "id": "80438941",
+  "url": "https://appmedia.jp/inazuma-cross/80438941"
+ },
+ {
+  "idx": 121,
+  "name_ja": "リオーネ",
+  "element_ja": "風",
+  "position": "MF",
+  "id": "80439226",
+  "url": "https://appmedia.jp/inazuma-cross/80439226"
+ },
+ {
+  "idx": 122,
+  "name_ja": "クララ",
+  "element_ja": "風",
+  "position": "DF",
+  "id": "80439310",
+  "url": "https://appmedia.jp/inazuma-cross/80439310"
+ },
+ {
+  "idx": 123,
+  "name_ja": "吹雪士郎",
+  "element_ja": "風",
+  "position": "FW",
+  "id": "80477116",
+  "url": "https://appmedia.jp/inazuma-cross/80477116"
+ },
+ {
+  "idx": 124,
+  "name_ja": "シンアフロディ",
+  "element_ja": "山",
+  "position": "MF",
+  "id": "80477926",
+  "url": "https://appmedia.jp/inazuma-cross/80477926"
+ }
+]

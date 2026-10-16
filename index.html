@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inazuma Eleven Cross Hub</title>
+  <meta name="description" content="Catalogo non ufficiale dei personaggi di Inazuma Eleven Cross: elementi, statistiche, tecniche e passive.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%231f6feb'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <h1>Inazuma Eleven Cross <span>Hub</span></h1>
+      <nav class="tabs" aria-label="Sezioni">
+        <button class="tab active" data-tab="catalog">Catalogo</button>
+        <button class="tab" data-tab="collection">La mia collezione <span id="owned-badge" class="pill">0</span></button>
+        <button class="tab" data-tab="builder">Team Builder</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="catalog">
+      <div class="filters">
+        <input id="q" type="search" placeholder="Cerca: nome, squadra, tecnica o passiva…" aria-label="Cerca">
+        <select id="f-element" aria-label="Elemento"><option value="">Tutti gli elementi</option></select>
+        <select id="f-position" aria-label="Ruolo"><option value="">Tutti i ruoli</option></select>
+        <select id="f-rarity" aria-label="Rarità"><option value="">Tutte le rarità</option></select>
+        <select id="f-team" aria-label="Squadra"><option value="">Tutte le squadre</option></select>
+        <select id="f-series" aria-label="Serie"><option value="">Tutte le serie</option></select>
+        <select id="f-sort" aria-label="Ordina per"></select>
+        <label class="chk"><input id="f-complete" type="checkbox"> Solo dati completi</label>
+        <button id="f-reset" type="button" class="btn">Azzera filtri</button>
+      </div>
+      <p id="count" class="muted" aria-live="polite"></p>
+      <div id="grid" class="grid"></div>
+      <p id="error" class="error" hidden></p>
+    </section>
+    <section id="collection" hidden>
+      <p class="muted">Segna i personaggi che possiedi con il pulsante "Ce l'ho" nel Catalogo. La collezione è salvata solo in questo browser: usa Esporta per fare un backup o spostarla su un altro dispositivo.</p>
+      <div class="toolbar">
+        <button id="c-export" type="button" class="btn">Esporta (file JSON)</button>
+        <label class="btn">Importa<input id="c-import" type="file" accept="application/json,.json" hidden></label>
+        <button id="c-clear" type="button" class="btn danger">Svuota collezione</button>
+      </div>
+      <p id="c-msg" class="muted" aria-live="polite"></p>
+      <p id="c-count" class="muted"></p>
+      <div id="c-grid" class="grid"></div>
+    </section>
+    <section id="builder" hidden>
+      <p class="muted">Propone le migliori squadre con i personaggi che hai segnato in "La mia collezione". Il punteggio è una stima trasparente basata su statistiche e passive: non è la formula del gioco. Considera tecnico (passiva sempre attiva, passiva di formazione solo se tutte le condizioni sono soddisfatte), ruoli liberi e 5v5 senza tecnico.</p>
+      <div class="b-controls">
+        <label>Modalità
+          <select id="b-mode"><option value="coach">11 contro 11 con tecnico</option><option value="5v5">5 contro 5 (senza tecnico)</option></select>
+        </label>
+        <label id="b-coach-wrap">Tecnico <select id="b-coach"></select></label>
+        <label id="b-f5-wrap" hidden>Formazione 5v5 <select id="b-f5"></select></label>
+        <label>Personaggi
+          <select id="b-pool"><option value="owned">Solo la mia collezione</option><option value="all">Tutti (per provare)</option></select>
+        </label>
+      </div>
+      <div class="b-opts">
+        <label class="chk"><input id="b-adv" type="checkbox" checked> Conta anche le passive ADVANCED / ADVANCED+ (di default sì: tutto al massimo)</label>
+        <label class="chk"><input id="b-rai" type="checkbox"> Conta 雷門OB e 革命の雷門 come tag 雷門 (non confermato)</label>
+        <label class="chk"><input id="b-jp" type="checkbox"> Conta 日本代表2026 come tag イナズマジャパン (non confermato)</label>
+      </div>
+      <p><button id="b-run" type="button" class="btn primary">Calcola le migliori squadre</button></p>
+      <p id="b-msg" class="muted" aria-live="polite"></p>
+      <div id="b-out"></div>
+    </section>
+  </main>
+
+  <footer class="wrap muted small">
+    Sito non ufficiale, fatto da fan. Inazuma Eleven è un marchio di LEVEL-5. Dati raccolti da
+    <a href="https://appmedia.jp/inazuma-cross" target="_blank" rel="noopener">AppMedia</a> e
+    <a href="https://game8.jp/inazuma-cross" target="_blank" rel="noopener">Game8</a>; possono contenere errori.
+  </footer>
+
+  <script src="js/engine.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/builder.js"></script>
+</body>
+</html>

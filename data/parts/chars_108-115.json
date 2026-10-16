@@ -1,0 +1,747 @@
+[
+ {
+  "id": "80396143",
+  "source_url": "https://appmedia.jp/inazuma-cross/80396143",
+  "name_ja": "グリンゴ",
+  "name_en": null,
+  "version": null,
+  "rarity": 1,
+  "element": "Mountain",
+  "position": "MF",
+  "type_ja": "プレイメイカー",
+  "team_ja": "ジェミニストーム",
+  "series_ja": "イナイレ2",
+  "tags_ja": [
+   "ジェミニストーム"
+  ],
+  "rating": {
+   "best": "B",
+   "reroll": null
+  },
+  "stats_max": {
+   "tp": 100,
+   "kick": null,
+   "technique": null,
+   "block": null,
+   "catch": null,
+   "speed": null
+  },
+  "skills": [
+   {
+    "name_ja": "ワープドライブ",
+    "name_en": null,
+    "unlock": "Lv1",
+    "tp": 40,
+    "power": 100,
+    "crit": 6,
+    "range": 2,
+    "chain": null,
+    "category": "dribble",
+    "foul": 6
+   },
+   {
+    "name_ja": "グラビテイション",
+    "name_en": null,
+    "unlock": "Lv31",
+    "tp": 50,
+    "power": 125,
+    "crit": 10,
+    "range": 5,
+    "chain": null,
+    "category": "block",
+    "foul": 15
+   }
+  ],
+  "passives": [
+   {
+    "name_ja": "最大TP+",
+    "effect_ja": "試合開始時、自身の最大TPを30上昇",
+    "effect_en": null,
+    "unlock": "ADVANCED"
+   },
+   {
+    "name_ja": "ドリブルパワー+",
+    "effect_ja": "試合開始時、自身のドリブル技の威力を52上昇",
+    "effect_en": null,
+    "unlock": "ADVANCED+"
+   },
+   {
+    "name_ja": "テクニック+",
+    "effect_ja": "試合開始時、自身のテクニックを1545上昇",
+    "effect_en": null,
+    "unlock": "初期"
+   },
+   {
+    "name_ja": "テクニック+",
+    "effect_ja": "試合開始時、自身のテクニックを1545上昇",
+    "effect_en": null,
+    "unlock": "Lv11"
+   },
+   {
+    "name_ja": "【破竹】林FW",
+    "effect_ja": "自身のドリブル技が成功した時、味方林属性FWのキックを1043上昇　終了条件：味方がゴールを入れた時",
+    "effect_en": null,
+    "unlock": "Lv41"
+   }
+  ],
+  "verified": "parziale",
+  "notes": [
+   "Statistiche (Calcio/Tecnica/Blocco/Presa/Velocità) NON pubblicate nella fonte ('-'): null, solo TP.",
+   "Nome inglese non verificato (null); nomi inglesi delle tecniche null.",
+   "Reroll assente (null).",
+   "Ottenibile tramite bacheca 宇宙人が来た (evento dal 15/09).",
+   "Due passive 'テクニック+' identiche (初期 e Lv11).",
+   "Icona di ワープドライブ indica Foresta mentre il personaggio è Montagna (inferenza da immagine).",
+   "Nome passiva Lv41 in fonte: '【破竹】林FW' (nome troncato, probabile 'キック+' mancante)."
+  ],
+  "checked_on": "2026-10-14"
+ },
+ {
+  "id": "80396155",
+  "source_url": "https://appmedia.jp/inazuma-cross/80396155",
+  "name_ja": "ディアム",
+  "name_en": null,
+  "version": null,
+  "rarity": 1,
+  "element": "Forest",
+  "position": "FW",
+  "type_ja": "セカンドトップ",
+  "team_ja": "ジェミニストーム",
+  "series_ja": "イナイレ2",
+  "tags_ja": [
+   "ジェミニストーム"
+  ],
+  "rating": {
+   "best": "B",
+   "reroll": null
+  },
+  "stats_max": {
+   "tp": 100,
+   "kick": null,
+   "technique": null,
+   "block": null,
+   "catch": null,
+   "speed": null
+  },
+  "skills": [
+   {
+    "name_ja": "ユニバースブラスト",
+    "name_en": null,
+    "unlock": "Lv1",
+    "tp": 45,
+    "power": 110,
+    "crit": 4,
+    "range": 19,
+    "chain": true,
+    "category": "shoot"
+   },
+   {
+    "name_ja": "ワープドライブ",
+    "name_en": null,
+    "unlock": "Lv31",
+    "tp": 40,
+    "power": 100,
+    "crit": 6,
+    "range": 2,
+    "chain": null,
+    "category": "dribble",
+    "foul": 6
+   }
+  ],
+  "passives": [
+   {
+    "name_ja": "最大TP+",
+    "effect_ja": "試合開始時、自身の最大TPを30上昇",
+    "effect_en": null,
+    "unlock": "ADVANCED"
+   },
+   {
+    "name_ja": "シュートパワー+",
+    "effect_ja": "試合開始時、自身のシュート技の威力を53上昇",
+    "effect_en": null,
+    "unlock": "ADVANCED+"
+   },
+   {
+    "name_ja": "林テクニック+",
+    "effect_ja": "試合開始時、林属性の味方のテクニックを257上昇",
+    "effect_en": null,
+    "unlock": "初期"
+   },
+   {
+    "name_ja": "キック+",
+    "effect_ja": "試合開始時、自身のキックを1545上昇",
+    "effect_en": null,
+    "unlock": "Lv11"
+   },
+   {
+    "name_ja": "【結束】キック+",
+    "effect_ja": "試合開始時、ジェミニストームタグの味方が3人以上いる場合、自身のキックを1848上昇",
+    "effect_en": null,
+    "unlock": "Lv41"
+   }
+  ],
+  "verified": "parziale",
+  "notes": [
+   "Statistiche (Calcio/Tecnica/Blocco/Presa/Velocità) NON pubblicate nella fonte ('-'): null, solo TP.",
+   "Nome inglese non verificato (null); nomi inglesi delle tecniche null.",
+   "Reroll assente (null).",
+   "Ottenibile tramite bacheca 宇宙人が来た (evento dal 15/09)."
+  ],
+  "checked_on": "2026-10-14"
+ },
+ {
+  "id": "80396218",
+  "source_url": "https://appmedia.jp/inazuma-cross/80396218",
+  "name_ja": "レーゼ",
+  "name_en": null,
+  "version": null,
+  "rarity": 2,
+  "element": "Forest",
+  "position": "MF",
+  "type_ja": "プレイメイカー",
+  "team_ja": "ジェミニストーム",
+  "series_ja": "イナイレ2",
+  "tags_ja": [
+   "ジェミニストーム"
+  ],
+  "rating": {
+   "best": "B",
+   "reroll": null
+  },
+  "stats_max": {
+   "tp": 100,
+   "kick": null,
+   "technique": null,
+   "block": null,
+   "catch": null,
+   "speed": null
+  },
+  "skills": [
+   {
+    "name_ja": "アストロブレイク",
+    "name_en": null,
+    "unlock": "Lv1",
+    "tp": 40,
+    "power": 139,
+    "crit": 10,
+    "range": 20,
+    "chain": true,
+    "category": "shoot"
+   },
+   {
+    "name_ja": "ワープドライブ",
+    "name_en": null,
+    "unlock": "Lv31",
+    "tp": 40,
+    "power": 100,
+    "crit": 6,
+    "range": 2,
+    "chain": null,
+    "category": "dribble",
+    "foul": 6
+   }
+  ],
+  "passives": [
+   {
+    "name_ja": "最大TP+",
+    "effect_ja": "試合開始時、自身の最大TPを30上昇",
+    "effect_en": null,
+    "unlock": "ADVANCED"
+   },
+   {
+    "name_ja": "【破竹/累・改】シュートパワー+",
+    "effect_ja": "自身のドリブル技が成功するたび、自身のシュート技の威力を52上昇　終了条件：自身がゴールを入れた時",
+    "effect_en": null,
+    "unlock": "ADVANCED+"
+   },
+   {
+    "name_ja": "【結束】キック+",
+    "effect_ja": "試合開始時、ジェミニストームタグの味方が3人以上いる場合、自身のキックを1932上昇",
+    "effect_en": null,
+    "unlock": "初期"
+   },
+   {
+    "name_ja": "キック・テクニック+",
+    "effect_ja": "試合開始時、自身のキックを859上昇、自身のテクニックを859上昇",
+    "effect_en": null,
+    "unlock": "Lv11"
+   },
+   {
+    "name_ja": "【破竹】DFブロック-",
+    "effect_ja": "自身のドリブル技が成功した時、敵DFのブロックを870低下　終了条件：味方がゴールを入れた時",
+    "effect_en": null,
+    "unlock": "Lv41"
+   }
+  ],
+  "verified": "parziale",
+  "notes": [
+   "Statistiche (Calcio/Tecnica/Blocco/Presa/Velocità) NON pubblicate nella fonte ('-'): null, solo TP.",
+   "Nome inglese non verificato (null); nomi inglesi delle tecniche null.",
+   "Reroll assente (null).",
+   "Ottenibile tramite bacheca 宇宙人が来た (evento dal 15/09).",
+   "Nome passiva Lv41 in fonte: '【破竹】DFブロック' (segno meno dedotto dal testo 'ブロックを減少')."
+  ],
+  "checked_on": "2026-10-14"
+ },
+ {
+  "id": "80399653",
+  "source_url": "https://appmedia.jp/inazuma-cross/80399653",
+  "name_ja": "鬼道有人",
+  "name_en": "Yuuto Kidou",
+  "version": "雷門星3",
+  "rarity": 3,
+  "element": "Wind",
+  "position": "MF",
+  "type_ja": "ディフェンシブハーフ",
+  "team_ja": "雷門中",
+  "series_ja": "イナイレ1",
+  "tags_ja": [
+   "雷門中"
+  ],
+  "rating": {
+   "best": "S",
+   "reroll": null
+  },
+  "stats_max": {
+   "tp": 100,
+   "kick": null,
+   "technique": null,
+   "block": null,
+   "catch": null,
+   "speed": null
+  },
+  "skills": [
+   {
+    "name_ja": "イリュージョンボール",
+    "name_en": null,
+    "unlock": "Lv1",
+    "tp": 40,
+    "power": 143,
+    "crit": 12,
+    "range": 2,
+    "chain": null,
+    "category": "dribble",
+    "foul": 5
+   },
+   {
+    "name_ja": "スピニングカット",
+    "name_en": null,
+    "unlock": "Lv31",
+    "tp": 30,
+    "power": 123,
+    "crit": 19,
+    "range": 5,
+    "chain": null,
+    "category": "block",
+    "foul": 15
+   }
+  ],
+  "passives": [
+   {
+    "name_ja": "最大TP+",
+    "effect_ja": "試合開始時、自身の最大TPを30上昇",
+    "effect_en": null,
+    "unlock": "ADVANCED"
+   },
+   {
+    "name_ja": "【阻止/累】FWキック+",
+    "effect_ja": "味方が敵のシュートを止めるたび、味方FWのキックを1327上昇",
+    "effect_en": null,
+    "unlock": "ADVANCED+"
+   },
+   {
+    "name_ja": "【共鳴】ドリブル・ブロックパワー+",
+    "effect_ja": "試合開始時、林属性の味方が3人以上いる場合、自身のドリブル技の威力を40上昇、自身のブロック技の威力を40上昇",
+    "effect_en": null,
+    "unlock": "初期"
+   },
+   {
+    "name_ja": "林FWキック+",
+    "effect_ja": "試合開始時、林属性の味方FWのキックを772上昇",
+    "effect_en": null,
+    "unlock": "Lv11"
+   },
+   {
+    "name_ja": "【破竹/累】テクニック+/FWキック+",
+    "effect_ja": "自身のドリブル技が成功するたび、自身のテクニックを967上昇、味方FWのキックを967上昇　終了条件：味方がゴールを入れた時",
+    "effect_en": null,
+    "unlock": "Lv41"
+   }
+  ],
+  "verified": "parziale",
+  "notes": [
+   "Statistiche (Calcio/Tecnica/Blocco/Presa/Velocità) NON pubblicate nella fonte ('-'): null, solo TP.",
+   "Reroll assente (null).",
+   "Titolo pagina '雷門星3' = versione Raimon ★3. Esistono altre versioni di Kidou nel database (vedi altri lotti): non unire.",
+   "Ottenibile dal negozio di scambio del club.",
+   "Valori passive 1327/772/967 riportati come in fonte (non verificati)."
+  ],
+  "checked_on": "2026-10-14"
+ },
+ {
+  "id": "80431588",
+  "source_url": "https://appmedia.jp/inazuma-cross/80431588",
+  "name_ja": "バーン",
+  "name_en": "Burn",
+  "version": null,
+  "rarity": 3,
+  "element": "Fire",
+  "position": "FW",
+  "type_ja": "セカンドトップ",
+  "team_ja": "カオス",
+  "series_ja": "イナイレ2",
+  "tags_ja": [
+   "カオス"
+  ],
+  "rating": {
+   "best": "SS",
+   "reroll": "SS"
+  },
+  "stats_max": {
+   "tp": 100,
+   "kick": 7558,
+   "technique": 6246,
+   "block": 4274,
+   "catch": 2862,
+   "speed": 4
+  },
+  "skills": [
+   {
+    "name_ja": "アトミックフレア",
+    "name_en": null,
+    "unlock": "Lv1",
+    "tp": 50,
+    "power": 164,
+    "crit": 11,
+    "range": 20,
+    "chain": true,
+    "category": "shoot"
+   },
+   {
+    "name_ja": "ファイアブリザード(火)",
+    "name_en": null,
+    "unlock": "Lv31",
+    "tp": 60,
+    "power": 195,
+    "crit": 12,
+    "range": 19,
+    "chain": true,
+    "category": "shoot"
+   }
+  ],
+  "passives": [
+   {
+    "name_ja": "最大TP+",
+    "effect_ja": "試合開始時、自身の最大TPを30上昇",
+    "effect_en": null,
+    "unlock": "ADVANCED"
+   },
+   {
+    "name_ja": "【好機/累】シュートパワー+",
+    "effect_ja": "敵DFのシュートブロックが失敗するたび、自身のシュート技威力を97上昇　終了条件：味方がゴールを入れた時",
+    "effect_en": null,
+    "unlock": "ADVANCED+"
+   },
+   {
+    "name_ja": "【共鳴】シュートパワー+",
+    "effect_ja": "火属性選手が3人以上いる場合、自身の火属性シュート技威力を110上昇",
+    "effect_en": null,
+    "unlock": "初期"
+   },
+   {
+    "name_ja": "キック+",
+    "effect_ja": "試合開始時、自身のキックを2016上昇",
+    "effect_en": null,
+    "unlock": "Lv11"
+   },
+   {
+    "name_ja": "シュートパワー+/FWキック+",
+    "effect_ja": "試合開始時、自身の火属性シュート技威力を74上昇、味方FWのキックを1063上昇",
+    "effect_en": null,
+    "unlock": "Lv41"
+   }
+  ],
+  "verified": "ok",
+  "notes": [
+   "Passiva ADVANCED+: tabella copie +67/+82/+97 (3/6/8): riportato 97.",
+   "Un commento utente (non verificato): il primo tiro è escluso dal bonus 好機/累."
+  ],
+  "checked_on": "2026-10-14"
+ },
+ {
+  "id": "80431618",
+  "source_url": "https://appmedia.jp/inazuma-cross/80431618",
+  "name_ja": "ガゼル",
+  "name_en": "Gazelle",
+  "version": null,
+  "rarity": 3,
+  "element": "Wind",
+  "position": "FW",
+  "type_ja": "セカンドトップ",
+  "team_ja": "カオス",
+  "series_ja": "イナイレ2",
+  "tags_ja": [
+   "カオス"
+  ],
+  "rating": {
+   "best": "SSS",
+   "reroll": "SS"
+  },
+  "stats_max": {
+   "tp": 100,
+   "kick": 7230,
+   "technique": 6342,
+   "block": 4318,
+   "catch": 2878,
+   "speed": 5
+  },
+  "skills": [
+   {
+    "name_ja": "ノーザンインパクト",
+    "name_en": null,
+    "unlock": "Lv1",
+    "tp": 50,
+    "power": 164,
+    "crit": 11,
+    "range": 20,
+    "chain": true,
+    "category": "shoot"
+   },
+   {
+    "name_ja": "ファイアブリザード(風)",
+    "name_en": null,
+    "unlock": "Lv31",
+    "tp": 60,
+    "power": 195,
+    "crit": 12,
+    "range": 19,
+    "chain": true,
+    "category": "shoot"
+   }
+  ],
+  "passives": [
+   {
+    "name_ja": "最大TP+",
+    "effect_ja": "試合開始時、自身の最大TPを30上昇",
+    "effect_en": null,
+    "unlock": "ADVANCED"
+   },
+   {
+    "name_ja": "【好機/累】GKキーパーパワー-",
+    "effect_ja": "敵DFのシュートブロックが失敗するたび、敵GKのキーパー技威力を57低下　終了条件：味方がゴールを入れた時",
+    "effect_en": null,
+    "unlock": "ADVANCED+"
+   },
+   {
+    "name_ja": "【共鳴】シュートパワー+",
+    "effect_ja": "風属性選手が3人以上いる場合、自身の風属性シュート技威力を110上昇",
+    "effect_en": null,
+    "unlock": "初期"
+   },
+   {
+    "name_ja": "キック+",
+    "effect_ja": "試合開始時、自身のキックを2016上昇",
+    "effect_en": null,
+    "unlock": "Lv11"
+   },
+   {
+    "name_ja": "シュートパワー+",
+    "effect_ja": "試合開始時、自身の風属性シュート技威力を94上昇",
+    "effect_en": null,
+    "unlock": "Lv41"
+   }
+  ],
+  "verified": "ok",
+  "notes": [
+   "Passiva ADVANCED+: il testo della fonte dice '上昇' (aumento) ma nome e tabella copie (-39/-48/-57) indicano una RIDUZIONE: usato 低下 (riduzione) di 57."
+  ],
+  "checked_on": "2026-10-14"
+ },
+ {
+  "id": "80438257",
+  "source_url": "https://appmedia.jp/inazuma-cross/80438257",
+  "name_ja": "グレント",
+  "name_en": null,
+  "version": null,
+  "rarity": 1,
+  "element": "Fire",
+  "position": "GK",
+  "type_ja": "キーパー",
+  "team_ja": "カオス",
+  "series_ja": "イナイレ2",
+  "tags_ja": [
+   "カオス"
+  ],
+  "rating": {
+   "best": "A",
+   "reroll": null
+  },
+  "stats_max": {
+   "tp": 100,
+   "kick": null,
+   "technique": null,
+   "block": null,
+   "catch": null,
+   "speed": null
+  },
+  "skills": [
+   {
+    "name_ja": "バーンアウト",
+    "name_en": null,
+    "unlock": "Lv1",
+    "tp": 40,
+    "power": 80,
+    "crit": 5,
+    "range": 1,
+    "chain": null,
+    "category": "keeper"
+   },
+   {
+    "name_ja": "熱血パンチ",
+    "name_en": null,
+    "unlock": "Lv31",
+    "tp": 30,
+    "power": 135,
+    "crit": 21,
+    "range": 1,
+    "chain": null,
+    "category": "keeper"
+   }
+  ],
+  "passives": [
+   {
+    "name_ja": "最大TP+",
+    "effect_ja": "試合開始時、自身の最大TPを30上昇",
+    "effect_en": null,
+    "unlock": "ADVANCED"
+   },
+   {
+    "name_ja": "【破竹/累】FWシュートパワー+",
+    "effect_ja": "自身のキーパー技が成功するたび、味方FWの火属性シュート技と風属性シュート技の威力を12上昇　終了条件：味方がゴールを入れた時",
+    "effect_en": null,
+    "unlock": "ADVANCED+"
+   },
+   {
+    "name_ja": "【結束】FWキック+",
+    "effect_ja": "カオスタグの選手が3人以上いる場合、味方FWのキックを607上昇",
+    "effect_en": null,
+    "unlock": "初期"
+   },
+   {
+    "name_ja": "キャッチ+",
+    "effect_ja": "試合開始時、自身のキャッチを1747上昇",
+    "effect_en": null,
+    "unlock": "Lv11"
+   },
+   {
+    "name_ja": "キーパーパワー+",
+    "effect_ja": "試合開始時、自身の火属性キーパー技の威力を58上昇",
+    "effect_en": null,
+    "unlock": "Lv41"
+   }
+  ],
+  "verified": "parziale",
+  "notes": [
+   "Statistiche (Calcio/Tecnica/Blocco/Presa/Velocità) NON pubblicate nella fonte ('-'): null, solo TP.",
+   "Nome inglese non verificato (null); nomi inglesi delle tecniche null.",
+   "Reroll assente (null).",
+   "Categoria 'keeper' da icone."
+  ],
+  "checked_on": "2026-10-14"
+ },
+ {
+  "id": "80438266",
+  "source_url": "https://appmedia.jp/inazuma-cross/80438266",
+  "name_ja": "ボンバ",
+  "name_en": null,
+  "version": null,
+  "rarity": 1,
+  "element": "Fire",
+  "position": "MF",
+  "type_ja": "ディフェンシブハーフ",
+  "team_ja": "カオス",
+  "series_ja": "イナイレ2",
+  "tags_ja": [
+   "カオス"
+  ],
+  "rating": {
+   "best": "S",
+   "reroll": null
+  },
+  "stats_max": {
+   "tp": 100,
+   "kick": null,
+   "technique": null,
+   "block": null,
+   "catch": null,
+   "speed": null
+  },
+  "skills": [
+   {
+    "name_ja": "イグナイトスティール",
+    "name_en": null,
+    "unlock": "Lv1",
+    "tp": 40,
+    "power": 101,
+    "crit": 8,
+    "range": 5,
+    "chain": null,
+    "category": "block",
+    "foul": 5
+   },
+   {
+    "name_ja": "フレイムベール",
+    "name_en": null,
+    "unlock": "Lv31",
+    "tp": 40,
+    "power": 100,
+    "crit": 6,
+    "range": 2,
+    "chain": null,
+    "category": "dribble",
+    "foul": 6
+   }
+  ],
+  "passives": [
+   {
+    "name_ja": "最大TP+",
+    "effect_ja": "試合開始時、自身の最大TPを30上昇",
+    "effect_en": null,
+    "unlock": "ADVANCED"
+   },
+   {
+    "name_ja": "【阻止/累】MFドリブルパワー+",
+    "effect_ja": "味方がシュートを止めるたび、味方MFのドリブル技の威力を13上昇　終了条件：味方がゴールを入れた時",
+    "effect_en": null,
+    "unlock": "ADVANCED+"
+   },
+   {
+    "name_ja": "【結束】MFテクニック+",
+    "effect_ja": "カオスタグの選手が3人以上いる場合、味方MFのテクニックを607上昇",
+    "effect_en": null,
+    "unlock": "初期"
+   },
+   {
+    "name_ja": "テクニック+",
+    "effect_ja": "試合開始時、自身のテクニックを1747上昇",
+    "effect_en": null,
+    "unlock": "Lv11"
+   },
+   {
+    "name_ja": "MFドリブルパワー+",
+    "effect_ja": "試合開始時、味方MF火属性ドリブル技の威力を20上昇",
+    "effect_en": null,
+    "unlock": "Lv41"
+   }
+  ],
+  "verified": "parziale",
+  "notes": [
+   "Statistiche (Calcio/Tecnica/Blocco/Presa/Velocità) NON pubblicate nella fonte ('-'): null, solo TP.",
+   "Nome inglese non verificato (null); nomi inglesi delle tecniche null.",
+   "Reroll assente (null).",
+   "Bacheca カオス襲来 (evento dal 29/09).",
+   "★1 con rating S: non spiegato dalla fonte."
+  ],
+  "checked_on": "2026-10-14"
+ }
+]

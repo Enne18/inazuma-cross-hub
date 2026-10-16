@@ -1,0 +1,730 @@
+[
+  {
+    "id": "80072290",
+    "source_url": "https://appmedia.jp/inazuma-cross/80072290",
+    "name_ja": "風丸一郎太",
+    "name_en": "Ichirouta Kazemaru",
+    "version": "イナズマジャパン",
+    "rarity": 3,
+    "element": "Wind",
+    "position": "DF",
+    "type_ja": "サイドバック",
+    "team_ja": "イナズマジャパン",
+    "series_ja": "イナイレ3",
+    "tags_ja": [
+      "イナズマジャパン"
+    ],
+    "rating": {
+      "best": "S",
+      "reroll": "A"
+    },
+    "stats_max": {
+      "tp": 100,
+      "kick": 2632,
+      "technique": 5520,
+      "block": 7558,
+      "catch": 5228,
+      "speed": 4
+    },
+    "skills": [
+      {
+        "name_ja": "疾風ダッシュ",
+        "name_en": "Shippuu Dash",
+        "unlock": "Lv1",
+        "tp": 40,
+        "power": 143,
+        "crit": 12,
+        "range": 2,
+        "chain": null,
+        "category": "dribble",
+        "foul": 5
+      },
+      {
+        "name_ja": "風神の舞",
+        "name_en": "Dance of the Wind God",
+        "unlock": "Lv31",
+        "tp": 50,
+        "power": 170,
+        "crit": 11,
+        "range": 2,
+        "chain": null,
+        "category": "dribble",
+        "foul": 5
+      }
+    ],
+    "passives": [
+      {
+        "name_ja": "最大TP+",
+        "effect_ja": "試合開始時、自身の最大TPを30上昇",
+        "effect_en": "At match start, own max TP +30",
+        "unlock": "ADVANCED"
+      },
+      {
+        "name_ja": "【結束】ドリブルパワー+",
+        "effect_ja": "試合開始時、イナズマジャパンタグの味方が3人以上いる場合、自身のドリブル技の威力を137上昇",
+        "effect_en": "At match start, if 3+ allies have the Inazuma Japan tag, own dribble skill power +137",
+        "unlock": "ADVANCED+"
+      },
+      {
+        "name_ja": "テクニック&スピード+",
+        "effect_ja": "試合開始時、自身のテクニックを3502上昇、スピードを2上昇",
+        "effect_en": "At match start, own Technique +3502 and Speed +2",
+        "unlock": "初期"
+      },
+      {
+        "name_ja": "ブロック+",
+        "effect_ja": "試合開始時、自身のブロックを2016上昇",
+        "effect_en": "At match start, own Block +2016",
+        "unlock": "Lv11"
+      },
+      {
+        "name_ja": "【破竹】FWキック+",
+        "effect_ja": "自身がドリブル技に成功した時、味方FWのキックが1921上昇。終了条件：敵/味方問わずゴールが発生した時",
+        "effect_en": "When own dribble skill succeeds, allied FW Kick +1921. Ends when any goal is scored",
+        "unlock": "Lv41"
+      }
+    ],
+    "verified": "ok",
+    "notes": [
+      "Categoria tecniche letta dall'alt-text delle immagini della fonte.",
+      "Chain non indicato (null)."
+    ],
+    "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072296",
+    "source_url": "https://appmedia.jp/inazuma-cross/80072296",
+    "name_ja": "染岡竜吾",
+    "name_en": "Ryuugo Someoka",
+    "version": "イナズマジャパン",
+    "rarity": 3,
+    "element": "Forest",
+    "position": "FW",
+    "type_ja": "ストライカー",
+    "team_ja": "イナズマジャパン",
+    "series_ja": "イナイレ3",
+    "tags_ja": [
+      "イナズマジャパン"
+    ],
+    "rating": {
+      "best": "S",
+      "reroll": "A"
+    },
+    "stats_max": {
+      "tp": 100,
+      "kick": 7394,
+      "technique": 6112,
+      "block": 4472,
+      "catch": 2960,
+      "speed": 4
+    },
+    "skills": [
+      {
+        "name_ja": "ドラゴンクラッシュ",
+        "name_en": "Dragon Crash",
+        "unlock": "Lv1",
+        "tp": 30,
+        "power": 112,
+        "crit": 10,
+        "range": 19,
+        "chain": true,
+        "category": "shoot"
+      },
+      {
+        "name_ja": "ドラゴンスレイヤー",
+        "name_en": "Dragon Slayer",
+        "unlock": "Lv31",
+        "tp": 50,
+        "power": 168,
+        "crit": 11,
+        "range": 19,
+        "chain": true,
+        "category": "shoot"
+      }
+    ],
+    "passives": [
+      {
+        "name_ja": "最大TP+",
+        "effect_ja": "試合開始時 自身の最大TPを30上昇",
+        "effect_en": "At match start, own max TP +30",
+        "unlock": "ADVANCED"
+      },
+      {
+        "name_ja": "【連鎖/累】FWキック+",
+        "effect_ja": "シュートチェインを発動するたび、味方FWのキック1054上昇",
+        "effect_en": "Each time a shot chain is triggered, allied FW Kick +1054 (cumulative)",
+        "unlock": "ADVANCED+"
+      },
+      {
+        "name_ja": "シュートチェイン確率&テクニック+",
+        "effect_ja": "試合開始時 自身のシュートチェイン確率を32%上昇、自身のテクニックを3043上昇",
+        "effect_en": "At match start, own shot-chain chance +32% and Technique +3043",
+        "unlock": "初期"
+      },
+      {
+        "name_ja": "キック+",
+        "effect_ja": "試合開始時 自身のキックを2016上昇",
+        "effect_en": "At match start, own Kick +2016",
+        "unlock": "Lv11"
+      },
+      {
+        "name_ja": "【受球/累】シュートパワー&テクニック",
+        "effect_ja": "自身がパスを受け取るたび、自身のシュート技の威力を33上昇、自身のテクニックを1475上昇 終了条件：味方がゴールを入れた時",
+        "effect_en": "Each time own player receives a pass, own shot skill power +33 and Technique +1475 (cumulative). Ends when an ally scores",
+        "unlock": "Lv41"
+      }
+    ],
+    "verified": "ok",
+    "notes": [
+      "Elemento, rating e categoria letti dall'alt-text delle immagini della fonte."
+    ],
+    "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072299",
+    "source_url": "https://appmedia.jp/inazuma-cross/80072299",
+    "name_ja": "壁山塀吾郎",
+    "name_en": "Heigorou Kabeyama",
+    "version": "イナズマジャパン",
+    "rarity": 3,
+    "element": "Mountain",
+    "position": "DF",
+    "type_ja": "シュートブロッカー",
+    "team_ja": "イナズマジャパン",
+    "series_ja": "イナイレ3",
+    "tags_ja": [
+      "イナズマジャパン"
+    ],
+    "rating": {
+      "best": "S",
+      "reroll": "SS"
+    },
+    "stats_max": {
+      "tp": 100,
+      "kick": 2632,
+      "technique": 5260,
+      "block": 7804,
+      "catch": 5244,
+      "speed": 4
+    },
+    "skills": [
+      {
+        "name_ja": "ザ・ウォール",
+        "name_en": "The Wall",
+        "unlock": "Lv1",
+        "tp": 40,
+        "power": 129,
+        "crit": 17,
+        "range": 5,
+        "chain": null,
+        "category": "block",
+        "foul": 10
+      },
+      {
+        "name_ja": "ザ・マウンテン",
+        "name_en": "The Mountain",
+        "unlock": "Lv31",
+        "tp": 50,
+        "power": 172,
+        "crit": 9,
+        "range": 5,
+        "chain": null,
+        "category": "block",
+        "foul": 7
+      }
+    ],
+    "passives": [
+      {
+        "name_ja": "最大TP+",
+        "effect_ja": "試合開始時、自身の最大TPを30上昇",
+        "effect_en": "At match start, own max TP +30",
+        "unlock": "ADVANCED"
+      },
+      {
+        "name_ja": "ブロックパワー+",
+        "effect_ja": "試合開始時、自身の山属性ブロック技の威力を156上昇",
+        "effect_en": "At match start, own Mountain-element block skill power +156",
+        "unlock": "ADVANCED+"
+      },
+      {
+        "name_ja": "【逆境】DF・GKブロック&キャッチ+",
+        "effect_ja": "自身のシュートブロック技が失敗した時、味方DFとGKのブロックとキャッチを382上昇",
+        "effect_en": "When own shot-block skill fails, allied DFs' and GK's Block and Catch +382",
+        "unlock": "初期"
+      },
+      {
+        "name_ja": "ブロック+",
+        "effect_ja": "試合開始時、自身のブロックを2016上昇",
+        "effect_en": "At match start, own Block +2016",
+        "unlock": "Lv11"
+      },
+      {
+        "name_ja": "【破竹】FWキック+",
+        "effect_ja": "自身のシュートブロック技が成功した時、味方FWのキックが1921上昇",
+        "effect_en": "When own shot-block skill succeeds, allied FW Kick +1921",
+        "unlock": "Lv41"
+      }
+    ],
+    "verified": "ok",
+    "notes": [
+      "Rating letto dall'alt-text delle immagini.",
+      "Le tecniche hanno 'Blocco: possibile' nella fonte."
+    ],
+    "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072305",
+    "source_url": "https://appmedia.jp/inazuma-cross/80072305",
+    "name_ja": "立向居勇気",
+    "name_en": "Yuuki Tachimukai",
+    "version": "イナズマジャパン",
+    "rarity": 3,
+    "element": "Forest",
+    "position": "GK",
+    "type_ja": "キーパー",
+    "team_ja": "イナズマジャパン",
+    "series_ja": "イナイレ3",
+    "tags_ja": [
+      "イナズマジャパン"
+    ],
+    "rating": {
+      "best": "S",
+      "reroll": "S"
+    },
+    "stats_max": {
+      "tp": 100,
+      "kick": 2594,
+      "technique": 2606,
+      "block": 3714,
+      "catch": 4908,
+      "speed": 2
+    },
+    "skills": [
+      {
+        "name_ja": "ゴッドハンド(林)",
+        "name_en": "God Hand (Forest)",
+        "unlock": "Lv1",
+        "tp": 40,
+        "power": 123,
+        "crit": 11,
+        "range": 1,
+        "chain": null,
+        "category": "keeper"
+      },
+      {
+        "name_ja": "ムゲン・ザ・ハンド",
+        "name_en": "Mugen The Hand",
+        "unlock": "Lv31",
+        "tp": 60,
+        "power": 177,
+        "crit": 10,
+        "range": 1,
+        "chain": null,
+        "category": "keeper"
+      }
+    ],
+    "passives": [
+      {
+        "name_ja": "最大TP+",
+        "effect_ja": "試合開始時、自身の最大TPを30上昇",
+        "effect_en": "At match start, own max TP +30",
+        "unlock": "ADVANCED"
+      },
+      {
+        "name_ja": "【連動/累】林テクニック+",
+        "effect_ja": "味方のドリブル技が成功するたび、味方FWとMFのテクニックを398上昇。終了条件：味方がゴールを入れた時",
+        "effect_en": "Each time an ally's dribble skill succeeds, allied FWs' and MFs' Technique +398 (cumulative). Ends when an ally scores",
+        "unlock": "ADVANCED+"
+      },
+      {
+        "name_ja": "【破竹/累】FW・MFテクニック+",
+        "effect_ja": "自身のキーパー技が成功するたび、林属性の味方のテクニックを309上昇",
+        "effect_en": "Each time own keeper skill succeeds, Forest-element allies' Technique +309 (cumulative)",
+        "unlock": "初期"
+      },
+      {
+        "name_ja": "キャッチ+",
+        "effect_ja": "試合開始時、自身のキャッチを1344上昇",
+        "effect_en": "At match start, own Catch +1344",
+        "unlock": "Lv11"
+      },
+      {
+        "name_ja": "パワー",
+        "effect_ja": "試合開始時、自身の林属性技の威力を97上昇",
+        "effect_en": "At match start, own Forest-element skill power +97",
+        "unlock": "Lv41"
+      }
+    ],
+    "verified": "parziale",
+    "notes": [
+      "Nella fonte effetto, condizione di fine e sblocco erano nelle stesse celle: i confini tra le colonne delle passive sono un'interpretazione.",
+      "Categoria 'keeper' dedotta (non indicata in tabella)."
+    ],
+    "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072308",
+    "source_url": "https://appmedia.jp/inazuma-cross/80072308",
+    "name_ja": "飛鷹征矢",
+    "name_en": "Seiya Hidaka",
+    "version": null,
+    "rarity": 2,
+    "element": "Wind",
+    "position": "DF",
+    "type_ja": "シュートブロッカー",
+    "team_ja": "イナズマジャパン",
+    "series_ja": "イナイレ3",
+    "tags_ja": [
+      "イナズマジャパン"
+    ],
+    "rating": {
+      "best": "S",
+      "reroll": "S"
+    },
+    "stats_max": {
+      "tp": 100,
+      "kick": 2364,
+      "technique": 4582,
+      "block": 6286,
+      "catch": 4570,
+      "speed": 4
+    },
+    "skills": [
+      {
+        "name_ja": "真空魔",
+        "name_en": "Shinkuuma",
+        "unlock": "Lv1",
+        "tp": 50,
+        "power": 172,
+        "crit": 16,
+        "range": 5,
+        "chain": null,
+        "category": "block",
+        "foul": 15
+      },
+      {
+        "name_ja": "ジャッジスルー",
+        "name_en": "Judge Through",
+        "unlock": "Lv31",
+        "tp": 40,
+        "power": 181,
+        "crit": 26,
+        "range": 2,
+        "chain": null,
+        "category": "dribble",
+        "foul": 30
+      }
+    ],
+    "passives": [
+      {
+        "name_ja": "最大TP+",
+        "effect_ja": "試合開始時、自身の最大TPを30上昇",
+        "effect_en": "At match start, own max TP +30",
+        "unlock": "ADVANCED"
+      },
+      {
+        "name_ja": "パワー+",
+        "effect_ja": "試合開始時、自身の風属性技の威力を65上昇",
+        "effect_en": "At match start, own Wind-element skill power +65",
+        "unlock": "ADVANCED+"
+      },
+      {
+        "name_ja": "ブロック+",
+        "effect_ja": "試合開始時、自身のブロックを2580上昇",
+        "effect_en": "At match start, own Block +2580",
+        "unlock": "初期"
+      },
+      {
+        "name_ja": "ブロック+",
+        "effect_ja": "試合開始時、自身のブロックを2016上昇",
+        "effect_en": "At match start, own Block +2016",
+        "unlock": "Lv11"
+      },
+      {
+        "name_ja": "【破竹】チームキック+",
+        "effect_ja": "自身のシュートブロック技が成功した時、味方のキックを378上昇。終了条件は、敵味方を問わずゴールが発生した時",
+        "effect_en": "When own shot-block skill succeeds, allies' Kick +378. Ends when any goal is scored",
+        "unlock": "Lv41"
+      }
+    ],
+    "verified": "ok",
+    "notes": [
+      "Categoria tecniche dall'alt-text delle immagini.",
+      "Statistiche identiche a Hidaka/Tsunami/Domon (DF ★2): modello condiviso, non un errore."
+    ],
+    "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072311",
+    "source_url": "https://appmedia.jp/inazuma-cross/80072311",
+    "name_ja": "綱海条介",
+    "name_en": "Jousuke Tsunami",
+    "version": null,
+    "rarity": 2,
+    "element": "Wind",
+    "position": "DF",
+    "type_ja": "ロングシューター",
+    "team_ja": "イナズマジャパン",
+    "series_ja": "イナイレ3",
+    "tags_ja": [
+      "イナズマジャパン"
+    ],
+    "rating": {
+      "best": "A",
+      "reroll": "A"
+    },
+    "stats_max": {
+      "tp": 100,
+      "kick": 2364,
+      "technique": 4582,
+      "block": 6286,
+      "catch": 4570,
+      "speed": 4
+    },
+    "skills": [
+      {
+        "name_ja": "ツナミブースト",
+        "name_en": "Tsunami Boost",
+        "unlock": "Lv1",
+        "tp": 45,
+        "power": 86,
+        "crit": 7,
+        "range": 40,
+        "chain": true,
+        "category": "shoot"
+      },
+      {
+        "name_ja": "スピニングカット",
+        "name_en": "Spinning Cut",
+        "unlock": "Lv31",
+        "tp": 30,
+        "power": 123,
+        "crit": 19,
+        "range": 5,
+        "chain": null,
+        "category": "block",
+        "foul": 15
+      }
+    ],
+    "passives": [
+      {
+        "name_ja": "最大TP+",
+        "effect_ja": "試合開始時、自身の最大TPを30上昇",
+        "effect_en": "At match start, own max TP +30",
+        "unlock": "ADVANCED"
+      },
+      {
+        "name_ja": "風・火キック+",
+        "effect_ja": "試合開始時、風属性と火属性の味方のキックを384上げる",
+        "effect_en": "At match start, Wind and Fire allies' Kick +384",
+        "unlock": "ADVANCED+"
+      },
+      {
+        "name_ja": "DFブロック+",
+        "effect_ja": "試合開始時、味方DFのブロックを860増やす",
+        "effect_en": "At match start, allied DFs' Block +860",
+        "unlock": "初期"
+      },
+      {
+        "name_ja": "ブロック+",
+        "effect_ja": "試合開始時、自身のブロックを2016上昇",
+        "effect_en": "At match start, own Block +2016",
+        "unlock": "Lv11"
+      },
+      {
+        "name_ja": "ツナミブーストパワー",
+        "effect_ja": "試合開始時、自身のツナミブーストの威力を90上昇",
+        "effect_en": "At match start, own Tsunami Boost power +90",
+        "unlock": "Lv41"
+      }
+    ],
+    "verified": "ok",
+    "notes": [
+      "Effetti e sblocchi erano separati da '---' nella fonte.",
+      "Statistiche identiche a Hidaka/Tsunami/Domon (DF ★2): modello condiviso, non un errore.",
+      "Effetti e sblocchi erano separati da '---' nella fonte."
+    ],
+    "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072314",
+    "source_url": "https://appmedia.jp/inazuma-cross/80072314",
+    "name_ja": "木暮夕弥",
+    "name_en": "Yuuya Kogure",
+    "version": null,
+    "rarity": 2,
+    "element": "Forest",
+    "position": "DF",
+    "type_ja": "シュートブロッカー",
+    "team_ja": "イナズマジャパン",
+    "series_ja": "イナイレ3",
+    "tags_ja": [
+      "イナズマジャパン"
+    ],
+    "rating": {
+      "best": "S",
+      "reroll": "S"
+    },
+    "stats_max": {
+      "tp": 100,
+      "kick": 2238,
+      "technique": 4694,
+      "block": 6424,
+      "catch": 4446,
+      "speed": 4
+    },
+    "skills": [
+      {
+        "name_ja": "旋風陣",
+        "name_en": "Senpuujin",
+        "unlock": "Lv1",
+        "tp": 40,
+        "power": 151,
+        "crit": 16,
+        "range": 5,
+        "chain": null,
+        "category": "block",
+        "foul": 15
+      },
+      {
+        "name_ja": "竜巻旋風",
+        "name_en": "Tatsumaki Senpuu",
+        "unlock": "Lv31",
+        "tp": 30,
+        "power": 129,
+        "crit": 10,
+        "range": 2,
+        "chain": null,
+        "category": "dribble",
+        "foul": 5
+      }
+    ],
+    "passives": [
+      {
+        "name_ja": "最大TP+",
+        "effect_ja": "試合開始時、自身の最大TPを30上昇",
+        "effect_en": "At match start, own max TP +30",
+        "unlock": "ADVANCED"
+      },
+      {
+        "name_ja": "旋風陣パワー+",
+        "effect_ja": "試合開始時、自身の旋風陣の威力を89上昇",
+        "effect_en": "At match start, own Senpuujin power +89",
+        "unlock": "ADVANCED+"
+      },
+      {
+        "name_ja": "林DF・GKブロック&キャッチ+",
+        "effect_ja": "試合開始時、林属性の味方DFとGKのブロックとキャッチを478上昇",
+        "effect_en": "At match start, Forest-element allied DFs' and GK's Block and Catch +478",
+        "unlock": "初期"
+      },
+      {
+        "name_ja": "ブロック+",
+        "effect_ja": "試合開始時、自身のブロックを2016上昇",
+        "effect_en": "At match start, own Block +2016",
+        "unlock": "Lv11"
+      },
+      {
+        "name_ja": "【破竹】林キック+",
+        "effect_ja": "自身のドリブル技が成功した時、林属性の味方のキックを503上昇",
+        "effect_en": "When own dribble skill succeeds, Forest-element allies' Kick +503",
+        "unlock": "Lv41"
+      }
+    ],
+    "verified": "ok",
+    "notes": [
+      "Elemento e categoria tecniche dall'alt-text delle immagini."
+    ],
+    "checked_on": "2026-10-12"
+  },
+  {
+    "id": "80072317",
+    "source_url": "https://appmedia.jp/inazuma-cross/80072317",
+    "name_ja": "円堂守",
+    "name_en": "Mamoru Endou",
+    "version": "雷門中",
+    "rarity": 2,
+    "element": "Mountain",
+    "position": "GK",
+    "type_ja": "モチベーター",
+    "team_ja": "雷門中",
+    "series_ja": "イナイレ1",
+    "tags_ja": [
+      "雷門中"
+    ],
+    "rating": {
+      "best": "A",
+      "reroll": "A"
+    },
+    "stats_max": {
+      "tp": 100,
+      "kick": 2600,
+      "technique": 2404,
+      "block": 3208,
+      "catch": 4596,
+      "speed": 2
+    },
+    "skills": [
+      {
+        "name_ja": "ゴッドハンド(山)",
+        "name_en": "God Hand (Mountain)",
+        "unlock": "Lv1",
+        "tp": 40,
+        "power": 123,
+        "crit": 11,
+        "range": 1,
+        "chain": null,
+        "category": "keeper"
+      },
+      {
+        "name_ja": "爆裂パンチ",
+        "name_en": "Bakuretsu Punch",
+        "unlock": "Lv31",
+        "tp": 40,
+        "power": 165,
+        "crit": 25,
+        "range": 1,
+        "chain": null,
+        "category": "keeper"
+      }
+    ],
+    "passives": [
+      {
+        "name_ja": "最大TP+",
+        "effect_ja": "試合開始時、自身の最大TPを30上昇",
+        "effect_en": "At match start, own max TP +30",
+        "unlock": "ADVANCED"
+      },
+      {
+        "name_ja": "FWシュートパワー+",
+        "effect_ja": "試合開始時、味方FWのシュート技の威力を22上昇",
+        "effect_en": "At match start, allied FWs' shot skill power +22",
+        "unlock": "ADVANCED+"
+      },
+      {
+        "name_ja": "【結束】チームテクニック+",
+        "effect_ja": "試合開始時、雷門タグの味方が3人以上居る場合、味方のテクニックを241増やす",
+        "effect_en": "At match start, if 3+ allies have the Raimon tag, allies' Technique +241",
+        "unlock": "初期"
+      },
+      {
+        "name_ja": "キャッチ+",
+        "effect_ja": "試合開始時、自身のキャッチを1545上昇",
+        "effect_en": "At match start, own Catch +1545",
+        "unlock": "Lv11"
+      },
+      {
+        "name_ja": "【結束】チームキック+",
+        "effect_ja": "試合開始時、雷門タグの味方が3人以上いる場合、味方のキックを315上昇",
+        "effect_en": "At match start, if 3+ allies have the Raimon tag, allies' Kick +315",
+        "unlock": "Lv41"
+      }
+    ],
+    "verified": "ok",
+    "notes": [
+      "Il team mostrato è 雷門中, mentre le passive parlano di tag '雷門': serve una tabella di alias dei tag (tappa 7).",
+      "Categoria 'keeper' dedotta (non indicata in tabella)."
+    ],
+    "checked_on": "2026-10-12"
+  }
+]

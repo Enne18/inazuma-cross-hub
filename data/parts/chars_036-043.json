@@ -1,0 +1,162 @@
+[
+  {
+    "id": "80076961", "source_url": "https://appmedia.jp/inazuma-cross/80076961",
+    "name_ja": "如月まこ", "name_en": "Mako Kisaragi", "version": null,
+    "rarity": 1, "element": "Forest", "position": "FW", "type_ja": "セカンドトップ", "team_ja": "稲妻KFC", "series_ja": "イナイレ1",
+    "tags_ja": ["稲妻KFC"], "rating": { "best": "A", "reroll": null },
+    "stats_max": { "tp": 100, "kick": 3426, "technique": 2570, "block": 1928, "catch": 1274, "speed": 4 },
+    "skills": [
+      { "name_ja": "彗星シュート", "name_en": "Suisei Shoot (Comet Shot)", "unlock": "Lv1", "tp": 50, "power": 86, "crit": 10, "range": 40, "chain": true, "category": "shoot" },
+      { "name_ja": "ダッシュアクセル", "name_en": "Dash Accel", "unlock": "Lv31", "tp": 30, "power": 123, "crit": 11, "range": 2, "chain": null, "category": "dribble", "foul": 5 }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "彗星シュートパワー+改", "effect_ja": "試合開始時、自身の彗星シュートの威力を26上昇、クリティカル率を10%上昇", "effect_en": "At match start, own Suisei Shoot power +26 and crit rate +10%", "unlock": "ADVANCED+" },
+      { "name_ja": "【結束】キック+", "effect_ja": "試合開始時、雷門または稲妻KFCタグの味方が3人以上いる場合、自身のキックを1371上昇", "effect_en": "At match start, if 3+ allies have the Raimon or Inazuma KFC tag, own Kick +1371", "unlock": "初期" },
+      { "name_ja": "キック+", "effect_ja": "試合開始時、自身のキックを1344上昇", "effect_en": "At match start, own Kick +1344", "unlock": "Lv11" },
+      { "name_ja": "FWキック+", "effect_ja": "試合開始時、味方FWのキックを538上昇", "effect_en": "At match start, allied FWs' Kick +538", "unlock": "Lv41" }
+    ],
+    "verified": "parziale",
+    "notes": ["Tabella statistiche intitolata 'ステータス情報' (non 'massime'): potrebbe non essere il livello massimo.", "Rating reroll assente (null)."], "checked_on": "2026-10-13"
+  },
+  {
+    "id": "80076964", "source_url": "https://appmedia.jp/inazuma-cross/80076964",
+    "name_ja": "源田幸次郎", "name_en": "Kojirou Genda", "version": null,
+    "rarity": 2, "element": "Fire", "position": "GK", "type_ja": "キーパー", "team_ja": "帝国学園", "series_ja": "イナイレ1",
+    "tags_ja": ["帝国学園"], "rating": { "best": "S", "reroll": null },
+    "stats_max": { "tp": 100, "kick": 2074, "technique": 2058, "block": 2780, "catch": 3680, "speed": 2 },
+    "skills": [
+      { "name_ja": "パワーシールド", "name_en": "Power Shield", "unlock": "Lv1", "tp": 40, "power": 155, "crit": 21, "range": 1, "chain": null, "category": "keeper" },
+      { "name_ja": "フルパワーシールド", "name_en": "Full Power Shield", "unlock": "Lv31", "tp": 50, "power": 189, "crit": 25, "range": 1, "chain": null, "category": "keeper" }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "フルパワーシールドパワー+改", "effect_ja": "試合開始時、自身の最大TPを20上昇、自身のフルパワーシールドの威力を28上昇", "effect_en": "At match start, own max TP +20 and own Full Power Shield power +28", "unlock": "ADVANCED+" },
+      { "name_ja": "DFブロック+/キャッチ+", "effect_ja": "試合開始時、味方DFのブロックを448上昇、自身のキャッチを448上昇", "effect_en": "At match start, allied DFs' Block +448 and own Catch +448", "unlock": "初期" },
+      { "name_ja": "キャッチ+", "effect_ja": "試合開始時、自身のキャッチを1344上昇", "effect_en": "At match start, own Catch +1344", "unlock": "Lv11" },
+      { "name_ja": "フルパワーシールドパワー+", "effect_ja": "試合開始時、自身のフルパワーシールドの威力を67上昇", "effect_en": "At match start, own Full Power Shield power +67", "unlock": "Lv41" }
+    ],
+    "verified": "parziale",
+    "notes": ["Tabella statistiche intitolata 'ステータス情報' (non 'massime'): potrebbe non essere il livello massimo.", "Elemento delle tecniche (Fuoco) dedotto dal nome del file dell'icona; non influisce sullo schema.", "Rating reroll assente (null)."], "checked_on": "2026-10-13"
+  },
+  {
+    "id": "80078860", "source_url": "https://appmedia.jp/inazuma-cross/80078860",
+    "name_ja": "辺見渡", "name_en": "Wataru Hemi", "version": null,
+    "rarity": 1, "element": "Wind", "position": "MF", "type_ja": "ディフェンシブハーフ", "team_ja": "帝国学園", "series_ja": "イナイレ1",
+    "tags_ja": ["帝国学園"], "rating": { "best": "B", "reroll": null },
+    "stats_max": { "tp": 100, "kick": null, "technique": null, "block": null, "catch": null, "speed": 6 },
+    "skills": [
+      { "name_ja": "ジャッジスルー", "name_en": "Judge Through", "unlock": "Lv1", "tp": 40, "power": 181, "crit": 26, "range": 2, "chain": null, "category": "dribble", "foul": 30 },
+      { "name_ja": "デスゾーン", "name_en": "Death Zone", "unlock": "Lv31", "tp": 50, "power": 158, "crit": 10, "range": 23, "chain": true, "category": "shoot" }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "ジャッジスルーパワー+改", "effect_ja": "試合開始時、自身のジャッジスルーの威力を11上昇、自身のファウル率を6%減少", "effect_en": "At match start, own Judge Through power +11 and own foul rate -6%", "unlock": "ADVANCED+" },
+      { "name_ja": "MFテクニック+", "effect_ja": "試合開始時、味方MFのテクニックを448上昇", "effect_en": "At match start, allied MFs' Technique +448", "unlock": "初期" },
+      { "name_ja": "テクニック+", "effect_ja": "試合開始時、自身のテクニックを1344上昇", "effect_en": "At match start, own Technique +1344", "unlock": "Lv11" },
+      { "name_ja": "FWシュートパワー+", "effect_ja": "試合開始時、味方FWの林属性シュート技の威力を16上昇", "effect_en": "At match start, allied FWs' Forest-element shot skill power +16", "unlock": "Lv41" }
+    ],
+    "verified": "parziale",
+    "notes": ["Statistiche Calcio/Tecnica/Blocco/Presa NON pubblicate nella fonte ('-'): null.", "Rating reroll assente (null)."], "checked_on": "2026-10-13"
+  },
+  {
+    "id": "80078863", "source_url": "https://appmedia.jp/inazuma-cross/80078863",
+    "name_ja": "大野伝助", "name_en": "Densuke Ohno", "version": null,
+    "rarity": 1, "element": "Mountain", "position": "DF", "type_ja": "シュートブロッカー", "team_ja": "帝国学園", "series_ja": "イナイレ1",
+    "tags_ja": ["帝国学園"], "rating": { "best": "A", "reroll": null },
+    "stats_max": { "tp": 100, "kick": null, "technique": null, "block": null, "catch": null, "speed": 4 },
+    "skills": [
+      { "name_ja": "アースクェイク", "name_en": "Earthquake", "unlock": "Lv1", "tp": 30, "power": 137, "crit": 20, "range": 5, "chain": null, "category": "block", "foul": 15 },
+      { "name_ja": "キラースライド", "name_en": "Killer Slide", "unlock": "Lv31", "tp": 30, "power": 168, "crit": 26, "range": 5, "chain": null, "category": "block", "foul": 30 }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "ファウル率減少&ブロックパワー+", "effect_ja": "試合開始時、自身のファウル率を5%減少、ブロック技の威力を16上昇", "effect_en": "At match start, own foul rate -5% and block skill power +16", "unlock": "ADVANCED+" },
+      { "name_ja": "DFテクニック&ブロック+", "effect_ja": "試合開始時、味方DFのテクニックとブロックを249上昇", "effect_en": "At match start, allied DFs' Technique and Block +249", "unlock": "初期" },
+      { "name_ja": "ブロック+", "effect_ja": "試合開始時、自身のブロックを1344上昇", "effect_en": "At match start, own Block +1344", "unlock": "Lv11" },
+      { "name_ja": "【破竹/累】MFドリブルパワー+", "effect_ja": "自身のドリブルブロック技が成功するたび、味方MFのドリブル技の威力を16上昇　終了条件：味方がゴールを入れた時", "effect_en": "Each time own dribble-block skill succeeds, allied MFs' dribble skill power +16 (cumulative). Ends when an ally scores", "unlock": "Lv41" }
+    ],
+    "verified": "parziale",
+    "notes": ["Statistiche Calcio/Tecnica/Blocco/Presa NON pubblicate nella fonte ('-'): null.", "Rating reroll assente (null)."], "checked_on": "2026-10-13"
+  },
+  {
+    "id": "80081470", "source_url": "https://appmedia.jp/inazuma-cross/80081470",
+    "name_ja": "五条勝", "name_en": "Masaru Gojou", "version": null,
+    "rarity": 1, "element": "Forest", "position": "DF", "type_ja": "ストッパー", "team_ja": "帝国学園", "series_ja": "イナイレ1",
+    "tags_ja": ["帝国学園"], "rating": { "best": "A", "reroll": null },
+    "stats_max": { "tp": 100, "kick": null, "technique": null, "block": null, "catch": null, "speed": 4 },
+    "skills": [
+      { "name_ja": "キラースライド", "name_en": "Killer Slide", "unlock": "Lv1", "tp": 30, "power": 168, "crit": 26, "range": 5, "chain": null, "category": "block", "foul": 30 },
+      { "name_ja": "分身フェイント", "name_en": "Bunshin Feint", "unlock": "Lv31", "tp": 30, "power": 123, "crit": 11, "range": 2, "chain": null, "category": "dribble", "foul": 5 }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "キラースライドパワー+改", "effect_ja": "試合開始時、自身のキラースライドの威力を23上昇、自身のファウル率を5%減少", "effect_en": "At match start, own Killer Slide power +23 and own foul rate -5%", "unlock": "ADVANCED+" },
+      { "name_ja": "DFブロック+", "effect_ja": "試合開始時、味方DFのブロックを448上昇", "effect_en": "At match start, allied DFs' Block +448", "unlock": "初期" },
+      { "name_ja": "ブロック+", "effect_ja": "試合開始時、自身のブロックを1344上昇", "effect_en": "At match start, own Block +1344", "unlock": "Lv11" },
+      { "name_ja": "【結束】FW・MFキック+", "effect_ja": "試合開始時、帝国タグの味方が3人以上いる場合、味方FWとMFのキックを280上昇", "effect_en": "At match start, if 3+ allies have the Teikoku tag, allied FWs' and MFs' Kick +280", "unlock": "Lv41" }
+    ],
+    "verified": "parziale",
+    "notes": ["Statistiche Calcio/Tecnica/Blocco/Presa NON pubblicate nella fonte ('-'): null.", "Rating reroll assente (null)."], "checked_on": "2026-10-13"
+  },
+  {
+    "id": "80081665", "source_url": "https://appmedia.jp/inazuma-cross/80081665",
+    "name_ja": "霧隠才次", "name_en": "Saiji Kirigakure", "version": null,
+    "rarity": 2, "element": "Fire", "position": "FW", "type_ja": "セカンドトップ", "team_ja": "戦国伊賀島", "series_ja": "イナイレ1",
+    "tags_ja": ["戦国伊賀島"], "rating": { "best": "B", "reroll": null },
+    "stats_max": { "tp": 100, "kick": null, "technique": null, "block": null, "catch": null, "speed": 5 },
+    "skills": [
+      { "name_ja": "つちだるま", "name_en": "Tsuchidaruma", "unlock": "Lv1", "tp": 30, "power": 106, "crit": 11, "range": 19, "chain": true, "category": "shoot" },
+      { "name_ja": "残像", "name_en": "Zanzou (Afterimage)", "unlock": "Lv31", "tp": 40, "power": 147, "crit": 11, "range": 2, "chain": null, "category": "dribble", "foul": 5 }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "つちだるまパワー+改", "effect_ja": "試合開始時、自身のつちだるまの威力を38上昇、クリティカル率を10%上昇", "effect_en": "At match start, own Tsuchidaruma power +38 and crit rate +10%", "unlock": "ADVANCED+" },
+      { "name_ja": "テクニック+", "effect_ja": "試合開始時、自身のテクニックを1613上昇", "effect_en": "At match start, own Technique +1613", "unlock": "初期" },
+      { "name_ja": "キック+", "effect_ja": "試合開始時、自身のキックを1344上昇", "effect_en": "At match start, own Kick +1344", "unlock": "Lv11" },
+      { "name_ja": "【共鳴】ドリブルパワー+", "effect_ja": "試合開始時、火属性の味方が3人以上いる場合、自身のドリブル技の威力を51上昇", "effect_en": "At match start, if 3+ allies are Fire element, own dribble skill power +51", "unlock": "Lv41" }
+    ],
+    "verified": "parziale",
+    "notes": ["Statistiche Calcio/Tecnica/Blocco/Presa NON pubblicate nella fonte ('-'): null.", "Rating reroll assente (null)."], "checked_on": "2026-10-13"
+  },
+  {
+    "id": "80085709", "source_url": "https://appmedia.jp/inazuma-cross/80085709",
+    "name_ja": "寺門大貴", "name_en": "Daiki Terakado", "version": null,
+    "rarity": 1, "element": "Forest", "position": "FW", "type_ja": "セカンドトップ", "team_ja": "帝国学園", "series_ja": "イナイレ1",
+    "tags_ja": ["帝国学園"], "rating": { "best": "S", "reroll": null },
+    "stats_max": { "tp": 100, "kick": null, "technique": null, "block": null, "catch": null, "speed": 4 },
+    "skills": [
+      { "name_ja": "百烈ショット", "name_en": "Hyakuretsu Shot", "unlock": "Lv1", "tp": 30, "power": 108, "crit": 11, "range": 19, "chain": true, "category": "shoot" },
+      { "name_ja": "キラースライド", "name_en": "Killer Slide", "unlock": "Lv31", "tp": 30, "power": 168, "crit": 26, "range": 5, "chain": null, "category": "block", "foul": 30 }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "百烈ショットパワー+", "effect_ja": "試合開始時、自身の百烈ショットの威力を71上昇", "effect_en": "At match start, own Hyakuretsu Shot power +71", "unlock": "ADVANCED+" },
+      { "name_ja": "FWキック+", "effect_ja": "試合開始時、味方FWのキックを448上昇", "effect_en": "At match start, allied FWs' Kick +448", "unlock": "初期" },
+      { "name_ja": "キック+", "effect_ja": "試合開始時、自身のキックを1344上昇", "effect_en": "At match start, own Kick +1344", "unlock": "Lv11" },
+      { "name_ja": "シュートパワー+", "effect_ja": "試合開始時、自身の林属性シュート技の威力を47上昇", "effect_en": "At match start, own Forest-element shot skill power +47", "unlock": "Lv41" }
+    ],
+    "verified": "parziale",
+    "notes": ["Statistiche Calcio/Tecnica/Blocco/Presa NON pubblicate nella fonte ('-'): null.", "Rating reroll assente (null)."], "checked_on": "2026-10-13"
+  },
+  {
+    "id": "80087017", "source_url": "https://appmedia.jp/inazuma-cross/80087017",
+    "name_ja": "土方雷電", "name_en": "Raiden Hijikata", "version": null,
+    "rarity": 2, "element": "Wind", "position": "MF", "type_ja": "シュートブロッカー", "team_ja": "イナズマジャパン", "series_ja": "イナイレ3",
+    "tags_ja": ["イナズマジャパン"], "rating": { "best": "S", "reroll": null },
+    "stats_max": { "tp": 100, "kick": null, "technique": null, "block": null, "catch": null, "speed": 4 },
+    "skills": [
+      { "name_ja": "スーパー四股踏み", "name_en": "Super Shiko Stomp", "unlock": "Lv1", "tp": 40, "power": 145, "crit": 18, "range": 5, "chain": null, "category": "block", "foul": 15 },
+      { "name_ja": "ブレードアタック", "name_en": "Blade Attack", "unlock": "Lv31", "tp": 30, "power": 140, "crit": 19, "range": 5, "chain": null, "category": "block", "foul": 15 }
+    ],
+    "passives": [
+      { "name_ja": "最大TP+", "effect_ja": "試合開始時、自身の最大TPを30上昇", "effect_en": "At match start, own max TP +30", "unlock": "ADVANCED" },
+      { "name_ja": "【失点/累】ブロックパワー+", "effect_ja": "敵からゴールを入れられるたび、自身のブロック技の威力を52上昇　終了条件：味方がゴールを入れた時", "effect_en": "Each time a goal is conceded, own block skill power +52 (cumulative). Ends when an ally scores", "unlock": "ADVANCED+" },
+      { "name_ja": "DFブロック+", "effect_ja": "試合開始時、味方DFのブロックを538上昇", "effect_en": "At match start, allied DFs' Block +538", "unlock": "初期" },
+      { "name_ja": "テクニック+", "effect_ja": "試合開始時、自身のテクニックを1344上昇", "effect_en": "At match start, own Technique +1344", "unlock": "Lv11" },
+      { "name_ja": "DFブロック+/GKキャッチ+", "effect_ja": "試合開始時、味方DFのブロックを521上昇、味方GKのキャッチを521上昇", "effect_en": "At match start, allied DFs' Block +521 and allied GK's Catch +521", "unlock": "Lv41" }
+    ],
+    "verified": "parziale",
+    "notes": ["Statistiche Calcio/Tecnica/Blocco/Presa NON pubblicate nella fonte ('-'): null.", "Posizione MF con tipo 'シュートブロッカー' e tecniche di blocco: come riportato dalla fonte.", "Rating reroll assente (null)."], "checked_on": "2026-10-13"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "parts": [
+    "parts/chars_001-003.json",
+    "parts/chars_002-011.json",
+    "parts/chars_012-019.json",
+    "parts/chars_020-027.json",
+    "parts/chars_028-035.json",
+    "parts/chars_036-043.json",
+    "parts/chars_044-051.json",
+    "parts/chars_052-059.json",
+    "parts/chars_060-067.json",
+    "parts/chars_068-075.json",
+    "parts/chars_076-083.json",
+    "parts/chars_084-091.json",
+    "parts/chars_092-099.json",
+    "parts/chars_100-107.json",
+    "parts/chars_108-115.json",
+    "parts/chars_116-124.json"
+  ]
+}

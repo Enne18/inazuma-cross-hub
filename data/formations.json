@@ -1,0 +1,8 @@
+{
+  "_doc": "Formazioni selezionabili nel Team Builder: numero di slot per ruolo. In gioco la formazione dipende dal tecnico e può avere bonus propri (non modellati). 'custom' è modificabile dall'utente.",
+  "formations": [
+    {"id": "standard11", "name": "Standard 11 (2 FW, 6 MF, 2 DF, 1 GK)", "slots": {"FW": 2, "MF": 6, "DF": 2, "GK": 1}, "source": "game8.jp/inazuma-cross/788203 (esempio 'Fーヤングイナズマ': FW①②, MF③-⑧, DF⑨⑩, GK⑪)", "verified": "parziale", "note": "Altre formazioni a 11 esistono con numeri diversi: non verificati, usare 'custom'."},
+    {"id": "5v5", "name": "5 contro 5 (2 FW, 1 MF, 1 DF, 1 GK)", "slots": {"FW": 2, "MF": 1, "DF": 1, "GK": 1}, "source": "game8.jp/inazuma-cross/788203 ('5vs5はFW2枚、MF、DF1枚ずつ')", "verified": "parziale"},
+    {"id": "custom", "name": "Personalizzata", "slots": {"FW": 2, "MF": 6, "DF": 2, "GK": 1}, "source": "impostata dall'utente", "verified": "n/a"}
+  ]
+}
