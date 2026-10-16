@@ -158,3 +158,11 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - 1 personaggio senza type_ja (財前塔子 SPフィクサーズ): non verificato, gli altri tag ok.
 - Mobile 390px: nessun overflow. Corretto bug: il selettore "Formazione 5v5" restava visibile (aggiunto [hidden]{display:none!important}); tab più compatte.
 - Resta aperto: 65 personaggi senza statistiche (le fornirà l'utente), ipotesi in DATI_DA_VERIFICARE.md.
+
+## Tappa 9a (16/10) — nuova fonte dati: inazumaelevencrosshub.com
+- L'utente ha eseguito uno script nel browser (il sito non è raggiungibile da qui) → iec_all.json: 511 voci, di cui 124 giocabili (stesso numero del nostro DB) e 387 "boss" senza scheda (ignorati).
+- `tools/parse_iec.py` → `data/iec/chars.json` (124 personaggi): stat Lv1 e Lv440 COMPLETE (colma i 65 mancanti), mosse con tabelle per livello, passive con testo per ogni livello (sblocco a livello del personaggio), passive di rarità (ADVANCED/ADVANCED+), tag come id+icona, immagini del sito.
+- `data/iec/tags.json`: 36 tag (id→nome giapponese). 33 dedotti dal confronto con il DB AppMedia (maggioranza), 3 dal nome squadra (雷門OB, 世宇子, シン・ゼウス: non verificati).
+- Scoperte: (1) le stat Lv440 del sito sono ~41% più alte di quelle AppMedia per i personaggi confrontati (69 valori diversi su 204): il DB vecchio usava valori di livello inferiore → spiega il Team Builder che non sceglieva i più forti. (2) I valori delle passive crescono per livello della passiva (14 livelli per le base, 3 per le rarità); AppMedia riportava il massimo. (3) Il confronto automatico col DB vecchio: 103 abbinati, 14 non abbinati per differenze di nome, 7 ambigui (versioni multiple di Kidou/Fubuki/Hibiki).
+- Decisione: la nuova fonte diventa primaria (richiesta dell'utente); il DB AppMedia resta come riferimento incrociato.
+- Prossimo: adattatore JS che costruisce i personaggi per il motore dato il livello scelto (passive al livello di sblocco, stat interpolate linearmente tra Lv1 e Lv440 = ipotesi da dichiarare), UI livello per giocatore, test.

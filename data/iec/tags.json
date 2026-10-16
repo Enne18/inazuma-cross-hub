@@ -1,0 +1,293 @@
+{
+ "_doc": "Mappa id tag del sito -> nome giapponese usato nel DB/nelle passive. name_ja null = da verificare.",
+ "tags": [
+  {
+   "id": 1010011,
+   "kind": "team",
+   "icon": "Team_Raimon",
+   "count": 21,
+   "name_ja": "雷門中",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1010012,
+   "kind": "team",
+   "icon": "Team_InazumaKidsFC",
+   "count": 1,
+   "name_ja": "稲妻KFC",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1010013,
+   "kind": "team",
+   "icon": "Team_Occult",
+   "count": 2,
+   "name_ja": "尾刈斗中",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1010014,
+   "kind": "team",
+   "icon": "Team_Wild",
+   "count": 1,
+   "name_ja": "野生中",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1010015,
+   "kind": "team",
+   "icon": "Team_Brainwashing",
+   "count": 2,
+   "name_ja": "御影専農",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1010016,
+   "kind": "team",
+   "icon": "Team_Otaku",
+   "count": 1,
+   "name_ja": "秋葉名戸",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1010017,
+   "kind": "team",
+   "icon": "Team_Shuriken",
+   "count": 1,
+   "name_ja": "戦国伊賀島",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1010018,
+   "kind": "team",
+   "icon": "Team_Kirkwood",
+   "count": 4,
+   "name_ja": "木戸川清修",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1010019,
+   "kind": "team",
+   "icon": "Team_RaimonVeterans",
+   "count": 1,
+   "name_ja": "雷門OB",
+   "name_source": "dal nome squadra nel DB AppMedia (non verificato con il sito)"
+  },
+  {
+   "id": 1010020,
+   "kind": "team",
+   "icon": "Team_Zeus",
+   "count": 11,
+   "name_ja": "世宇子",
+   "name_source": "dal nome squadra nel DB AppMedia (non verificato con il sito)"
+  },
+  {
+   "id": 1010021,
+   "kind": "team",
+   "icon": "Team_Teikoku",
+   "count": 12,
+   "name_ja": "帝国学園",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1010023,
+   "kind": "team",
+   "icon": "Team_Free",
+   "count": 5,
+   "name_ja": "無所属",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1020021,
+   "kind": "team",
+   "icon": "Team_Chaos",
+   "count": 11,
+   "name_ja": "カオス",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1020031,
+   "kind": "team",
+   "icon": "Team_GeminiStorm",
+   "count": 11,
+   "name_ja": "ジェミニストーム",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1020051,
+   "kind": "team",
+   "icon": "Team_Genesis",
+   "count": 1,
+   "name_ja": "ザ・ジェネシス",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1020061,
+   "kind": "team",
+   "icon": "Team_YoungInazuma",
+   "count": 11,
+   "name_ja": "ヤングイナズマ",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1020071,
+   "kind": "team",
+   "icon": "Team_SecretService",
+   "count": 1,
+   "name_ja": "SPフィクサーズ",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1030011,
+   "kind": "team",
+   "icon": "Team_InazumaJapan",
+   "count": 18,
+   "name_ja": "イナズマジャパン",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1040011,
+   "kind": "team",
+   "icon": "Team_RevolutionRaimon",
+   "count": 6,
+   "name_ja": "革命の雷門",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1100011,
+   "kind": "team",
+   "icon": "Team_JapanNationalTeam2026",
+   "count": 2,
+   "name_ja": "日本代表2026",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 1100012,
+   "kind": "team",
+   "icon": "Team_Sinzeus",
+   "count": 1,
+   "name_ja": "シン・ゼウス",
+   "name_source": "dal nome squadra nel DB AppMedia (non verificato con il sito)"
+  },
+  {
+   "id": 2010001,
+   "kind": "type",
+   "icon": "Ability_Striker",
+   "count": 17,
+   "name_ja": "ストライカー",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 2010002,
+   "kind": "type",
+   "icon": "Ability_SecondTop",
+   "count": 20,
+   "name_ja": "セカンドトップ",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 2020001,
+   "kind": "type",
+   "icon": "Ability_Playmaker",
+   "count": 24,
+   "name_ja": "プレイメイカー",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 2020002,
+   "kind": "type",
+   "icon": "Ability_Defensivehalf",
+   "count": 16,
+   "name_ja": "ディフェンシブハーフ",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 2030001,
+   "kind": "type",
+   "icon": "Ability_Shootblocker",
+   "count": 15,
+   "name_ja": "シュートブロッカー",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 2030002,
+   "kind": "type",
+   "icon": "Ability_Stopper",
+   "count": 11,
+   "name_ja": "ストッパー",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 2030003,
+   "kind": "type",
+   "icon": "Ability_SideBack",
+   "count": 6,
+   "name_ja": "サイドバック",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 2040001,
+   "kind": "type",
+   "icon": "Ability_Keeper",
+   "count": 9,
+   "name_ja": "キーパー",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 2050001,
+   "kind": "type",
+   "icon": "Ability_Buffer",
+   "count": 4,
+   "name_ja": "モチベーター",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 2050002,
+   "kind": "type",
+   "icon": "Ability_Longshooter",
+   "count": 2,
+   "name_ja": "ロングシューター",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 3000001,
+   "kind": "series",
+   "icon": "Title_InaEle1",
+   "count": 60,
+   "name_ja": "イナイレ1",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 3000002,
+   "kind": "series",
+   "icon": "Title_InaEle2",
+   "count": 36,
+   "name_ja": "イナイレ2",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 3000003,
+   "kind": "series",
+   "icon": "Title_InaEle3",
+   "count": 18,
+   "name_ja": "イナイレ3",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 3000004,
+   "kind": "series",
+   "icon": "Title_InaEleGo1",
+   "count": 4,
+   "name_ja": "イナイレGO1",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  },
+  {
+   "id": 3000010,
+   "kind": "series",
+   "icon": "Title_Cross",
+   "count": 6,
+   "name_ja": "イナイレクロス",
+   "name_source": "dedotto dal confronto con il DB AppMedia (maggioranza)"
+  }
+ ]
+}
