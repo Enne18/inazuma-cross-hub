@@ -1,8 +1,24 @@
-/* Catalogo: carica data/index.json + meta.json e mostra i personaggi con filtri base. */
+/* Catalogo: carica data/site/chars.json + meta.json (fonte: inazumaelevencrosshub.com) e mostra i personaggi con filtri base.
+   state.base = dati grezzi; state.chars = personaggi al livello massimo (440) nel formato del motore (js/iecdata.js). */
 (function () {
   'use strict';
-  var state = { meta: null, chars: [], owned: {} };
-  var KEY = 'iecross.collection.v1';
+  var state = { meta: null, base: [], chars: [], byId: {}, owned: {}, levels: {}, defaultLevel: 440, migration: {} };
+  var KEY = 'iecross.collection.v1', KEY_LV = 'iecross.levels.v1', KEY_DEF = 'iecross.deflevel.v1';
+  var MAXLV = 440;
+  function clampLv(v) { v = Math.round(+v); return isFinite(v) ? Math.max(1, Math.min(MAXLV, v)) : MAXLV; }
+  function loadLevels() {
+    try {
+      var o = JSON.parse(window.localStorage.getItem(KEY_LV) || '{}'), r = {};
+      Object.keys(o || {}).forEach(function (id) { r[id] = clampLv(o[id]); });
+      var d = window.localStorage.getItem(KEY_DEF);
+      state.defaultLevel = d ? clampLv(d) : MAXLV;
+      return r;
+    } catch (e) { return {}; }
+  }
+  function saveLevels() {
+    try { window.localStorage.setItem(KEY_LV, JSON.stringify(state.levels)); window.localStorage.setItem(KEY_DEF, String(state.defaultLevel)); } catch (e) { /* archiviazione bloccata */ }
+  }
+  function levelOf(id) { return state.levels[id] || MAXLV; }
 
   function loadOwned() {
     try {
@@ -20,7 +36,14 @@
   function ownedCount() { return Object.keys(state.owned).length; }
   function updateBadge() { $('owned-badge').textContent = String(ownedCount()); }
   // API per il Team Builder (tappa 7)
-  window.IEC = { state: state, ownedChars: function () { return state.chars.filter(function (c) { return state.owned[c.id]; }); } };
+  window.IEC = {
+    state: state,
+    levelOf: function (id) { return levelOf(id); },
+    // personaggi posseduti, ciascuno al livello scelto dall'utente (stat interpolate, passive per livello)
+    ownedChars: function () {
+      return state.base.filter(function (b) { return state.owned[b.id]; }).map(function (b) { return window.IECData.forLevel(b, levelOf(b.id)); });
+    }
+  };
   var $ = function (id) { return document.getElementById(id); };
 
   function el(tag, cls, text) {
@@ -38,11 +61,12 @@
   }
 
   function load() {
-    return Promise.all([getJSON('data/meta.json'), getJSON('data/index.json')]).then(function (res) {
+    return Promise.all([getJSON('data/meta.json'), getJSON('data/site/chars.json'), getJSON('data/site/id_migration.json').catch(function () { return {}; })]).then(function (res) {
       state.meta = res[0];
-      return Promise.all(res[1].parts.map(function (p) { return getJSON('data/' + p); }));
-    }).then(function (parts) {
-      state.chars = [].concat.apply([], parts).filter(function (c) { return !c.error; });
+      state.base = res[1].chars;
+      state.migration = res[2];
+      state.chars = state.base.map(function (c) { return window.IECData.forLevel(c, window.IECData.MAX_LEVEL); });
+      state.base.forEach(function (b) { state.byId[b.id] = b; });
     });
   }
 
@@ -64,7 +88,7 @@
     parent.appendChild(el('b', null, value === null ? '—' : String(value)));
   }
 
-  function card(c) {
+  function card(c, inCollection) {
     var root = el('article', 'card');
     root.style.setProperty('--el', 'var(--' + c.element + ')');
 
@@ -90,13 +114,34 @@
     }
     paintOwn();
     own.addEventListener('click', function () {
-      if (state.owned[c.id]) delete state.owned[c.id]; else state.owned[c.id] = true;
+      if (state.owned[c.id]) { delete state.owned[c.id]; delete state.levels[c.id]; } else { state.owned[c.id] = true; state.levels[c.id] = state.defaultLevel; }
+      saveLevels();
       if (!saveOwned()) flash('Impossibile salvare nel browser (archiviazione bloccata): la collezione vale solo finché la pagina resta aperta.');
       paintOwn();
       updateBadge();
       if (root.parentNode && root.parentNode.id === 'c-grid') renderCollection();
     });
     root.appendChild(own);
+
+    if (inCollection) {
+      var lv = el('div', 'lvl');
+      var lab = el('label', null, 'Livello ');
+      var inp = el('input'); inp.type = 'number'; inp.min = '1'; inp.max = String(MAXLV); inp.value = String(levelOf(c.id));
+      inp.setAttribute('aria-label', 'Livello di ' + c.name_ja);
+      lab.appendChild(inp); lv.appendChild(lab);
+      var mx = el('button', 'btn small', 'Max'); mx.type = 'button';
+      function setLv(v) {
+        state.levels[c.id] = clampLv(v); saveLevels();
+        if (!root.parentNode || root._replaced) return;   // scheda già sostituita (evento 'change' doppio durante la sostituzione)
+        root._replaced = true;
+        var fresh = card(window.IECData.forLevel(state.byId[c.id], state.levels[c.id]), true);
+        if (root.parentNode) root.parentNode.replaceChild(fresh, root);
+      }
+      inp.addEventListener('change', function () { setLv(inp.value); });
+      mx.addEventListener('click', function () { setLv(MAXLV); });
+      lv.appendChild(mx);
+      root.appendChild(lv);
+    }
 
     var s = el('div', 'stats');
     state.meta.stats.forEach(function (k) { statRow(s, k, c.stats_max ? c.stats_max[k] : null); });
@@ -116,9 +161,9 @@
     var d2 = el('details');
     d2.appendChild(el('summary', null, 'Passive (' + c.passives.length + ')'));
     c.passives.forEach(function (p) {
-      var it = el('div', 'item', p.name_ja + ' [' + p.unlock + ']');
+      var it = el('div', 'item', p.name_ja + ' [' + (p.unlock === 'bloccata' ? 'bloccata fino al Lv ' + p.next_unlock_lv : p.unlock === '初期' ? 'Lv ' + p.level + '/' + p.max_level : p.unlock) + ']');
       if (p.effect_en) it.appendChild(el('small', null, p.effect_en));
-      it.appendChild(el('small', null, p.effect_ja));
+      if (p.effect_ja) it.appendChild(el('small', null, p.effect_ja));
       d2.appendChild(it);
     });
     root.appendChild(d2);
@@ -187,7 +232,7 @@
     var list = window.IEC.ownedChars();
     var g = $('c-grid');
     g.textContent = '';
-    list.forEach(function (c) { g.appendChild(card(c)); });
+    list.forEach(function (c) { g.appendChild(card(c, true)); });
     $('c-count').textContent = list.length === 0
       ? 'Nessun personaggio selezionato. Vai al Catalogo e premi "Ce l\'ho".'
       : list.length + ' personaggi in collezione';
@@ -207,7 +252,7 @@
       b.addEventListener('click', function () { showTab(b.getAttribute('data-tab')); });
     });
     $('c-export').addEventListener('click', function () {
-      var data = { app: 'inazuma-cross-hub', version: 1, exported_on: new Date().toISOString().slice(0, 10), owned: Object.keys(state.owned) };
+      var data = { app: 'inazuma-cross-hub', version: 2, exported_on: new Date().toISOString().slice(0, 10), owned: Object.keys(state.owned), levels: state.levels, default_level: state.defaultLevel };
       var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
@@ -233,16 +278,29 @@
           var o = {};
           ok.forEach(function (id) { o[id] = true; });
           state.owned = o;
-          saveOwned(); updateBadge(); renderCollection();
+          var lv = {};
+          ok.forEach(function (id) { lv[id] = (d && d.levels && d.levels[id]) ? clampLv(d.levels[id]) : MAXLV; });
+          state.levels = lv;
+          if (d && d.default_level) state.defaultLevel = clampLv(d.default_level);
+          saveLevels(); saveOwned(); updateBadge(); renderCollection();
           flash('Importati ' + ok.length + ' personaggi' + (skipped ? ' (' + skipped + ' id sconosciuti ignorati)' : '') + '. La collezione precedente è stata sostituita.');
         } catch (e) { flash('Importazione fallita: ' + e.message); }
       };
       rd.readAsText(f);
     });
+    var all = $('c-lvl-all');
+    all.value = String(state.defaultLevel);
+    all.addEventListener('change', function () { state.defaultLevel = clampLv(all.value); all.value = String(state.defaultLevel); saveLevels(); });
+    $('c-lvl-apply').addEventListener('click', function () {
+      var v = clampLv(all.value); all.value = String(v); state.defaultLevel = v;
+      Object.keys(state.owned).forEach(function (id) { state.levels[id] = v; });
+      saveLevels(); renderCollection();
+      flash('Livello ' + v + ' impostato per tutti i ' + ownedCount() + ' personaggi (e per i prossimi che aggiungi).');
+    });
     $('c-clear').addEventListener('click', function () {
       if (ownedCount() === 0) return;
       if (!window.confirm('Rimuovere tutti i ' + ownedCount() + ' personaggi dalla collezione?')) return;
-      state.owned = {}; saveOwned(); updateBadge(); renderCollection(); flash('Collezione svuotata.');
+      state.owned = {}; state.levels = {}; saveOwned(); saveLevels(); updateBadge(); renderCollection(); flash('Collezione svuotata.');
     });
   }
 
@@ -263,7 +321,16 @@
     state.owned = loadOwned();
     var known = {};
     state.chars.forEach(function (c) { known[c.id] = true; });
-    Object.keys(state.owned).forEach(function (id) { if (!known[id]) delete state.owned[id]; });
+    var moved = false;   // collezioni salvate con i vecchi id (AppMedia) -> nuovi id del sito
+    Object.keys(state.owned).forEach(function (id) {
+      if (known[id]) return;
+      if (state.migration[id] && known[state.migration[id]]) { state.owned[state.migration[id]] = true; moved = true; }
+      delete state.owned[id];
+    });
+    if (moved) saveOwned();
+    state.levels = loadLevels();
+    Object.keys(state.owned).forEach(function (id) { if (!state.levels[id]) state.levels[id] = MAXLV; });
+    saveLevels();
     updateBadge();
     setupCollection();
     fillSelect($('f-team'), uniqueSorted('team_ja'));

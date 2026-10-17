@@ -44,6 +44,11 @@
         <label class="btn">Importa<input id="c-import" type="file" accept="application/json,.json" hidden></label>
         <button id="c-clear" type="button" class="btn danger">Svuota collezione</button>
       </div>
+      <div class="toolbar">
+        <label>Livello per tutti <input id="c-lvl-all" type="number" min="1" max="440" value="440"></label>
+        <button id="c-lvl-apply" type="button" class="btn">Applica a tutti</button>
+      </div>
+      <p class="muted small">Il livello vale anche per i nuovi personaggi che aggiungi. Le passive sono esatte per livello (dati del sito); le statistiche ai livelli intermedi sono una stima lineare tra Lv 1 e Lv 440, perché il sito fornisce solo quei due valori. ADVANCED e ADVANCED+ sono sempre al massimo.</p>
       <p id="c-msg" class="muted" aria-live="polite"></p>
       <p id="c-count" class="muted"></p>
       <div id="c-grid" class="grid"></div>
@@ -72,12 +77,13 @@
   </main>
 
   <footer class="wrap muted small">
-    Sito non ufficiale, fatto da fan. Inazuma Eleven è un marchio di LEVEL-5. Dati raccolti da
+    Sito non ufficiale, fatto da fan. Inazuma Eleven è un marchio di LEVEL-5. Dati principali da <a href="https://inazumaelevencrosshub.com" target="_blank" rel="noopener">Inazuma Eleven Cross HUB</a>; riferimenti da
     <a href="https://appmedia.jp/inazuma-cross" target="_blank" rel="noopener">AppMedia</a> e
     <a href="https://game8.jp/inazuma-cross" target="_blank" rel="noopener">Game8</a>; possono contenere errori.
   </footer>
 
   <script src="js/engine.js"></script>
+  <script src="js/iecdata.js"></script>
   <script src="js/catalog.js"></script>
   <script src="js/builder.js"></script>
 </body>

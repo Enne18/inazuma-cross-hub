@@ -68,3 +68,7 @@ summary { cursor: pointer; font-weight: 600; font-size: .9rem; }
 .okline{background:#e8f6ea;border-left:4px solid #3a9d4a;padding:.4rem .6rem;margin:.4rem 0;font-size:.9rem}
 [hidden] { display: none !important; }
 @media (max-width: 480px) { .tab { padding: 8px 8px; font-size: .9rem; } }
+
+.lvl { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+.lvl input, #c-lvl-all { width: 4.5em; padding: 4px 6px; }
+.btn.small { padding: 3px 10px; font-size: .85rem; }

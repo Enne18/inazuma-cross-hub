@@ -3,10 +3,10 @@ const fs = require('fs'), path = require('path'), assert = require('assert');
 const E = require('../js/engine.js');
 const root = path.join(__dirname, '..');
 const J = f => JSON.parse(fs.readFileSync(path.join(root, f), 'utf8'));
-const idx = J('data/index.json');
-const chars = [].concat(...idx.parts.map(p => J('data/' + p)));
+const D = require('../js/iecdata.js');
+const raw = J('data/site/chars.json').chars;
+const chars = raw.map(c => D.forLevel(c, 440));
 const aliases = J('data/tag_aliases.json');
-const forms = J('data/formations.json').formations;
 let n = 0; const t = (name, fn) => { fn(); n++; console.log('ok -', name); };
 
 t('parsePassive: 結束 con tag e soglia', () => {
@@ -49,10 +49,39 @@ t('结束: soglia tag rispettata (雷門 con 2 vs 3 membri)', () => {
   assert.strictEqual(two.unmet.filter(u => u.need && u.need.tag === '雷門').length > 0, true);
   assert.ok(three.effects.length > 0);
 });
-t('stima: personaggi senza statistiche hanno base > 0 e sono marcati stimati', () => {
+t('stima: personaggio con statistiche mancanti -> base > 0 e marcato stimato', () => {
   const eng = new E.Engine(chars, aliases);
-  const nul = chars.find(c => c.stats_max.kick === null && c.position === 'FW');
-  const b = eng.baseOf(nul); assert.ok(b.estimated && b.value > 0, nul.name_ja);
+  const nul = Object.assign({}, chars.find(c => c.position === 'FW'), { id: 'x', stats_max: { tp: 100, kick: null, technique: null, block: null, catch: null, speed: 4 } });
+  const b = eng.baseOf(nul); assert.ok(b.estimated && b.value > 0);
+});
+t('dati sito: 124 personaggi, tutte le statistiche presenti, 1 squadra+1 tipo+1 serie ciascuno', () => {
+  assert.strictEqual(chars.length, 124);
+  chars.forEach(c => { ['kick', 'technique', 'block', 'catch'].forEach(k => assert.ok(c.stats_max[k] > 0, c.name_ja)); assert.ok(c.team_ja && c.type_ja && c.series_ja, c.name_ja); });
+});
+t('adattatore: livello 1 = stat Lv1; livello 440 = stat Lv440; intermedi crescenti; tp/velocità costanti', () => {
+  const c = raw[0], a = D.forLevel(c, 1), b = D.forLevel(c, 440), m = D.forLevel(c, 220);
+  assert.deepStrictEqual(a.stats_max, c.stats_lv1); assert.deepStrictEqual(b.stats_max, c.stats_max);
+  assert.ok(a.stats_max.kick <= m.stats_max.kick && m.stats_max.kick <= b.stats_max.kick);
+  assert.strictEqual(m.stats_max.tp, c.stats_max.tp); assert.strictEqual(m.stats_max.speed, c.stats_max.speed);
+});
+t('adattatore: passive base per livello (Lv1 -> bloccate/prime tacche, 440 -> massimo); rarità sempre al massimo', () => {
+  const c = raw.find(x => x.name_ja === '円堂 守'), lo = D.forLevel(c, 1), hi = D.forLevel(c, 440), mid = D.forLevel(c, 60);
+  const find = (o, id) => o.passives.find(p => p.id === id);
+  const id0 = c.basic_passives[0].id;
+  assert.strictEqual(find(lo, id0).level, 0); assert.strictEqual(find(lo, id0).effect_ja, '');
+  assert.strictEqual(find(hi, id0).level, c.basic_passives[0].levels.length);
+  assert.ok(find(mid, id0).level > 0 && find(mid, id0).level < find(hi, id0).level);
+  assert.ok(lo.passives.filter(p => p.unlock === 'ADVANCED' || p.unlock === 'ADVANCED+').every(p => p.level === p.max_level));
+});
+t('adattatore: tutte le passive a Lv 440 interpretate dal motore (nessuna frase non interpretata)', () => {
+  let un = 0, cl = 0;
+  chars.forEach(c => c.passives.forEach(p => { if (!p.effect_ja) return; const r = E.parsePassive({ unlock: p.unlock, name_ja: p.name_ja, effect_ja: p.effect_ja }); un += r.unparsed.length; cl += r.clauses.length; }));
+  console.log('   clausole', cl, '| non interpretate', un);
+  assert.strictEqual(un, 0); assert.ok(cl > 450);
+});
+t('migrazione id: ogni vecchio id punta a un personaggio esistente, senza doppioni', () => {
+  const mig = J('data/site/id_migration.json'), ids = new Set(chars.map(c => c.id));
+  const v = Object.values(mig); assert.strictEqual(v.length, 124); assert.strictEqual(new Set(v).size, 124); v.forEach(x => assert.ok(ids.has(x)));
 });
 const CO = J('data/coaches.json'), coaches = CO.coaches, f5 = CO.five_vs_five_formations.formations;
 t('layout dei 14 tecnici: 11 slot, GK=1, condizioni entro 1..11', () => {

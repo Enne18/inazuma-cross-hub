@@ -166,3 +166,18 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Scoperte: (1) le stat Lv440 del sito sono ~41% più alte di quelle AppMedia per i personaggi confrontati (69 valori diversi su 204): il DB vecchio usava valori di livello inferiore → spiega il Team Builder che non sceglieva i più forti. (2) I valori delle passive crescono per livello della passiva (14 livelli per le base, 3 per le rarità); AppMedia riportava il massimo. (3) Il confronto automatico col DB vecchio: 103 abbinati, 14 non abbinati per differenze di nome, 7 ambigui (versioni multiple di Kidou/Fubuki/Hibiki).
 - Decisione: la nuova fonte diventa primaria (richiesta dell'utente); il DB AppMedia resta come riferimento incrociato.
 - Prossimo: adattatore JS che costruisce i personaggi per il motore dato il livello scelto (passive al livello di sblocco, stat interpolate linearmente tra Lv1 e Lv440 = ipotesi da dichiarare), UI livello per giocatore, test.
+
+## Tappa 9b (16/10) — il sito usa i dati nuovi
+- `tools/build_site_data.py` → `data/site/chars.json` (124 personaggi: stat Lv1/Lv440, mosse, passive per livello, tag, immagini). `data/site/id_migration.json`: vecchi id AppMedia → nuovi id (124/124 abbinati; i doppioni Kidou/Fubuki/Hibiki risolti per squadra+serie, non per nome: da verificare a occhio).
+- `js/iecdata.js`: personaggio + livello → formato motore. Passive base al livello sbloccato dal livello del personaggio; passive di rarità al massimo; stat intermedie = INTERPOLAZIONE LINEARE (ipotesi); testo normalizzato (NFKC, "-284減少" → 284減少, "キック1054上昇" → "キックを1054上昇"). Tutte le passive a Lv440 interpretate (525 clausole, 0 non interpretate).
+- Catalogo e Team Builder leggono i dati nuovi (al livello 440). La collezione salvata con i vecchi id viene migrata automaticamente (provato: 2 id su 3, l'id inesistente scartato).
+- Test: 18 passati. Chromium: nessun errore; il Team Builder ora sceglie solo ★3.
+- Il DB AppMedia (data/parts) resta come riferimento incrociato, non più letto dal sito. tools/check_tags.py legge ancora i vecchi dati (da riallineare).
+- Prossimo: 9c = livello per ogni giocatore nella collezione.
+
+## Tappa 9c (16/10) — livello per ogni giocatore
+- Collezione: campo "Livello" (1–440) su ogni scheda + "Max", e "Livello per tutti / Applica a tutti" (vale anche per i nuovi aggiunti). Salvato in localStorage (`iecross.levels.v1`, `iecross.deflevel.v1`); collezioni già salvate partono a 440.
+- `IEC.ownedChars()` restituisce i personaggi al livello scelto (stat interpolate, passive del livello sbloccato, ADVANCED/ADVANCED+ al massimo) → il Team Builder le usa.
+- Esporta/Importa in formato v2 (id + livelli); l'import legge anche il formato v1.
+- Prova in Chromium (30 personaggi): Endou Kick Lv440 3670 → Lv100 852; Team Builder con tutti a Lv50 punteggio 285, a Lv440 punteggio 1853; nessun errore. Corretto un errore di doppio evento 'change' nella sostituzione della scheda.
+- Prossimo: immagini + pastiglie.
