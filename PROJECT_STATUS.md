@@ -228,3 +228,10 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - iecdata.forLevel(c, L, adv): passiva rarità al livello scelto (0 = bloccata, non conta). Team Builder: tolta la casella "Conta anche ADVANCED" (ora vale quanto impostato per ogni personaggio; in modalità "Tutti" restano al massimo).
 - Livello generale: già presente ("Livello per tutti" + "Applica a tutti", vale anche per i nuovi personaggi aggiunti).
 - Test 20/20; prova browser ok.
+
+## Tappa 11f (18/10) — Grado del personaggio (Normal … Legendary Player +) al posto dei due menu ADV
+- Corretta la 11e: il gioco ha un solo "grado" 0-9 (Normal, Normal+, Growing, Growing+, Advanced, Advanced+, Top, Top+, Legendary, Legendary+). Fonte: repo iecrosshub (collection.js `char-rarity`, Core/parsers.js `getRarityTier`, js/Passive/*).
+- Passive di rarità: ADVANCED sblocca tacche ai gradi 4/6/8, ADVANCED+ ai gradi 5/7/9 (stats_always.js, bonds.js). Growing+ (3) = nessuna delle due.
+- Collezione: menu "Grado" per personaggio + "Grado per tutti" (default Legendary Player +). Salvato in `iecross.rarity.v1`, incluso in export/import (`rarity`). Test 20/20.
+- NON ancora modellato: il repo applica anche un moltiplicatore alle statistiche per grado (awakeningMultipliers 1.00,1.10,1.20,1.30,1.40,1.50,1.60,1.70,1.85,2.00; growthTable.js). Non è chiaro a quale grado corrispondano le statistiche del sito (Lv1 Mark IJ: sito 34 calcio vs repo 24 base → ~x1.4). Da chiarire prima di applicarlo.
+- I personaggi 3★ partono da Growing Player (2) nel repo, gli altri da Normal.
