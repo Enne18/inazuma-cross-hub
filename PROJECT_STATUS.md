@@ -222,3 +222,9 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Builder: campi "Obbligatori" (sempre in squadra) ed "Esclusi" (mai) con ricerca per nome e chip; un personaggio non può stare in entrambi. Non vengono salvati tra le sessioni.
 - engine.js: `cfg.lockIds` (i bloccati entrano in pool, non vengono sostituiti dalla ricerca). Test 19/19; prova in browser ok.
 - Nota: gli obbligatori sono ammessi anche se non in collezione.
+
+## Tappa 11e (18/10) — ADVANCED / ADVANCED+ per personaggio
+- Collezione: per ogni personaggio due menu (no / Lv1-3) per ADVANCED e ADVANCED+ (default Lv3 = massimo); riga "Applica a tutti" per le due passive. Salvati in localStorage `iecross.adv.v1`; inclusi in export/import (campo `adv`).
+- iecdata.forLevel(c, L, adv): passiva rarità al livello scelto (0 = bloccata, non conta). Team Builder: tolta la casella "Conta anche ADVANCED" (ora vale quanto impostato per ogni personaggio; in modalità "Tutti" restano al massimo).
+- Livello generale: già presente ("Livello per tutti" + "Applica a tutti", vale anche per i nuovi personaggi aggiunti).
+- Test 20/20; prova browser ok.

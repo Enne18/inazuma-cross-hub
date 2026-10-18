@@ -47,9 +47,14 @@
       <div class="toolbar">
         <label>Livello per tutti <input id="c-lvl-all" type="number" min="1" max="440" value="440"></label>
         <button id="c-lvl-apply" type="button" class="btn">Applica a tutti</button>
+        <span class="muted small">· Passive ADVANCED
+          <select id="c-adv-a" aria-label="ADVANCED per tutti"><option value="0">no</option><option value="1">Lv1</option><option value="2">Lv2</option><option value="3" selected>Lv3</option></select>
+          ADVANCED+
+          <select id="c-adv-p" aria-label="ADVANCED+ per tutti"><option value="0">no</option><option value="1">Lv1</option><option value="2">Lv2</option><option value="3" selected>Lv3</option></select>
+          <button id="c-adv-apply" type="button" class="btn">Applica a tutti</button></span>
       </div>
       <label class="chk"><input id="opt-images" type="checkbox" checked> Mostra le immagini dei personaggi (collegate al sito dei dati; se non si caricano resta la pastiglia)</label>
-      <p class="muted small">Il livello vale anche per i nuovi personaggi che aggiungi. Le passive sono esatte per livello (dati del sito); le statistiche ai livelli intermedi sono una stima lineare tra Lv 1 e Lv 440, perché il sito fornisce solo quei due valori. ADVANCED e ADVANCED+ sono sempre al massimo.</p>
+      <p class="muted small">Il livello vale anche per i nuovi personaggi che aggiungi. Le passive sono esatte per livello (dati del sito); le statistiche ai livelli intermedi sono una stima lineare tra Lv 1 e Lv 440, perché il sito fornisce solo quei due valori. Per ogni personaggio puoi indicare il livello (1-3) delle passive ADVANCED e ADVANCED+, oppure "no" se non le hai sbloccate: il Team Builder ne tiene conto (di default sono al massimo).</p>
       <p id="c-msg" class="muted" aria-live="polite"></p>
       <p id="c-count" class="muted"></p>
       <div id="c-grid" class="grid"></div>
@@ -67,7 +72,6 @@
         </label>
       </div>
       <div class="b-opts">
-        <label class="chk"><input id="b-adv" type="checkbox" checked> Conta anche le passive ADVANCED / ADVANCED+ (di default sì: tutto al massimo)</label>
         <label class="chk"><input id="b-rai" type="checkbox"> Conta 雷門OB e 革命の雷門 come tag 雷門 (non confermato)</label>
         <label class="chk"><input id="b-jp" type="checkbox"> Conta 日本代表2026 come tag イナズマジャパン (non confermato)</label>
       </div>
