@@ -16,6 +16,7 @@
         <button class="tab active" data-tab="catalog">Catalogo</button>
         <button class="tab" data-tab="collection">La mia collezione <span id="owned-badge" class="pill">0</span></button>
         <button class="tab" data-tab="builder">Team Builder</button>
+        <button class="tab" data-tab="coaches">Tecnici</button>
       </nav>
     </div>
   </header>
@@ -56,6 +57,11 @@
       <p id="c-msg" class="muted" aria-live="polite"></p>
       <p id="c-count" class="muted"></p>
       <div id="c-grid" class="grid"></div>
+    </section>
+    <section id="coaches" hidden>
+      <p class="muted">I 14 tecnici: condizioni di formazione, passive e livello. Il livello che imposti qui è lo stesso usato dal Team Builder.</p>
+      <p id="co-msg" class="muted"></p>
+      <div id="co-grid" class="grid"></div>
     </section>
     <section id="builder" hidden>
       <p class="muted">Propone le migliori squadre con i personaggi che hai segnato in "La mia collezione". Il punteggio è una stima trasparente basata su statistiche e passive: non è la formula del gioco. Considera tecnico (passiva sempre attiva, passiva di formazione solo se tutte le condizioni sono soddisfatte), ruoli liberi e 5v5 senza tecnico.</p>
@@ -104,5 +110,6 @@
   <script src="js/ui.js"></script>
   <script src="js/catalog.js"></script>
   <script src="js/builder.js"></script>
+  <script src="js/coaches.js"></script>
 </body>
 </html>

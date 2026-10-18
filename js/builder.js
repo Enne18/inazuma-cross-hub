@@ -178,6 +178,6 @@
 
   function boot() { if (window.IEC && window.IEC.loaded) init(); }
   document.addEventListener('iec-ready', boot);
-  document.addEventListener('iec-tab', function (e) { if (e.detail === 'builder') { boot(); } });
+  document.addEventListener('iec-tab', function (e) { if (e.detail === 'builder') { boot(); if (data && coaches.length) setupCoachLv(); } });
   boot();
 })();

@@ -24,6 +24,7 @@
     offRoleEstimateFactor: 0.5, // stima per personaggi senza statistiche messi fuori ruolo
     secondHalfFactor: 0.5,     // effetti solo a inizio secondo tempo
     model: 'damage',           // 'damage' = formula del gioco (stat x potenza mossa); 'legacy' = vecchio punteggio a pesi
+    roleDamageWeight: { FW: 1, MF: 1, DF: 1, GK: 1 },   // peso del danno per ruolo dello slot (calibrazione: difesa vs attacco)
     moveElementStab: 1.2,      // bonus elemento mossa = elemento personaggio (formula iecrosshub)
     nativeRoleMult: 1.1,       // ipotesi: moltiplicatore ruolo (iecrosshub: B 1.05, A 1.10, S 1.15) nel ruolo naturale
     offRoleMult: 1.0,          // ipotesi: fuori ruolo = nessun bonus; le mosse restano usabili
@@ -208,7 +209,7 @@
     return { ok: det.every(function (d) { return d.ok; }), details: det };
   };
 
-  var ROLECAT = { FW: ['kick'], MF: ['technique', 'kick'], DF: ['block'], GK: ['catch'] };
+  var ROLECAT = { FW: ['kick'], MF: ['technique', 'kick'], DF: ['block', 'catch'], GK: ['catch'] };
   var SKILLCAT = { shoot: 'kick', dribble: 'technique', block: 'block', catch: 'catch' };
   var POWKIND = { shoot: 'kick', dribble: 'technique', block: 'block', catch: 'catch', keeper: 'catch', all: 'all' };
 
@@ -280,7 +281,7 @@
         var d = self.damageOf(m, SB[i], PB[i]);
         if (d === null) { d = self.baseOf(m).value * 10; out.members[i].estimated = true; }
         out.members[i].damage = d;
-        tot += d;
+        tot += d * ((cfg.roleDamageWeight || {})[m.position] === undefined ? 1 : cfg.roleDamageWeight[m.position]);
       });
       out.total = tot;
     } else out.total = out.base + out.synergy;

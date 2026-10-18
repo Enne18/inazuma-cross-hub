@@ -263,7 +263,7 @@
   }
 
   function showTab(name) {
-    ['catalog', 'collection', 'builder'].forEach(function (t) { $(t).hidden = (t !== name); });
+    ['catalog', 'collection', 'builder', 'coaches'].forEach(function (t) { $(t).hidden = (t !== name); });
     document.dispatchEvent(new CustomEvent('iec-tab', { detail: name }));
     Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (b) {
       b.classList.toggle('active', b.getAttribute('data-tab') === name);

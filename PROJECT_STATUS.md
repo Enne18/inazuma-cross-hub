@@ -257,3 +257,10 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - 103/124 con nome. Senza nome (nuovi, solo giapponese): Gemini Storm (ゴルレオ コラル ギグ ガニメデ カロン パンドラ グリンゴ イオ リーム レーゼ ディアム), Chaos (グレント バーラ クララ ゴッカ ボンバ ヒート ドロル リオーネ ネッパー), シン・アフロディ.
 - Kira: tabella passiva livelli confermata dall'utente.
 - Nota: "Heat" della squadra utente = ヒート (Chaos, id 2027), non バーン/Torch (id 2031): da verificare con l'utente.
+
+## Tappa 11k (18/10) — pagina Tecnici + analisi squadre della community
+- Nuova scheda "Tecnici" (js/coaches.js): 14 tecnici con immagine (img/coaches/*.png, dal repo iecrosshub, 896 KB), schieramento, condizioni di formazione, passiva di formazione e passiva sempre attiva per livello; il livello è condiviso col Team Builder (`iecross.coachlv.v1`). Nota: il nome giapponese della passiva ("DF&GKブースト") nei dati è un copia/incolla errato per alcuni tecnici: non mostrato.
+- Analisi di due squadre forti della community (utente): Lina Schiller (Darren, Gazelle, ヒート, リオーネ, Arion, Bellatrix, Garret, Malcolm, Gabi, Hillman Giovane, Silvia) e Percival Travis (Shawn IJ, Axel IJ, Jude IJ, Austin, Nathan IJ, Thor, Hurley, Mark IJ, Jack IJ, Archer, Darren).
+  - Entrambe attivano la formazione del tecnico (Kira: Darren Foresta in slot 1 = portiere in attacco; Travis: slot 1/4/9 tag IJ) e tutte le sinergie di tag (Travis: 49 effetti, 0 non soddisfatte).
+  - Il motore le valuta il 62% (Kira) e 70% (Travis) della sua squadra migliore → il modello di punteggio non riproduce la scelta della community. Provato: peso per ruolo (difesa/attacco) non chiude il divario. Aggiunto `roleDamageWeight` (default 1) e le mosse di parata contano anche negli slot DF (GK in difesa, usato dalla community).
+- Servono più squadre della community (tecnico + 11 giocatori in ordine) per calibrare con dati, non a intuito.
