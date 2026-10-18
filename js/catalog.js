@@ -251,13 +251,15 @@
   function flash(msg) { $('c-msg').textContent = msg; }
 
   function renderCollection() {
-    var list = window.IEC.ownedChars();
+    var hayById = {}; state.chars.forEach(function (x) { hayById[x.id] = x._hay; });
+    var all = window.IEC.ownedChars(), q = $('c-q').value.trim().toLowerCase();
+    var list = q ? all.filter(function (c) { var h = hayById[c.id]; return h && h.indexOf(q) >= 0; }) : all;
     var g = $('c-grid');
     g.textContent = '';
     list.forEach(function (c) { g.appendChild(card(c, true)); });
-    $('c-count').textContent = list.length === 0
+    $('c-count').textContent = all.length === 0
       ? 'Nessun personaggio selezionato. Vai al Catalogo e premi "Ce l\'ho".'
-      : list.length + ' personaggi in collezione';
+      : (q ? list.length + ' di ' + all.length + ' personaggi (filtrati)' : all.length + ' personaggi in collezione');
   }
 
   function showTab(name) {
@@ -325,6 +327,7 @@
       saveLevels(); renderCollection();
       flash('Livello ' + v + ' impostato per tutti i ' + ownedCount() + ' personaggi (e per i prossimi che aggiungi).');
     });
+    $('c-q').addEventListener('input', renderCollection);
     var rs = $('c-rar-all');
     window.IECData.RARITY_NAMES.forEach(function (n, i) { var o = el('option', null, n); o.value = String(i); rs.appendChild(o); });
     rs.value = '9';

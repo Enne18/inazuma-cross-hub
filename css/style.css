@@ -65,7 +65,8 @@ summary { cursor: pointer; font-weight: 600; font-size: .9rem; }
 .team ul { margin: 4px 0 8px; padding-left: 18px; font-size: .85rem; } .team li { margin: 2px 0; }
 .team h4 { margin: 10px 0 2px; font-size: .9rem; }
 
-.okline{background:#e8f6ea;border-left:4px solid #3a9d4a;padding:.4rem .6rem;margin:.4rem 0;font-size:.9rem}
+.okline{background:#e8f6ea;color:#14351b;border-left:4px solid #3a9d4a;padding:.4rem .6rem;margin:.4rem 0;font-size:.9rem}
+@media (prefers-color-scheme: dark){.okline{background:#16301d;color:#d6f3dc}.team .warn{color:#e5b94a}}
 [hidden] { display: none !important; }
 @media (max-width: 480px) { .tab { padding: 8px 8px; font-size: .9rem; } }
 

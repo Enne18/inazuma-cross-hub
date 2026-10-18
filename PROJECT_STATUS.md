@@ -235,3 +235,13 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Collezione: menu "Grado" per personaggio + "Grado per tutti" (default Legendary Player +). Salvato in `iecross.rarity.v1`, incluso in export/import (`rarity`). Test 20/20.
 - NON ancora modellato: il repo applica anche un moltiplicatore alle statistiche per grado (awakeningMultipliers 1.00,1.10,1.20,1.30,1.40,1.50,1.60,1.70,1.85,2.00; growthTable.js). Non è chiaro a quale grado corrispondano le statistiche del sito (Lv1 Mark IJ: sito 34 calcio vs repo 24 base → ~x1.4). Da chiarire prima di applicarlo.
 - I personaggi 3★ partono da Growing Player (2) nel repo, gli altri da Normal.
+
+## Tappa 11g (18/10) — Harry Savage corretto, leggibilità, ricerca nella collezione
+- Dati: passiva tecnico Harry Savage (tayama) 400 → 40 (repo iecrosshub harrySavage.js, Niv.10); Seth Nichols (nikaido) 89 → 85. Il "400" gonfiava le squadre tutto-Vento (punteggio tayama 1.118.352 → 620.082, ora 5 Vento su 11).
+- Verificati gli altri 12 tecnici contro il repo (valori Lv10 coincidenti; Kira nel repo ha il Lv10 passiva = 0/placeholder, resta dal dato AppMedia; Zeus nel repo 60/60 = ok).
+- Builder: titolo "Danno stimato" (tolti "base + sinergie", in unità vecchie), danno per giocatore, riga tecnico leggibile nel tema scuro (.okline).
+- Collezione: barra di ricerca (nome, squadra, tecnica, passiva).
+
+## Tappa 11h (18/10) — Kira (Lina Schiller) confermata dall'utente
+- Condizioni formazione: slot 1 Foresta, slot 5 Vento, slot 6 Foresta O Vento (prima solo Foresta). Engine: `req.elements` (lista, basta uno). Test 21/21.
+- Passiva Lv10 confermata dall'utente: Foresta/Vento tiro +70, MF consigliato dribbling +60 (come nei nostri dati). Attiva: +40 potenza a Foresta/Vento ogni volta che un tiro alleato viene bloccato (fino al gol).

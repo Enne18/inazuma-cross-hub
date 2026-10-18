@@ -55,15 +55,14 @@
   function teamBox(t, rank) {
     var d = t.detail, box = el('article', 'team');
     var h = el('h3', null, '#' + rank + ' · ');
-    h.appendChild(el('span', 'score', 'Punteggio ' + Math.round(d.total)));
-    h.appendChild(document.createTextNode(' (base ' + Math.round(d.base) + ' + sinergie ' + Math.round(d.synergy) + ')'));
+    h.appendChild(el('span', 'score', 'Danno stimato ' + Math.round(d.total).toLocaleString('it-IT')));
+    h.appendChild(document.createTextNode(' (somma dei danni della mossa migliore di ogni giocatore, con bonus di sinergie e tecnico)'));
     box.appendChild(h);
     if (d.estimated) box.appendChild(el('div', 'warn', d.estimated + ' giocatori hanno statistiche stimate (dati mancanti nella fonte): il punteggio è meno affidabile.'));
 
     if (d.coach) {
       var ch = el('div', d.coach.formationActive ? 'okline' : 'warn', 'Tecnico: ' + (d.coach.name_west ? d.coach.name_west + ' / ' : '') + d.coach.name_ja + ' (' + d.coach.formation_ja + ') · passiva di formazione ' +
-        (d.coach.formationActive ? 'ATTIVA' : 'NON attiva (condizioni non tutte soddisfatte)') +
-        ' · bonus tecnico +' + d.coach.coachPoints.toFixed(1) + ', formazione +' + d.coach.formationPoints.toFixed(1));
+        (d.coach.formationActive ? 'ATTIVA' : 'NON attiva (condizioni non tutte soddisfatte)'));
       box.appendChild(ch);
     }
     var ro = el('div', 'roster');
@@ -74,7 +73,7 @@
       p.appendChild(window.IECUI.avatar(c, 'sm'));
       var tx = el('div', 'ptx');
       tx.appendChild(el('b', null, s.slot + '. ' + nm(c)));
-      tx.appendChild(el('small', null, 'slot ' + s.role + (c.position !== s.role ? ' (nativo ' + c.position + ')' : '') + ' · ' + data.meta.elements[c.element].it + ' · ' + '★'.repeat(c.rarity) + (c.team_ja ? ' · ' + c.team_ja : '')));
+      tx.appendChild(el('small', null, 'slot ' + s.role + (c.position !== s.role ? ' (nativo ' + c.position + ')' : '') + ' · ' + data.meta.elements[c.element].it + ' · ' + '★'.repeat(c.rarity) + (c.team_ja ? ' · ' + c.team_ja : '') + (d.members && d.members[s.slot - 1] && d.members[s.slot - 1].damage ? ' · danno ~' + Math.round(d.members[s.slot - 1].damage).toLocaleString('it-IT') : '')));
       p.appendChild(tx);
       ro.appendChild(p);
     });

@@ -149,4 +149,12 @@ t('grado (Normal..Legendary+): ADVANCED da grado 4/6/8, ADVANCED+ da 5/7/9; defa
   const eng = new E.Engine([D.forLevel(c, 345, 3)], aliases);
   assert.ok(eng.passivesOf(eng.chars[0]).every(p => p.unlock !== 'ADVANCED' && p.unlock !== 'ADVANCED+'));
 });
+t('Kira: slot 6 accetta Foresta O Vento', () => {
+  const eng = new E.Engine(chars, aliases), co = coaches.find(c => c.id === 'kira');
+  const pick = (el) => chars.find(c => c.element === el && c.position === 'MF');
+  const forest = pick('Forest'), wind = pick('Wind'), fire = pick('Fire');
+  const c6 = co.formation_condition.find(c => c.slot === 6);
+  [forest, wind].forEach(m => assert.ok(eng.formationStatus({ formation_condition: [c6] }, [0, 0, 0, 0, 0, eng.member(m, 'MF')]).ok));
+  assert.ok(!eng.formationStatus({ formation_condition: [c6] }, [0, 0, 0, 0, 0, eng.member(fire, 'MF')]).ok);
+});
 console.log(n, 'test passati');

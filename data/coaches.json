@@ -627,7 +627,7 @@
    },
    "coach_passive": {
     "name_ja": "DF&GKブースト",
-    "text_ja": "試合開始時 味方の風属性技威力を400上昇",
+    "text_ja": "試合開始時 味方の風属性技威力を40上昇",
     "level_used": 10,
     "effects": [
      {
@@ -641,8 +641,8 @@
       },
       "kind": "power",
       "skill": "all",
-      "value": 400,
-      "note": "INCERTO: AppMedia 400, Gamerch Lv1 +4 (rapporto 100 invece di 10). Probabile 40. Da verificare in gioco."
+      "value": 40,
+      "note": "Corretto da 400 a 40 (repo iecrosshub harrySavage.js, Niv.10 = 40; vale per le tecniche di Vento di tutti gli alleati)."
      }
     ]
    },
@@ -1033,7 +1033,7 @@
    },
    "coach_passive": {
     "name_ja": "FW&ストライカーパワーブースト",
-    "text_ja": "試合開始時 推奨FWの味方:シュート技威力60上昇 ストライカーの味方:シュート技威力89上昇",
+    "text_ja": "試合開始時 推奨FWの味方:シュート技威力60上昇 ストライカーの味方:シュート技威力85上昇",
     "level_used": 10,
     "effects": [
      {
@@ -1060,7 +1060,8 @@
       },
       "kind": "power",
       "skill": "shoot",
-      "value": 89
+      "value": 85,
+      "note": "89 -> 85 (repo iecrosshub sethNichols.js Niv.10 val2=85)"
      }
     ]
    },
@@ -1374,7 +1375,11 @@
     },
     {
      "slot": 6,
-     "element": "Forest"
+     "elements": [
+      "Forest",
+      "Wind"
+     ],
+     "note": "Confermato dall'utente e dal repo (due icone): Foresta O Vento"
     }
    ],
    "formation_passive": {

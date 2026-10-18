@@ -194,6 +194,7 @@
   function reqOk(engine, req, m) {
     if (req.position && (m.native || m.position) !== req.position) return false;
     if (req.element && m.element !== req.element) return false;
+    if (req.elements && req.elements.indexOf(m.element) < 0) return false;   // uno qualsiasi degli elementi indicati
     if (req.tag && !engine.hasTag(m, req.tag)) return false;
     if (req.type && m.type_ja !== req.type) return false;
     return true;
