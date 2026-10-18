@@ -138,4 +138,15 @@ t('giocatori obbligatori: sempre in squadra (anche il più debole)', () => {
   const r = eng.build(chars.slice(), roles, co, { restarts: 3 });
   r.teams.forEach(tm => assert.ok(tm.ids.indexOf(weak.id) >= 0 || tm.slots.some(s => s.id === weak.id), 'obbligatorio mancante'));
 });
+t('grado (Normal..Legendary+): ADVANCED da grado 4/6/8, ADVANCED+ da 5/7/9; default = massimo', () => {
+  const c = raw[0], T = D.tierLevel;
+  assert.deepStrictEqual([0,1,2,3,4,5,6,7,8,9].map(r => T('ADVANCED', r)), [0,0,0,0,1,1,2,2,3,3]);
+  assert.deepStrictEqual([0,1,2,3,4,5,6,7,8,9].map(r => T('ADVANCED+', r)), [0,0,0,0,0,1,1,2,2,3]);
+  const tiers = (r) => D.forLevel(c, 345, r).passives.filter(p => p.tier);
+  assert.ok(tiers().every(p => p.level === 3));
+  const g = tiers(3); assert.ok(g.every(p => p.unlock === 'bloccata'), 'Growing Player + non ha nessuna passiva avanzata');
+  const a5 = tiers(5); assert.strictEqual(a5.find(p => p.tier === 'ADVANCED').level, 1); assert.strictEqual(a5.find(p => p.tier === 'ADVANCED+').level, 1);
+  const eng = new E.Engine([D.forLevel(c, 345, 3)], aliases);
+  assert.ok(eng.passivesOf(eng.chars[0]).every(p => p.unlock !== 'ADVANCED' && p.unlock !== 'ADVANCED+'));
+});
 console.log(n, 'test passati');

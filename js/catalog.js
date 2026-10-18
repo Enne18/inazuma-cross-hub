@@ -2,8 +2,8 @@
    state.base = dati grezzi; state.chars = personaggi al livello massimo (440) nel formato del motore (js/iecdata.js). */
 (function () {
   'use strict';
-  var state = { meta: null, base: [], chars: [], byId: {}, owned: {}, levels: {}, defaultLevel: 440, migration: {} };
-  var KEY = 'iecross.collection.v1', KEY_LV = 'iecross.levels.v1', KEY_DEF = 'iecross.deflevel.v1';
+  var state = { meta: null, base: [], chars: [], byId: {}, owned: {}, levels: {}, defaultLevel: 440, rar: {}, migration: {} };
+  var KEY = 'iecross.collection.v1', KEY_LV = 'iecross.levels.v1', KEY_DEF = 'iecross.deflevel.v1', KEY_RAR = 'iecross.rarity.v1';
   var MAXLV = 440;
   function clampLv(v) { v = Math.round(+v); return isFinite(v) ? Math.max(1, Math.min(MAXLV, v)) : MAXLV; }
   function loadLevels() {
@@ -19,6 +19,12 @@
     try { window.localStorage.setItem(KEY_LV, JSON.stringify(state.levels)); window.localStorage.setItem(KEY_DEF, String(state.defaultLevel)); } catch (e) { /* archiviazione bloccata */ }
   }
   function levelOf(id) { return state.levels[id] || MAXLV; }
+  // grado del personaggio (0 Normal ... 9 Legendary+): decide quali passive ADVANCED / ADVANCED+ ha sbloccato (default 9 = tutte)
+  function clampRar(v) { v = Math.round(+v); return isFinite(v) ? Math.max(0, Math.min(9, v)) : 9; }
+  function rarOf(id) { var r = state.rar[id]; return r === undefined ? 9 : clampRar(r); }
+  function loadRar() { try { var o = JSON.parse(window.localStorage.getItem(KEY_RAR) || '{}'); Object.keys(o).forEach(function (id) { state.rar[id] = clampRar(o[id]); }); } catch (e) { /* ignora */ } }
+  function saveRar() { try { window.localStorage.setItem(KEY_RAR, JSON.stringify(state.rar)); } catch (e) { /* archiviazione bloccata */ } }
+  function setRar(id, r) { state.rar[id] = clampRar(r); saveRar(); }
 
   function loadOwned() {
     try {
@@ -41,7 +47,7 @@
     levelOf: function (id) { return levelOf(id); },
     // personaggi posseduti, ciascuno al livello scelto dall'utente (stat interpolate, passive per livello)
     ownedChars: function () {
-      return state.base.filter(function (b) { return state.owned[b.id]; }).map(function (b) { return window.IECData.forLevel(b, levelOf(b.id)); });
+      return state.base.filter(function (b) { return state.owned[b.id]; }).map(function (b) { return window.IECData.forLevel(b, levelOf(b.id), rarOf(b.id)); });
     }
   };
   var $ = function (id) { return document.getElementById(id); };
@@ -138,13 +144,25 @@
         state.levels[c.id] = clampLv(v); saveLevels();
         if (!root.parentNode || root._replaced) return;   // scheda già sostituita (evento 'change' doppio durante la sostituzione)
         root._replaced = true;
-        var fresh = card(window.IECData.forLevel(state.byId[c.id], state.levels[c.id]), true);
+        var fresh = card(window.IECData.forLevel(state.byId[c.id], state.levels[c.id], rarOf(c.id)), true);
         if (root.parentNode) root.parentNode.replaceChild(fresh, root);
       }
       inp.addEventListener('change', function () { setLv(inp.value); });
       mx.addEventListener('click', function () { setLv(MAXLV); });
       lv.appendChild(mx);
       root.appendChild(lv);
+      var av = el('div', 'lvl adv'), lbr = el('label', null, 'Grado '), sr = el('select');
+      window.IECData.RARITY_NAMES.forEach(function (n, i) { var o = el('option', null, n); o.value = String(i); sr.appendChild(o); });
+      sr.value = String(rarOf(c.id)); sr.setAttribute('aria-label', 'Grado di ' + c.name_ja);
+      lbr.appendChild(sr); av.appendChild(lbr);
+      sr.addEventListener('change', function () {
+        setRar(c.id, sr.value);
+        if (!root.parentNode || root._replaced) return;
+        root._replaced = true;
+        var fresh2 = card(window.IECData.forLevel(state.byId[c.id], levelOf(c.id), rarOf(c.id)), true);
+        if (root.parentNode) root.parentNode.replaceChild(fresh2, root);
+      });
+      root.appendChild(av);
     }
 
     var s = el('div', 'stats');
@@ -256,7 +274,7 @@
       b.addEventListener('click', function () { showTab(b.getAttribute('data-tab')); });
     });
     $('c-export').addEventListener('click', function () {
-      var data = { app: 'inazuma-cross-hub', version: 2, exported_on: new Date().toISOString().slice(0, 10), owned: Object.keys(state.owned), levels: state.levels, default_level: state.defaultLevel };
+      var data = { app: 'inazuma-cross-hub', version: 2, exported_on: new Date().toISOString().slice(0, 10), owned: Object.keys(state.owned), levels: state.levels, default_level: state.defaultLevel, rarity: state.rar };
       var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
@@ -285,6 +303,9 @@
           var lv = {};
           ok.forEach(function (id) { lv[id] = (d && d.levels && d.levels[id]) ? clampLv(d.levels[id]) : MAXLV; });
           state.levels = lv;
+          state.rar = {};
+          ok.forEach(function (id) { if (d && d.rarity && d.rarity[id] !== undefined) state.rar[id] = clampRar(d.rarity[id]); });
+          saveRar();
           if (d && d.default_level) state.defaultLevel = clampLv(d.default_level);
           saveLevels(); saveOwned(); updateBadge(); renderCollection();
           flash('Importati ' + ok.length + ' personaggi' + (skipped ? ' (' + skipped + ' id sconosciuti ignorati)' : '') + '. La collezione precedente è stata sostituita.');
@@ -304,10 +325,19 @@
       saveLevels(); renderCollection();
       flash('Livello ' + v + ' impostato per tutti i ' + ownedCount() + ' personaggi (e per i prossimi che aggiungi).');
     });
+    var rs = $('c-rar-all');
+    window.IECData.RARITY_NAMES.forEach(function (n, i) { var o = el('option', null, n); o.value = String(i); rs.appendChild(o); });
+    rs.value = '9';
+    $('c-rar-apply').addEventListener('click', function () {
+      var r = clampRar(rs.value);
+      Object.keys(state.owned).forEach(function (id) { state.rar[id] = r; });
+      saveRar(); renderCollection();
+      flash('Grado "' + window.IECData.RARITY_NAMES[r] + '" impostato per tutti i ' + ownedCount() + ' personaggi.');
+    });
     $('c-clear').addEventListener('click', function () {
       if (ownedCount() === 0) return;
       if (!window.confirm('Rimuovere tutti i ' + ownedCount() + ' personaggi dalla collezione?')) return;
-      state.owned = {}; state.levels = {}; saveOwned(); saveLevels(); updateBadge(); renderCollection(); flash('Collezione svuotata.');
+      state.owned = {}; state.levels = {}; state.rar = {}; saveRar(); saveOwned(); saveLevels(); updateBadge(); renderCollection(); flash('Collezione svuotata.');
     });
   }
 
@@ -336,6 +366,7 @@
     });
     if (moved) saveOwned();
     state.levels = loadLevels();
+    loadRar();
     Object.keys(state.owned).forEach(function (id) { if (!state.levels[id]) state.levels[id] = MAXLV; });
     saveLevels();
     updateBadge();

@@ -36,7 +36,15 @@
     return n;
   }
 
-  function passivesAt(c, L) {
+  var RARITY_NAMES = ['Normal Player', 'Normal Player +', 'Growing Player', 'Growing Player +', 'Advanced Player', 'Advanced Player +', 'Top Player', 'Top Player +', 'Legendary Player', 'Legendary Player +'];
+  // Dal repository iecrosshub (js/Passive/*): le passive ADVANCED si sbloccano ai gradi 4/6/8 (Advanced, Top, Legendary),
+  // quelle ADVANCED+ ai gradi 5/7/9 (Advanced+, Top+, Legendary+).
+  function tierLevel(tier, rarity) {
+    if (rarity === undefined || rarity === null) return 3;
+    var first = tier === 'ADVANCED' ? 4 : 5;
+    return rarity < first ? 0 : Math.min(3, Math.floor((rarity - first) / 2) + 1);
+  }
+  function passivesAt(c, L, rarity) {
     L = clampLevel(L);
     var out = [];
     (c.basic_passives || []).forEach(function (p) {
@@ -45,22 +53,25 @@
       else out.push({ id: p.id, name_ja: p.name_ja, unlock: 'bloccata', level: 0, max_level: p.levels.length, effect_ja: '', raw_ja: '', next_unlock_lv: p.levels[0].unlock_lv });
     });
     (c.rarity_passives || []).forEach(function (p) {
-      var l = p.levels[p.levels.length - 1];
-      out.push({ id: p.id, name_ja: p.name_ja, unlock: p.tier, level: p.levels.length, max_level: p.levels.length, effect_ja: normalize(l.text), raw_ja: l.text });
+      var n = Math.min(p.levels.length, tierLevel(p.tier, rarity));
+      if (n < 1) { out.push({ id: p.id, name_ja: p.name_ja, unlock: 'bloccata', tier: p.tier, level: 0, max_level: p.levels.length, effect_ja: '', raw_ja: '' }); return; }
+      var l = p.levels[n - 1];
+      out.push({ id: p.id, name_ja: p.name_ja, unlock: p.tier, tier: p.tier, level: n, max_level: p.levels.length, effect_ja: normalize(l.text), raw_ja: l.text });
     });
     return out;
   }
 
   // Copia del personaggio al livello L, nel formato che usano motore e catalogo.
-  function forLevel(c, L) {
+  function forLevel(c, L, rarity) {
     L = clampLevel(L);
     var o = {}, k;
     for (k in c) o[k] = c[k];
     o.level = L;
     o.stats_max = statsAt(c, L);
-    o.passives = passivesAt(c, L);
+    o.passives = passivesAt(c, L, rarity);
+    o.rarity_grade = rarity === undefined ? null : rarity;
     return o;
   }
 
-  return { MAX_LEVEL: MAX, normalize: normalize, statsAt: statsAt, passivesAt: passivesAt, forLevel: forLevel };
+  return { RARITY_NAMES: RARITY_NAMES, tierLevel: tierLevel, MAX_LEVEL: MAX, normalize: normalize, statsAt: statsAt, passivesAt: passivesAt, forLevel: forLevel };
 });
