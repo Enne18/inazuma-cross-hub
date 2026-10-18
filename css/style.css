@@ -89,3 +89,6 @@ summary { cursor: pointer; font-weight: 600; font-size: .9rem; }
 .b-pick input{width:100%;max-width:26rem;display:block;margin:.25rem 0}
 .chips{display:flex;flex-wrap:wrap;gap:.3rem}
 .chip{border:1px solid var(--border,#bbb);background:transparent;color:inherit;border-radius:1rem;padding:.15rem .6rem;font-size:.8rem;cursor:pointer}
+
+.coach-lv{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.4rem;margin:.5rem 0}
+.coach-lv input{width:4rem;padding:4px 6px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--text)}

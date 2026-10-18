@@ -142,7 +142,9 @@
       },
       "kind": "stat",
       "stat": "block",
-      "value": 2800
+      "value": 2800,
+      "ref": "val",
+      "sign": 1
      },
      {
       "timing": "start",
@@ -155,7 +157,51 @@
       },
       "kind": "stat",
       "stat": "catch",
-      "value": 4000
+      "value": 4000,
+      "ref": "val2",
+      "sign": 1
+     }
+    ],
+    "levels": [
+     {
+      "val": 280,
+      "val2": 400
+     },
+     {
+      "val": 560,
+      "val2": 800
+     },
+     {
+      "val": 840,
+      "val2": 1200
+     },
+     {
+      "val": 1120,
+      "val2": 1600
+     },
+     {
+      "val": 1400,
+      "val2": 2000
+     },
+     {
+      "val": 1680,
+      "val2": 2400
+     },
+     {
+      "val": 1960,
+      "val2": 2800
+     },
+     {
+      "val": 2240,
+      "val2": 3200
+     },
+     {
+      "val": 2520,
+      "val2": 3600
+     },
+     {
+      "val": 2800,
+      "val2": 4000
      }
     ]
    },
@@ -244,7 +290,9 @@
       },
       "kind": "stat",
       "stat": "catch",
-      "value": 3113
+      "value": 3113,
+      "ref": "val",
+      "sign": 1
      },
      {
       "timing": "start",
@@ -257,7 +305,51 @@
       },
       "kind": "stat",
       "stat": "technique",
-      "value": 1200
+      "value": 1200,
+      "ref": "val2",
+      "sign": 1
+     }
+    ],
+    "levels": [
+     {
+      "val": 311,
+      "val2": 120
+     },
+     {
+      "val": 622,
+      "val2": 240
+     },
+     {
+      "val": 933,
+      "val2": 360
+     },
+     {
+      "val": 1245,
+      "val2": 480
+     },
+     {
+      "val": 1556,
+      "val2": 600
+     },
+     {
+      "val": 1867,
+      "val2": 720
+     },
+     {
+      "val": 2179,
+      "val2": 840
+     },
+     {
+      "val": 2490,
+      "val2": 960
+     },
+     {
+      "val": 2801,
+      "val2": 1080
+     },
+     {
+      "val": 3113,
+      "val2": 1200
      }
     ]
    },
@@ -346,7 +438,9 @@
       },
       "kind": "power",
       "skill": "shoot",
-      "value": 59
+      "value": 59,
+      "ref": "val",
+      "sign": 1
      },
      {
       "timing": "start",
@@ -359,7 +453,51 @@
       },
       "kind": "power",
       "skill": "dribble",
-      "value": 59
+      "value": 59,
+      "ref": "val",
+      "sign": 1
+     }
+    ],
+    "levels": [
+     {
+      "val": 5,
+      "val2": 5
+     },
+     {
+      "val": 11,
+      "val2": 11
+     },
+     {
+      "val": 17,
+      "val2": 17
+     },
+     {
+      "val": 23,
+      "val2": 23
+     },
+     {
+      "val": 29,
+      "val2": 29
+     },
+     {
+      "val": 35,
+      "val2": 35
+     },
+     {
+      "val": 41,
+      "val2": 41
+     },
+     {
+      "val": 47,
+      "val2": 47
+     },
+     {
+      "val": 53,
+      "val2": 53
+     },
+     {
+      "val": 59,
+      "val2": 59
      }
     ]
    },
@@ -449,7 +587,9 @@
       },
       "kind": "stat",
       "stat": "kick",
-      "value": 3300
+      "value": 3300,
+      "ref": "val",
+      "sign": 1
      },
      {
       "timing": "start",
@@ -462,7 +602,51 @@
       },
       "kind": "stat",
       "stat": "catch",
-      "value": 3000
+      "value": 3000,
+      "ref": "val2",
+      "sign": 1
+     }
+    ],
+    "levels": [
+     {
+      "val": 330,
+      "val2": 300
+     },
+     {
+      "val": 660,
+      "val2": 600
+     },
+     {
+      "val": 990,
+      "val2": 900
+     },
+     {
+      "val": 1320,
+      "val2": 1200
+     },
+     {
+      "val": 1650,
+      "val2": 1500
+     },
+     {
+      "val": 1980,
+      "val2": 1800
+     },
+     {
+      "val": 2310,
+      "val2": 2100
+     },
+     {
+      "val": 2640,
+      "val2": 2400
+     },
+     {
+      "val": 2970,
+      "val2": 2700
+     },
+     {
+      "val": 3300,
+      "val2": 3000
      }
     ]
    },
@@ -553,7 +737,41 @@
       "kind": "stat",
       "stat": "catch",
       "value": -600,
-      "event": "ogni dribbling riuscito di un MF alleato; termina al gol alleato"
+      "event": "ogni dribbling riuscito di un MF alleato; termina al gol alleato",
+      "ref": "val",
+      "sign": -1
+     }
+    ],
+    "levels": [
+     {
+      "val": 60
+     },
+     {
+      "val": 120
+     },
+     {
+      "val": 180
+     },
+     {
+      "val": 240
+     },
+     {
+      "val": 300
+     },
+     {
+      "val": 360
+     },
+     {
+      "val": 420
+     },
+     {
+      "val": 480
+     },
+     {
+      "val": 540
+     },
+     {
+      "val": 600
      }
     ]
    },
@@ -642,7 +860,41 @@
       "kind": "power",
       "skill": "all",
       "value": 40,
-      "note": "Corretto da 400 a 40 (repo iecrosshub harrySavage.js, Niv.10 = 40; vale per le tecniche di Vento di tutti gli alleati)."
+      "note": "Corretto da 400 a 40 (repo iecrosshub harrySavage.js, Niv.10 = 40; vale per le tecniche di Vento di tutti gli alleati).",
+      "ref": "val",
+      "sign": 1
+     }
+    ],
+    "levels": [
+     {
+      "val": 4
+     },
+     {
+      "val": 8
+     },
+     {
+      "val": 12
+     },
+     {
+      "val": 16
+     },
+     {
+      "val": 20
+     },
+     {
+      "val": 24
+     },
+     {
+      "val": 28
+     },
+     {
+      "val": 32
+     },
+     {
+      "val": 36
+     },
+     {
+      "val": 40
      }
     ]
    },
@@ -729,7 +981,9 @@
       },
       "kind": "power",
       "skill": "shoot",
-      "value": 80
+      "value": 80,
+      "ref": "val",
+      "sign": 1
      },
      {
       "timing": "start",
@@ -742,7 +996,51 @@
       },
       "kind": "power",
       "skill": "catch",
-      "value": 80
+      "value": 80,
+      "ref": "val",
+      "sign": 1
+     }
+    ],
+    "levels": [
+     {
+      "val": 8,
+      "val2": 8
+     },
+     {
+      "val": 16,
+      "val2": 16
+     },
+     {
+      "val": 24,
+      "val2": 24
+     },
+     {
+      "val": 32,
+      "val2": 32
+     },
+     {
+      "val": 40,
+      "val2": 40
+     },
+     {
+      "val": 48,
+      "val2": 48
+     },
+     {
+      "val": 56,
+      "val2": 56
+     },
+     {
+      "val": 64,
+      "val2": 64
+     },
+     {
+      "val": 72,
+      "val2": 72
+     },
+     {
+      "val": 80,
+      "val2": 80
      }
     ]
    },
@@ -829,7 +1127,9 @@
       },
       "kind": "stat",
       "stat": "kick",
-      "value": 4200
+      "value": 4200,
+      "ref": "val",
+      "sign": 1
      },
      {
       "timing": "second_half_start",
@@ -843,7 +1143,51 @@
       "kind": "stat",
       "stat": "technique",
       "value": 4200,
-      "note": "AppMedia dice キャッチ4200 per MF; Gamerch dice テクニック: usato テクニック"
+      "note": "AppMedia dice キャッチ4200 per MF; Gamerch dice テクニック: usato テクニック",
+      "ref": "val",
+      "sign": 1
+     }
+    ],
+    "levels": [
+     {
+      "val": 420,
+      "val2": 420
+     },
+     {
+      "val": 840,
+      "val2": 840
+     },
+     {
+      "val": 1260,
+      "val2": 1260
+     },
+     {
+      "val": 1680,
+      "val2": 1680
+     },
+     {
+      "val": 2100,
+      "val2": 2100
+     },
+     {
+      "val": 2520,
+      "val2": 2520
+     },
+     {
+      "val": 2940,
+      "val2": 2940
+     },
+     {
+      "val": 3360,
+      "val2": 3360
+     },
+     {
+      "val": 3780,
+      "val2": 3780
+     },
+     {
+      "val": 4200,
+      "val2": 4200
      }
     ]
    },
@@ -933,7 +1277,9 @@
       },
       "kind": "stat",
       "stat": "block",
-      "value": 2250
+      "value": 2250,
+      "ref": "val",
+      "sign": 1
      },
      {
       "timing": "start",
@@ -946,7 +1292,9 @@
       },
       "kind": "stat",
       "stat": "block",
-      "value": 2250
+      "value": 2250,
+      "ref": "val",
+      "sign": 1
      },
      {
       "timing": "start",
@@ -959,7 +1307,9 @@
       },
       "kind": "stat",
       "stat": "technique",
-      "value": 2250
+      "value": 2250,
+      "ref": "val",
+      "sign": 1
      },
      {
       "timing": "start",
@@ -972,7 +1322,41 @@
       },
       "kind": "stat",
       "stat": "technique",
-      "value": 2250
+      "value": 2250,
+      "ref": "val",
+      "sign": 1
+     }
+    ],
+    "levels": [
+     {
+      "val": 225
+     },
+     {
+      "val": 450
+     },
+     {
+      "val": 675
+     },
+     {
+      "val": 900
+     },
+     {
+      "val": 1125
+     },
+     {
+      "val": 1350
+     },
+     {
+      "val": 1575
+     },
+     {
+      "val": 1800
+     },
+     {
+      "val": 2025
+     },
+     {
+      "val": 2250
      }
     ]
    },
@@ -1047,7 +1431,9 @@
       },
       "kind": "power",
       "skill": "shoot",
-      "value": 60
+      "value": 60,
+      "ref": "val",
+      "sign": 1
      },
      {
       "timing": "start",
@@ -1061,7 +1447,51 @@
       "kind": "power",
       "skill": "shoot",
       "value": 85,
-      "note": "89 -> 85 (repo iecrosshub sethNichols.js Niv.10 val2=85)"
+      "note": "89 -> 85 (repo iecrosshub sethNichols.js Niv.10 val2=85)",
+      "ref": "val2",
+      "sign": 1
+     }
+    ],
+    "levels": [
+     {
+      "val": 6,
+      "val2": 8
+     },
+     {
+      "val": 12,
+      "val2": 17
+     },
+     {
+      "val": 18,
+      "val2": 25
+     },
+     {
+      "val": 24,
+      "val2": 34
+     },
+     {
+      "val": 30,
+      "val2": 42
+     },
+     {
+      "val": 36,
+      "val2": 51
+     },
+     {
+      "val": 42,
+      "val2": 59
+     },
+     {
+      "val": 48,
+      "val2": 68
+     },
+     {
+      "val": 54,
+      "val2": 76
+     },
+     {
+      "val": 60,
+      "val2": 85
      }
     ]
    },
@@ -1148,7 +1578,9 @@
       },
       "kind": "power",
       "skill": "shoot",
-      "value": 87
+      "value": 87,
+      "ref": "val",
+      "sign": 1
      },
      {
       "timing": "start",
@@ -1161,7 +1593,51 @@
       },
       "kind": "power",
       "skill": "dribble",
-      "value": 87
+      "value": 87,
+      "ref": "val",
+      "sign": 1
+     }
+    ],
+    "levels": [
+     {
+      "val": 8,
+      "val2": 8
+     },
+     {
+      "val": 17,
+      "val2": 17
+     },
+     {
+      "val": 26,
+      "val2": 26
+     },
+     {
+      "val": 34,
+      "val2": 34
+     },
+     {
+      "val": 43,
+      "val2": 43
+     },
+     {
+      "val": 52,
+      "val2": 52
+     },
+     {
+      "val": 60,
+      "val2": 60
+     },
+     {
+      "val": 69,
+      "val2": 69
+     },
+     {
+      "val": 78,
+      "val2": 78
+     },
+     {
+      "val": 87,
+      "val2": 87
      }
     ]
    },
@@ -1237,7 +1713,9 @@
       },
       "kind": "power",
       "skill": "dribble",
-      "value": 60
+      "value": 60,
+      "ref": "val",
+      "sign": 1
      },
      {
       "timing": "start",
@@ -1250,7 +1728,51 @@
       },
       "kind": "power",
       "skill": "shoot",
-      "value": 60
+      "value": 60,
+      "ref": "val",
+      "sign": 1
+     }
+    ],
+    "levels": [
+     {
+      "val": 6,
+      "val2": 6
+     },
+     {
+      "val": 12,
+      "val2": 12
+     },
+     {
+      "val": 18,
+      "val2": 18
+     },
+     {
+      "val": 24,
+      "val2": 24
+     },
+     {
+      "val": 30,
+      "val2": 30
+     },
+     {
+      "val": 36,
+      "val2": 36
+     },
+     {
+      "val": 42,
+      "val2": 42
+     },
+     {
+      "val": 48,
+      "val2": 48
+     },
+     {
+      "val": 54,
+      "val2": 54
+     },
+     {
+      "val": 60,
+      "val2": 60
      }
     ]
    },
@@ -1325,7 +1847,9 @@
       },
       "kind": "power",
       "skill": "block",
-      "value": 60
+      "value": 60,
+      "ref": "val",
+      "sign": 1
      },
      {
       "timing": "start",
@@ -1338,7 +1862,51 @@
       },
       "kind": "power",
       "skill": "keeper",
-      "value": 80
+      "value": 80,
+      "ref": "val2",
+      "sign": 1
+     }
+    ],
+    "levels": [
+     {
+      "val": 6,
+      "val2": 8
+     },
+     {
+      "val": 12,
+      "val2": 16
+     },
+     {
+      "val": 18,
+      "val2": 24
+     },
+     {
+      "val": 24,
+      "val2": 32
+     },
+     {
+      "val": 30,
+      "val2": 40
+     },
+     {
+      "val": 36,
+      "val2": 48
+     },
+     {
+      "val": 42,
+      "val2": 56
+     },
+     {
+      "val": 48,
+      "val2": 64
+     },
+     {
+      "val": 54,
+      "val2": 72
+     },
+     {
+      "val": 60,
+      "val2": 80
      }
     ]
    },
@@ -1431,7 +1999,9 @@
       },
       "kind": "power",
       "skill": "shoot",
-      "value": 70
+      "value": 70,
+      "ref": "val",
+      "sign": 1
      },
      {
       "timing": "start",
@@ -1444,7 +2014,9 @@
       },
       "kind": "power",
       "skill": "shoot",
-      "value": 70
+      "value": 70,
+      "ref": "val",
+      "sign": 1
      },
      {
       "timing": "start",
@@ -1457,9 +2029,54 @@
       },
       "kind": "power",
       "skill": "dribble",
-      "value": 60
+      "value": 60,
+      "ref": "val2",
+      "sign": 1
      }
-    ]
+    ],
+    "levels": [
+     {
+      "val": 7,
+      "val2": 6
+     },
+     {
+      "val": 14,
+      "val2": 12
+     },
+     {
+      "val": 21,
+      "val2": 18
+     },
+     {
+      "val": 28,
+      "val2": 24
+     },
+     {
+      "val": 35,
+      "val2": 30
+     },
+     {
+      "val": 42,
+      "val2": 36
+     },
+     {
+      "val": 49,
+      "val2": 42
+     },
+     {
+      "val": 56,
+      "val2": 48
+     },
+     {
+      "val": 63,
+      "val2": 54
+     },
+     {
+      "val": 70,
+      "val2": 60
+     }
+    ],
+    "levels_note": "Ricostruito: Lv10=70/60 e Lv9=63/54 confermati dall'utente; lineare (7 e 6 per livello). Il repo ha solo 0."
    },
    "verified": "parziale",
    "notes": [

@@ -25,6 +25,7 @@
       $('b-mode').addEventListener('change', onMode);
       $('b-run').addEventListener('click', run);
       setupPick();
+      setupCoachLv();
       onMode();
     }).catch(function (e) { $('b-msg').textContent = 'Impossibile caricare i dati dei tecnici: ' + e.message; });
   }
@@ -61,7 +62,7 @@
     if (d.estimated) box.appendChild(el('div', 'warn', d.estimated + ' giocatori hanno statistiche stimate (dati mancanti nella fonte): il punteggio è meno affidabile.'));
 
     if (d.coach) {
-      var ch = el('div', d.coach.formationActive ? 'okline' : 'warn', 'Tecnico: ' + (d.coach.name_west ? d.coach.name_west + ' / ' : '') + d.coach.name_ja + ' (' + d.coach.formation_ja + ') · passiva di formazione ' +
+      var ch = el('div', d.coach.formationActive ? 'okline' : 'warn', 'Tecnico: ' + (d.coach.name_west ? d.coach.name_west + ' / ' : '') + d.coach.name_ja + (d.coach.level ? ' Lv' + d.coach.level : '') + ' (' + d.coach.formation_ja + ') · passiva di formazione ' +
         (d.coach.formationActive ? 'ATTIVA' : 'NON attiva (condizioni non tutte soddisfatte)'));
       box.appendChild(ch);
     }
@@ -127,6 +128,24 @@
     });
   }
 
+  var KEY_CLV = 'iecross.coachlv.v1', coachLv = {};
+  function loadCoachLv() { try { coachLv = JSON.parse(window.localStorage.getItem(KEY_CLV) || '{}') || {}; } catch (e) { coachLv = {}; } }
+  function lvOf(id) { var v = coachLv[id]; return v === undefined ? 10 : Math.max(0, Math.min(10, +v)); }
+  function setupCoachLv() {
+    loadCoachLv();
+    var box = $('b-coach-lv'); box.textContent = '';
+    coaches.forEach(function (c) {
+      var lb = el('label', null, (c.name_west || c.name_ja) + ' '), inp = el('input');
+      inp.type = 'number'; inp.min = '0'; inp.max = '10'; inp.value = String(lvOf(c.id));
+      inp.addEventListener('change', function () {
+        var v = Math.max(0, Math.min(10, Math.round(+inp.value) || 0)); inp.value = String(v); coachLv[c.id] = v;
+        try { window.localStorage.setItem(KEY_CLV, JSON.stringify(coachLv)); } catch (e) { /* ignora */ }
+      });
+      lb.appendChild(inp); box.appendChild(lb);
+    });
+  }
+  function leveled(c) { return window.IECEngine.coachAtLevel(c, lvOf(c.id) || 10); }
+
   function run() {
     var out = $('b-out'), msg = $('b-msg');
     out.textContent = '';
@@ -145,10 +164,10 @@
           var f = f5.filter(function (x) { return x.id === $('b-f5').value; })[0];
           res = eng.build(pool, eng.rolesFromLayout(f.slots), null);
         } else if ($('b-coach').value === 'all') {
-          res = eng.buildAllCoaches(pool, coaches);
+          res = eng.buildAllCoaches(pool, coaches.filter(function (c) { return lvOf(c.id) > 0; }).map(leveled));
         } else {
           var co = coaches.filter(function (x) { return x.id === $('b-coach').value; })[0];
-          res = eng.build(pool, eng.rolesFromLayout(co.layout), co);
+          res = eng.build(pool, eng.rolesFromLayout(co.layout), leveled(co));
         }
         var miss = res.missing && res.missing.slots ? ' Attenzione: mancano ' + res.missing.slots + ' personaggi per completare la formazione.' : '';
         msg.textContent = res.teams.length + ' squadre proposte da ' + res.poolSize + ' personaggi (' + ((Date.now() - t0) / 1000).toFixed(1) + ' s).' + miss;

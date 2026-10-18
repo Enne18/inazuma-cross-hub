@@ -1,5 +1,5 @@
 {
- "_doc": "Nomi occidentali (adattamento inglese) forniti dall'utente il 17/10. Chiave = nome giapponese senza spazi. Applicati a tutte le versioni dello stesso personaggio.",
+ "_doc": "Nomi occidentali (adattamento inglese) forniti dall'utente il 17/10. Chiave = nome giapponese senza spazi. Applicati a tutte le versioni dello stesso personaggio. Aggiornato il 18/10 con l'elenco completo dal sito dell'utente (86 nomi): risolti i casi ambigui (木暮夕弥 = Scott Banyan, 影野仁 = Jim Wraith, 少林寺歩 = Timmy Saunders, ecc.).",
  "names": {
   "円堂守": {
    "west": "Mark Evans"
@@ -20,7 +20,7 @@
    "west": "Jack Wallside"
   },
   "少林寺歩": {
-   "west": "Willy Glass"
+   "west": "Timmy Saunders"
   },
   "宍戸佐吉": {
    "west": "Sam Kincaid"
@@ -36,14 +36,13 @@
    "west": "Steve Grim"
   },
   "松野空介": {
-   "west": "Max Carson"
+   "west": "Maxwell Carson"
   },
   "一之瀬一哉": {
    "west": "Erik Eagle"
   },
   "木暮夕弥": {
-   "west": "Bobby Shearer",
-   "note": "la tabella assegna a 木暮 夕弥 sia Bobby Shearer sia Aiden Froste: applicato il primo, secondo da chiarire."
+   "west": "Scott Banyan"
   },
   "吹雪士郎": {
    "west": "Shawn Froste"
@@ -52,7 +51,7 @@
    "west": "Darren LaChance"
   },
   "佐久間次郎": {
-   "west": "Scotty Banyan"
+   "west": "David Samford"
   },
   "不動明王": {
    "west": "Caleb Stonewall"
@@ -72,7 +71,7 @@
    "west": "Austin Hobbes"
   },
   "土方雷電": {
-   "west": "Archer Hawkins"
+   "west": "Thor Stoutberg"
   },
   "緑川リュウジ": {
    "west": "Jordan Greenway"
@@ -84,31 +83,31 @@
    "west": "Byron Love"
   },
   "源田幸次郎": {
-   "west": "Samford"
+   "west": "Joseph King"
   },
   "万丈一道": {
-   "west": "Murdock"
+   "west": "Ben Simmons"
   },
   "五条勝": {
-   "west": "Gojou"
+   "west": "Gus Martin"
   },
   "咲山修二": {
-   "west": "Shuuji Sakiyama"
+   "west": "John Bloom"
   },
   "寺門大貴": {
-   "west": "Daiki Terame"
+   "west": "Daniel Hatch"
   },
   "成神健也": {
-   "west": "Kenya Narukami"
+   "west": "Alan Master"
   },
   "洞面秀一郎": {
-   "west": "Shuuichirou Doumen"
+   "west": "Derek Swing"
   },
   "杉森威": {
-   "west": "Kaito Sugimori"
+   "west": "Thomas Feldt"
   },
   "霧隠才次": {
-   "west": "Saiji Kirigakure"
+   "west": "Sail Bluesea"
   },
   "松風天馬": {
    "west": "Arion Sherwind"
@@ -120,7 +119,7 @@
    "west": "Riccardo Di Rigo"
   },
   "霧野蘭丸": {
-   "west": "Gabriel Garcia"
+   "west": "Gabi Garcia"
   },
   "菜花黄名子": {
    "west": "Goldie Lemmon"
@@ -161,6 +160,124 @@
   },
   "備流田光一": {
    "west": "Constant Builder"
+  },
+  "ウルビダ": {
+   "west": "Bellatrix"
+  },
+  "財前塔子": {
+   "west": "Victoria Vanguard"
+  },
+  "木野秋": {
+   "west": "Silvia Woods"
+  },
+  "音無春奈": {
+   "west": "Celia Hills"
+  },
+  "雷門夏未": {
+   "west": "Nelly"
+  },
+  "(NishigakiMamoru)西垣守": {
+   "west": "Malcolm Night"
+  },
+  "大谷つくし": {
+   "west": "Aurelia Dingle"
+  },
+  "歩星呑一": {
+   "west": "Poseidon"
+  },
+  "飛鷹征矢": {
+   "west": "Archer Hawkins"
+  },
+  "闇野カゲト": {
+   "west": "Shadow Feldt"
+  },
+  "土門飛鳥": {
+   "west": "Bobby Shearer"
+  },
+  "武方努": {
+   "west": "Tyler Murdock"
+  },
+  "武方友": {
+   "west": "Thomas Murdock"
+  },
+  "武方勝": {
+   "west": "Marvin Murdock"
+  },
+  "下鶴改": {
+   "west": "Neil Turner"
+  },
+  "幽谷博之": {
+   "west": "Johan Tassman"
+  },
+  "出右手豊": {
+   "west": "Demeter"
+  },
+  "平良貞": {
+   "west": "Hera"
+  },
+  "明天名智": {
+   "west": "Athena"
+  },
+  "豪炎寺夕香": {
+   "west": "Julia Blaze"
+  },
+  "壁山サク": {
+   "west": "Zack Wallside"
+  },
+  "スミス": {
+   "west": "Gregory Smith"
+  },
+  "雷門総一郎": {
+   "west": "Sonny"
+  },
+  "宮坂了": {
+   "west": "Miles Ryan"
+  },
+  "目金欠流": {
+   "west": "William Glass"
+  },
+  "辺見渡": {
+   "west": "Herman Waldon"
+  },
+  "大野伝助": {
+   "west": "Peter Drent"
+  },
+  "漫画萌": {
+   "west": "Mark Gambling"
+  },
+  "如月まこ": {
+   "west": "Maddie Moonlight"
+  },
+  "鉈十三": {
+   "west": "Nathan Jones"
+  },
+  "水前寺馳威太": {
+   "west": "Adrian Speed"
+  },
+  "荒須乱": {
+   "west": "Ares"
+  },
+  "部灰炎": {
+   "west": "Hephesteus"
+  },
+  "阿保露光": {
+   "west": "Apolo"
+  },
+  "在手実弓": {
+   "west": "Artemis"
+  },
+  "経目須商": {
+   "west": "Hermes"
+  },
+  "手魚激": {
+   "west": "Dionysus"
+  },
+  "西垣守": {
+   "west": "Malcolm Night"
+  },
+  "鬼瓦源五郎": {
+   "west": "Gregory Smith",
+   "note": "dal repo iecrosshub e dall'elenco utente (スミス)"
   }
  }
 }

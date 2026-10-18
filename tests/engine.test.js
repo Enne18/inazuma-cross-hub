@@ -157,4 +157,12 @@ t('Kira: slot 6 accetta Foresta O Vento', () => {
   [forest, wind].forEach(m => assert.ok(eng.formationStatus({ formation_condition: [c6] }, [0, 0, 0, 0, 0, eng.member(m, 'MF')]).ok));
   assert.ok(!eng.formationStatus({ formation_condition: [c6] }, [0, 0, 0, 0, 0, eng.member(fire, 'MF')]).ok);
 });
+t('livello tecnico: valori per livello (Mashiya 420..4200, Kira Lv9 = 63/54, Jigiryu negativo, Lv10 = dato base)', () => {
+  const by = id => coaches.find(c => c.id === id), at = (id, l) => E.coachAtLevel(by(id), l).coach_passive.effects.map(e => e.value);
+  assert.deepStrictEqual(at('mashiya', 1), [420, 420]); assert.deepStrictEqual(at('mashiya', 10), [4200, 4200]);
+  assert.deepStrictEqual(at('kira', 9).slice(0, 3), [63, 63, 54]);
+  assert.ok(at('jigiryu', 5)[0] === -300);
+  coaches.forEach(c => assert.deepStrictEqual(at(c.id, 10), c.coach_passive.effects.map(e => e.value), 'Lv10 = base per ' + c.id));
+  assert.strictEqual(E.coachAtLevel(by('tayama'), 1).level, 1);
+});
 console.log(n, 'test passati');

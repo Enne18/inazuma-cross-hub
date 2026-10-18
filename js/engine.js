@@ -291,7 +291,7 @@
   Engine.prototype.addCoach = function (coach, members, out) {
     var self = this, cfg = this.cfg, SB = out._sb, PB = out._pb;
     var fs = this.formationStatus(coach, members);
-    out.coach = { id: coach.id, name_ja: coach.name_ja, name_west: coach.name_west || null, formation_ja: coach.formation_ja, formationActive: fs.ok, conditions: fs.details, formationPoints: 0, coachPoints: 0, missedFormationPoints: 0 };
+    out.coach = { level: coach.level || null, id: coach.id, name_ja: coach.name_ja, name_west: coach.name_west || null, formation_ja: coach.formation_ja, formationActive: fs.ok, conditions: fs.details, formationPoints: 0, coachPoints: 0, missedFormationPoints: 0 };
     function apply(blk, label, active) {
       blk.effects.forEach(function (ef) {
         var t = ef.target, affected, units;
@@ -462,5 +462,17 @@
     return { teams: all.slice(0, (override && override.topN) || this.cfg.topN), poolSize: pool.length, missing: {} };
   };
 
-  return { Engine: Engine, DEFAULTS: DEFAULTS, parsePassive: parsePassive, parseTarget: parseTarget };
+  // Copia del tecnico con la passiva "sempre attiva" al livello indicato (1-10), dalle tabelle per livello (coach_passive.levels).
+  function coachAtLevel(co, lvl) {
+    var cp = co.coach_passive, lv = Math.max(1, Math.min(10, Math.round(lvl) || 10));
+    var out = merge(co, { level: lv });
+    if (!cp || !cp.levels || !cp.levels[lv - 1]) return out;
+    var row = cp.levels[lv - 1];
+    out.coach_passive = merge(cp, { effects: cp.effects.map(function (e) {
+      return e.ref && row[e.ref] !== undefined ? merge(e, { value: (e.sign || 1) * row[e.ref] }) : e;
+    }) });
+    return out;
+  }
+
+  return { Engine: Engine, DEFAULTS: DEFAULTS, coachAtLevel: coachAtLevel, parsePassive: parsePassive, parseTarget: parseTarget };
 });

@@ -245,3 +245,15 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 ## Tappa 11h (18/10) — Kira (Lina Schiller) confermata dall'utente
 - Condizioni formazione: slot 1 Foresta, slot 5 Vento, slot 6 Foresta O Vento (prima solo Foresta). Engine: `req.elements` (lista, basta uno). Test 21/21.
 - Passiva Lv10 confermata dall'utente: Foresta/Vento tiro +70, MF consigliato dribbling +60 (come nei nostri dati). Attiva: +40 potenza a Foresta/Vento ogni volta che un tiro alleato viene bloccato (fino al gol).
+
+## Tappa 11i (18/10) — livello dei tecnici
+- coaches.json: `coach_passive.levels` (Lv1-10, tabelle dal repo iecrosshub) + `ref`/`sign` su ogni effetto. Kira ricostruita lineare (7/6 per livello) da Lv9=63/54 e Lv10=70/60 forniti dall'utente (il repo ha 0). La passiva di formazione non ha livelli.
+- engine.js: `coachAtLevel(co, lvl)`. Builder: pannello "Livello dei miei tecnici" (0 = non ce l'ho, default 10), salvato in `iecross.coachlv.v1`; "il migliore tra tutti" usa solo i tecnici con livello > 0; il livello compare nella riga del tecnico.
+- Prova: Manny Artic Lv10 = migliore (714k); a Lv1 passa avanti Seth Nichols (687k). Test 22/22.
+- Non incluso nell'export della collezione.
+
+## Tappa 11j (18/10) — nomi occidentali completi + Kira confermata
+- names_west.json: elenco completo dell'utente (attachment 0c35c4b1) applicato: 15 nomi corretti, 37 aggiunti; risolti i casi ambigui (木暮夕弥 = Scott Banyan, 影野仁 = Jim Wraith, 少林寺歩 = Timmy Saunders, 源田幸次郎 = Joseph King, 土方雷電 = Thor Stoutberg, ecc.). 民山謡: l'elenco ha due righe (Constant Builder / Joseph Yosemite): tenuto Joseph Yosemite. 西垣守 = Malcolm Night, 鬼瓦源五郎 = Gregory Smith (dal repo).
+- 103/124 con nome. Senza nome (nuovi, solo giapponese): Gemini Storm (ゴルレオ コラル ギグ ガニメデ カロン パンドラ グリンゴ イオ リーム レーゼ ディアム), Chaos (グレント バーラ クララ ゴッカ ボンバ ヒート ドロル リオーネ ネッパー), シン・アフロディ.
+- Kira: tabella passiva livelli confermata dall'utente.
+- Nota: "Heat" della squadra utente = ヒート (Chaos, id 2027), non バーン/Torch (id 2031): da verificare con l'utente.
