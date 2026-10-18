@@ -171,7 +171,8 @@
     "DF": 4,
     "GK": 1
    },
-   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)",
+   "name_west": "Personaggio principale"
   },
   {
    "id": "hibiki",
@@ -271,7 +272,9 @@
     "DF": 4,
     "GK": 1
    },
-   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)",
+   "name_west": "Seymour Hillman",
+   "name_west_source": "tabella dell'utente 17/10"
   },
   {
    "id": "kageyama_teikoku",
@@ -372,7 +375,9 @@
     "DF": 5,
     "GK": 1
    },
-   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)",
+   "name_west": "Ray Dark",
+   "name_west_source": "tabella dell'utente 17/10"
   },
   {
    "id": "aida",
@@ -473,7 +478,9 @@
     "DF": 5,
     "GK": 1
    },
-   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)",
+   "name_west": "Arthur Sweet",
+   "name_west_source": "tabella dell'utente 17/10"
   },
   {
    "id": "jigiryu",
@@ -561,7 +568,8 @@
     "DF": 4,
     "GK": 1
    },
-   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)",
+   "name_west": "Hekyll Jyde"
   },
   {
    "id": "tayama",
@@ -648,7 +656,8 @@
     "DF": 3,
     "GK": 1
    },
-   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)",
+   "name_west": "Harry Savage"
   },
   {
    "id": "tomiyama",
@@ -747,7 +756,8 @@
     "DF": 4,
     "GK": 1
    },
-   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)",
+   "name_west": "Toyama Shinochirou"
   },
   {
    "id": "mashiya",
@@ -848,7 +858,8 @@
     "DF": 2,
     "GK": 1
    },
-   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)",
+   "name_west": "Manny Artic"
   },
   {
    "id": "igashima",
@@ -975,7 +986,8 @@
     "DF": 4,
     "GK": 1
    },
-   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)",
+   "name_west": "Igajima Sen'ichi"
   },
   {
    "id": "nikaido",
@@ -1062,7 +1074,8 @@
     "DF": 4,
     "GK": 1
    },
-   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)",
+   "name_west": "Seth Nichols"
   },
   {
    "id": "kuon",
@@ -1161,7 +1174,9 @@
     "DF": 4,
     "GK": 1
    },
-   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)",
+   "name_west": "Percival Travis",
+   "name_west_source": "tabella dell'utente 17/10"
   },
   {
    "id": "kageyama_zeus",
@@ -1248,7 +1263,9 @@
     "DF": 4,
     "GK": 1
    },
-   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)",
+   "name_west": "Ray Dark",
+   "name_west_source": "tabella dell'utente 17/10"
   },
   {
    "id": "endou_daisuke",
@@ -1334,7 +1351,9 @@
     "DF": 5,
     "GK": 1
    },
-   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)",
+   "name_west": "David Evans",
+   "name_west_source": "tabella dell'utente 17/10"
   },
   {
    "id": "kira",
@@ -1447,7 +1466,9 @@
     "DF": 4,
     "GK": 1
    },
-   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)"
+   "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)",
+   "name_west": "Lina Schiller",
+   "name_west_source": "tabella dell'utente 17/10"
   }
  ]
 }

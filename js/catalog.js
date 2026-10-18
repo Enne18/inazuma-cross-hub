@@ -92,9 +92,13 @@
     var root = el('article', 'card');
     root.style.setProperty('--el', 'var(--' + c.element + ')');
 
-    var h = el('h2', null, c.name_en || c.name_ja);
-    root.appendChild(h);
-    root.appendChild(el('div', 'ja', c.name_ja + (c.version ? ' · ' + c.version : '')));
+    var head = el('div', 'chead');
+    head.appendChild(window.IECUI.avatar(c, 'md'));
+    var ht = el('div', 'ctitle');
+    ht.appendChild(el('h2', null, c.name_en || c.name_ja));
+    ht.appendChild(el('div', 'ja', c.name_ja + (c.version ? ' · ' + c.version : '')));
+    head.appendChild(ht);
+    root.appendChild(head);
 
     var b = el('div', 'badges');
     b.appendChild(el('span', 'badge el', state.meta.elements[c.element].it));
@@ -288,6 +292,9 @@
       };
       rd.readAsText(f);
     });
+    var im = $('opt-images');
+    im.checked = window.IECUI.imagesOn();
+    im.addEventListener('change', function () { window.IECUI.setImages(im.checked); render(); renderCollection(); flash(im.checked ? 'Immagini attivate.' : 'Immagini spente: restano le pastiglie.'); });
     var all = $('c-lvl-all');
     all.value = String(state.defaultLevel);
     all.addEventListener('change', function () { state.defaultLevel = clampLv(all.value); all.value = String(state.defaultLevel); saveLevels(); });

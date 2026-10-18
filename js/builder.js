@@ -24,6 +24,7 @@
       coaches = r[0].coaches; f5 = r[0].five_vs_five_formations.formations; aliases = r[1];
       $('b-mode').addEventListener('change', onMode);
       $('b-run').addEventListener('click', run);
+      setupPick();
       onMode();
     }).catch(function (e) { $('b-msg').textContent = 'Impossibile caricare i dati dei tecnici: ' + e.message; });
   }
@@ -39,7 +40,7 @@
     $('b-f5-wrap').hidden = m !== '5v5';
     if (m === 'coach' && !$('b-coach').options.length) {
       var all = el('option', null, 'Il migliore tra tutti i tecnici'); all.value = 'all';
-      fill($('b-coach'), coaches, function (c) { return c.name_ja + ' · ' + c.formation_ja + ' · ' + layoutStr(c.layout); });
+      fill($('b-coach'), coaches, function (c) { return (c.name_west ? c.name_west + ' (' + c.name_ja + ')' : c.name_ja) + ' · ' + c.formation_ja + ' · ' + layoutStr(c.layout); });
       $('b-coach').insertBefore(all, $('b-coach').firstChild); $('b-coach').value = 'all';
     }
     if (m === '5v5' && !$('b-f5').options.length) fill($('b-f5'), f5, function (f) { return f.name_ja + ' (FW' + f.slots.FW + ' MF' + f.slots.MF + ' DF' + f.slots.DF + ')'; });
@@ -60,7 +61,7 @@
     if (d.estimated) box.appendChild(el('div', 'warn', d.estimated + ' giocatori hanno statistiche stimate (dati mancanti nella fonte): il punteggio è meno affidabile.'));
 
     if (d.coach) {
-      var ch = el('div', d.coach.formationActive ? 'okline' : 'warn', 'Tecnico: ' + d.coach.name_ja + ' (' + d.coach.formation_ja + ') · passiva di formazione ' +
+      var ch = el('div', d.coach.formationActive ? 'okline' : 'warn', 'Tecnico: ' + (d.coach.name_west ? d.coach.name_west + ' / ' : '') + d.coach.name_ja + ' (' + d.coach.formation_ja + ') · passiva di formazione ' +
         (d.coach.formationActive ? 'ATTIVA' : 'NON attiva (condizioni non tutte soddisfatte)') +
         ' · bonus tecnico +' + d.coach.coachPoints.toFixed(1) + ', formazione +' + d.coach.formationPoints.toFixed(1));
       box.appendChild(ch);
@@ -70,8 +71,11 @@
       var c = s.char; if (!c) return;
       var p = el('div', 'pl');
       p.style.setProperty('--el', 'var(--' + c.element + ')');
-      p.appendChild(el('b', null, s.slot + '. ' + nm(c)));
-      p.appendChild(el('small', null, 'slot ' + s.role + (c.position !== s.role ? ' (nativo ' + c.position + ')' : '') + ' · ' + data.meta.elements[c.element].it + ' · ' + '★'.repeat(c.rarity) + (c.team_ja ? ' · ' + c.team_ja : '')));
+      p.appendChild(window.IECUI.avatar(c, 'sm'));
+      var tx = el('div', 'ptx');
+      tx.appendChild(el('b', null, s.slot + '. ' + nm(c)));
+      tx.appendChild(el('small', null, 'slot ' + s.role + (c.position !== s.role ? ' (nativo ' + c.position + ')' : '') + ' · ' + data.meta.elements[c.element].it + ' · ' + '★'.repeat(c.rarity) + (c.team_ja ? ' · ' + c.team_ja : '')));
+      p.appendChild(tx);
       ro.appendChild(p);
     });
     box.appendChild(ro);
@@ -98,15 +102,43 @@
     return box;
   }
 
+  var lock = [], excl = [];
+  function label(c) { return nm(c) + (c.version ? ' (' + c.version + ')' : '') + ' · ' + c.element + ' ' + c.position + ' · ★' + c.rarity + ' [' + c.id + ']'; }
+  function chips(boxId, arr) {
+    var box = $(boxId); box.textContent = '';
+    arr.forEach(function (id) {
+      var b = el('button', 'chip', label(byId[id]) + ' ✕'); b.type = 'button'; b.title = 'Rimuovi';
+      b.addEventListener('click', function () { arr.splice(arr.indexOf(id), 1); chips(boxId, arr); });
+      box.appendChild(b);
+    });
+  }
+  function setupPick() {
+    var dl = $('b-names');
+    if (dl.options.length) return;
+    data.chars.forEach(function (c) { var o = el('option'); o.value = label(c); dl.appendChild(o); });
+    [['b-lock-in', 'b-lock-chips', lock, excl], ['b-ex-in', 'b-ex-chips', excl, lock]].forEach(function (x) {
+      $(x[0]).addEventListener('change', function () {
+        var m = this.value.match(/\[(\d+)\]\s*$/);
+        if (m && byId[m[1]]) {
+          var other = x[3].indexOf(m[1]); if (other >= 0) { x[3].splice(other, 1); chips(x[0] === 'b-lock-in' ? 'b-ex-chips' : 'b-lock-chips', x[3]); }
+          if (x[2].indexOf(m[1]) < 0) x[2].push(m[1]);
+          chips(x[1], x[2]); this.value = '';
+        }
+      });
+    });
+  }
+
   function run() {
     var out = $('b-out'), msg = $('b-msg');
     out.textContent = '';
     var pool = $('b-pool').value === 'owned' ? window.IEC.ownedChars() : data.chars.slice();
+    pool = pool.filter(function (c) { return excl.indexOf(c.id) < 0; });
+    lock.forEach(function (id) { if (!pool.some(function (c) { return c.id === id; })) pool.push(byId[id]); });
     if (!pool.length) { msg.textContent = 'La collezione è vuota: segna i personaggi con "Ce l\'ho" nel Catalogo (oppure scegli "Tutti").'; return; }
     msg.textContent = 'Calcolo in corso…';
     setTimeout(function () {
       try {
-        var cfg = { optionalTeams: {} };
+        var cfg = { optionalTeams: {}, lockIds: lock.slice() };
         if (!$("b-adv").checked) cfg.unlocks = ['初期'];
         if ($('b-rai').checked) cfg.optionalTeams['雷門'] = true;
         if ($('b-jp').checked) cfg.optionalTeams['イナズマジャパン'] = true;

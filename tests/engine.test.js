@@ -130,4 +130,12 @@ t('tutti i tecnici su tutto il roster: tempo e risultato', () => {
   console.log('   tutti i tecnici:', ms, 'ms;', r.teams.map(x => x.coach + ' ' + x.score.toFixed(0)).join(' / '));
   assert.ok(ms < 60000); assert.strictEqual(r.teams[0].slots.length, 11);
 });
+t('giocatori obbligatori: sempre in squadra (anche il più debole)', () => {
+  const co = coaches.find(c => c.id === 'kira');
+  const base = new E.Engine(chars, aliases), roles = base.rolesFromLayout(co.layout);
+  const weak = chars.slice().sort((a, b) => (a.stats_max.kick + a.stats_max.block) - (b.stats_max.kick + b.stats_max.block))[0];
+  const eng = new E.Engine(chars, aliases, { lockIds: [weak.id] });
+  const r = eng.build(chars.slice(), roles, co, { restarts: 3 });
+  r.teams.forEach(tm => assert.ok(tm.ids.indexOf(weak.id) >= 0 || tm.slots.some(s => s.id === weak.id), 'obbligatorio mancante'));
+});
 console.log(n, 'test passati');

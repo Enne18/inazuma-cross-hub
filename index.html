@@ -48,6 +48,7 @@
         <label>Livello per tutti <input id="c-lvl-all" type="number" min="1" max="440" value="440"></label>
         <button id="c-lvl-apply" type="button" class="btn">Applica a tutti</button>
       </div>
+      <label class="chk"><input id="opt-images" type="checkbox" checked> Mostra le immagini dei personaggi (collegate al sito dei dati; se non si caricano resta la pastiglia)</label>
       <p class="muted small">Il livello vale anche per i nuovi personaggi che aggiungi. Le passive sono esatte per livello (dati del sito); le statistiche ai livelli intermedi sono una stima lineare tra Lv 1 e Lv 440, perché il sito fornisce solo quei due valori. ADVANCED e ADVANCED+ sono sempre al massimo.</p>
       <p id="c-msg" class="muted" aria-live="polite"></p>
       <p id="c-count" class="muted"></p>
@@ -70,6 +71,15 @@
         <label class="chk"><input id="b-rai" type="checkbox"> Conta 雷門OB e 革命の雷門 come tag 雷門 (non confermato)</label>
         <label class="chk"><input id="b-jp" type="checkbox"> Conta 日本代表2026 come tag イナズマジャパン (non confermato)</label>
       </div>
+      <div class="b-opts b-pick">
+        <div><strong>Obbligatori</strong> <span class="muted small">(sempre in squadra)</span>
+          <input id="b-lock-in" list="b-names" placeholder="scrivi un nome e scegli…" autocomplete="off">
+          <span id="b-lock-chips" class="chips"></span></div>
+        <div><strong>Esclusi</strong> <span class="muted small">(mai in squadra)</span>
+          <input id="b-ex-in" list="b-names" placeholder="scrivi un nome e scegli…" autocomplete="off">
+          <span id="b-ex-chips" class="chips"></span></div>
+        <datalist id="b-names"></datalist>
+      </div>
       <p><button id="b-run" type="button" class="btn primary">Calcola le migliori squadre</button></p>
       <p id="b-msg" class="muted" aria-live="polite"></p>
       <div id="b-out"></div>
@@ -84,6 +94,7 @@
 
   <script src="js/engine.js"></script>
   <script src="js/iecdata.js"></script>
+  <script src="js/ui.js"></script>
   <script src="js/catalog.js"></script>
   <script src="js/builder.js"></script>
 </body>

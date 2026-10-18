@@ -1,0 +1,166 @@
+{
+ "_doc": "Nomi occidentali (adattamento inglese) forniti dall'utente il 17/10. Chiave = nome giapponese senza spazi. Applicati a tutte le versioni dello stesso personaggio.",
+ "names": {
+  "円堂守": {
+   "west": "Mark Evans"
+  },
+  "豪炎寺修也": {
+   "west": "Axel Blaze"
+  },
+  "鬼道有人": {
+   "west": "Jude Sharp"
+  },
+  "風丸一郎太": {
+   "west": "Nathan Swift"
+  },
+  "染岡竜吾": {
+   "west": "Kevin Dragonfly"
+  },
+  "壁山塀吾郎": {
+   "west": "Jack Wallside"
+  },
+  "少林寺歩": {
+   "west": "Willy Glass"
+  },
+  "宍戸佐吉": {
+   "west": "Sam Kincaid"
+  },
+  "栗松鉄平": {
+   "west": "Tod Ironside"
+  },
+  "影野仁": {
+   "west": "Jim Wraith",
+   "note": "la tabella assegna a 影野 仁 sia Jim Wraith sia Timmy Saunders: applicato il primo, secondo da chiarire."
+  },
+  "半田真一": {
+   "west": "Steve Grim"
+  },
+  "松野空介": {
+   "west": "Max Carson"
+  },
+  "一之瀬一哉": {
+   "west": "Erik Eagle"
+  },
+  "木暮夕弥": {
+   "west": "Bobby Shearer",
+   "note": "la tabella assegna a 木暮 夕弥 sia Bobby Shearer sia Aiden Froste: applicato il primo, secondo da chiarire."
+  },
+  "吹雪士郎": {
+   "west": "Shawn Froste"
+  },
+  "立向居勇気": {
+   "west": "Darren LaChance"
+  },
+  "佐久間次郎": {
+   "west": "Scotty Banyan"
+  },
+  "不動明王": {
+   "west": "Caleb Stonewall"
+  },
+  "バーン": {
+   "west": "Torch",
+   "note": "nella tabella dell'utente: Torch = Haruya Nagumo (南雲 晴矢); nel sito il personaggio è 'バーン'. Identificazione mia: da confermare."
+  },
+  "ガゼル": {
+   "west": "Gazelle",
+   "note": "nella tabella dell'utente: Gazelle = Fuusuke Suzuno (涼野 風介); nel sito il personaggio è 'ガゼル'. Identificazione mia: da confermare."
+  },
+  "基山ヒロト": {
+   "west": "Xavier Foster"
+  },
+  "宇都宮虎丸": {
+   "west": "Austin Hobbes"
+  },
+  "土方雷電": {
+   "west": "Archer Hawkins"
+  },
+  "緑川リュウジ": {
+   "west": "Jordan Greenway"
+  },
+  "綱海条介": {
+   "west": "Hurley Kane"
+  },
+  "亜風炉照美": {
+   "west": "Byron Love"
+  },
+  "源田幸次郎": {
+   "west": "Samford"
+  },
+  "万丈一道": {
+   "west": "Murdock"
+  },
+  "五条勝": {
+   "west": "Gojou"
+  },
+  "咲山修二": {
+   "west": "Shuuji Sakiyama"
+  },
+  "寺門大貴": {
+   "west": "Daiki Terame"
+  },
+  "成神健也": {
+   "west": "Kenya Narukami"
+  },
+  "洞面秀一郎": {
+   "west": "Shuuichirou Doumen"
+  },
+  "杉森威": {
+   "west": "Kaito Sugimori"
+  },
+  "霧隠才次": {
+   "west": "Saiji Kirigakure"
+  },
+  "松風天馬": {
+   "west": "Arion Sherwind"
+  },
+  "剣城京介": {
+   "west": "Victor Blade"
+  },
+  "神童拓人": {
+   "west": "Riccardo Di Rigo"
+  },
+  "霧野蘭丸": {
+   "west": "Gabriel Garcia"
+  },
+  "菜花黄名子": {
+   "west": "Goldie Lemmon"
+  },
+  "フェイ・ルーン": {
+   "west": "Fey Rune"
+  },
+  "響木正剛": {
+   "west": "Seymour Hillman"
+  },
+  "浮島一人": {
+   "west": "Charles Island"
+  },
+  "髪村切斗": {
+   "west": "Garret Hairtown"
+  },
+  "会田力": {
+   "west": "Arthur Sweet"
+  },
+  "場寅仕": {
+   "west": "Peter Mildred (Butler)"
+  },
+  "中間庸": {
+   "west": "Josh Nathaniel"
+  },
+  "碇頑五郎": {
+   "west": "Edward Gladstone"
+  },
+  "定良保": {
+   "west": "Tyler Thomas (Tailor)"
+  },
+  "民山謡": {
+   "west": "Joseph Yosemite (Barista)"
+  },
+  "菅田厳": {
+   "west": "Ian Suffolk",
+   "note": "la tabella scrive 菅田 巌, il sito 菅田 厳 (stessa persona, variante di kanji)."
+  },
+  "備流田光一": {
+   "west": "Constant Builder"
+  }
+ }
+}

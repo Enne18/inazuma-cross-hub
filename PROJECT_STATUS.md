@@ -181,3 +181,44 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Esporta/Importa in formato v2 (id + livelli); l'import legge anche il formato v1.
 - Prova in Chromium (30 personaggi): Endou Kick Lv440 3670 → Lv100 852; Team Builder con tutti a Lv50 punteggio 285, a Lv440 punteggio 1853; nessun errore. Corretto un errore di doppio evento 'change' nella sostituzione della scheda.
 - Prossimo: immagini + pastiglie.
+
+## Tappa 10 (16/10) — immagini + pastiglie
+- `js/ui.js`: avatar = pastiglia sempre presente (colore elemento, iniziale del nome, ruolo, stelle) + immagine sopra (`image_small`/`image_big`, hotlink da https://inazumaelevencrosshub.com, lazy, no-referrer). Se l'immagine non carica viene rimossa e resta la pastiglia. Interruttore "Mostra immagini" (collezione, salvato nel browser).
+- Usato in: schede catalogo/collezione e rosa delle squadre nel Team Builder.
+- Provato in Chromium simulando sito bloccato (solo pastiglie, nessun errore) e sito che risponde (immagini mostrate). NON verificato: se il sito dei dati accetta richieste di immagini da GitHub Pages (da controllare a occhio sul sito pubblicato).
+- Nota: filtro "Solo dati completi" ormai inutile (tutti completi) → da rimuovere nella tappa catalogo.
+
+## Tappa 10 (17/10) — immagini + pastiglie
+- Già presenti nell'ultimo zip (js/ui.js, css, catalogo, collezione, squadre): pastiglia (colore elemento, iniziale, ruolo, stelle) sempre presente; sopra, l'immagine collegata dal sito dei dati (`/img/Assets/Character_Small|Big/...`, hotlink, `referrerPolicy: no-referrer`, lazy). Se l'immagine non carica, resta la pastiglia. Interruttore "Mostra le immagini" nella scheda Collezione (salvato nel browser).
+- Verifica in Chromium: 124 pastiglie nel catalogo, 22 nelle squadre, interruttore funzionante, nessun errore JS. NON verificabile da qui: se il sito dei dati lascia caricare le immagini da un altro sito (hotlink) → lo vedrà l'utente aprendo il sito pubblicato.
+- Incidente: durante questa tappa ho sovrascritto per errore js/ui.js e modificato index.html senza aver controllato che esistessero già; ripristinati dall'ultimo zip (file identici, verificato con cmp). Nessun altro file toccato.
+- Da fare: il filtro "Solo dati completi" non serve più (tutti i dati sono completi) → toglierlo nella tappa catalogo.
+
+## Tappa 10b (17/10) — nomi occidentali + diagnosi formazioni
+- `data/names_west.json` (tabella dell'utente 17/10, 52 voci) → `name_en` in data/site/chars.json (66 personaggi su 124, tutte le versioni dello stesso personaggio) e `name_west` nei tecnici (7 su 14: Hillman, Ray Dark ×2, Arthur Sweet, David Evans, Percival Travis, Lina Schiller). Ambiguità: 影野 仁 (Jim Wraith / Timmy Saunders) e 木暮 夕弥 (Bobby Shearer / Aiden Froste) assegnati nella tabella a due nomi ciascuno → applicato il primo, secondo da chiarire. Torch→バーン e Gazelle→ガゼル: identificazione mia (nel sito i nomi sono questi). Senza nome occidentale: personaggi non presenti nella tabella (Chaos, Gemini, Zeus, ecc.) e 6 tecnici "non verificati".
+- Diagnosi (Kira, tutti i personaggi, Lv440): il motore trova 2515 (base 1185 + sinergie 1330, formazione attiva); la squadra "migliore" dell'utente (con 11° slot ottimizzato) fa 1750 e NON attiva la passiva di formazione di Kira nella mia interpretazione degli slot (condizioni ①Foresta ⑤Vento ⑥Foresta). Aumentare il peso degli effetti a evento/累 (0.5→8) non avvicina i due risultati: la squadra dell'utente resta ~55% del motore. Conclusione: il punteggio del motore non coincide con quello che i giocatori ottimizzano; manca il criterio reale (probabile ruolo del GK/potenza delle tecniche del portiere, meccaniche di partita).
+- Prossimo possibile: calibrare i pesi su più squadre "buone" fornite dall'utente (tecnico + 11 giocatori + versione); verificare l'ordine degli slot dei tecnici.
+
+## Tappa 11a (18/10) — formula reale dal repository iecrosshub (js/Core/calculator.js)
+- Slot verificati: 1-2(3,5) FW → MF → DF → 11 = GK. Condizioni tecnici coincidono con coaches.json. Kira slot 6 ha 2 icone (Foresta, Vento): da chiarire.
+- Danno mossa = floor( floor( floor(stat_con_buff × moltRuolo) × (potenzaMossa + bonusPotenzaPassive) × 0.01 ) × STAB 1.2 ) × vantaggio elemento (±0.2).
+  → stat e potenza si MOLTIPLICANO; i bonus potenza passive si SOMMANO alla potenza della mossa (non pesano a parte).
+- Modello squadra del repository (solo 5 slot, torri): somma danni, +10% se due mosse consecutive stesso elemento. Nessuna formula partita 11v11 nel repo.
+- Prossimo: usare questa formula nel punteggio del motore (stat × potenza mossa migliore).
+
+## Tappa 11b (18/10) — punteggio sulla formula del gioco
+- engine.js: `cfg.model='damage'` (default). Per ogni giocatore: danno = floor(stat_con_buff × (potenza mossa + bonus potenza) × 0,01), mossa migliore; mosse di categoria diversa dal ruolo giocato ×0,5 (stima). Totale squadra = somma dei danni. `model:'legacy'` mantiene il vecchio punteggio.
+- Bonus potenza dei tecnici divisi per tipo (shoot/dribble/block/catch/all); i bonus potenza delle passive dei personaggi valgono per tutte le mosse (il testo non indica il tipo).
+- NON modellato: bonus elemento 1,2 (le mosse non hanno elemento nei dati), vantaggio elemento avversario, catena stesso elemento, debuff nemici (restano nei dettagli ma non nel totale), livello tecnica fisso al massimo.
+- Test 18/18. Kira (tutto il roster): formazione attiva, totale ~584k.
+- Da fare: confronto con la squadra dell'utente; rimettere i 4 nomi tecnici 10c (mancano in questo zip).
+
+## Tappa 11c (18/10) — calibrazione ruoli + nomi tecnici
+- Dal repository: il moltiplicatore di ruolo è per slot (B 1.05, A 1.10, S 1.15), non un taglio 50%. Motore: nativeRoleMult 1.1 (ruolo naturale), offRoleMult 1.0, mossa non adatta al ruolo ×0.5 (DF=blocco, GK=parata, FW=tiro, MF=dribbling o tiro). TUTTE IPOTESI, configurabili in DEFAULTS.
+- Nomi tecnici dagli slot/formazioni del repo: Tayama = Harry Savage (Wild), Mashiya = Manny Artic (Otaku), Protagonista = Personaggio principale; + Hekyll Jyde, Igajima Sen'ichi, Seth Nichols, Toyama Shinochirou (da confermare).
+- Kira (tutto roster) ~636k; squadra utente ~340-410k (formazione non attiva). Gap non spiegato: servono dati in-game (forza squadra mostrata dal gioco, identità "Rhine").
+
+## Tappa 11d (18/10) — Team Builder: obbligatori ed esclusi
+- Builder: campi "Obbligatori" (sempre in squadra) ed "Esclusi" (mai) con ricerca per nome e chip; un personaggio non può stare in entrambi. Non vengono salvati tra le sessioni.
+- engine.js: `cfg.lockIds` (i bloccati entrano in pool, non vengono sostituiti dalla ricerca). Test 19/19; prova in browser ok.
+- Nota: gli obbligatori sono ammessi anche se non in collezione.

@@ -72,3 +72,19 @@ summary { cursor: pointer; font-weight: 600; font-size: .9rem; }
 .lvl { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
 .lvl input, #c-lvl-all { width: 4.5em; padding: 4px 6px; }
 .btn.small { padding: 3px 10px; font-size: .85rem; }
+
+.chead { display: flex; gap: 10px; align-items: center; }
+.ctitle { min-width: 0; }
+.avatar { position: relative; flex: none; width: 56px; height: 56px; border-radius: 12px; background: var(--el, var(--line)); color: #fff; overflow: hidden; display: grid; place-items: center; font-weight: 700; }
+.avatar.sm { width: 40px; height: 40px; border-radius: 9px; } .avatar.lg { width: 96px; height: 96px; }
+.avatar .ini { font-size: 1.5rem; } .avatar.sm .ini { font-size: 1.1rem; }
+.avatar .pos { position: absolute; left: 3px; top: 2px; font-size: .62rem; background: rgba(0,0,0,.35); border-radius: 4px; padding: 0 3px; }
+.avatar .stars { position: absolute; right: 3px; bottom: 1px; font-size: .55rem; letter-spacing: -1px; }
+.avatar.sm .stars { display: none; }
+.avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.avatar.has-img .ini { visibility: hidden; }
+.pl { display: flex; gap: 8px; align-items: center; } .pl .ptx { min-width: 0; }
+.b-pick{display:grid;gap:.6rem}
+.b-pick input{width:100%;max-width:26rem;display:block;margin:.25rem 0}
+.chips{display:flex;flex-wrap:wrap;gap:.3rem}
+.chip{border:1px solid var(--border,#bbb);background:transparent;color:inherit;border-radius:1rem;padding:.15rem .6rem;font-size:.8rem;cursor:pointer}

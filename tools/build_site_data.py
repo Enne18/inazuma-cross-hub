@@ -6,6 +6,7 @@ src = json.load(open('data/iec/chars.json', encoding='utf-8'))['chars']
 tags = {t['id']: t for t in json.load(open('data/iec/tags.json', encoding='utf-8'))['tags']}
 CAT = {'Shoot': 'shoot', 'Dribble': 'dribble', 'Block': 'block', 'Catch': 'catch'}
 num = lambda s: int(re.sub(r'[^\d-]', '', s)) if re.search(r'\d', s or '') else None
+names = json.load(open('data/names_west.json', encoding='utf-8'))['names']
 out = []
 for s in src:
     by = {}
@@ -30,7 +31,7 @@ for s in src:
                 e['tier'] = 'ADVANCED+' if ('＋' in u or '+' in u) else 'ADVANCED'
             r.append(e)
         return r
-    out.append({'id': str(s['site_id']), 'name_ja': s['name_ja'], 'name_en': None, 'version': None, 'rarity': s['rarity'],
+    out.append({'id': str(s['site_id']), 'name_ja': s['name_ja'], 'name_en': names.get(re.sub(r'[\s　]+', '', s['name_ja']), {}).get('west'), 'version': None, 'rarity': s['rarity'],
                 'element': s['element'], 'position': s['position'], 'team_ja': by.get('team'), 'type_ja': by.get('type'), 'series_ja': by.get('series'),
                 'tags_ja': [tags[t]['name_ja'] for t in s['tag_ids']], 'rating': None, 'verified': 'ok',
                 'stats_lv1': s['stats']['lv1'], 'stats_max': s['stats']['lv440'], 'max_level': 440,
@@ -39,5 +40,5 @@ for s in src:
 os.makedirs('data/site', exist_ok=True)
 json.dump({'source': 'inazumaelevencrosshub.com', 'max_level': 440, 'chars': out}, open('data/site/chars.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 bad = [c['name_ja'] for c in out if None in (c['team_ja'], c['type_ja'], c['series_ja'])]
-print(len(out), 'personaggi ->', os.path.getsize('data/site/chars.json') // 1024, 'KB; senza tag completi:', bad)
+print(sum(1 for c in out if c['name_en']), 'con nome occidentale;', len(out), 'personaggi ->', os.path.getsize('data/site/chars.json') // 1024, 'KB; senza tag completi:', bad)
 print({a['tier'] for c in out for a in c['rarity_passives']}, [len(c['rarity_passives']) for c in out[:3]])

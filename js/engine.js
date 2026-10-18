@@ -22,7 +22,12 @@
     restarts: 10, seed: 12345, topN: 5, minDiff: 2,
     poolLimit: 60,             // candidati considerati dalla ricerca (i migliori per punteggio singolo + quelli utili al tecnico)
     offRoleEstimateFactor: 0.5, // stima per personaggi senza statistiche messi fuori ruolo
-    secondHalfFactor: 0.5      // effetti solo a inizio secondo tempo
+    secondHalfFactor: 0.5,     // effetti solo a inizio secondo tempo
+    model: 'damage',           // 'damage' = formula del gioco (stat x potenza mossa); 'legacy' = vecchio punteggio a pesi
+    moveElementStab: 1.2,      // bonus elemento mossa = elemento personaggio (formula iecrosshub)
+    nativeRoleMult: 1.1,       // ipotesi: moltiplicatore ruolo (iecrosshub: B 1.05, A 1.10, S 1.15) nel ruolo naturale
+    offRoleMult: 1.0,          // ipotesi: fuori ruolo = nessun bonus; le mosse restano usabili
+    offRoleMovePenalty: 0.5    // ipotesi: mossa non adatta al ruolo giocato (DF/GK devono parare/bloccare; FW/MF tirano o dribblano)
   };
 
   var ELEM = { '火': 'Fire', '風': 'Wind', '林': 'Forest', '山': 'Mountain' };
@@ -202,9 +207,31 @@
     return { ok: det.every(function (d) { return d.ok; }), details: det };
   };
 
+  var ROLECAT = { FW: ['kick'], MF: ['technique', 'kick'], DF: ['block'], GK: ['catch'] };
+  var SKILLCAT = { shoot: 'kick', dribble: 'technique', block: 'block', catch: 'catch' };
+  var POWKIND = { shoot: 'kick', dribble: 'technique', block: 'block', catch: 'catch', keeper: 'catch', all: 'all' };
+
+  // Danno stimato di un membro: floor(stat x potenza/100) per la sua mossa migliore (formula iecrosshub/calculator.js).
+  Engine.prototype.damageOf = function (m, sb, pb) {
+    var cats = ROLECAT[m.position], s = m.stats_max || {}, best = null, self = this;
+    (m.skills || []).forEach(function (k) {
+      var c = SKILLCAT[k.category] || k.category, pw = k.power;
+      if (!c || pw === null || pw === undefined || s[c] === null || s[c] === undefined) return;
+      var stat = Math.floor(Math.max(0, s[c] + (sb[c] || 0)) * ((m.native || m.position) === m.position ? self.cfg.nativeRoleMult : self.cfg.offRoleMult));
+      var power = pw + (pb[c] || 0) + (pb.all || 0);
+      var d = Math.floor(stat * power * 0.01);
+      if (k.element && k.element === m.element) d = Math.floor(d * self.cfg.moveElementStab);
+      if (cats.indexOf(c) < 0) d = d * self.cfg.offRoleMovePenalty;
+      if (best === null || d > best) best = d;
+    });
+    return best;
+  };
+
   Engine.prototype.scoreTeam = function (members, opts) {
     var self = this, cfg = this.cfg, coach = opts && opts.coach;
     var out = { total: 0, base: 0, synergy: 0, members: [], effects: [], unmet: [], unparsed: [], estimated: 0, coach: null };
+    var SB = members.map(function () { return {}; }), PB = members.map(function () { return {}; });
+    out._sb = SB; out._pb = PB;
     members.forEach(function (c) {
       var b = self.baseOf(c);
       out.base += b.value;
@@ -232,20 +259,38 @@
           var per = cl.value * (cl.kind === 'power' ? cfg.powerWeight : cfg.statWeight) * (cl.kind === 'stat' ? cl.stats.length : 1);
           var pts = per * units * (cl.target.enemy ? cfg.debuffWeight : 1) * (cond.type === 'event' ? cfg.conditionalFactor : 1);
           if (!ok) { out.unmet.push({ source: src.id, passive: p.name, need: need, points: pts }); return; }
+          if (!cl.target.enemy) {
+            var fc = cond.type === 'event' ? cfg.conditionalFactor : 1;
+            affected.forEach(function (m) {
+              var ix = members.indexOf(m);
+              if (cl.kind === 'stat') cl.stats.forEach(function (st) { SB[ix][st] = (SB[ix][st] || 0) + (cl.down ? -1 : 1) * cl.value * fc; });
+              else PB[ix].all = (PB[ix].all || 0) + (cl.down ? -1 : 1) * cl.value * fc;
+            });
+          }
           out.synergy += pts;
           out.effects.push({ source: src.id, passive: p.name, text: cl.text, kind: cl.kind, enemy: cl.target.enemy, affected: affected.map(function (m) { return m.id; }), conditional: cond.type === 'event', points: pts });
         });
       });
     });
     if (coach) this.addCoach(coach, members, out);
-    out.total = out.base + out.synergy;
+    if (cfg.model === 'damage') {
+      var tot = 0;
+      members.forEach(function (m, i) {
+        var d = self.damageOf(m, SB[i], PB[i]);
+        if (d === null) { d = self.baseOf(m).value * 10; out.members[i].estimated = true; }
+        out.members[i].damage = d;
+        tot += d;
+      });
+      out.total = tot;
+    } else out.total = out.base + out.synergy;
+    delete out._sb; delete out._pb;
     return out;
   };
 
   Engine.prototype.addCoach = function (coach, members, out) {
-    var self = this, cfg = this.cfg;
+    var self = this, cfg = this.cfg, SB = out._sb, PB = out._pb;
     var fs = this.formationStatus(coach, members);
-    out.coach = { id: coach.id, name_ja: coach.name_ja, formation_ja: coach.formation_ja, formationActive: fs.ok, conditions: fs.details, formationPoints: 0, coachPoints: 0, missedFormationPoints: 0 };
+    out.coach = { id: coach.id, name_ja: coach.name_ja, name_west: coach.name_west || null, formation_ja: coach.formation_ja, formationActive: fs.ok, conditions: fs.details, formationPoints: 0, coachPoints: 0, missedFormationPoints: 0 };
     function apply(blk, label, active) {
       blk.effects.forEach(function (ef) {
         var t = ef.target, affected, units;
@@ -264,6 +309,13 @@
         var f = ef.timing === 'on_event' ? cfg.conditionalFactor : (ef.timing === 'second_half_start' ? cfg.secondHalfFactor : 1);
         var pts = per * units * (t.who === 'enemy' ? cfg.debuffWeight : 1) * f;
         if (!active) { out.coach.missedFormationPoints += pts; return; }
+        if (t.who !== 'enemy') {
+          affected.forEach(function (m) {
+            var ix = members.indexOf(m), v = Math.abs(ef.value) * f;
+            if (ef.kind === 'stat') { if (ef.stat) SB[ix][ef.stat] = (SB[ix][ef.stat] || 0) + v; }
+            else if (ef.kind === 'power') { var pk = POWKIND[ef.skill] || 'all'; PB[ix][pk] = (PB[ix][pk] || 0) + v; }
+          });
+        }
         out.synergy += pts;
         if (label === 'formazione') out.coach.formationPoints += pts; else out.coach.coachPoints += pts;
         out.effects.push({ source: 'coach:' + coach.id, passive: label + ' (' + coach.name_ja + ')', text: ef.kind + ' ' + (ef.stat || ef.skill) + ' ' + ef.value, kind: ef.kind, enemy: t.who === 'enemy', affected: affected.map(function (m) { return m.id; }), conditional: ef.timing === 'on_event', points: pts, coach: true });
@@ -316,6 +368,9 @@
         .sort(function (a, b) { return soloOf(b, role) - soloOf(a, role); })
         .slice(0, 6).forEach(function (c) { if (!inPool[c.id]) { inPool[c.id] = true; pool.push(c); } });
     });
+    var lockIds = cfg.lockIds || [], locked = {};
+    lockIds.forEach(function (id) { locked[id] = true; });
+    poolAll.forEach(function (c) { if (locked[c.id] && !inPool[c.id]) { inPool[c.id] = true; pool.push(c); } });
     var found = {}, results = [];
 
     function initial(noise) {
@@ -334,6 +389,12 @@
         cs.sort(function (a, b) { return noisy(b, roles[i]) - noisy(a, roles[i]); });
         if (cs.length) { team[i] = cs[0]; used[cs[0].id] = true; }
       }
+      // giocatori bloccati: devono essere in squadra (sostituiscono gli slot non bloccati col punteggio singolo più basso)
+      pool.filter(function (c) { return locked[c.id] && team.indexOf(c) < 0; }).forEach(function (c) {
+        var worst = -1, ws = Infinity;
+        for (i = 0; i < n; i++) { if (team[i] && locked[team[i].id]) continue; var v = team[i] ? soloOf(team[i], roles[i]) : -1; if (v < ws) { ws = v; worst = i; } }
+        if (worst >= 0) team[worst] = c;
+      });
       return team;
     }
 
@@ -343,6 +404,7 @@
         changed = false;
         for (i = 0; i < n; i++) {
           var cur = team[i], bestC = cur;
+          if (cur && locked[cur.id]) continue;
           for (var k = 0; k < pool.length; k++) {
             var c = pool[k];
             if (team.indexOf(c) >= 0) continue;
