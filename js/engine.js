@@ -220,7 +220,7 @@
       var c = SKILLCAT[k.category] || k.category, pw = k.power;
       if (!c || pw === null || pw === undefined || s[c] === null || s[c] === undefined) return;
       var stat = Math.floor(Math.max(0, s[c] + (sb[c] || 0)) * ((m.native || m.position) === m.position ? self.cfg.nativeRoleMult : self.cfg.offRoleMult));
-      var power = pw + (pb[c] || 0) + (pb.all || 0);
+      var power = pw + (pb[c] || 0) + (pb.all || 0) + (k.element ? (pb['el:' + k.element] || 0) : 0);
       var d = Math.floor(stat * power * 0.01);
       if (k.element && k.element === m.element) d = Math.floor(d * self.cfg.moveElementStab);
       if (cats.indexOf(c) < 0) d = d * self.cfg.offRoleMovePenalty;
@@ -315,7 +315,7 @@
           affected.forEach(function (m) {
             var ix = members.indexOf(m), v = Math.abs(ef.value) * f;
             if (ef.kind === 'stat') { if (ef.stat) SB[ix][ef.stat] = (SB[ix][ef.stat] || 0) + v; }
-            else if (ef.kind === 'power') { var pk = POWKIND[ef.skill] || 'all'; PB[ix][pk] = (PB[ix][pk] || 0) + v; }
+            else if (ef.kind === 'power') { var pk = ef.move_element ? 'el:' + ef.move_element : (POWKIND[ef.skill] || 'all'); PB[ix][pk] = (PB[ix][pk] || 0) + v; }
           });
         }
         out.synergy += pts;

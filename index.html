@@ -13,8 +13,7 @@
     <div class="wrap">
       <h1>Inazuma Eleven Cross <span>Hub</span></h1>
       <nav class="tabs" aria-label="Sezioni">
-        <button class="tab active" data-tab="catalog">Catalogo</button>
-        <button class="tab" data-tab="collection">La mia collezione <span id="owned-badge" class="pill">0</span></button>
+        <button class="tab active" data-tab="catalog">Personaggi <span id="owned-badge" class="pill" title="Personaggi in possesso">0</span></button>
         <button class="tab" data-tab="builder">Team Builder</button>
         <button class="tab" data-tab="coaches">Tecnici</button>
       </nav>
@@ -23,40 +22,42 @@
 
   <main class="wrap">
     <section id="catalog">
-      <div class="filters">
+      <div class="fbar">
         <input id="q" type="search" placeholder="Cerca: nome, squadra, tecnica o passiva…" aria-label="Cerca">
-        <select id="f-element" aria-label="Elemento"><option value="">Tutti gli elementi</option></select>
-        <select id="f-position" aria-label="Ruolo"><option value="">Tutti i ruoli</option></select>
-        <select id="f-rarity" aria-label="Rarità"><option value="">Tutte le rarità</option></select>
-        <select id="f-team" aria-label="Squadra"><option value="">Tutte le squadre</option></select>
-        <select id="f-series" aria-label="Serie"><option value="">Tutte le serie</option></select>
-        <select id="f-sort" aria-label="Ordina per"></select>
-        <label class="chk"><input id="f-complete" type="checkbox"> Solo dati completi</label>
-        <button id="f-reset" type="button" class="btn">Azzera filtri</button>
+        <div class="fgrid">
+          <label class="field"><span>Possesso</span>
+            <select id="f-own"><option value="">Tutti</option><option value="yes">In possesso</option><option value="no">Non in possesso</option></select></label>
+          <label class="field"><span>Elemento</span><select id="f-element"><option value="">Tutti</option></select></label>
+          <label class="field"><span>Ruolo</span><select id="f-position"><option value="">Tutti</option></select></label>
+          <label class="field"><span>Rarità</span><select id="f-rarity"><option value="">Tutte</option></select></label>
+          <label class="field"><span>Squadra</span><select id="f-team"><option value="">Tutte</option></select></label>
+          <label class="field"><span>Serie</span><select id="f-series"><option value="">Tutte</option></select></label>
+          <label class="field"><span>Ordina per</span><select id="f-sort"></select></label>
+          <div class="field"><span>&nbsp;</span><button id="f-reset" type="button" class="btn">Azzera filtri</button></div>
+        </div>
       </div>
+
+      <details id="manage" class="manage">
+        <summary>Gestione collezione (livello, grado, backup)</summary>
+        <p class="muted small">Segna i personaggi che possiedi con "Ce l'ho": per ognuno compaiono livello e grado. La collezione è salvata solo in questo browser: usa Esporta per un backup o per spostarla su un altro dispositivo.</p>
+        <div class="toolbar">
+          <label class="field-inline">Livello per tutti <input id="c-lvl-all" type="number" min="1" max="440" value="440"></label>
+          <button id="c-lvl-apply" type="button" class="btn">Applica a tutti</button>
+          <label class="field-inline">Grado per tutti <select id="c-rar-all"></select></label>
+          <button id="c-rar-apply" type="button" class="btn">Applica a tutti</button>
+        </div>
+        <div class="toolbar">
+          <button id="c-export" type="button" class="btn">Esporta (file JSON)</button>
+          <label class="btn">Importa<input id="c-import" type="file" accept="application/json,.json" hidden></label>
+          <button id="c-clear" type="button" class="btn danger">Svuota collezione</button>
+        </div>
+        <label class="chk"><input id="opt-images" type="checkbox" checked> Mostra le immagini dei personaggi (collegate al sito dei dati; se non si caricano resta la pastiglia)</label>
+        <p class="muted small">Il livello vale anche per i nuovi personaggi che aggiungi. Le passive sono esatte per livello (dati del sito); le statistiche ai livelli intermedi sono una stima lineare tra Lv 1 e Lv 440, perché il sito fornisce solo quei due valori. Il Grado (da Normal Player a Legendary Player +) decide quali passive ADVANCED e ADVANCED+ hai sbloccato: ADVANCED da Advanced Player, ADVANCED+ da Advanced Player +, con tacche successive a Top e Legendary. Il Team Builder ne tiene conto (di default Legendary Player +).</p>
+      </details>
+      <p id="c-msg" class="muted" aria-live="polite"></p>
       <p id="count" class="muted" aria-live="polite"></p>
       <div id="grid" class="grid"></div>
       <p id="error" class="error" hidden></p>
-    </section>
-    <section id="collection" hidden>
-      <p class="muted">Segna i personaggi che possiedi con il pulsante "Ce l'ho" nel Catalogo. La collezione è salvata solo in questo browser: usa Esporta per fare un backup o spostarla su un altro dispositivo.</p>
-      <div class="toolbar">
-        <button id="c-export" type="button" class="btn">Esporta (file JSON)</button>
-        <label class="btn">Importa<input id="c-import" type="file" accept="application/json,.json" hidden></label>
-        <button id="c-clear" type="button" class="btn danger">Svuota collezione</button>
-      </div>
-      <div class="toolbar">
-        <label>Livello per tutti <input id="c-lvl-all" type="number" min="1" max="440" value="440"></label>
-        <button id="c-lvl-apply" type="button" class="btn">Applica a tutti</button>
-        <label>Grado per tutti <select id="c-rar-all"></select></label>
-        <button id="c-rar-apply" type="button" class="btn">Applica a tutti</button>
-      </div>
-      <label class="chk"><input id="opt-images" type="checkbox" checked> Mostra le immagini dei personaggi (collegate al sito dei dati; se non si caricano resta la pastiglia)</label>
-      <p class="muted small">Il livello vale anche per i nuovi personaggi che aggiungi. Le passive sono esatte per livello (dati del sito); le statistiche ai livelli intermedi sono una stima lineare tra Lv 1 e Lv 440, perché il sito fornisce solo quei due valori. Per ogni personaggio indica il Grado (da Normal Player a Legendary Player +): le passive ADVANCED si sbloccano da Advanced Player, quelle ADVANCED+ da Advanced Player + (con tacche successive a Top e Legendary). Il Team Builder ne tiene conto (di default Legendary Player +).</p>
-      <div class="filters"><input id="c-q" type="search" placeholder="Cerca nella collezione (nome, squadra, tecnica, passiva…)" aria-label="Cerca nella collezione"></div>
-      <p id="c-msg" class="muted" aria-live="polite"></p>
-      <p id="c-count" class="muted"></p>
-      <div id="c-grid" class="grid"></div>
     </section>
     <section id="coaches" hidden>
       <p class="muted">I 14 tecnici: condizioni di formazione, passive e livello. Il livello che imposti qui è lo stesso usato dal Team Builder.</p>

@@ -853,16 +853,17 @@
       "target": {
        "who": "ally",
        "pos": null,
-       "element": "Wind",
+       "element": null,
        "tag": null,
        "type": null
       },
       "kind": "power",
       "skill": "all",
       "value": 40,
-      "note": "Corretto da 400 a 40 (repo iecrosshub harrySavage.js, Niv.10 = 40; vale per le tecniche di Vento di tutti gli alleati).",
+      "note": "Corretto: 40 (non 400); vale per le tecniche di Vento di TUTTI gli alleati (repo harrySavage.js).",
       "ref": "val",
-      "sign": 1
+      "sign": 1,
+      "move_element": "Wind"
      }
     ],
     "levels": [

@@ -7,6 +7,7 @@ tags = {t['id']: t for t in json.load(open('data/iec/tags.json', encoding='utf-8
 CAT = {'Shoot': 'shoot', 'Dribble': 'dribble', 'Block': 'block', 'Catch': 'catch'}
 num = lambda s: int(re.sub(r'[^\d-]', '', s)) if re.search(r'\d', s or '') else None
 names = json.load(open('data/names_west.json', encoding='utf-8'))['names']
+MOVES = json.load(open('data/moves.json', encoding='utf-8'))['moves']
 out = []
 for s in src:
     by = {}
@@ -21,7 +22,9 @@ for s in src:
                        'unlock': 'Lv' + mm.group(1) if mm else None, 'category': cat,
                        'power': num(rows['Power'][-1]) if 'Power' in rows else None, 'power_by_level': [num(x) for x in rows.get('Power', [])],
                        'tp': num(rows['TP Cost'][-1]) if 'TP Cost' in rows else None, 'cool_down': num(rows['Cool Down'][-1]) if 'Cool Down' in rows else None,
-                       'crit': num(rows['Critical %'][-1]) if 'Critical %' in rows else None})
+                       'crit': num(rows['Critical %'][-1]) if 'Critical %' in rows else None,
+                       'element': (MOVES.get(mm.group(2).strip() if mm else m['head']) or {}).get('element'),
+                       'name_it': (MOVES.get(mm.group(2).strip() if mm else m['head']) or {}).get('name_it')})
     def pas(lst, rarity):
         r = []
         for p in lst:

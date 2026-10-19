@@ -1,0 +1,515 @@
+{
+ "_doc": "Elemento e nome italiano delle mosse, dal repository iecrosshub (js/Techniques/*Library.js). Chiave = nome giapponese. Le mosse nuove non presenti nel repository non hanno elemento.",
+ "moves": {
+  "ブルーサイクロン": {
+   "element": "Wind",
+   "name_it": "Ciclone Blu (ブルーサイクロン)",
+   "kind": "Blocco"
+  },
+  "ザ・ウォール": {
+   "element": "Mountain",
+   "name_it": "Muro di Roccia (ザ・ウォール)",
+   "kind": "Blocco"
+  },
+  "ザ・マウンテン": {
+   "element": "Mountain",
+   "name_it": "Montagna di Roccia (ザ・マウンテン)",
+   "kind": "Blocco"
+  },
+  "真空魔": {
+   "element": "Wind",
+   "name_it": "Attacco Volante (真空魔)",
+   "kind": "Blocco"
+  },
+  "スーパー四股踏み": {
+   "element": "Fire",
+   "name_it": "Super Pestone Sumo (スーパー四股踏み)",
+   "kind": "Blocco"
+  },
+  "ブレードアタック": {
+   "element": "Wind",
+   "name_it": "Lama d'Energia (ブレードアタック)",
+   "kind": "Blocco"
+  },
+  "旋風陣": {
+   "element": "Wind",
+   "name_it": "Turbina Rotante (旋風陣)",
+   "kind": "Blocco"
+  },
+  "スピニングカット": {
+   "element": "Wind",
+   "name_it": "Taglio Roteante (スピニングカット)",
+   "kind": "Blocco"
+  },
+  "キラースライド": {
+   "element": "Forest",
+   "name_it": "Scivolata Micidiale (キラースライド)",
+   "kind": "Blocco"
+  },
+  "クイックドロウ": {
+   "element": "Forest",
+   "name_it": "Tackle Fulmineo (クイックドロウ)",
+   "kind": "Blocco"
+  },
+  "怨霊": {
+   "element": "Forest",
+   "name_it": "Palude di Mani (怨霊)",
+   "kind": "Blocco"
+  },
+  "コイルターン": {
+   "element": "Wind",
+   "name_it": "Difesa a Spirale (コイルターン)",
+   "kind": "Blocco"
+  },
+  "サイクロン": {
+   "element": "Wind",
+   "name_it": "Ciclone (サイクロン)",
+   "kind": "Blocco"
+  },
+  "アースクェイク": {
+   "element": "Mountain",
+   "name_it": "Terremoto (アースクェイク)",
+   "kind": "Blocco"
+  },
+  "裁きの鉄槌": {
+   "element": "Fire",
+   "name_it": "Piede del Giudizio (裁きの鉄槌)",
+   "kind": "Blocco"
+  },
+  "もちもち黄粉餅（花火）": {
+   "element": "Fire",
+   "name_it": "Impasto di Goldie (Fuochi d'artificio)",
+   "kind": "Difesa"
+  },
+  "ザ・ミスト": {
+   "element": "Forest",
+   "name_it": "Cinta di Nebbia (ザ・ミスト)",
+   "kind": "Blocco"
+  },
+  "ディープミスト": {
+   "element": "Forest",
+   "name_it": "Nebbia Avvolgente (ディープミスト)",
+   "kind": "Blocco"
+  },
+  "ザ・タワー": {
+   "element": "Wind",
+   "name_it": "Torre Inespugnabile (ザ・タワー)",
+   "kind": "Blocco"
+  },
+  "パーフェクト・タワー": {
+   "element": "Wind",
+   "name_it": "Torre Gigante (パーフェクト・タワー)",
+   "kind": "Blocco"
+  },
+  "ファイアトルネード": {
+   "element": "Fire",
+   "name_it": "Tornado di Fuoco (ファイアトルネード)",
+   "kind": "Tiro"
+  },
+  "爆熱スクリュー": {
+   "element": "Fire",
+   "name_it": "Avvitamento Esplosivo (爆熱スクリュー)",
+   "kind": "Tiro"
+  },
+  "皇帝ペンギン2号": {
+   "element": "Forest",
+   "name_it": "Pinguino Imperatore N.2 (皇帝ペンギン2号)",
+   "kind": "Tiro"
+  },
+  "エターナルブリザード": {
+   "element": "Wind",
+   "name_it": "Tormenta Glaciale (エターナルブリザード)",
+   "kind": "Tiro"
+  },
+  "ウルフレジェンド": {
+   "element": "Wind",
+   "name_it": "Richiamo del Lupo (ウルフレジェンド)",
+   "kind": "Tiro"
+  },
+  "ゴッドノウズ": {
+   "element": "Wind",
+   "name_it": "Colpo Supremo (ゴッドノウズ)",
+   "kind": "Tiro"
+  },
+  "流星ブレード": {
+   "element": "Fire",
+   "name_it": "Meteora Dirompente (流星ブレード)",
+   "kind": "Tiro"
+  },
+  "天空落とし": {
+   "element": "Fire",
+   "name_it": "Scarica Stellare (天空落とし)",
+   "kind": "Tiro"
+  },
+  "サムライペンギン2号": {
+   "element": "Wind",
+   "name_it": "Pinguino Samurai N. 2 (サムライペンギン2号)",
+   "kind": "Tiro"
+  },
+  "サムライショット": {
+   "element": "Wind",
+   "name_it": "Tiro Samurai (サムライショット)",
+   "kind": "Tiro"
+  },
+  "ドラゴンクラッシュ": {
+   "element": "Forest",
+   "name_it": "Dragon Crash (ドラゴンクラッシュ)",
+   "kind": "Tiro"
+  },
+  "ドラゴンスレイヤー": {
+   "element": "Forest",
+   "name_it": "Soffio del Drago (ドラゴンスレイヤー)",
+   "kind": "Tiro"
+  },
+  "タイガードライブ": {
+   "element": "Mountain",
+   "name_it": "Ruggito della Tigre (タイガードライブ)",
+   "kind": "Tiro"
+  },
+  "アストロブレイク": {
+   "element": "Forest",
+   "name_it": "Cometa Astrale (アストロブレイク)",
+   "kind": "Tiro"
+  },
+  "ツナミブースト": {
+   "element": "Wind",
+   "name_it": "Onda Inarrestabile (ツナミブースト)",
+   "kind": "Tiro"
+  },
+  "ツインブースト": {
+   "element": "Fire",
+   "name_it": "Calcio Gemello (ツインブースト)",
+   "kind": "Tiro"
+  },
+  "スピニングシュート": {
+   "element": "Wind",
+   "name_it": "Tiro Roteante (スピニングシュート)",
+   "kind": "Tiro"
+  },
+  "トライアングルＺ": {
+   "element": "Fire",
+   "name_it": "Triangolo Z (トライアングルＺ)",
+   "kind": "Tiro"
+  },
+  "バックトルネード": {
+   "element": "Wind",
+   "name_it": "Tornado Inverso (バックトルネード)",
+   "kind": "Tiro"
+  },
+  "ダークトルネード": {
+   "element": "Forest",
+   "name_it": "Dark Tornado (ダークトルネード)",
+   "kind": "Tiro"
+  },
+  "つちだるま": {
+   "element": "Mountain",
+   "name_it": "Tiro Ninja a Valanga (つちだるま)",
+   "kind": "Tiro"
+  },
+  "パトリオットシュート": {
+   "element": "Fire",
+   "name_it": "Razzo Spiovente (パトリオットシュート)",
+   "kind": "Tiro"
+  },
+  "ファントムシュート": {
+   "element": "Forest",
+   "name_it": "Tiro Fantasma (ファントムシュート)",
+   "kind": "Tiro"
+  },
+  "彗星シュート": {
+   "element": "Wind",
+   "name_it": "Tiro della Cometa (彗星シュート)",
+   "kind": "Tiro"
+  },
+  "グレネードショット": {
+   "element": "Fire",
+   "name_it": "Tiro Granata (グレネードショット)",
+   "kind": "Tiro"
+  },
+  "クロスドライブ": {
+   "element": "Wind",
+   "name_it": "Tiro Incrociato (クロスドライブ)",
+   "kind": "Tiro"
+  },
+  "メガネクラッシュ": {
+   "element": "Mountain",
+   "name_it": "Schianto del Viso (メガネクラッシュ)",
+   "kind": "Tiro"
+  },
+  "ターザンキック": {
+   "element": "Mountain",
+   "name_it": "Calcio di Tarzan (ターザンキック)",
+   "kind": "Tiro"
+  },
+  "百烈ショット": {
+   "element": "Forest",
+   "name_it": "Tiro dai Cento Calci (百烈ショット)",
+   "kind": "Tiro"
+  },
+  "デスゾーン": {
+   "element": "Forest",
+   "name_it": "Zona Micidiale (デスゾーン)",
+   "kind": "Tiro"
+  },
+  "マッハウインド": {
+   "element": "Wind",
+   "name_it": "Furia del Vento (マッハウインド)",
+   "kind": "Tiro"
+  },
+  "デスソード": {
+   "element": "Fire",
+   "name_it": "Stoccata Micidiale (デスソード)",
+   "kind": "Tiro"
+  },
+  "デスドロップ": {
+   "element": "Fire",
+   "name_it": "Rovesciata Micidiale (デスドロップ)",
+   "kind": "Tiro"
+  },
+  "ディバインアロー": {
+   "element": "Wind",
+   "name_it": "Freccia Saettante (ディバインアロー)",
+   "kind": "Tiro"
+  },
+  "リフレクトバスター": {
+   "element": "Mountain",
+   "name_it": "Meteora Rimbalzante (リフレクトバスター)",
+   "kind": "Tiro"
+  },
+  "インフェルノペンギン": {
+   "element": "Fire",
+   "name_it": "Pinguino Infernale (インフェルノペンギン)",
+   "kind": "Tiro"
+  },
+  "炎の風見鶏": {
+   "element": "Fire",
+   "name_it": "Ali di Fuoco (炎の風見鶏)",
+   "kind": "Tiro"
+  },
+  "イナズマ落とし": {
+   "element": "Wind",
+   "name_it": "Trampolino Inazuma (イナズマ落とし)",
+   "kind": "Tiro"
+  },
+  "やきもちスクリュー（花火）": {
+   "element": "Fire",
+   "name_it": "Tiro Impastato (Fuochi d'artificio)",
+   "kind": "Tiro"
+  },
+  "バウンサーラビット（花火）": {
+   "element": "Forest",
+   "name_it": "Tiro Rimbalzante (Fuochi d'artificio)",
+   "kind": "Tiro"
+  },
+  "ド根性バット": {
+   "element": "Fire",
+   "name_it": "Colpo del Battitore (ド根性バット)",
+   "kind": "Tiro"
+  },
+  "フォルテシモ": {
+   "element": "Forest",
+   "name_it": "Tiro Sonoro (フォルテシモ)",
+   "kind": "Tiro"
+  },
+  "ローズスプラッシュ": {
+   "element": "Forest",
+   "name_it": "Petali di Rosa (ローズスプラッシュ)",
+   "kind": "Tiro"
+  },
+  "スペースペンギン": {
+   "element": "Wind",
+   "name_it": "Pinguino Spaziale (スペースペンギン)",
+   "kind": "Tiro"
+  },
+  "イリュージョンボール": {
+   "element": "Forest",
+   "name_it": "Grande Illusione (イリュージョンボール)",
+   "kind": "Dribbling"
+  },
+  "ヘブンズタイム": {
+   "element": "Wind",
+   "name_it": "Salto Temporale (ヘブンズタイム)",
+   "kind": "Dribbling"
+  },
+  "サムライフェイント": {
+   "element": "Wind",
+   "name_it": "Finta Samurai (サムライフェイント)",
+   "kind": "Dribbling"
+  },
+  "ジャッジスルー2": {
+   "element": "Fire",
+   "name_it": "Calcio Stordente 2 (ジャッジスルー2)",
+   "kind": "Dribbling"
+  },
+  "キラーフィールズ": {
+   "element": "Forest",
+   "name_it": "Campo Micidiale (キラーフィールズ)",
+   "kind": "Dribbling"
+  },
+  "疾風ダッシュ": {
+   "element": "Wind",
+   "name_it": "Scatto Repentino (疾風ダッシュ)",
+   "kind": "Dribbling"
+  },
+  "風神の舞": {
+   "element": "Wind",
+   "name_it": "Turbine Supremo (風神の舞)",
+   "kind": "Dribbling"
+  },
+  "ジャッジスルー": {
+   "element": "Fire",
+   "name_it": "Calcio Stordente (ジャッジスルー)",
+   "kind": "Dribbling"
+  },
+  "ひとりワンツー": {
+   "element": "Fire",
+   "name_it": "Doppio Tocco (ひとりワンツー)",
+   "kind": "Dribbling"
+  },
+  "ライトニングアクセル": {
+   "element": "Fire",
+   "name_it": "Sprint Fulmineo (ライトニングアクセル)",
+   "kind": "Dribbling"
+  },
+  "竜巻旋風": {
+   "element": "Wind",
+   "name_it": "Vortice Implacabile (竜巻旋風)",
+   "kind": "Dribbling"
+  },
+  "まぼろしドリブル": {
+   "element": "Forest",
+   "name_it": "Dribbling Illusorio (まぼろしドリブル)",
+   "kind": "Dribbling"
+  },
+  "ジグザグスパーク": {
+   "element": "Wind",
+   "name_it": "Fulmine Zig-Zag (ジグザグスパーク)",
+   "kind": "Dribbling"
+  },
+  "ヒートタックル": {
+   "element": "Fire",
+   "name_it": "Dribbling Rovente (ヒートタックル)",
+   "kind": "Dribbling"
+  },
+  "残像": {
+   "element": "Forest",
+   "name_it": "Ninja Dribbling (残像)",
+   "kind": "Dribbling"
+  },
+  "ダッシュアクセル": {
+   "element": "Mountain",
+   "name_it": "Scatto Bruciante (ダッシュアクセル)",
+   "kind": "Dribbling"
+  },
+  "分身フェイント": {
+   "element": "Forest",
+   "name_it": "Illusione Ottica (分身フェイント)",
+   "kind": "Dribbling"
+  },
+  "五里霧中": {
+   "element": "Mountain",
+   "name_it": "Tempesta di Polvere (五里霧中)",
+   "kind": "Dribbling"
+  },
+  "そよかぜステップ": {
+   "element": "Wind",
+   "name_it": "Giro di Vento (そよかぜステップ)",
+   "kind": "Dribbling"
+  },
+  "ダッシュストーム": {
+   "element": "Wind",
+   "name_it": "Grande Turbine (ダッシュストーム)",
+   "kind": "Dribbling"
+  },
+  "スカイウォーク（花火）": {
+   "element": "Mountain",
+   "name_it": "Guizzi Aerei (Fuochi d'artificio)",
+   "kind": "Dribbling"
+  },
+  "プレストターン": {
+   "element": "Forest",
+   "name_it": "Toccata e Fuga (プレストターン)",
+   "kind": "Dribbling"
+  },
+  "烈風ダッシュ": {
+   "element": "Fire",
+   "name_it": "Scatto Infuocato (烈風ダッシュ)",
+   "kind": "Dribbling"
+  },
+  "メテオシャワー": {
+   "element": "Fire",
+   "name_it": "Pioggia di Meteore (メテオシャワー)",
+   "kind": "Dribbling"
+  },
+  "ゴッドハンド2": {
+   "element": "Forest",
+   "name_it": "Mano di Luce (ゴッドハンド)",
+   "kind": "Parata"
+  },
+  "ムゲン・ザ・ハンド": {
+   "element": "Forest",
+   "name_it": "Mano Insuperabile (ムゲン・ザ・ハンド)",
+   "kind": "Parata"
+  },
+  "パワーシールド": {
+   "element": "Fire",
+   "name_it": "Barriera di Forza (パワーシールド)",
+   "kind": "Parata"
+  },
+  "フルパワーシールド": {
+   "element": "Fire",
+   "name_it": "Super Barriera di Forza (フルパワーシールド)",
+   "kind": "Parata"
+  },
+  "ゴッドハンド": {
+   "element": "Mountain",
+   "name_it": "Mano di Luce (ゴッドハンド)",
+   "kind": "Parata"
+  },
+  "怒りの鉄槌": {
+   "element": "Mountain",
+   "name_it": "Martello del Colosso (怒りの鉄槌)",
+   "kind": "Parata"
+  },
+  "シュートポケット": {
+   "element": "Forest",
+   "name_it": "Barriera Magnetica (シュートポケット)",
+   "kind": "Parata"
+  },
+  "ロケットこぶし": {
+   "element": "Fire",
+   "name_it": "Pugno Propulsore (ロケットこぶし)",
+   "kind": "Parata"
+  },
+  "爆裂パンチ": {
+   "element": "Fire",
+   "name_it": "Pugno di Fuoco (爆裂パンチ)",
+   "kind": "Parata"
+  },
+  "キラーブレード": {
+   "element": "Forest",
+   "name_it": "Mannaia Micidiale (キラーブレード)",
+   "kind": "Parata"
+  },
+  "ゆがむ空間": {
+   "element": "Forest",
+   "name_it": "Vortice Magnetico (ゆがむ空間)",
+   "kind": "Parata"
+  },
+  "つなみウォール": {
+   "element": "Wind",
+   "name_it": "Barriera d'Acqua (つなみウォール)",
+   "kind": "Parata"
+  },
+  "ギガントウォール": {
+   "element": "Mountain",
+   "name_it": "Barriera Gigante (ギガントウォール)",
+   "kind": "Parata"
+  },
+  "熱血パンチ": {
+   "element": "Fire",
+   "name_it": "Pugno di Fuoco(熱血パンチ)",
+   "kind": "Parata"
+  }
+ }
+}

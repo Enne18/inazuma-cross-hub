@@ -94,8 +94,21 @@
     parent.appendChild(el('b', null, value === null ? '—' : String(value)));
   }
 
+  var charIdx = null;
+  function baseChar(id) { if (!charIdx) { charIdx = {}; state.chars.forEach(function (x) { charIdx[x.id] = x; }); } return charIdx[id]; }
+  // scheda di un personaggio: se lo possiedi mostra livello e grado, altrimenti la scheda al livello massimo
+  function cardFor(id) {
+    if (state.owned[id]) return card(window.IECData.forLevel(state.byId[id], levelOf(id), rarOf(id)), true);
+    return card(baseChar(id));
+  }
+  function refreshCard(root, id) {
+    if ($('f-own').value) { render(); return; }          // con il filtro "in possesso" attivo la lista cambia
+    if (root.parentNode) root.parentNode.replaceChild(cardFor(id), root);
+    paintCount();
+  }
+
   function card(c, inCollection) {
-    var root = el('article', 'card');
+    var root = el('article', 'card' + (inCollection ? ' owned-card' : ''));
     root.style.setProperty('--el', 'var(--' + c.element + ')');
 
     var head = el('div', 'chead');
@@ -129,7 +142,7 @@
       if (!saveOwned()) flash('Impossibile salvare nel browser (archiviazione bloccata): la collezione vale solo finché la pagina resta aperta.');
       paintOwn();
       updateBadge();
-      if (root.parentNode && root.parentNode.id === 'c-grid') renderCollection();
+      refreshCard(root, c.id);
     });
     root.appendChild(own);
 
@@ -226,49 +239,41 @@
     return out;
   }
 
+  var shown = 0;
+  function paintCount() {
+    $('count').textContent = shown + ' di ' + state.chars.length + ' personaggi · ' + ownedCount() + ' in possesso' +
+      (shown === 0 ? ' — nessun risultato, prova ad azzerare i filtri' : '');
+  }
   function render() {
     var q = $('q').value.trim().toLowerCase();
     var e = $('f-element').value, p = $('f-position').value, r = $('f-rarity').value;
-    var t = $('f-team').value, s = $('f-series').value, only = $('f-complete').checked;
+    var t = $('f-team').value, s = $('f-series').value, own = $('f-own').value;
     var list = state.chars.filter(function (c) {
       if (e && c.element !== e) return false;
       if (p && c.position !== p) return false;
       if (r && String(c.rarity) !== r) return false;
       if (t && c.team_ja !== t) return false;
       if (s && c.series_ja !== s) return false;
-      if (only && c.verified !== 'ok') return false;
+      if (own === 'yes' && !state.owned[c.id]) return false;
+      if (own === 'no' && state.owned[c.id]) return false;
       if (q && c._hay.indexOf(q) === -1) return false;
       return true;
     });
     list = sortList(list, $('f-sort').value);
     var grid = $('grid');
     grid.textContent = '';
-    list.forEach(function (c) { grid.appendChild(card(c)); });
-    $('count').textContent = list.length + ' di ' + state.chars.length + ' personaggi' +
-      (list.length === 0 ? ' — nessun risultato, prova ad azzerare i filtri' : '');
+    list.forEach(function (c) { grid.appendChild(cardFor(c.id)); });
+    shown = list.length; paintCount();
   }
 
   function flash(msg) { $('c-msg').textContent = msg; }
 
-  function renderCollection() {
-    var hayById = {}; state.chars.forEach(function (x) { hayById[x.id] = x._hay; });
-    var all = window.IEC.ownedChars(), q = $('c-q').value.trim().toLowerCase();
-    var list = q ? all.filter(function (c) { var h = hayById[c.id]; return h && h.indexOf(q) >= 0; }) : all;
-    var g = $('c-grid');
-    g.textContent = '';
-    list.forEach(function (c) { g.appendChild(card(c, true)); });
-    $('c-count').textContent = all.length === 0
-      ? 'Nessun personaggio selezionato. Vai al Catalogo e premi "Ce l\'ho".'
-      : (q ? list.length + ' di ' + all.length + ' personaggi (filtrati)' : all.length + ' personaggi in collezione');
-  }
-
   function showTab(name) {
-    ['catalog', 'collection', 'builder', 'coaches'].forEach(function (t) { $(t).hidden = (t !== name); });
+    ['catalog', 'builder', 'coaches'].forEach(function (t) { $(t).hidden = (t !== name); });
     document.dispatchEvent(new CustomEvent('iec-tab', { detail: name }));
     Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (b) {
       b.classList.toggle('active', b.getAttribute('data-tab') === name);
     });
-    if (name === 'collection') { flash(''); renderCollection(); }
   }
 
   function setupCollection() {
@@ -309,7 +314,7 @@
           ok.forEach(function (id) { if (d && d.rarity && d.rarity[id] !== undefined) state.rar[id] = clampRar(d.rarity[id]); });
           saveRar();
           if (d && d.default_level) state.defaultLevel = clampLv(d.default_level);
-          saveLevels(); saveOwned(); updateBadge(); renderCollection();
+          saveLevels(); saveOwned(); updateBadge(); render();
           flash('Importati ' + ok.length + ' personaggi' + (skipped ? ' (' + skipped + ' id sconosciuti ignorati)' : '') + '. La collezione precedente è stata sostituita.');
         } catch (e) { flash('Importazione fallita: ' + e.message); }
       };
@@ -317,30 +322,29 @@
     });
     var im = $('opt-images');
     im.checked = window.IECUI.imagesOn();
-    im.addEventListener('change', function () { window.IECUI.setImages(im.checked); render(); renderCollection(); flash(im.checked ? 'Immagini attivate.' : 'Immagini spente: restano le pastiglie.'); });
+    im.addEventListener('change', function () { window.IECUI.setImages(im.checked); render(); flash(im.checked ? 'Immagini attivate.' : 'Immagini spente: restano le pastiglie.'); });
     var all = $('c-lvl-all');
     all.value = String(state.defaultLevel);
     all.addEventListener('change', function () { state.defaultLevel = clampLv(all.value); all.value = String(state.defaultLevel); saveLevels(); });
     $('c-lvl-apply').addEventListener('click', function () {
       var v = clampLv(all.value); all.value = String(v); state.defaultLevel = v;
       Object.keys(state.owned).forEach(function (id) { state.levels[id] = v; });
-      saveLevels(); renderCollection();
+      saveLevels(); render();
       flash('Livello ' + v + ' impostato per tutti i ' + ownedCount() + ' personaggi (e per i prossimi che aggiungi).');
     });
-    $('c-q').addEventListener('input', renderCollection);
     var rs = $('c-rar-all');
     window.IECData.RARITY_NAMES.forEach(function (n, i) { var o = el('option', null, n); o.value = String(i); rs.appendChild(o); });
     rs.value = '9';
     $('c-rar-apply').addEventListener('click', function () {
       var r = clampRar(rs.value);
       Object.keys(state.owned).forEach(function (id) { state.rar[id] = r; });
-      saveRar(); renderCollection();
+      saveRar(); render();
       flash('Grado "' + window.IECData.RARITY_NAMES[r] + '" impostato per tutti i ' + ownedCount() + ' personaggi.');
     });
     $('c-clear').addEventListener('click', function () {
       if (ownedCount() === 0) return;
       if (!window.confirm('Rimuovere tutti i ' + ownedCount() + ' personaggi dalla collezione?')) return;
-      state.owned = {}; state.levels = {}; state.rar = {}; saveRar(); saveOwned(); saveLevels(); updateBadge(); renderCollection(); flash('Collezione svuotata.');
+      state.owned = {}; state.levels = {}; state.rar = {}; saveRar(); saveOwned(); saveLevels(); updateBadge(); render(); flash('Collezione svuotata.');
     });
   }
 
@@ -377,7 +381,7 @@
     fillSelect($('f-team'), uniqueSorted('team_ja'));
     fillSelect($('f-series'), uniqueSorted('series_ja'));
     fillSelect($('f-sort'), SORTS);
-    var ids = ['q', 'f-element', 'f-position', 'f-rarity', 'f-team', 'f-series', 'f-sort', 'f-complete'];
+    var ids = ['q', 'f-own', 'f-element', 'f-position', 'f-rarity', 'f-team', 'f-series', 'f-sort'];
     ids.forEach(function (id) {
       $(id).addEventListener(id === 'q' ? 'input' : 'change', render);
     });
