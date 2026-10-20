@@ -9,9 +9,14 @@
   function getJSON(p) { return fetch(p).then(function (r) { if (!r.ok) throw new Error(p + ' → HTTP ' + r.status); return r.json(); }); }
   function nm(c) { return window.IECI18N ? window.IECI18N.primaryName(c) : (c.name_en || c.name_ja); }
 
-  function todayIndex(blk) {                       // boss di oggi: rotazione giornaliera dalla data di riferimento
-    var a = new Date(blk.anchor_date + 'T00:00:00'), n = new Date(), d0 = new Date(n.getFullYear(), n.getMonth(), n.getDate());
-    var days = Math.round((d0 - a) / 86400000), L = blk.bosses.length;
+  // Il giorno di gioco cambia alle 22:00 ora di Roma: a quell'ora si passa al boss successivo della rotazione.
+  function gameDay() {
+    var t = new Date(Date.now() + 2 * 3600000);
+    var p = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome', year: 'numeric', month: '2-digit', day: '2-digit' }).format(t);   // AAAA-MM-GG
+    return Date.UTC(+p.slice(0, 4), +p.slice(5, 7) - 1, +p.slice(8, 10)) / 86400000;
+  }
+  function todayIndex(blk) {                       // boss attuale: rotazione dalla data di riferimento
+    var a = blk.anchor_date, days = gameDay() - Date.UTC(+a.slice(0, 4), +a.slice(5, 7) - 1, +a.slice(8, 10)) / 86400000, L = blk.bosses.length;
     return (((blk.anchor_index + days) % L) + L) % L;
   }
   function kind() { return $('bo-kind').value; }
@@ -33,18 +38,35 @@
   }
 
   function row(o, i) {
-    var c = byId[o.id], li = el('li');
-    li.appendChild(el('strong', null, (i + 1) + '. ' + nm(c)));
-    li.appendChild(document.createTextNode(' — ' + (o.move || 'nessuna tecnica adatta') + ' (' + (EL[o.element] || '–') + ') → '));
-    li.appendChild(el('strong', null, fmt(o.value)));
-    var sm = el('small', 'muted', ' potenza ' + fmt(o.power) + ' · stat ' + fmt(o.stat) + (o.chained ? ' · catena ×1,1' : ''));
-    li.appendChild(sm);
+    var c = byId[o.id], li = el('li', 'bo-row');
+    li.style.setProperty('--el', 'var(--' + (o.element || c.element) + ')');
+    li.appendChild(el('span', 'bo-n', String(i + 1)));
+    li.appendChild(window.IECUI.avatar(c, 'md'));
+    var tx = el('div', 'bo-tx');
+    tx.appendChild(el('strong', null, nm(c)));
+    tx.appendChild(el('div', null, (o.move || 'nessuna tecnica adatta') + ' · ' + (EL[o.element] || '–')));
+    tx.appendChild(el('small', 'muted', 'potenza ' + fmt(o.power) + ' · stat ' + fmt(o.stat) + (o.chained ? ' · catena ×1,1' : '')));
+    li.appendChild(tx);
+    li.appendChild(el('strong', 'bo-val', fmt(o.value)));
     return li;
+  }
+  function bossAvatar(b) {                          // immagine del boss: il personaggio omonimo, se c'è
+    var base = b.name.replace(/ gigante$/, ''), c = null;
+    data.chars.some(function (x) { if ((x.name_en || '').replace(/ \(.*\)$/, '') === base) { c = x; return true; } return false; });
+    var card = el('div', 'bo-boss');
+    card.style.setProperty('--el', 'var(--' + b.element + ')');
+    var f = c ? c : { name_ja: base, element: b.element, position: '', rarity: 0 };
+    var av = window.IECUI.avatar(f, 'lg'); card.appendChild(av);
+    var tx = el('div', 'bo-tx');
+    tx.appendChild(el('strong', null, b.name));
+    tx.appendChild(el('div', null, EL[b.element] + (b.tech ? ' · ' + b.tech : '')));
+    card.appendChild(tx);
+    return card;
   }
   function teamBlock(t, title) {
     var box = el('div', 'team'), h = el('h3', null, title + ' — totale ' + fmt(t.total));
     box.appendChild(h);
-    var ol = el('ol'); t.order.forEach(function (o, i) { ol.appendChild(row(o, i)); }); box.appendChild(ol);
+    var ol = el('ol', 'bo-list'); t.order.forEach(function (o, i) { ol.appendChild(row(o, i)); }); box.appendChild(ol);
     return box;
   }
 
@@ -61,6 +83,7 @@
         var eng = new window.IECEngine.Engine(data.chars, aliases, {}), t0 = Date.now();
         var boss = { mode: b.mode, element: b.element, field: kind() === 'club' ? blk.field_bonus : 0 };
         var h = el('h3', null, b.name + ' · ' + EL[b.element] + (b.tech ? ' · ' + b.tech : '') + (kind() === 'daily' ? ' · prova di ' + (b.mode === 'attack' ? 'attacco (tiri)' : 'difesa (parate/contrasti)') : ' · tiri contro il boss (campo +' + blk.field_bonus + ' ai tiri in vantaggio)'));
+        out.appendChild(bossAvatar(b));
         out.appendChild(h);
         if (kind() === 'daily') {
           var r = eng.bossBest(pool, boss), target = +$('bo-target').value || blk.target[b.mode], diff = r.total - target;

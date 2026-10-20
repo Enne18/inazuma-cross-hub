@@ -62,7 +62,8 @@
   }
 
   // Copia del personaggio al livello L, nel formato che usano motore e catalogo.
-  function forLevel(c, L, rarity) {
+  // moveLv: {indice mossa: livello 1-10}; senza indicazione la potenza resta quella del livello 10 (dato base)
+  function forLevel(c, L, rarity, moveLv) {
     L = clampLevel(L);
     var o = {}, k;
     for (k in c) o[k] = c[k];
@@ -70,6 +71,12 @@
     o.stats_max = statsAt(c, L);
     o.passives = passivesAt(c, L, rarity);
     o.rarity_grade = rarity === undefined ? null : rarity;
+    if (moveLv && c.skills) o.skills = c.skills.map(function (k, i) {
+      var lv = Math.max(1, Math.min(10, Math.round(moveLv[i]) || 10)), pw = k.power_by_level && k.power_by_level[lv - 1];
+      var n = {}; for (var kk in k) n[kk] = k[kk];
+      n.move_level = lv; if (pw !== undefined && pw !== null) n.power = pw;
+      return n;
+    });
     return o;
   }
 

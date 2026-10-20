@@ -2,8 +2,8 @@
    state.base = dati grezzi; state.chars = personaggi al livello massimo (440) nel formato del motore (js/iecdata.js). */
 (function () {
   'use strict';
-  var state = { meta: null, base: [], chars: [], byId: {}, owned: {}, levels: {}, defaultLevel: 440, rar: {}, migration: {} };
-  var KEY = 'iecross.collection.v1', KEY_LV = 'iecross.levels.v1', KEY_DEF = 'iecross.deflevel.v1', KEY_RAR = 'iecross.rarity.v1';
+  var state = { meta: null, base: [], chars: [], byId: {}, owned: {}, levels: {}, defaultLevel: 440, rar: {}, mv: {}, migration: {} };
+  var KEY = 'iecross.collection.v1', KEY_LV = 'iecross.levels.v1', KEY_DEF = 'iecross.deflevel.v1', KEY_RAR = 'iecross.rarity.v1', KEY_MV = 'iecross.movelv.v1';
   var MAXLV = 440;
   function clampLv(v) { v = Math.round(+v); return isFinite(v) ? Math.max(1, Math.min(MAXLV, v)) : MAXLV; }
   function loadLevels() {
@@ -25,6 +25,13 @@
   function loadRar() { try { var o = JSON.parse(window.localStorage.getItem(KEY_RAR) || '{}'); Object.keys(o).forEach(function (id) { state.rar[id] = clampRar(o[id]); }); } catch (e) { /* ignora */ } }
   function saveRar() { try { window.localStorage.setItem(KEY_RAR, JSON.stringify(state.rar)); } catch (e) { /* archiviazione bloccata */ } }
   function setRar(id, r) { state.rar[id] = clampRar(r); saveRar(); }
+  // livello delle mosse (1-10) per personaggio e mossa: state.mv[id] = {indice: livello}; default 10
+  function clampMv(v) { v = Math.round(+v); return isNaN(v) ? 10 : Math.max(1, Math.min(10, v)); }
+  function mvOf(id, i) { var o = state.mv[id]; return o && o[i] !== undefined ? clampMv(o[i]) : 10; }
+  function loadMv() { try { var o = JSON.parse(window.localStorage.getItem(KEY_MV) || '{}'); Object.keys(o).forEach(function (id) { state.mv[id] = o[id]; }); } catch (e) { /* ignora */ } }
+  function saveMv() { try { window.localStorage.setItem(KEY_MV, JSON.stringify(state.mv)); } catch (e) { /* archiviazione bloccata */ } }
+  function setMv(id, i, v) { (state.mv[id] = state.mv[id] || {})[i] = clampMv(v); saveMv(); }
+  function flv(id, L) { return window.IECData.forLevel(state.byId[id], L === undefined ? levelOf(id) : L, rarOf(id), state.mv[id] || {}); }
 
   function loadOwned() {
     try {
@@ -47,7 +54,7 @@
     levelOf: function (id) { return levelOf(id); },
     // personaggi posseduti, ciascuno al livello scelto dall'utente (stat interpolate, passive per livello)
     ownedChars: function () {
-      return state.base.filter(function (b) { return state.owned[b.id]; }).map(function (b) { return window.IECData.forLevel(b, levelOf(b.id), rarOf(b.id)); });
+      return state.base.filter(function (b) { return state.owned[b.id]; }).map(function (b) { return flv(b.id); });
     }
   };
   var $ = function (id) { return document.getElementById(id); };
@@ -98,7 +105,7 @@
   function baseChar(id) { if (!charIdx) { charIdx = {}; state.chars.forEach(function (x) { charIdx[x.id] = x; }); } return charIdx[id]; }
   // scheda di un personaggio: se lo possiedi mostra livello e grado, altrimenti la scheda al livello massimo
   function cardFor(id) {
-    if (state.owned[id]) return card(window.IECData.forLevel(state.byId[id], levelOf(id), rarOf(id)), true);
+    if (state.owned[id]) return card(flv(id), true);
     return card(baseChar(id));
   }
   function refreshCard(root, id) {
@@ -158,7 +165,7 @@
         state.levels[c.id] = clampLv(v); saveLevels();
         if (!root.parentNode || root._replaced) return;   // scheda già sostituita (evento 'change' doppio durante la sostituzione)
         root._replaced = true;
-        var fresh = card(window.IECData.forLevel(state.byId[c.id], state.levels[c.id], rarOf(c.id)), true);
+        var fresh = card(flv(c.id, state.levels[c.id]), true);
         if (root.parentNode) root.parentNode.replaceChild(fresh, root);
       }
       inp.addEventListener('change', function () { setLv(inp.value); });
@@ -173,7 +180,7 @@
         setRar(c.id, sr.value);
         if (!root.parentNode || root._replaced) return;
         root._replaced = true;
-        var fresh2 = card(window.IECData.forLevel(state.byId[c.id], levelOf(c.id), rarOf(c.id)), true);
+        var fresh2 = card(flv(c.id), true);
         if (root.parentNode) root.parentNode.replaceChild(fresh2, root);
       });
       root.appendChild(av);
@@ -185,10 +192,22 @@
 
     var d1 = el('details');
     d1.appendChild(el('summary', null, 'Tecniche (' + c.skills.length + ')'));
-    c.skills.forEach(function (k) {
+    c.skills.forEach(function (k, ki) {
       var it = el('div', 'item');
       it.appendChild(el('span', null, k.name_ja)); it.firstChild.title = k.name_ja; it.firstChild.setAttribute('data-orig', k.name_ja);
       it.appendChild(el('span', null, ' — Potenza ' + k.power));
+      if (inCollection) {
+        var ml = el('label', 'mvlab', ' Lv mossa '), mi = el('input', 'mvin');
+        mi.type = 'number'; mi.min = '1'; mi.max = '10'; mi.value = String(mvOf(c.id, ki)); mi.setAttribute('aria-label', 'Livello mossa');
+        mi.addEventListener('change', function () {
+          setMv(c.id, ki, mi.value);
+          if (!root.parentNode || root._replaced) return;
+          root._replaced = true;
+          var fresh3 = card(flv(c.id), true);
+          if (root.parentNode) root.parentNode.replaceChild(fresh3, root);
+        });
+        ml.appendChild(mi); it.appendChild(ml);
+      }
       var sm = el('small'), CAT = { shoot: 'Tiro', dribble: 'Dribbling', block: 'Blocco', catch: 'Parata' };
       [ 'sblocco ' + k.unlock, 'TP ' + k.tp, k.crit != null ? 'critico ' + k.crit + '%' : null,
         k.range != null ? 'raggio ' + k.range : null, k.chain ? 'catena' : null, k.category ? (CAT[k.category] || k.category) : null
@@ -286,7 +305,7 @@
       b.addEventListener('click', function () { showTab(b.getAttribute('data-tab')); });
     });
     $('c-export').addEventListener('click', function () {
-      var data = { app: 'inazuma-cross-hub', version: 2, exported_on: new Date().toISOString().slice(0, 10), owned: Object.keys(state.owned), levels: state.levels, default_level: state.defaultLevel, rarity: state.rar };
+      var data = { app: 'inazuma-cross-hub', version: 2, exported_on: new Date().toISOString().slice(0, 10), owned: Object.keys(state.owned), levels: state.levels, default_level: state.defaultLevel, rarity: state.rar, move_levels: state.mv };
       var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
@@ -318,6 +337,7 @@
           state.rar = {};
           ok.forEach(function (id) { if (d && d.rarity && d.rarity[id] !== undefined) state.rar[id] = clampRar(d.rarity[id]); });
           saveRar();
+          state.mv = {}; ok.forEach(function (id) { if (d && d.move_levels && d.move_levels[id]) state.mv[id] = d.move_levels[id]; }); saveMv();
           if (d && d.default_level) state.defaultLevel = clampLv(d.default_level);
           saveLevels(); saveOwned(); updateBadge(); render();
           flash('Importati ' + ok.length + ' personaggi' + (skipped ? ' (' + skipped + ' id sconosciuti ignorati)' : '') + '. La collezione precedente è stata sostituita.');
@@ -346,10 +366,16 @@
       saveRar(); render();
       flash('Grado "' + window.IECData.RARITY_NAMES[r] + '" impostato per tutti i ' + ownedCount() + ' personaggi.');
     });
+    $('c-mv-apply').addEventListener('click', function () {
+      var v = clampMv($('c-mv-all').value);
+      Object.keys(state.owned).forEach(function (id) { state.mv[id] = {}; for (var i = 0; i < 4; i++) state.mv[id][i] = v; });
+      saveMv(); render();
+      flash('Livello mosse ' + v + ' impostato per tutti i ' + ownedCount() + ' personaggi.');
+    });
     $('c-clear').addEventListener('click', function () {
       if (ownedCount() === 0) return;
       if (!window.confirm('Rimuovere tutti i ' + ownedCount() + ' personaggi dalla collezione?')) return;
-      state.owned = {}; state.levels = {}; state.rar = {}; saveRar(); saveOwned(); saveLevels(); updateBadge(); render(); flash('Collezione svuotata.');
+      state.owned = {}; state.levels = {}; state.rar = {}; state.mv = {}; saveMv(); saveRar(); saveOwned(); saveLevels(); updateBadge(); render(); flash('Collezione svuotata.');
     });
   }
 
@@ -378,7 +404,7 @@
     });
     if (moved) saveOwned();
     state.levels = loadLevels();
-    loadRar();
+    loadRar(); loadMv();
     Object.keys(state.owned).forEach(function (id) { if (!state.levels[id]) state.levels[id] = MAXLV; });
     saveLevels();
     updateBadge();

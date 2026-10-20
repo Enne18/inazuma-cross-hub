@@ -385,6 +385,23 @@
   "Squadra consigliata, in ordine di schieramento": {
    "en": "Recommended team, in lineup order",
    "ja": "おすすめチーム（配置順）"
+  },
+  "{0} (Barista)": {
+   "en": "{0} (Barista)",
+   "ja": "{0} (Barista)",
+   "it": "{0} (Giovane)"
+  },
+  "Livello mosse per tutti": {
+   "en": "Move level for all",
+   "ja": "必殺技レベル（全員）"
+  },
+  "Lv mossa {0}": {
+   "en": "Move Lv {0}",
+   "ja": "必殺技Lv {0}"
+  },
+  "Lv mossa": {
+   "en": "Move Lv",
+   "ja": "必殺技Lv"
   }
  }
 }

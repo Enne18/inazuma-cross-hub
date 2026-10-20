@@ -288,3 +288,8 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - `data/bosses.json` (8 prove giornaliere a rotazione, oggi 20/10 = Xavier Foster; 4 boss del club, oggi Gran gigante): dati inseriti dall'utente, uso personale. Potenza "Senza fine": attacco 650.000, difesa 500.000.
 - engine: `scoreTeam(…, {allSat, cf, noScore})` (tutte le passive soddisfatte, cumulative una volta), `bossScore` (catena x1,1 tra tecniche dello stesso elemento, vantaggio +0,1, svantaggio -0,1, bonus campo +50 sui tiri in vantaggio, ordine ottimale 120 permutazioni + DP sulle mosse), `bossBest` (esaustivo sui 13 migliori + scambi), `bossClub` (3 squadre disgiunte, greedy).
 - `js/boss.js` + tab Boss. Non incluso: giocatori già usati oggi, zone, adesivi, livello tecniche (assunto max).
+
+## Tappa 14 — livello mosse, grafica Boss, cambio boss alle 22 (Roma), "Giovane"
+- Collezione: livello di ogni mossa 1-10 per giocatore (default 10), localStorage `iecross.movelv.v1`, incluso in export/import; "Livello mosse per tutti" nel pannello gestione. `IECData.forLevel(c, L, grado, moveLv)` sostituisce `power` con `power_by_level[lv-1]`: vale per Team Builder e Boss.
+- Boss: il giorno di gioco cambia alle 22:00 Europe/Rome (verificato con orologio simulato: 21:30 Xavier Foster, 22:15 Mark Evans). Grafica: immagine del boss (personaggio omonimo, se presente), righe con avatar, elemento e potenza.
+- i18n: pattern `{0} (Barista)` -> IT "Giovane" (Joseph Yosemite).
