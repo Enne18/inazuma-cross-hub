@@ -23,13 +23,31 @@
     poolLimit: 60,             // candidati considerati dalla ricerca (i migliori per punteggio singolo + quelli utili al tecnico)
     offRoleEstimateFactor: 0.5, // stima per personaggi senza statistiche messi fuori ruolo
     secondHalfFactor: 0.5,     // effetti solo a inizio secondo tempo
-    model: 'damage',           // 'damage' = formula del gioco (stat x potenza mossa); 'legacy' = vecchio punteggio a pesi
+    model: 'duel',             // 'duel' = duelli contro un rivale di riferimento (come eljuezholden); 'damage' = somma dei danni; 'legacy' = vecchio punteggio a pesi
+    bench: { shot: 140000, catch: 125000, dribble: 95000, block: 95000 }, // potenza di duello del rivale di riferimento a Lv440 (ordine di grandezza dei boss: ~100-170k)
+    duelExp: 1.5, duelWeights: { attack: 40, defense: 30, dribble: 15, block: 15 },           // 'damage' = formula del gioco (stat x potenza mossa); 'legacy' = vecchio punteggio a pesi
     roleDamageWeight: { FW: 1, MF: 1, DF: 1, GK: 1 },   // peso del danno per ruolo dello slot (calibrazione: difesa vs attacco)
     moveElementStab: 1.2,      // bonus elemento mossa = elemento personaggio (formula iecrosshub)
     nativeRoleMult: 1.1,       // ipotesi: moltiplicatore ruolo (iecrosshub: B 1.05, A 1.10, S 1.15) nel ruolo naturale
     offRoleMult: 1.0,          // ipotesi: fuori ruolo = nessun bonus; le mosse restano usabili
     offRoleMovePenalty: 0.5    // ipotesi: mossa non adatta al ruolo giocato (DF/GK devono parare/bloccare; FW/MF tirano o dribblano)
   };
+
+  // Guida RR_o (IE Cross Database, v1.4.0): potenza base = stat x risveglio + equipaggiamento del ruolo NATIVO + bonus.
+  // le statistiche del sito sono già a Legendary+ (x2: Gazelle Lv440 Tiro 7230 = 3612 x 2), quindi si scala x AWK[grado]/2
+  var AWK = [1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.85, 2];
+  var EQ_CURVE = { FW: [[1, 0], [50, 618], [100, 1924], [200, 8125], [300, 13314], [360, 16883], [400, 19783], [440, 23181]],
+                   MF: [[1, 0], [50, 615], [100, 1899], [200, 8031], [300, 13158], [360, 16686], [400, 19551], [440, 22902]],
+                   DF: [[1, 0], [50, 593], [100, 1851], [200, 7819], [300, 12812], [360, 16246], [400, 19035], [440, 22305]],
+                   GK: [[1, 0], [50, 580], [100, 1805], [200, 7621], [300, 12488], [360, 15835], [400, 18555], [440, 21742]] };
+  var EQ440 = { FW: { kick: 23181, technique: 17031, block: 11143, catch: 5798 }, MF: { kick: 16760, technique: 22902, block: 11143, catch: 5798 },
+                DF: { kick: 6854, technique: 11541, block: 22305, catch: 15552 }, GK: { kick: 11677, technique: 6477, block: 16086, catch: 21742 } };
+  var EQ_MAIN = { FW: 'kick', MF: 'technique', DF: 'block', GK: 'catch' };
+  function eqAt(role, stat, L) {
+    var pts = EQ_CURVE[role], v = pts[pts.length - 1][1];
+    for (var i = 1; i < pts.length; i++) if (L <= pts[i][0]) { var a = pts[i - 1], b = pts[i]; v = a[1] + (b[1] - a[1]) * (L - a[0]) / (b[0] - a[0]); break; }
+    return EQ440[role][stat] * v / EQ_CURVE[role][pts.length - 1][1];   // le altre statistiche: stessa curva della principale (stima)
+  }
 
   var ELEM = { '火': 'Fire', '風': 'Wind', '林': 'Forest', '山': 'Mountain' };
   var STATKEY = { 'キック': 'kick', 'テクニック': 'technique', 'ブロック': 'block', 'キャッチ': 'catch' };
@@ -81,7 +99,17 @@
       var tgt = parseTarget(phrase);
       if (tgt.implicit && lastTarget) tgt = lastTarget;
       lastTarget = tgt;
-      clauses.push({ kind: kind, stats: stats, value: value, down: down, target: tgt, text: part });
+      var cl = { kind: kind, stats: stats, value: value, down: down, target: tgt, text: part };
+      if (kind === 'power') {
+        var pc = phrase.match(/(シュート|ドリブル|ブロック|キーパー|キャッチ)技/);
+        if (pc) cl.pcat = { 'シュート': 'kick', 'ドリブル': 'technique', 'ブロック': 'block', 'キーパー': 'catch', 'キャッチ': 'catch' }[pc[1]];
+        var pe = phrase.match(/([火風林山])属性/); if (pe) cl.pel = ELEM[pe[1]];
+        if (!pc) {
+          var nm = phrase.replace(/^.*?(?:自身|味方|敵)[^の]*の/, '').replace(/^[火風林山]属性/, '').replace(/(?:の)?(?:技)?威力$/, '').replace(/の$/, '');
+          if (nm && nm !== '技' && !/^(?:自身|味方|敵)/.test(nm)) cl.pname = nm;
+        }
+      }
+      clauses.push(cl);
     });
     return { cond: cond, clauses: clauses, unparsed: unparsed, unlock: p.unlock, name: p.name_ja };
   }
@@ -220,9 +248,10 @@
       var c = SKILLCAT[k.category] || k.category, pw = k.power;
       if (!c || pw === null || pw === undefined || s[c] === null || s[c] === undefined) return;
       var stat = Math.floor(Math.max(0, s[c] + (sb[c] || 0)) * ((m.native || m.position) === m.position ? self.cfg.nativeRoleMult : self.cfg.offRoleMult));
-      var power = pw + (pb[c] || 0) + (pb.all || 0) + (k.element ? (pb['el:' + k.element] || 0) : 0);
+      var ke = k.element || m.element;
+      var power = pw + (pb[c] || 0) + (pb.all || 0) + (pb['el:' + ke] || 0) + (pb[c + '|el:' + ke] || 0) + (pb['mv:' + k.name_ja] || 0);
       var d = Math.floor(stat * power * 0.01);
-      if (k.element && k.element === m.element) d = Math.floor(d * self.cfg.moveElementStab);
+      if (ke === m.element) d = Math.floor(d * self.cfg.moveElementStab);
       if (cats.indexOf(c) < 0) d = d * self.cfg.offRoleMovePenalty;
       if (best === null || d > best) best = d;
     });
@@ -233,7 +262,7 @@
     var self = this, cfg = this.cfg, coach = opts && opts.coach;
     var out = { total: 0, base: 0, synergy: 0, members: [], effects: [], unmet: [], unparsed: [], estimated: 0, coach: null };
     var SB = members.map(function () { return {}; }), PB = members.map(function () { return {}; });
-    out._sb = SB; out._pb = PB;
+    out._sb = SB; out._pb = PB; out._rm = {};
     members.forEach(function (c) {
       var b = self.baseOf(c);
       out.base += b.value;
@@ -266,8 +295,20 @@
             affected.forEach(function (m) {
               var ix = members.indexOf(m);
               if (cl.kind === 'stat') cl.stats.forEach(function (st) { SB[ix][st] = (SB[ix][st] || 0) + (cl.down ? -1 : 1) * cl.value * fc; });
-              else PB[ix].all = (PB[ix].all || 0) + (cl.down ? -1 : 1) * cl.value * fc;
+              else {
+                var pk = cl.pname ? 'mv:' + cl.pname : (cl.pcat && cl.pel ? cl.pcat + '|el:' + cl.pel : cl.pcat ? cl.pcat : cl.pel ? 'el:' + cl.pel : 'all');
+                PB[ix][pk] = (PB[ix][pk] || 0) + (cl.down ? -1 : 1) * cl.value * fc;
+              }
             });
+          }
+          if (cl.target.enemy) {
+            var RR = { kick: 'shot', technique: 'dribble', block: 'block', catch: 'catch' }, PR = { FW: 'shot', MF: 'dribble', DF: 'block', GK: 'catch' }, roles = [];
+            if (cl.kind === 'stat') cl.stats.forEach(function (st) { roles.push(RR[st]); });
+            else if (cl.pcat) roles.push(RR[cl.pcat]);
+            else if (cl.target.pos.length) cl.target.pos.forEach(function (x) { roles.push(PR[x]); });
+            else roles = ['shot', 'dribble', 'block', 'catch'];
+            var fc2 = cond.type === 'event' ? cfg.conditionalFactor : 1;
+            roles.forEach(function (r) { if (!r) return; var o = out._rm[r] || (out._rm[r] = { stat: 0, power: 0 }); o[cl.kind === 'stat' ? 'stat' : 'power'] += cl.value * fc2 * (cfg.debuffWeight || 1); });
           }
           out.synergy += pts;
           out.effects.push({ source: src.id, passive: p.name, text: cl.text, kind: cl.kind, enemy: cl.target.enemy, affected: affected.map(function (m) { return m.id; }), conditional: cond.type === 'event', points: pts });
@@ -275,7 +316,11 @@
       });
     });
     if (coach) this.addCoach(coach, members, out);
-    if (cfg.model === 'damage') {
+    if (cfg.model === 'duel') {
+      var D = this.duelScore(members, SB, PB, out._rm);
+      out.total = D.score; out.parts = D.parts; out.duel = D;
+      members.forEach(function (m, i) { var d = self.damageOf(m, SB[i], PB[i]); out.members[i].damage = d === null ? 0 : d; });
+    } else if (cfg.model === 'damage') {
       var tot = 0;
       members.forEach(function (m, i) {
         var d = self.damageOf(m, SB[i], PB[i]);
@@ -287,6 +332,65 @@
     } else out.total = out.base + out.synergy;
     delete out._sb; delete out._pb;
     return out;
+  };
+
+  function winProb(r, e) { var x = Math.pow(Math.max(0, r), e); return x / (x + 1); }
+  // Duello = stat (con bonus) x potenza mossa (con bonus) x elemento x 0.01, contro un rivale di riferimento (meta).
+  Engine.prototype.duelScore = function (members, SB, PB, RM) {
+    var self = this, cfg = this.cfg, E = cfg.duelExp, W = cfg.duelWeights;
+    var B = {}, k, Lsum = 0;
+    members.forEach(function (m) { Lsum += m.level || 440; });
+    var Lm = Lsum / Math.max(1, members.length), lf = (eqAt('FW', 'kick', Lm) + 7200 * (0.1 + 0.9 * Lm / 440)) / (23181 + 7200);
+    ['shot', 'catch', 'dribble', 'block'].forEach(function (r) {
+      var b = cfg.bench[r], m = RM[r] || { stat: 0, power: 0 };
+      B[r] = Math.max(1, cfg.bench[r] * lf - (m.stat || 0) * cfg.bench[r] / 30000 - (m.power || 0) * cfg.bench[r] / 330);
+    });
+    var best = members.map(function (m, i) {
+      var s = m.stats_max || {}, out = {}, sb = SB[i], pb = PB[i];
+      var awk = AWK[m.rarity_grade == null ? 9 : m.rarity_grade] / 2, nat = m.native || m.position, L = m.level || 440;
+      (m.skills || []).forEach(function (k) {
+        var c = SKILLCAT[k.category] || k.category;
+        if (!c || k.power == null || s[c] == null) return;
+        var stat = Math.max(0, Math.floor(s[c] * awk) + eqAt(nat, c, L) + (sb[c] || 0));
+        var ke = k.element || m.element;     // mosse senza elemento nei dati: si assume quello del personaggio (la maggior parte lo condivide)
+        var power = k.power + (pb[c] || 0) + (pb.all || 0) + (pb['el:' + ke] || 0) + (pb[c + '|el:' + ke] || 0) + (pb['mv:' + k.name_ja] || 0);
+        var d = Math.floor(stat * Math.max(0, power) * 0.01 * (ke === m.element ? cfg.moveElementStab : 1));
+        if (!out[c] || d > out[c].d) out[c] = { d: d, range: k.range, name: k.name_ja };
+      });
+      return out;
+    });
+    function prop(i) {                       // quanto tira (FW sempre, MF solo con tiro da lontano)
+      var m = members[i], t = best[i].kick; if (!t) return 0;
+      if (m.position === 'FW') return 1;
+      var r = t.range == null ? 0 : t.range;
+      if (m.position === 'MF') return r >= 29 ? 0.9 : r >= 23 ? 0.6 : 0.25;
+      return r >= 29 ? 0.3 : 0.1;
+    }
+    var shooters = [], keeper = null, blockers = [], dribblers = [], tacklers = [];
+    members.forEach(function (m, i) {
+      var b = best[i], pr = prop(i);
+      if (b.kick && pr >= 0.5) shooters.push({ id: m.id, p: winProb(b.kick.d / B.catch, E), w: Math.min(1, pr + 0.1) * (m.position === 'FW' ? 1 : 0.6), d: b.kick.d, move: b.kick.name });
+      if (m.position === 'GK') keeper = { id: m.id, p: winProb((b.catch ? b.catch.d : ((m.stats_max.catch || 0) * 2 + 21742 + (SB[i].catch || 0)) * 0.4) / B.shot, E) * (b.catch ? 1 : 0.6), d: b.catch ? b.catch.d : 0 };
+      if (b.block && (m.position === 'DF' || m.position === 'MF')) {
+        var pb2 = winProb(b.block.d / B.dribble, E);
+        tacklers.push({ id: m.id, p: pb2, d: b.block.d });
+        blockers.push({ id: m.id, p: winProb(b.block.d / B.shot, E) * (m.position === 'DF' ? 1 : 0.7) });
+      }
+      if (b.technique && (m.position === 'MF' || m.position === 'FW')) dribblers.push({ id: m.id, p: winProb(b.technique.d / B.block, E), d: b.technique.d });
+    });
+    function desc(a, f) { return a.sort(function (x, y) { return (f ? f(y) : y.p) - (f ? f(x) : x.p); }); }
+    desc(shooters, function (x) { return x.p * x.w; });
+    var SW = [0.55, 0.3, 0.15], attack = 0;
+    shooters.slice(0, 3).forEach(function (x, i) { attack += SW[i] * x.p * x.w; });
+    desc(blockers); desc(dribblers); desc(tacklers);
+    var saveP = keeper ? keeper.p : 0;
+    var leak = (1 - saveP) * blockers.slice(0, 2).reduce(function (a, b) { return a * (1 - 0.3 * b.p); }, 1);
+    var defense = 1 - leak;
+    function avg(a, n) { var t = 0; for (var i = 0; i < n; i++) t += a[i] ? a[i].p : 0; return t / n; }
+    var dribble = avg(dribblers, 3), block = avg(tacklers, 4);
+    var wsum = W.attack + W.defense + W.dribble + W.block;
+    var score = 100 * (W.attack * attack + W.defense * defense + W.dribble * dribble + W.block * block) / wsum;
+    return { score: score, parts: { attack: attack, defense: defense, dribble: dribble, block: block }, bench: B, shooters: shooters.slice(0, 3), keeper: keeper, blockers: blockers.slice(0, 2), dribblers: dribblers.slice(0, 3), tacklers: tacklers.slice(0, 4) };
   };
 
   Engine.prototype.addCoach = function (coach, members, out) {

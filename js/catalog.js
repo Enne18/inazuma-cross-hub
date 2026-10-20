@@ -114,8 +114,9 @@
     var head = el('div', 'chead');
     head.appendChild(window.IECUI.avatar(c, 'md'));
     var ht = el('div', 'ctitle');
-    ht.appendChild(el('h2', null, c.name_en || c.name_ja));
-    ht.appendChild(el('div', 'ja', c.name_ja + (c.version ? ' · ' + c.version : '')));
+    var I18 = window.IECI18N, ja = I18 && I18.lang() === 'ja';
+    ht.appendChild(el('h2', null, I18 ? I18.primaryName(c) : (c.name_en || c.name_ja)));
+    ht.appendChild(el('div', 'ja', (ja ? (c.name_en || '') : c.name_ja) + (c.version ? (ja && !c.name_en ? '' : ' · ') + c.version : '')));
     head.appendChild(ht);
     root.appendChild(head);
 
@@ -185,10 +186,14 @@
     var d1 = el('details');
     d1.appendChild(el('summary', null, 'Tecniche (' + c.skills.length + ')'));
     c.skills.forEach(function (k) {
-      var it = el('div', 'item', (k.name_en || k.name_ja) + ' — Potenza ' + k.power);
-      it.appendChild(el('small', null, k.name_ja + ' · sblocco ' + k.unlock + ' · TP ' + k.tp +
-        (k.crit != null ? ' · critico ' + k.crit + '%' : '') + (k.range != null ? ' · raggio ' + k.range : '') +
-        (k.chain ? ' · catena' : '') + (k.category ? ' · ' + k.category : '')));
+      var it = el('div', 'item');
+      it.appendChild(el('span', null, k.name_ja)); it.firstChild.title = k.name_ja; it.firstChild.setAttribute('data-orig', k.name_ja);
+      it.appendChild(el('span', null, ' — Potenza ' + k.power));
+      var sm = el('small'), CAT = { shoot: 'Tiro', dribble: 'Dribbling', block: 'Blocco', catch: 'Parata' };
+      [ 'sblocco ' + k.unlock, 'TP ' + k.tp, k.crit != null ? 'critico ' + k.crit + '%' : null,
+        k.range != null ? 'raggio ' + k.range : null, k.chain ? 'catena' : null, k.category ? (CAT[k.category] || k.category) : null
+      ].filter(Boolean).forEach(function (t, i) { if (i) sm.appendChild(document.createTextNode(' · ')); sm.appendChild(el('span', null, t)); });
+      it.appendChild(sm);
       d1.appendChild(it);
     });
     root.appendChild(d1);
@@ -393,6 +398,7 @@
       render();
     });
     render();
+    document.addEventListener('iec-lang', function () { render(); });
     window.IEC.loaded = true;
     document.dispatchEvent(new CustomEvent('iec-ready'));
   }).catch(function (err) {

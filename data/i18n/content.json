@@ -1,0 +1,625 @@
+{
+ "_doc": "Traduzioni dei nomi di gioco (chiave = giapponese originale). Traduzioni letterali di Claude, non ufficiali. Nomi di squadre occidentali dall'adattamento inglese dove noto.",
+ "content": {
+  "SPフィクサーズ": {
+   "en": "SP Fixers",
+   "it": "SP Fixers"
+  },
+  "イナズマジャパン": {
+   "en": "Inazuma Japan",
+   "it": "Inazuma Japan"
+  },
+  "カオス": {
+   "en": "Chaos",
+   "it": "Caos"
+  },
+  "ザ・ジェネシス": {
+   "en": "The Genesis",
+   "it": "The Genesis"
+  },
+  "シン・ゼウス": {
+   "en": "Shin Zeus",
+   "it": "Shin Zeus"
+  },
+  "ジェミニストーム": {
+   "en": "Gemini Storm",
+   "it": "Gemini Storm"
+  },
+  "ヤングイナズマ": {
+   "en": "Young Inazuma",
+   "it": "Young Inazuma"
+  },
+  "世宇子": {
+   "en": "Zeus",
+   "it": "Zeus"
+  },
+  "尾刈斗中": {
+   "en": "Occult Junior High",
+   "it": "Scuola Media Occult"
+  },
+  "帝国学園": {
+   "en": "Royal Academy",
+   "it": "Royal Academy"
+  },
+  "御影専農": {
+   "en": "Brainwashing",
+   "it": "Brainwashing"
+  },
+  "戦国伊賀島": {
+   "en": "Shuriken (Sengoku Igajima)",
+   "it": "Shuriken (Sengoku Igajima)"
+  },
+  "日本代表2026": {
+   "en": "Japan National Team 2026",
+   "it": "Nazionale giapponese 2026"
+  },
+  "木戸川清修": {
+   "en": "Kirkwood",
+   "it": "Kirkwood"
+  },
+  "無所属": {
+   "en": "Unaffiliated",
+   "it": "Senza squadra"
+  },
+  "秋葉名戸": {
+   "en": "Otaku (Akibameido)",
+   "it": "Otaku (Akibameido)"
+  },
+  "稲妻KFC": {
+   "en": "Inazuma KFC",
+   "it": "Inazuma KFC"
+  },
+  "野生中": {
+   "en": "Wild Junior High",
+   "it": "Scuola Media Wild"
+  },
+  "雷門OB": {
+   "en": "Raimon Alumni",
+   "it": "Ex studenti Raimon"
+  },
+  "雷門中": {
+   "en": "Raimon Junior High",
+   "it": "Scuola Media Raimon"
+  },
+  "革命の雷門": {
+   "en": "Revolution Raimon",
+   "it": "Raimon della Rivoluzione"
+  },
+  "キーパー": {
+   "en": "Keeper",
+   "it": "Portiere"
+  },
+  "サイドバック": {
+   "en": "Side Back",
+   "it": "Terzino"
+  },
+  "シュートブロッカー": {
+   "en": "Shoot Blocker",
+   "it": "Blocca-tiri"
+  },
+  "ストッパー": {
+   "en": "Stopper",
+   "it": "Stopper"
+  },
+  "ストライカー": {
+   "en": "Striker",
+   "it": "Striker"
+  },
+  "セカンドトップ": {
+   "en": "Second Top",
+   "it": "Seconda punta"
+  },
+  "ディフェンシブハーフ": {
+   "en": "Defensive Half",
+   "it": "Mediano difensivo"
+  },
+  "プレイメイカー": {
+   "en": "Playmaker",
+   "it": "Regista"
+  },
+  "モチベーター": {
+   "en": "Motivator",
+   "it": "Motivatore"
+  },
+  "ロングシューター": {
+   "en": "Long Shooter",
+   "it": "Tiratore da lontano"
+  },
+  "イナイレ1": {
+   "en": "Inazuma Eleven 1",
+   "it": "Inazuma Eleven 1"
+  },
+  "イナイレ2": {
+   "en": "Inazuma Eleven 2",
+   "it": "Inazuma Eleven 2"
+  },
+  "イナイレ3": {
+   "en": "Inazuma Eleven 3",
+   "it": "Inazuma Eleven 3"
+  },
+  "イナイレGO1": {
+   "en": "Inazuma Eleven GO 1",
+   "it": "Inazuma Eleven GO 1"
+  },
+  "イナイレクロス": {
+   "en": "Inazuma Eleven Cross",
+   "it": "Inazuma Eleven Cross"
+  },
+  "そよかぜステップ": {
+   "en": "Breeze Step",
+   "it": "Passo della Brezza"
+  },
+  "つちだるま": {
+   "en": "Earth Daruma",
+   "it": "Daruma di Terra"
+  },
+  "つなみウォール": {
+   "en": "Tsunami Wall",
+   "it": "Muro dello Tsunami"
+  },
+  "ひとりワンツー": {
+   "en": "Solo One-Two",
+   "it": "Uno-Due da Solo"
+  },
+  "まぼろしドリブル": {
+   "en": "Phantom Dribble",
+   "it": "Dribbling Fantasma"
+  },
+  "もちもち黄粉餅（花火）": {
+   "en": "Chewy Kinako Mochi (Fireworks)",
+   "it": "Mochi al Kinako Morbido (Fuochi d'artificio)"
+  },
+  "やきもちスクリュー（花火）": {
+   "en": "Jealousy Screw (Fireworks)",
+   "it": "Vite della Gelosia (Fuochi d'artificio)"
+  },
+  "ゆがむ空間": {
+   "en": "Warped Space",
+   "it": "Spazio Distorto"
+  },
+  "アステロイドベルト": {
+   "en": "Asteroid Belt",
+   "it": "Fascia degli Asteroidi"
+  },
+  "アストロブレイク": {
+   "en": "Astro Break",
+   "it": "Astro Break"
+  },
+  "アトミックフレア": {
+   "en": "Atomic Flare",
+   "it": "Vampata Atomica"
+  },
+  "アースクェイク": {
+   "en": "Earthquake",
+   "it": "Terremoto"
+  },
+  "イグナイトスティール": {
+   "en": "Ignite Steal",
+   "it": "Furto Incandescente"
+  },
+  "イナズマ落とし": {
+   "en": "Lightning Drop",
+   "it": "Caduta del Fulmine"
+  },
+  "イリュージョンボール": {
+   "en": "Illusion Ball",
+   "it": "Palla Illusione"
+  },
+  "ウォーターベール": {
+   "en": "Water Veil",
+   "it": "Velo d'Acqua"
+  },
+  "ウルフレジェンド": {
+   "en": "Wolf Legend",
+   "it": "Leggenda del Lupo"
+  },
+  "エターナルブリザード": {
+   "en": "Eternal Blizzard",
+   "it": "Bufera Eterna"
+  },
+  "ガニメデプロトン": {
+   "en": "Ganymede Proton",
+   "it": "Protone di Ganimede"
+  },
+  "キラースライド": {
+   "en": "Killer Slide",
+   "it": "Scivolata Assassina"
+  },
+  "キラーフィールズ": {
+   "en": "Killer Fields",
+   "it": "Campi Assassini"
+  },
+  "キラーブレード": {
+   "en": "Killer Blade",
+   "it": "Lama Assassina"
+  },
+  "ギガントウォール": {
+   "en": "Gigant Wall",
+   "it": "Muro Gigante"
+  },
+  "クイックドロウ": {
+   "en": "Quick Draw",
+   "it": "Estrazione Rapida"
+  },
+  "クロスドライブ": {
+   "en": "Cross Drive",
+   "it": "Cross Drive"
+  },
+  "クロスファイア": {
+   "en": "Crossfire",
+   "it": "Fuoco Incrociato"
+  },
+  "グラビテイション": {
+   "en": "Gravitation",
+   "it": "Gravitazione"
+  },
+  "グレネードショット": {
+   "en": "Grenade Shot",
+   "it": "Tiro Granata"
+  },
+  "コイルターン": {
+   "en": "Coil Turn",
+   "it": "Giro a Spirale"
+  },
+  "ゴッドノウズ": {
+   "en": "God Knows",
+   "it": "God Knows"
+  },
+  "ゴッドノウズ・マキナ": {
+   "en": "God Knows Machina",
+   "it": "God Knows Machina"
+  },
+  "ゴッドハンド": {
+   "en": "God Hand",
+   "it": "Mano Divina"
+  },
+  "サイクロン": {
+   "en": "Cyclone",
+   "it": "Ciclone"
+  },
+  "サムライショット": {
+   "en": "Samurai Shot",
+   "it": "Tiro del Samurai"
+  },
+  "サムライフェイント": {
+   "en": "Samurai Feint",
+   "it": "Finta del Samurai"
+  },
+  "サムライペンギン2号": {
+   "en": "Samurai Penguin No. 2",
+   "it": "Pinguino Samurai N. 2"
+  },
+  "ザ・ウォール": {
+   "en": "The Wall",
+   "it": "Il Muro"
+  },
+  "ザ・タワー": {
+   "en": "The Tower",
+   "it": "La Torre"
+  },
+  "ザ・マウンテン": {
+   "en": "The Mountain",
+   "it": "La Montagna"
+  },
+  "ザ・ミスト": {
+   "en": "The Mist",
+   "it": "La Nebbia"
+  },
+  "シュートポケット": {
+   "en": "Shoot Pocket",
+   "it": "Tasca del Tiro"
+  },
+  "ジグザグスパーク": {
+   "en": "Zigzag Spark",
+   "it": "Scintilla a Zigzag"
+  },
+  "ジャッジスルー": {
+   "en": "Judge Through",
+   "it": "Judge Through"
+  },
+  "ジャッジスルー2": {
+   "en": "Judge Through 2",
+   "it": "Judge Through 2"
+  },
+  "スカイウォーク（花火）": {
+   "en": "Skywalk (Fireworks)",
+   "it": "Passeggiata nel Cielo (Fuochi d'artificio)"
+  },
+  "スピニングカット": {
+   "en": "Spinning Cut",
+   "it": "Taglio Rotante"
+  },
+  "スピニングシュート": {
+   "en": "Spinning Shoot",
+   "it": "Tiro Rotante"
+  },
+  "スペースペンギン": {
+   "en": "Space Penguin",
+   "it": "Pinguino Spaziale"
+  },
+  "スーパー四股踏み": {
+   "en": "Super Shiko Stomp",
+   "it": "Super Pestone del Sumo"
+  },
+  "タイガードライブ": {
+   "en": "Tiger Drive",
+   "it": "Tiger Drive"
+  },
+  "ターザンキック": {
+   "en": "Tarzan Kick",
+   "it": "Calcio di Tarzan"
+  },
+  "ダッシュアクセル": {
+   "en": "Dash Accel",
+   "it": "Accelerazione di Scatto"
+  },
+  "ダッシュストーム": {
+   "en": "Dash Storm",
+   "it": "Tempesta di Scatto"
+  },
+  "ダークトルネード": {
+   "en": "Dark Tornado",
+   "it": "Tornado Oscuro"
+  },
+  "ツインブースト": {
+   "en": "Twin Boost",
+   "it": "Twin Boost"
+  },
+  "ツインブーストF": {
+   "en": "Twin Boost F",
+   "it": "Twin Boost F"
+  },
+  "ツナミブースト": {
+   "en": "Tsunami Boost",
+   "it": "Tsunami Boost"
+  },
+  "ディバインアロー": {
+   "en": "Divine Arrow",
+   "it": "Freccia Divina"
+  },
+  "ディープミスト": {
+   "en": "Deep Mist",
+   "it": "Nebbia Profonda"
+  },
+  "デスソード": {
+   "en": "Death Sword",
+   "it": "Spada della Morte"
+  },
+  "デスゾーン": {
+   "en": "Death Zone",
+   "it": "Zona della Morte"
+  },
+  "デスドロップ": {
+   "en": "Death Drop",
+   "it": "Caduta Mortale"
+  },
+  "トライアングルＺ": {
+   "en": "Triangle Z",
+   "it": "Triangolo Z"
+  },
+  "ドラゴンクラッシュ": {
+   "en": "Dragon Crash",
+   "it": "Schianto del Drago"
+  },
+  "ドラゴンスレイヤー": {
+   "en": "Dragon Slayer",
+   "it": "Ammazzadraghi"
+  },
+  "ド根性バット": {
+   "en": "Guts Bat",
+   "it": "Mazza della Grinta"
+  },
+  "ノーザンインパクト": {
+   "en": "Northern Impact",
+   "it": "Impatto del Nord"
+  },
+  "バウンサーラビット（花火）": {
+   "en": "Bouncer Rabbit (Fireworks)",
+   "it": "Coniglio Rimbalzante (Fuochi d'artificio)"
+  },
+  "バックトルネード": {
+   "en": "Back Tornado",
+   "it": "Tornado Rovesciato"
+  },
+  "バーンアウト": {
+   "en": "Burn Out",
+   "it": "Burn Out"
+  },
+  "パトリオットシュート": {
+   "en": "Patriot Shoot",
+   "it": "Tiro Patriota"
+  },
+  "パワーシールド": {
+   "en": "Power Shield",
+   "it": "Scudo di Potenza"
+  },
+  "パーフェクト・タワー": {
+   "en": "Perfect Tower",
+   "it": "Torre Perfetta"
+  },
+  "ヒートタックル": {
+   "en": "Heat Tackle",
+   "it": "Contrasto Rovente"
+  },
+  "ファイアトルネード": {
+   "en": "Fire Tornado",
+   "it": "Tornado di Fuoco"
+  },
+  "ファイアブリザード": {
+   "en": "Fire Blizzard",
+   "it": "Bufera di Fuoco"
+  },
+  "ファントムシュート": {
+   "en": "Phantom Shoot",
+   "it": "Tiro Fantasma"
+  },
+  "フォトンフラッシュ": {
+   "en": "Photon Flash",
+   "it": "Lampo di Fotoni"
+  },
+  "フォルテシモ": {
+   "en": "Fortissimo",
+   "it": "Fortissimo"
+  },
+  "フルパワーシールド": {
+   "en": "Full Power Shield",
+   "it": "Scudo a Piena Potenza"
+  },
+  "フレイムベール": {
+   "en": "Flame Veil",
+   "it": "Velo di Fiamme"
+  },
+  "フローズンスティール": {
+   "en": "Frozen Steal",
+   "it": "Furto Congelato"
+  },
+  "ブラックホール": {
+   "en": "Black Hole",
+   "it": "Buco Nero"
+  },
+  "ブルーサイクロン": {
+   "en": "Blue Cyclone",
+   "it": "Ciclone Blu"
+  },
+  "ブレードアタック": {
+   "en": "Blade Attack",
+   "it": "Attacco della Lama"
+  },
+  "プレストターン": {
+   "en": "Presto Turn",
+   "it": "Giro Presto"
+  },
+  "マッハウィンド": {
+   "en": "Mach Wind",
+   "it": "Vento Mach"
+  },
+  "ムゲン・ザ・ハンド": {
+   "en": "Mugen the Hand",
+   "it": "Mugen the Hand"
+  },
+  "メガネクラッシュ": {
+   "en": "Glasses Crash",
+   "it": "Frantumazione degli Occhiali"
+  },
+  "メテオシャワー": {
+   "en": "Meteor Shower",
+   "it": "Pioggia di Meteore"
+  },
+  "ユニバースブラスト": {
+   "en": "Universe Blast",
+   "it": "Esplosione dell'Universo"
+  },
+  "ライトニングアクセル": {
+   "en": "Lightning Accel",
+   "it": "Accelerazione Fulminea"
+  },
+  "リフレクトバスター": {
+   "en": "Reflect Buster",
+   "it": "Reflect Buster"
+  },
+  "ロケットこぶし": {
+   "en": "Rocket Fist",
+   "it": "Pugno Razzo"
+  },
+  "ローズスプラッシュ": {
+   "en": "Rose Splash",
+   "it": "Spruzzo di Rose"
+  },
+  "ワープドライブ": {
+   "en": "Warp Drive",
+   "it": "Warp Drive"
+  },
+  "ワームホール": {
+   "en": "Wormhole",
+   "it": "Wormhole"
+  },
+  "五里霧中": {
+   "en": "Lost in the Fog",
+   "it": "Perso nella Nebbia"
+  },
+  "分身フェイント": {
+   "en": "Clone Feint",
+   "it": "Finta del Clone"
+  },
+  "四股踏み": {
+   "en": "Shiko Stomp",
+   "it": "Pestone del Sumo"
+  },
+  "天空落とし": {
+   "en": "Sky Drop",
+   "it": "Caduta dal Cielo"
+  },
+  "彗星シュート": {
+   "en": "Comet Shoot",
+   "it": "Tiro Cometa"
+  },
+  "怒りの鉄槌": {
+   "en": "Hammer of Wrath",
+   "it": "Martello dell'Ira"
+  },
+  "怨霊": {
+   "en": "Vengeful Spirit",
+   "it": "Spirito Vendicativo"
+  },
+  "旋風陣": {
+   "en": "Whirlwind Formation",
+   "it": "Formazione del Turbine"
+  },
+  "残像": {
+   "en": "Afterimage",
+   "it": "Immagine Residua"
+  },
+  "流星ブレード": {
+   "en": "Meteor Blade",
+   "it": "Lama Meteora"
+  },
+  "炎の風見鶏": {
+   "en": "Flame Weathercock",
+   "it": "Galletto di Fuoco"
+  },
+  "烈風ダッシュ": {
+   "en": "Gale Dash",
+   "it": "Scatto della Bufera"
+  },
+  "熱血パンチ": {
+   "en": "Hot-Blooded Punch",
+   "it": "Pugno Infuocato"
+  },
+  "爆熱スクリュー": {
+   "en": "Blazing Screw",
+   "it": "Vite Rovente"
+  },
+  "爆裂パンチ": {
+   "en": "Explosive Punch",
+   "it": "Pugno Esplosivo"
+  },
+  "疾風ダッシュ": {
+   "en": "Swift Wind Dash",
+   "it": "Scatto del Vento Veloce"
+  },
+  "百烈ショット": {
+   "en": "Hundred Blows Shot",
+   "it": "Tiro dei Cento Colpi"
+  },
+  "皇帝ペンギン2号": {
+   "en": "Emperor Penguin No. 2",
+   "it": "Pinguino Imperatore N. 2"
+  },
+  "真空魔": {
+   "en": "Vacuum Demon",
+   "it": "Demone del Vuoto"
+  },
+  "竜巻旋風": {
+   "en": "Tornado Whirlwind",
+   "it": "Turbine a Tornado"
+  },
+  "裁きの鉄槌": {
+   "en": "Hammer of Judgment",
+   "it": "Martello del Giudizio"
+  },
+  "風神の舞": {
+   "en": "Dance of the Wind God",
+   "it": "Danza del Dio del Vento"
+  }
+ }
+}

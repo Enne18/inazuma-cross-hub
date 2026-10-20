@@ -1,0 +1,350 @@
+{
+ "_doc": "Interfaccia: chiave = testo italiano; {0},{1} = parti variabili. Traduzioni di Claude.",
+ "ui": {
+  "Personaggi": {
+   "en": "Characters",
+   "ja": "キャラクター"
+  },
+  "Team Builder": {
+   "en": "Team Builder",
+   "ja": "チームビルダー"
+  },
+  "Tecnici": {
+   "en": "Coaches",
+   "ja": "監督"
+  },
+  "Personaggi in possesso": {
+   "en": "Characters owned",
+   "ja": "所持キャラクター"
+  },
+  "Cerca: nome, squadra, tecnica o passiva…": {
+   "en": "Search: name, team, move or passive…",
+   "ja": "検索：名前・チーム・必殺技・パッシブ…"
+  },
+  "Cerca": {
+   "en": "Search",
+   "ja": "検索"
+  },
+  "Possesso": {
+   "en": "Owned",
+   "ja": "所持"
+  },
+  "Elemento": {
+   "en": "Element",
+   "ja": "属性"
+  },
+  "Ruolo": {
+   "en": "Role",
+   "ja": "ポジション"
+  },
+  "Rarità": {
+   "en": "Rarity",
+   "ja": "レアリティ"
+  },
+  "Squadra": {
+   "en": "Team",
+   "ja": "チーム"
+  },
+  "Serie": {
+   "en": "Series",
+   "ja": "シリーズ"
+  },
+  "Ordina per": {
+   "en": "Sort by",
+   "ja": "並び替え"
+  },
+  "Tutti": {
+   "en": "All",
+   "ja": "すべて"
+  },
+  "Tutte": {
+   "en": "All",
+   "ja": "すべて"
+  },
+  "In possesso": {
+   "en": "Owned",
+   "ja": "所持している"
+  },
+  "Non in possesso": {
+   "en": "Not owned",
+   "ja": "所持していない"
+  },
+  "Azzera filtri": {
+   "en": "Reset filters",
+   "ja": "フィルターをリセット"
+  },
+  "Fuoco": {
+   "en": "Fire",
+   "ja": "火"
+  },
+  "Vento": {
+   "en": "Wind",
+   "ja": "風"
+  },
+  "Foresta": {
+   "en": "Forest",
+   "ja": "林"
+  },
+  "Montagna": {
+   "en": "Mountain",
+   "ja": "山"
+  },
+  "Portiere": {
+   "en": "Goalkeeper",
+   "ja": "GK"
+  },
+  "Difensore": {
+   "en": "Defender",
+   "ja": "DF"
+  },
+  "Centrocampista": {
+   "en": "Midfielder",
+   "ja": "MF"
+  },
+  "Attaccante": {
+   "en": "Forward",
+   "ja": "FW"
+  },
+  "Ordine originale": {
+   "en": "Original order",
+   "ja": "元の順"
+  },
+  "Nome (A-Z)": {
+   "en": "Name (A-Z)",
+   "ja": "名前（A-Z）"
+  },
+  "Rarità (alta prima)": {
+   "en": "Rarity (high first)",
+   "ja": "レアリティ（高い順）"
+  },
+  "Calcio (alto prima)": {
+   "en": "Kick (high first)",
+   "ja": "キック（高い順）"
+  },
+  "Tecnica (alta prima)": {
+   "en": "Technique (high first)",
+   "ja": "テクニック（高い順）"
+  },
+  "Blocco (alto prima)": {
+   "en": "Block (high first)",
+   "ja": "ブロック（高い順）"
+  },
+  "Presa (alta prima)": {
+   "en": "Catch (high first)",
+   "ja": "キャッチ（高い順）"
+  },
+  "Velocità (alta prima)": {
+   "en": "Speed (high first)",
+   "ja": "スピード（高い順）"
+  },
+  "Calcio": {
+   "en": "Kick",
+   "ja": "キック"
+  },
+  "Tecnica": {
+   "en": "Technique",
+   "ja": "テクニック"
+  },
+  "Blocco": {
+   "en": "Block",
+   "ja": "ブロック"
+  },
+  "Presa": {
+   "en": "Catch",
+   "ja": "キャッチ"
+  },
+  "Velocità": {
+   "en": "Speed",
+   "ja": "スピード"
+  },
+  "TP": {
+   "en": "TP",
+   "ja": "TP"
+  },
+  "Tiro": {
+   "en": "Shoot",
+   "ja": "シュート"
+  },
+  "Dribbling": {
+   "en": "Dribble",
+   "ja": "ドリブル"
+  },
+  "Parata": {
+   "en": "Catch",
+   "ja": "キャッチ"
+  },
+  "Portiere (tecnica)": {
+   "en": "Keeper",
+   "ja": "キーパー"
+  },
+  "Gestione collezione (livello, grado, backup)": {
+   "en": "Collection management (level, grade, backup)",
+   "ja": "コレクション管理（レベル・ランク・バックアップ）"
+  },
+  "Livello per tutti": {
+   "en": "Level for all",
+   "ja": "全員のレベル"
+  },
+  "Grado per tutti": {
+   "en": "Grade for all",
+   "ja": "全員のランク"
+  },
+  "Applica a tutti": {
+   "en": "Apply to all",
+   "ja": "全員に適用"
+  },
+  "Esporta (file JSON)": {
+   "en": "Export (JSON file)",
+   "ja": "エクスポート（JSON）"
+  },
+  "Importa": {
+   "en": "Import",
+   "ja": "インポート"
+  },
+  "Svuota collezione": {
+   "en": "Clear collection",
+   "ja": "コレクションを空にする"
+  },
+  "Segna i personaggi che possiedi con \"Ce l'ho\": per ognuno compaiono livello e grado. La collezione è salvata solo in questo browser: usa Esporta per un backup o per spostarla su un altro dispositivo.": {
+   "en": "Mark the characters you own with \"Owned\": level and grade appear for each one. The collection is saved only in this browser: use Export for a backup or to move it to another device.",
+   "ja": "所持しているキャラクターに「所持」を付けると、それぞれのレベルとランクが表示されます。コレクションはこのブラウザにのみ保存されます。バックアップや別の端末への移行にはエクスポートを使ってください。"
+  },
+  "Mostra le immagini dei personaggi (collegate al sito dei dati; se non si caricano resta la pastiglia)": {
+   "en": "Show character images (linked from the data site; if they do not load, the colored badge is shown)",
+   "ja": "キャラクター画像を表示（データサイトから取得。読み込めない場合は色付きバッジを表示）"
+  },
+  "Il livello vale anche per i nuovi personaggi che aggiungi. Le passive sono esatte per livello (dati del sito); le statistiche ai livelli intermedi sono una stima lineare tra Lv 1 e Lv 440, perché il sito fornisce solo quei due valori. Il Grado (da Normal Player a Legendary Player +) decide quali passive ADVANCED e ADVANCED+ hai sbloccato: ADVANCED da Advanced Player, ADVANCED+ da Advanced Player +, con tacche successive a Top e Legendary. Il Team Builder ne tiene conto (di default Legendary Player +).": {
+   "en": "The level also applies to new characters you add. Passives are exact per level (site data); stats at intermediate levels are a linear estimate between Lv 1 and Lv 440, because the site only provides those two values. The Grade (from Normal Player to Legendary Player +) decides which ADVANCED and ADVANCED+ passives you have unlocked: ADVANCED from Advanced Player, ADVANCED+ from Advanced Player +, with further tiers at Top and Legendary. The Team Builder takes it into account (default Legendary Player +).",
+   "ja": "レベルは新しく追加するキャラクターにも適用されます。パッシブはレベルごとに正確です（サイトのデータ）。中間レベルのステータスは、サイトがLv1とLv440の2つの値しか提供しないため、その間の直線的な推定値です。ランク（ノーマルプレイヤーからレジェンダリープレイヤー＋）によって、ADVANCEDとADVANCED+のパッシブの解放状況が決まります。ADVANCEDはアドバンスドプレイヤー、ADVANCED+はアドバンスドプレイヤー＋から、以降はトップとレジェンダリーで段階的に強化されます。チームビルダーはこれを考慮します（初期値はレジェンダリープレイヤー＋）。"
+  },
+  "✓ Ce l'ho": {
+   "en": "✓ Owned",
+   "ja": "✓ 所持"
+  },
+  "+ Ce l'ho": {
+   "en": "+ Owned",
+   "ja": "+ 所持"
+  },
+  "Livello": {
+   "en": "Level",
+   "ja": "レベル"
+  },
+  "Grado": {
+   "en": "Grade",
+   "ja": "ランク"
+  },
+  "Max": {
+   "en": "Max",
+   "ja": "最大"
+  },
+  "Tecniche ({0})": {
+   "en": "Moves ({0})",
+   "ja": "必殺技（{0}）"
+  },
+  "Passive ({0})": {
+   "en": "Passives ({0})",
+   "ja": "パッシブ（{0}）"
+  },
+  "Potenza {0}": {
+   "en": "Power {0}",
+   "ja": "威力 {0}"
+  },
+  "— Potenza {0}": {
+   "en": "— Power {0}",
+   "ja": "— 威力 {0}"
+  },
+  "sblocco {0}": {
+   "en": "unlocks at {0}",
+   "ja": "解放 {0}"
+  },
+  "critico {0}%": {
+   "en": "crit {0}%",
+   "ja": "クリティカル {0}%"
+  },
+  "raggio {0}": {
+   "en": "range {0}",
+   "ja": "射程 {0}"
+  },
+  "catena": {
+   "en": "chain",
+   "ja": "チェイン"
+  },
+  "bloccata fino al Lv {0}": {
+   "en": "locked until Lv {0}",
+   "ja": "Lv{0}まで未解放"
+  },
+  "Note: {0}": {
+   "en": "Notes: {0}",
+   "ja": "備考：{0}"
+  },
+  "Lv {0}/{1}": {
+   "en": "Lv {0}/{1}",
+   "ja": "Lv {0}/{1}"
+  },
+  "Técnica {0}": {
+   "en": "Technique {0}",
+   "ja": "必殺技 {0}",
+   "it": "Tecnica {0}"
+  },
+  "Dati parziali": {
+   "en": "Partial data",
+   "ja": "データ一部のみ"
+  },
+  "Dati mancanti": {
+   "en": "Missing data",
+   "ja": "データなし"
+  },
+  "Valutazione {0}": {
+   "en": "Rating {0}",
+   "ja": "評価 {0}"
+  },
+  "{0} di {1} personaggi · {2} in possesso": {
+   "en": "{0} of {1} characters · {2} owned",
+   "ja": "{0} / {1} キャラクター · 所持 {2}"
+  },
+  "{0} di {1} personaggi · {2} in possesso — nessun risultato, prova ad azzerare i filtri": {
+   "en": "{0} of {1} characters · {2} owned — no results, try resetting the filters",
+   "ja": "{0} / {1} キャラクター · 所持 {2} — 結果なし。フィルターをリセットしてください"
+  },
+  "Livello {0} impostato per tutti i {1} personaggi (e per i prossimi che aggiungi).": {
+   "en": "Level {0} set for all {1} characters (and for the next ones you add).",
+   "ja": "全{1}キャラクターにレベル{0}を設定しました（今後追加するキャラクターにも適用）。"
+  },
+  "Collezione svuotata.": {
+   "en": "Collection cleared.",
+   "ja": "コレクションを空にしました。"
+  },
+  "Immagini attivate.": {
+   "en": "Images on.",
+   "ja": "画像をオンにしました。"
+  },
+  "Immagini spente: restano le pastiglie.": {
+   "en": "Images off: the badges remain.",
+   "ja": "画像をオフにしました。バッジのみ表示します。"
+  },
+  "Sito non ufficiale, fatto da fan. Inazuma Eleven è un marchio di LEVEL-5. Dati principali da": {
+   "en": "Unofficial fan-made site. Inazuma Eleven is a trademark of LEVEL-5. Main data from",
+   "ja": "非公式のファンサイトです。イナズマイレブンはレベルファイブの商標です。主なデータ提供："
+  },
+  "; riferimenti da": {
+   "en": "; references from",
+   "ja": "；参考："
+  },
+  "; possono contenere errori.": {
+   "en": "; may contain errors.",
+   "ja": "；誤りが含まれている場合があります。"
+  },
+  "Lingua": {
+   "en": "Language",
+   "ja": "言語"
+  },
+  "{0} ({1})": {
+   "en": "{0} ({1})",
+   "ja": "{0}（{1}）"
+  },
+  "Punteggio {0}/100": {
+   "en": "Score {0}/100",
+   "ja": "スコア {0}/100"
+  }
+ }
+}

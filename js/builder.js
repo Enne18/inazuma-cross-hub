@@ -56,7 +56,8 @@
   function teamBox(t, rank) {
     var d = t.detail, box = el('article', 'team');
     var h = el('h3', null, '#' + rank + ' · ');
-    h.appendChild(el('span', 'score', 'Danno stimato ' + Math.round(d.total).toLocaleString('it-IT')));
+    h.appendChild(el('span', 'score', 'Punteggio ' + d.total.toFixed(1) + '/100'));
+    if (d.parts) h.appendChild(el('small', 'muted', ' attacco ' + Math.round(d.parts.attack * 100) + '% · portiere/difesa ' + Math.round(d.parts.defense * 100) + '% · dribbling ' + Math.round(d.parts.dribble * 100) + '% · contrasto ' + Math.round(d.parts.block * 100) + '%'));
     h.appendChild(document.createTextNode(' (somma dei danni della mossa migliore di ogni giocatore, con bonus di sinergie e tecnico)'));
     box.appendChild(h);
     if (d.estimated) box.appendChild(el('div', 'warn', d.estimated + ' giocatori hanno statistiche stimate (dati mancanti nella fonte): il punteggio è meno affidabile.'));
@@ -74,7 +75,7 @@
       p.appendChild(window.IECUI.avatar(c, 'sm'));
       var tx = el('div', 'ptx');
       tx.appendChild(el('b', null, s.slot + '. ' + nm(c)));
-      tx.appendChild(el('small', null, 'slot ' + s.role + (c.position !== s.role ? ' (nativo ' + c.position + ')' : '') + ' · ' + data.meta.elements[c.element].it + ' · ' + '★'.repeat(c.rarity) + (c.team_ja ? ' · ' + c.team_ja : '') + (d.members && d.members[s.slot - 1] && d.members[s.slot - 1].damage ? ' · danno ~' + Math.round(d.members[s.slot - 1].damage).toLocaleString('it-IT') : '')));
+      tx.appendChild(el('small', null, 'slot ' + s.role + (c.position !== s.role ? ' (nativo ' + c.position + ')' : '') + ' · ' + data.meta.elements[c.element].it + ' · ' + '★'.repeat(c.rarity) + (c.team_ja ? ' · ' + c.team_ja : '') + (d.members && d.members[s.slot - 1] && d.members[s.slot - 1].damage ? ' · tiro/mossa migliore ~' + Math.round(d.members[s.slot - 1].damage).toLocaleString('it-IT') : '')));
       p.appendChild(tx);
       ro.appendChild(p);
     });
@@ -152,7 +153,7 @@
     var pool = $('b-pool').value === 'owned' ? window.IEC.ownedChars() : data.chars.slice();
     pool = pool.filter(function (c) { return excl.indexOf(c.id) < 0; });
     lock.forEach(function (id) { if (!pool.some(function (c) { return c.id === id; })) pool.push(byId[id]); });
-    if (!pool.length) { msg.textContent = 'La collezione è vuota: segna i personaggi con "Ce l\'ho" nel Catalogo (oppure scegli "Tutti").'; return; }
+    if (!pool.length) { msg.textContent = 'La collezione è vuota: segna i personaggi con "Ce l\'ho" nella pagina Personaggi (oppure scegli "Tutti").'; return; }
     msg.textContent = 'Calcolo in corso…';
     setTimeout(function () {
       try {

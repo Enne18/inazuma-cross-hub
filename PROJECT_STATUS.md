@@ -270,3 +270,16 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Nuovo `data/moves.json` (dal repo iecrosshub): elemento + nome italiano di 102 mosse → 203 mosse su 248 hanno ora l'elemento (le altre sono nuove, non presenti nel repo). Il motore applica ×1,2 se elemento mossa = elemento personaggio e il bonus "tecniche di Vento di tutti gli alleati" di Harry Savage (move_element). tools/build_site_data.py unisce moves.json.
 - Altre due squadre Lina Schiller (utente): A 51% / B 77% del migliore del motore (Kira C 58%, Travis D 68%). Tutte attivano la formazione; il divario resta (A: molte 1-2★ e due Hillman). Calibrazione ancora in sospeso.
 - Lingue (IT/EN/JA): fattibile a fasi — interfaccia; nomi mosse (IT dal repo per 102/121); passive IT/EN generate dalla struttura già interpretata; descrizioni mosse non presenti nei dati (solo potenza/TP/ricarica).
+
+## Tappa 11m — Selettore lingua (fase 1)
+- `js/i18n.js`: lingua it/en/ja (localStorage `iecross.lang.v1`), traduttore DOM con MutationObserver; dizionari `data/i18n/ui.json` (interfaccia, chiave = italiano, pattern {0}) e `content.json` (chiave = giapponese: squadre, tipi, serie, 119 mosse, traduzione letterale).
+- Pagina Personaggi tradotta (filtri, scheda, righe tecniche). DA FARE: fase 2 passive (nome+effetto IT/EN dalla struttura parsePassive), fase 3 Team Builder + Tecnici + testi tecnico.
+- Trovato sito di confronto (eljuezholden.github.io): punteggio a duelli (3 migliori tiri 40% / portiere 30% / dribbling 15% / recuperi 15%, p=r^1.5/(r^1.5+1)), zone +15/10/5%, statistiche lineari 10%@Lv1→100%@Lv440. Da usare per calibrare il motore.
+
+## Tappa 12 — Punteggio a duelli + formula verificata (guida RR_o v1.4.0, PDF dell'utente)
+- Formula verificata nel gioco: potenza = (stat x risveglio + equipaggiamento del ruolo NATIVO + bonus) x (potenza mossa + bonus) x elemento(1.2 stesso elemento) / 100, troncata. Test: Gazelle Lv440 Legendary+ Fire Blizzard = 112.456 (guida 112.436, diff. dovuta a 7230 vs 7224).
+- Le statistiche del sito sono già a Legendary+ (x2): si scala x AWK[grado]/2. Equipaggiamento (tabelle per ruolo/livello nella guida) = ~75% della potenza base: implementato in engine.js (EQ_CURVE/EQ440, stima per livelli intermedi e per le stat non principali).
+- Punteggio `cfg.model='duel'` (default): 3 migliori tiri (55/30/15) vs portiere rivale, portiere+2 blocchi vs tiro rivale, dribbling, contrasti; p=r^1.5/(r^1.5+1); pesi 40/30/15/15. Rivale = costanti cfg.bench (140k/125k/95k/95k a Lv440, scalate col livello).
+- Bonus di potenza ora per categoria/elemento/mossa (parsePassive: pcat/pel/pname); mosse senza elemento nei dati => elemento del personaggio (stima). Debuff nemici riducono il rivale.
+- Squadre community: 72-98% del migliore del motore (prima 51-77%).
+- DA FARE: zone ideali S/A/B (+15/10/5% solo stat propria) non applicate; adesivi/passive di allenamento non modellati; livello tecniche assunto 10; bench da tarare; ricerca squadre da migliorare (a Lv345 la squadra B batte il "migliore").
