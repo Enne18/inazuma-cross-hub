@@ -26,12 +26,12 @@
   function saveRar() { try { window.localStorage.setItem(KEY_RAR, JSON.stringify(state.rar)); } catch (e) { /* archiviazione bloccata */ } }
   function setRar(id, r) { state.rar[id] = clampRar(r); saveRar(); }
   // livello delle mosse (1-10) per personaggio e mossa: state.mv[id] = {indice: livello}; default 10
-  function clampMv(v) { v = Math.round(+v); return isNaN(v) ? 10 : Math.max(1, Math.min(10, v)); }
-  function mvOf(id, i) { var o = state.mv[id]; return o && o[i] !== undefined ? clampMv(o[i]) : 10; }
+  function clampMv(v) { v = Math.round(+v); return isNaN(v) ? 1 : Math.max(1, Math.min(10, v)); }
+  function mvOf(id, i) { var o = state.mv[id]; return o && o[i] !== undefined ? clampMv(o[i]) : 1; }
   function loadMv() { try { var o = JSON.parse(window.localStorage.getItem(KEY_MV) || '{}'); Object.keys(o).forEach(function (id) { state.mv[id] = o[id]; }); } catch (e) { /* ignora */ } }
   function saveMv() { try { window.localStorage.setItem(KEY_MV, JSON.stringify(state.mv)); } catch (e) { /* archiviazione bloccata */ } }
   function setMv(id, i, v) { (state.mv[id] = state.mv[id] || {})[i] = clampMv(v); saveMv(); }
-  function flv(id, L) { return window.IECData.forLevel(state.byId[id], L === undefined ? levelOf(id) : L, rarOf(id), state.mv[id] || {}); }
+  function flv(id, L) { var m = {}; for (var i = 0; i < 4; i++) m[i] = mvOf(id, i); return window.IECData.forLevel(state.byId[id], L === undefined ? levelOf(id) : L, rarOf(id), m); }
 
   function loadOwned() {
     try {
@@ -51,6 +51,14 @@
   // API per il Team Builder (tappa 7)
   window.IEC = {
     state: state,
+    ops: {
+      owned: function (id) { return !!state.owned[id]; }, toggle: function (id) { toggleOwn(id); document.dispatchEvent(new CustomEvent('iec-collection', { detail: id })); },
+      level: function (id) { return levelOf(id); }, setLevel: function (id, v) { setLvOf(id, v); document.dispatchEvent(new CustomEvent('iec-collection', { detail: id })); },
+      rar: function (id) { return rarOf(id); }, setRar: function (id, v) { setRar(id, v); document.dispatchEvent(new CustomEvent('iec-collection', { detail: id })); },
+      mv: function (id, i) { return mvOf(id, i); }, setMv: function (id, i, v) { setMv(id, i, v); document.dispatchEvent(new CustomEvent('iec-collection', { detail: id })); },
+      leveled: function (id) { return state.owned[id] ? flv(id) : window.IECData.forLevel(state.byId[id], window.IECData.MAX_LEVEL); },
+      showTab: function (n) { showTab(n); }, render: function () { render(); }
+    },
     levelOf: function (id) { return levelOf(id); },
     // personaggi posseduti, ciascuno al livello scelto dall'utente (stat interpolate, passive per livello)
     ownedChars: function () {
@@ -77,6 +85,8 @@
     return Promise.all([getJSON('data/meta.json'), getJSON('data/site/chars.json'), getJSON('data/site/id_migration.json').catch(function () { return {}; })]).then(function (res) {
       state.meta = res[0];
       state.base = res[1].chars;
+      var cnt = {}; state.base.forEach(function (b) { var k = b.name_ja + '|' + (b.name_en || ''); cnt[k] = (cnt[k] || 0) + 1; });
+      state.base.forEach(function (b) { b.dup = cnt[b.name_ja + '|' + (b.name_en || '')] > 1; });   // omonimi: si distinguono per squadra
       state.migration = res[2];
       state.chars = state.base.map(function (c) { return window.IECData.forLevel(c, window.IECData.MAX_LEVEL); });
       state.base.forEach(function (b) { state.byId[b.id] = b; });
@@ -114,120 +124,86 @@
     paintCount();
   }
 
+  // sostituisce la scheda con una nuova (dopo una modifica); evita il doppio 'change' durante la sostituzione
+  function replaceWith(root, id) {
+    if (!root.parentNode || root._replaced) return;
+    root._replaced = true;
+    root.parentNode.replaceChild(card(flv(id), true), root);
+    document.dispatchEvent(new CustomEvent('iec-collection', { detail: id }));
+  }
+  function toggleOwn(id) {
+    if (state.owned[id]) { delete state.owned[id]; delete state.levels[id]; } else { state.owned[id] = true; state.levels[id] = state.defaultLevel; }
+    saveLevels();
+    if (!saveOwned()) flash('Impossibile salvare nel browser (archiviazione bloccata): la collezione vale solo finché la pagina resta aperta.');
+    updateBadge();
+  }
+  function setLvOf(id, v) { state.levels[id] = clampLv(v); saveLevels(); }
+
+  // scheda orizzontale: immagine cliccabile (apre il dettaglio) a sinistra, a destra nome, squadra, tag, livello e le due tecniche
   function card(c, inCollection) {
-    var root = el('article', 'card' + (inCollection ? ' owned-card' : ''));
+    var I18 = window.IECI18N, root = el('article', 'card hcard' + (inCollection ? ' owned-card' : ''));
     root.style.setProperty('--el', 'var(--' + c.element + ')');
 
-    var head = el('div', 'chead');
-    head.appendChild(window.IECUI.avatar(c, 'md'));
-    var ht = el('div', 'ctitle');
-    var I18 = window.IECI18N, ja = I18 && I18.lang() === 'ja';
-    ht.appendChild(el('h2', null, I18 ? I18.primaryName(c) : (c.name_en || c.name_ja)));
-    ht.appendChild(el('div', 'ja', (ja ? (c.name_en || '') : c.name_ja) + (c.version ? (ja && !c.name_en ? '' : ' · ') + c.version : '')));
-    head.appendChild(ht);
-    root.appendChild(head);
+    var a = el('a', 'hc-img'); a.href = '#char=' + c.id; a.title = 'Apri la scheda completa'; a.setAttribute('aria-label', 'Apri la scheda di ' + c.name_ja);
+    a.appendChild(window.IECUI.avatar(c, 'lg'));
+    root.appendChild(a);
+
+    var main = el('div', 'hc-main'), top = el('div', 'hc-top'), ht = el('div', 'ctitle');
+    var h = el('h2'); var ha = el('a'); ha.href = '#char=' + c.id; ha.textContent = I18 ? I18.primaryName(c) : (c.name_en || c.name_ja); h.appendChild(ha);
+    ht.appendChild(h);
+    ht.appendChild(el('div', 'hc-team', c.team_ja || ''));
+    top.appendChild(ht);
+
+    var own = el('button', 'btn own'); own.type = 'button';
+    var on = !!state.owned[c.id];
+    own.textContent = on ? '✓ Ce l\'ho' : '+ Ce l\'ho'; own.classList.toggle('on', on); own.setAttribute('aria-pressed', on ? 'true' : 'false');
+    own.addEventListener('click', function () {
+      toggleOwn(c.id);
+      document.dispatchEvent(new CustomEvent('iec-collection', { detail: c.id }));
+      if ($('f-own').value) { render(); return; }          // con il filtro "in possesso" attivo la lista cambia
+      if (root.parentNode) root.parentNode.replaceChild(cardFor(c.id), root);
+      paintCount();
+    });
+    top.appendChild(own);
+    main.appendChild(top);
 
     var b = el('div', 'badges');
     b.appendChild(el('span', 'badge el', state.meta.elements[c.element].it));
     b.appendChild(el('span', 'badge', state.meta.positions[c.position].it));
     b.appendChild(el('span', 'badge', '★'.repeat(c.rarity)));
-    if (c.rating && c.rating.best) b.appendChild(el('span', 'badge', 'Valutazione ' + c.rating.best));
+    if (c.type_ja) b.appendChild(el('span', 'badge', c.type_ja));
+    if (c.series_ja) b.appendChild(el('span', 'badge soft', c.series_ja));
     if (c.verified !== 'ok') b.appendChild(el('span', 'badge warn', 'Dati ' + ({ parziale: 'parziali', mancante: 'mancanti' }[c.verified] || c.verified)));
-    root.appendChild(b);
-
-    var own = el('button', 'btn own');
-    own.type = 'button';
-    function paintOwn() {
-      var on = !!state.owned[c.id];
-      own.textContent = on ? '✓ Ce l\'ho' : '+ Ce l\'ho';
-      own.classList.toggle('on', on);
-      own.setAttribute('aria-pressed', on ? 'true' : 'false');
-    }
-    paintOwn();
-    own.addEventListener('click', function () {
-      if (state.owned[c.id]) { delete state.owned[c.id]; delete state.levels[c.id]; } else { state.owned[c.id] = true; state.levels[c.id] = state.defaultLevel; }
-      saveLevels();
-      if (!saveOwned()) flash('Impossibile salvare nel browser (archiviazione bloccata): la collezione vale solo finché la pagina resta aperta.');
-      paintOwn();
-      updateBadge();
-      refreshCard(root, c.id);
-    });
-    root.appendChild(own);
+    main.appendChild(b);
 
     if (inCollection) {
-      var lv = el('div', 'lvl');
-      var lab = el('label', null, 'Livello ');
-      var inp = el('input'); inp.type = 'number'; inp.min = '1'; inp.max = String(MAXLV); inp.value = String(levelOf(c.id));
-      inp.setAttribute('aria-label', 'Livello di ' + c.name_ja);
+      var lv = el('div', 'hc-lvl'), lab = el('label', null, 'Livello '), inp = el('input', 'lvtxt');
+      inp.type = 'text'; inp.inputMode = 'numeric'; inp.pattern = '[0-9]*'; inp.value = String(levelOf(c.id)); inp.setAttribute('aria-label', 'Livello');
+      inp.addEventListener('change', function () { setLvOf(c.id, inp.value); replaceWith(root, c.id); });
       lab.appendChild(inp); lv.appendChild(lab);
-      var mx = el('button', 'btn small', 'Max'); mx.type = 'button';
-      function setLv(v) {
-        state.levels[c.id] = clampLv(v); saveLevels();
-        if (!root.parentNode || root._replaced) return;   // scheda già sostituita (evento 'change' doppio durante la sostituzione)
-        root._replaced = true;
-        var fresh = card(flv(c.id, state.levels[c.id]), true);
-        if (root.parentNode) root.parentNode.replaceChild(fresh, root);
-      }
-      inp.addEventListener('change', function () { setLv(inp.value); });
-      mx.addEventListener('click', function () { setLv(MAXLV); });
-      lv.appendChild(mx);
-      root.appendChild(lv);
-      var av = el('div', 'lvl adv'), lbr = el('label', null, 'Grado '), sr = el('select');
+      var lbr = el('label', null, 'Grado '), sr = el('select');
       window.IECData.RARITY_NAMES.forEach(function (n, i) { var o = el('option', null, n); o.value = String(i); sr.appendChild(o); });
-      sr.value = String(rarOf(c.id)); sr.setAttribute('aria-label', 'Grado di ' + c.name_ja);
-      lbr.appendChild(sr); av.appendChild(lbr);
-      sr.addEventListener('change', function () {
-        setRar(c.id, sr.value);
-        if (!root.parentNode || root._replaced) return;
-        root._replaced = true;
-        var fresh2 = card(flv(c.id), true);
-        if (root.parentNode) root.parentNode.replaceChild(fresh2, root);
-      });
-      root.appendChild(av);
+      sr.value = String(rarOf(c.id)); sr.setAttribute('aria-label', 'Grado');
+      sr.addEventListener('change', function () { setRar(c.id, sr.value); replaceWith(root, c.id); });
+      lbr.appendChild(sr); lv.appendChild(lbr);
+      main.appendChild(lv);
     }
 
-    var s = el('div', 'stats');
-    state.meta.stats.forEach(function (k) { statRow(s, k, c.stats_max ? c.stats_max[k] : null); });
-    root.appendChild(s);
-
-    var d1 = el('details');
-    d1.appendChild(el('summary', null, 'Tecniche (' + c.skills.length + ')'));
+    var mv = el('div', 'hc-moves');
     c.skills.forEach(function (k, ki) {
-      var it = el('div', 'item');
-      it.appendChild(el('span', null, k.name_ja)); it.firstChild.title = k.name_ja; it.firstChild.setAttribute('data-orig', k.name_ja);
-      it.appendChild(el('span', null, ' — Potenza ' + k.power));
+      var it = el('div', 'hc-move');
+      it.appendChild(el('span', 'mname', k.name_ja));
       if (inCollection) {
-        var ml = el('label', 'mvlab', ' Lv mossa '), mi = el('input', 'mvin');
-        mi.type = 'number'; mi.min = '1'; mi.max = '10'; mi.value = String(mvOf(c.id, ki)); mi.setAttribute('aria-label', 'Livello mossa');
-        mi.addEventListener('change', function () {
-          setMv(c.id, ki, mi.value);
-          if (!root.parentNode || root._replaced) return;
-          root._replaced = true;
-          var fresh3 = card(flv(c.id), true);
-          if (root.parentNode) root.parentNode.replaceChild(fresh3, root);
-        });
-        ml.appendChild(mi); it.appendChild(ml);
+        var ms = el('select', 'mvsel'); ms.setAttribute('aria-label', 'Livello mossa');
+        for (var n = 1; n <= 10; n++) { var o = el('option', null, 'Lv ' + n); o.value = String(n); ms.appendChild(o); }
+        ms.value = String(mvOf(c.id, ki));
+        ms.addEventListener('change', function () { setMv(c.id, ki, ms.value); replaceWith(root, c.id); });
+        it.appendChild(ms);
       }
-      var sm = el('small'), CAT = { shoot: 'Tiro', dribble: 'Dribbling', block: 'Blocco', catch: 'Parata' };
-      [ 'sblocco ' + k.unlock, 'TP ' + k.tp, k.crit != null ? 'critico ' + k.crit + '%' : null,
-        k.range != null ? 'raggio ' + k.range : null, k.chain ? 'catena' : null, k.category ? (CAT[k.category] || k.category) : null
-      ].filter(Boolean).forEach(function (t, i) { if (i) sm.appendChild(document.createTextNode(' · ')); sm.appendChild(el('span', null, t)); });
-      it.appendChild(sm);
-      d1.appendChild(it);
+      mv.appendChild(it);
     });
-    root.appendChild(d1);
-
-    var d2 = el('details');
-    d2.appendChild(el('summary', null, 'Passive (' + c.passives.length + ')'));
-    c.passives.forEach(function (p) {
-      var it = el('div', 'item', p.name_ja + ' [' + (p.unlock === 'bloccata' ? 'bloccata fino al Lv ' + p.next_unlock_lv : p.unlock === '初期' ? 'Lv ' + p.level + '/' + p.max_level : p.unlock) + ']');
-      if (p.effect_en) it.appendChild(el('small', null, p.effect_en));
-      if (p.effect_ja) it.appendChild(el('small', null, p.effect_ja));
-      d2.appendChild(it);
-    });
-    root.appendChild(d2);
-
-    if (c.notes && c.notes.length) root.appendChild(el('div', 'note', 'Note: ' + c.notes.join(' ')));
+    main.appendChild(mv);
+    root.appendChild(main);
     return root;
   }
 
@@ -238,17 +214,29 @@
   ];
 
   function haystack(c) {
-    var parts = [c.name_ja, c.name_en || '', c.team_ja || '', c.version || '', (c.tags_ja || []).join(' ')];
+    var I = window.IECI18N, parts = [c.name_ja, c.name_en || '', c.team_ja || '', c.version || '', (c.tags_ja || []).join(' ')];
+    if (I && I.ready()) {                                   // anche le traduzioni (it/en): nomi, squadra, tag, mosse
+      parts.push(I.variants(c.name_en || c.name_ja).join(' '), I.nameIn(c, 'it'), I.nameIn(c, 'en'), I.variants(c.team_ja || '').join(' '));
+      (c.tags_ja || []).forEach(function (t) { parts.push(I.variants(t).join(' ')); });
+      c.skills.forEach(function (k) { parts.push(I.variants(k.name_ja).join(' ')); });
+    }
     c.skills.forEach(function (k) { parts.push(k.name_ja, k.name_en || ''); });
     c.passives.forEach(function (p) { parts.push(p.name_ja, p.effect_ja || '', p.effect_en || ''); });
     return parts.join(' ').toLowerCase();
+  }
+
+  function hayOf(c) {
+    if (c._hayR) return c._hay;
+    c._hay = haystack(c);
+    if (window.IECI18N && window.IECI18N.ready()) c._hayR = true;     // finché le traduzioni non sono pronte non si memorizza
+    return c._hay;
   }
 
   function sortList(list, key) {
     if (key === 'default') return list;
     var out = list.slice();
     if (key === 'name') {
-      out.sort(function (a, b) { return (a.name_en || a.name_ja).localeCompare(b.name_en || b.name_ja); });
+      var I = window.IECI18N; out.sort(function (a, b) { return (I ? I.primaryName(a) : a.name_en || a.name_ja).localeCompare(I ? I.primaryName(b) : b.name_en || b.name_ja); });
     } else if (key === 'rarity') {
       out.sort(function (a, b) { return b.rarity - a.rarity; });
     } else {
@@ -280,7 +268,7 @@
       if (s && c.series_ja !== s) return false;
       if (own === 'yes' && !state.owned[c.id]) return false;
       if (own === 'no' && state.owned[c.id]) return false;
-      if (q && c._hay.indexOf(q) === -1) return false;
+      if (q && hayOf(c).indexOf(q) === -1) return false;
       return true;
     });
     list = sortList(list, $('f-sort').value);
@@ -293,10 +281,10 @@
   function flash(msg) { $('c-msg').textContent = msg; }
 
   function showTab(name) {
-    ['catalog', 'builder', 'coaches', 'boss'].forEach(function (t) { $(t).hidden = (t !== name); });
+    ['catalog', 'builder', 'coaches', 'boss', 'detail'].forEach(function (t) { $(t).hidden = (t !== name); });
     document.dispatchEvent(new CustomEvent('iec-tab', { detail: name }));
     Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (b) {
-      b.classList.toggle('active', b.getAttribute('data-tab') === name);
+      b.classList.toggle('active', b.getAttribute('data-tab') === (name === 'detail' ? 'catalog' : name));
     });
   }
 
@@ -392,7 +380,6 @@
     fillSelect($('f-element'), Object.keys(m.elements).map(function (k) { return [k, m.elements[k].it]; }));
     fillSelect($('f-position'), Object.keys(m.positions).map(function (k) { return [k, m.positions[k].it]; }));
     fillSelect($('f-rarity'), [3, 2, 1].map(function (n) { return [String(n), '★'.repeat(n)]; }));
-    state.chars.forEach(function (c) { c._hay = haystack(c); });
     state.owned = loadOwned();
     var known = {};
     state.chars.forEach(function (c) { known[c.id] = true; });

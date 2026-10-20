@@ -110,9 +110,25 @@
       .catch(function () { /* senza dizionari resta l'italiano */ })
       .then(function () { ready = true; });
   }
+  function trLang(s, L) { var old = lang; lang = L; try { return tr(s); } finally { lang = old; } }
+  // sigle di squadra per distinguere i personaggi omonimi (es. Seymour Hillman (Giovane))
+  var SHORT = {
+    '雷門中': { it: 'Raimon', en: 'Raimon' }, 'イナズマジャパン': { it: 'Inazuma Japan', en: 'Inazuma Japan' }, '帝国学園': { it: 'Royal Academy', en: 'Royal Academy' },
+    'ヤングイナズマ': { it: 'Giovane', en: 'Young' }, '日本代表2026': { it: 'Giappone 2026', en: 'Japan 2026' }, '雷門OB': { it: 'Raimon OB', en: 'Raimon OB' }
+  };
+  function teamShort(c, L) {
+    var t = c.team_ja || ''; if (L === 'ja') return t;
+    return SHORT[t] ? SHORT[t][L] : trLang(t, L);
+  }
+  function nameIn(c, L) {
+    var base = L === 'ja' ? c.name_ja : trLang(c.name_en || c.name_ja, L);
+    return c.dup ? base + ' (' + teamShort(c, L) + ')' : base;
+  }
   window.IECI18N = {
-    lang: function () { return lang; }, set: setLang, t: tr, apply: apply,
-    primaryName: function (c) { return lang === 'ja' ? c.name_ja : (c.name_en || c.name_ja); }
+    lang: function () { return lang; }, set: setLang, t: tr, apply: apply, ready: function () { return ready; },
+    trLang: trLang, nameIn: nameIn,
+    variants: function (s) { var o = []; LANGS.forEach(function (L) { var v = trLang(s, L); if (v && o.indexOf(v) < 0) o.push(v); }); return o; },
+    primaryName: function (c) { return nameIn(c, lang); }
   };
   function start() {
     var sel = document.getElementById('lang');

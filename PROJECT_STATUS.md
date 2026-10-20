@@ -293,3 +293,10 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Collezione: livello di ogni mossa 1-10 per giocatore (default 10), localStorage `iecross.movelv.v1`, incluso in export/import; "Livello mosse per tutti" nel pannello gestione. `IECData.forLevel(c, L, grado, moveLv)` sostituisce `power` con `power_by_level[lv-1]`: vale per Team Builder e Boss.
 - Boss: il giorno di gioco cambia alle 22:00 Europe/Rome (verificato con orologio simulato: 21:30 Xavier Foster, 22:15 Mark Evans). Grafica: immagine del boss (personaggio omonimo, se presente), righe con avatar, elemento e potenza.
 - i18n: pattern `{0} (Barista)` -> IT "Giovane" (Joseph Yosemite).
+
+## Tappa 15 — card orizzontali, pagina di dettaglio, omonimi, nuovo stile
+- Card: immagine cliccabile a sinistra (apre `#char=ID`), a destra nome, squadra, tag, livello (campo testo numerico), grado, due tecniche con menu Lv 1-10 (default 1 per tutte). Statistiche nascoste nelle card; nel dettaglio (`js/detail.js`): statistiche Lv1/tuo/Lv440, tecniche con tabella potenza per livello, passive a tutti i livelli (anche grado), controlli collezione.
+- Omonimi: `dup` per (name_ja, name_en); nome mostrato `Nome (squadra)`: Raimon, Inazuma Japan, Royal Academy, Giovane/Young (ヤングイナズマ), Giappone 2026, Raimon OB (sigle in i18n.js SHORT). Nessun file da compilare: i 14 gruppi omonimi si distinguono tutti per squadra.
+- Ricerca anche sulle traduzioni (it/en): "giovane" trova Seymour Hillman (Giovane) e Joseph Yosemite (Giovane).
+- Shin Aphrodi (シン・アフロディ, id 10072, Shin Zeus) aggiunto a names_west.json e chars.json.
+- Stile: header a gradiente blu con ⚡, tab a pillola, card con sfumatura dell'elemento, ombre, dark mode.
