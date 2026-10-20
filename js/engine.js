@@ -260,6 +260,7 @@
 
   Engine.prototype.scoreTeam = function (members, opts) {
     var self = this, cfg = this.cfg, coach = opts && opts.coach;
+    var CF = opts && opts.cf != null ? opts.cf : cfg.conditionalFactor, ALL = !!(opts && opts.allSat);   // allSat: modalità boss, tutte le condizioni contano come soddisfatte
     var out = { total: 0, base: 0, synergy: 0, members: [], effects: [], unmet: [], unparsed: [], estimated: 0, coach: null };
     var SB = members.map(function () { return {}; }), PB = members.map(function () { return {}; });
     out._sb = SB; out._pb = PB; out._rm = {};
@@ -272,6 +273,7 @@
     members.forEach(function (src) {
       self.passivesOf(src).forEach(function (p) {
         var cond = p.cond, ok = true, need = null;
+        if (ALL) cond = { type: cond.type === 'event' ? 'event' : 'none' };
         if (cond.type === 'tag') {
           var n = members.filter(function (m) { return self.hasTag(m, cond.tag); }).length;
           if (n < cond.n) { ok = false; need = { tag: cond.tag, have: n, need: cond.n }; }
@@ -288,7 +290,7 @@
             units = affected.length;
           }
           var per = cl.value * (cl.kind === 'power' ? cfg.powerWeight : cfg.statWeight) * (cl.kind === 'stat' ? cl.stats.length : 1);
-          var pts = per * units * (cl.target.enemy ? cfg.debuffWeight : 1) * (cond.type === 'event' ? cfg.conditionalFactor : 1);
+          var pts = per * units * (cl.target.enemy ? cfg.debuffWeight : 1) * (cond.type === 'event' ? CF : 1);
           if (!ok) { out.unmet.push({ source: src.id, passive: p.name, need: need, points: pts }); return; }
           if (!cl.target.enemy) {
             var fc = cond.type === 'event' ? cfg.conditionalFactor : 1;
@@ -316,6 +318,7 @@
       });
     });
     if (coach) this.addCoach(coach, members, out);
+    if (opts && opts.noScore) { out.total = 0; return out; }
     if (cfg.model === 'duel') {
       var D = this.duelScore(members, SB, PB, out._rm);
       out.total = D.score; out.parts = D.parts; out.duel = D;
@@ -391,6 +394,93 @@
     var wsum = W.attack + W.defense + W.dribble + W.block;
     var score = 100 * (W.attack * attack + W.defense * defense + W.dribble * dribble + W.block * block) / wsum;
     return { score: score, parts: { attack: attack, defense: defense, dribble: dribble, block: block }, bench: B, shooters: shooters.slice(0, 3), keeper: keeper, blockers: blockers.slice(0, 2), dribblers: dribblers.slice(0, 3), tacklers: tacklers.slice(0, 4) };
+  };
+
+  /* ---------- prove boss ---------- */
+  var BEATS = { Wind: 'Mountain', Mountain: 'Fire', Fire: 'Forest', Forest: 'Wind' };   // A batte B
+  var PERMS5 = (function () { var out = []; (function rec(a, rest) { if (!rest.length) { out.push(a); return; } rest.forEach(function (x, i) { rec(a.concat(x), rest.filter(function (_, j) { return j !== i; })); }); })([], [0, 1, 2, 3, 4]); return out; })();
+
+  // boss = { mode:'attack'|'defense', element:'Wind', field: 0|50 (bonus di potenza ai tiri in vantaggio) }
+  // Cinque giocatori in fila: ogni tecnica dopo una dello stesso elemento fa x1,1 (senza decimali). Tutte le passive contano.
+  Engine.prototype.bossScore = function (members, boss) {
+    var cfg = this.cfg, r = this.scoreTeam(members, { allSat: true, cf: 1, noScore: true });
+    var cats = boss.mode === 'attack' ? ['kick'] : ['block', 'catch'];
+    var cand = members.map(function (m, i) {
+      var s = m.stats_max || {}, sb = r._sb[i], pb = r._pb[i], awk = AWK[m.rarity_grade == null ? 9 : m.rarity_grade] / 2, nat = m.native || m.position, L = m.level || 440, out = [];
+      (m.skills || []).forEach(function (k) {
+        var c = SKILLCAT[k.category] || k.category;
+        if (cats.indexOf(c) < 0 || k.power == null || s[c] == null) return;
+        var stat = Math.max(0, Math.floor(s[c] * awk) + eqAt(nat, c, L) + (sb[c] || 0)), ke = k.element || m.element;
+        var bonus = (pb[c] || 0) + (pb.all || 0) + (pb['el:' + ke] || 0) + (pb[c + '|el:' + ke] || 0) + (pb['mv:' + k.name_ja] || 0);
+        var adv = BEATS[ke] === boss.element, dis = BEATS[boss.element] === ke;
+        var power = k.power + Math.max(-1000, Math.min(1000, bonus)) + (adv && boss.field ? boss.field : 0);
+        var mult = 1 + (ke === m.element ? 0.2 : 0) + (adv ? 0.1 : 0) - (dis ? 0.1 : 0);
+        out.push({ el: ke, name: k.name_ja, v: Math.floor(stat * Math.max(0, power) * mult * 0.01), power: power, stat: stat, mult: mult });
+      });
+      out.sort(function (a, b) { return b.v - a.v; });
+      return out.slice(0, 3);
+    });
+    var best = { total: -1 };
+    PERMS5.slice(0, members.length === 5 ? 120 : 0).concat(members.length === 5 ? [] : [null]).forEach(function (perm) {
+      var order = perm || members.map(function (_, i) { return i; });
+      var dp = null;   // [{sum, prev, mv}] per mossa dell'ultimo giocatore
+      var trace = [];
+      order.forEach(function (mi, pos) {
+        var cur = cand[mi].map(function (mv) {
+          var b = -1, from = -1;
+          if (pos === 0) b = mv.v;
+          else dp.forEach(function (d, di) { var v = d.sum + (d.mv.el === mv.el ? Math.floor(mv.v * 1.1) : mv.v); if (v > b) { b = v; from = di; } });
+          return { sum: b, from: from, mv: mv, mi: mi };
+        });
+        if (!cur.length) cur = [{ sum: pos === 0 ? 0 : Math.max.apply(null, dp.map(function (d) { return d.sum; })), from: pos === 0 ? -1 : 0, mv: { el: null, name: null, v: 0, power: 0, stat: 0, mult: 1 }, mi: mi }];
+        trace.push(cur); dp = cur;
+      });
+      var bi = 0; dp.forEach(function (d, i) { if (d.sum > dp[bi].sum) bi = i; });
+      if (dp[bi].sum > best.total) {
+        var seq = [], idx = bi;
+        for (var p = trace.length - 1; p >= 0; p--) { var e = trace[p][idx]; seq.unshift(e); idx = e.from; }
+        best = { total: dp[bi].sum, order: seq.map(function (e, p) {
+          var prev = p > 0 ? seq[p - 1].mv.el : null, chained = prev && prev === e.mv.el, v = chained ? Math.floor(e.mv.v * 1.1) : e.mv.v;
+          return { id: members[e.mi].id, move: e.mv.name, element: e.mv.el, power: e.mv.power, stat: e.mv.stat, base: e.mv.v, value: v, chained: !!chained };
+        }) };
+      }
+    });
+    return best;
+  };
+
+  // Migliore squadra da 5 dal pool (esclusi gli id in `skip`): top per valore singolo -> esaustivo sui migliori -> miglioramento con scambi.
+  Engine.prototype.bossBest = function (pool, boss, skip) {
+    var self = this, used = {}; (skip || []).forEach(function (i) { used[i] = true; });
+    var cs = pool.filter(function (c) { return !used[c.id]; });
+    if (cs.length < 5) return null;
+    function mem(c) { return self.member(c, c.position); }
+    function ev(arr) { return self.bossScore(arr.map(mem), boss); }
+    var solo = cs.map(function (c) { return { c: c, v: self.bossScore([mem(c)], boss).total }; }).sort(function (a, b) { return b.v - a.v; });
+    var top = solo.slice(0, 13).map(function (x) { return x.c; }), bestT = null, bestV = -1, idx = [0, 1, 2, 3, 4];
+    (function comb(start, cur) {
+      if (cur.length === 5) { var r = ev(cur); if (r.total > bestV) { bestV = r.total; bestT = cur.slice(); } return; }
+      for (var i = start; i < top.length; i++) { cur.push(top[i]); comb(i + 1, cur); cur.pop(); }
+    })(0, []);
+    for (var round = 0; round < 4; round++) {
+      var improved = false;
+      for (var pos = 0; pos < 5; pos++) {
+        cs.forEach(function (c) {
+          if (bestT.indexOf(c) >= 0) return;
+          var t = bestT.slice(); t[pos] = c; var r = ev(t);
+          if (r.total > bestV) { bestV = r.total; bestT = t; improved = true; }
+        });
+      }
+      if (!improved) break;
+    }
+    var fin = ev(bestT);
+    return { total: fin.total, order: fin.order, ids: bestT.map(function (c) { return c.id; }) };
+  };
+
+  // Prova del club: 3 squadre da 5 con giocatori diversi (la 2ª e la 3ª escono dai rimasti).
+  Engine.prototype.bossClub = function (pool, boss) {
+    var teams = [], skip = [];
+    for (var k = 0; k < 3; k++) { var t = this.bossBest(pool, boss, skip); if (!t) break; teams.push(t); skip = skip.concat(t.ids); }
+    return { teams: teams, total: teams.reduce(function (a, t) { return a + t.total; }, 0) };
   };
 
   Engine.prototype.addCoach = function (coach, members, out) {

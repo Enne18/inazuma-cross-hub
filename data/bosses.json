@@ -1,0 +1,106 @@
+{
+ "_doc": "Boss inseriti dall'utente (uso personale). Rotazione giornaliera: l'ordine è quello della lista; il giorno 'anchor_date' tocca al boss di indice 'anchor_index'. Prove giornaliere: 5 giocatori, 5 tentativi; potenza del boss = livello 'Senza fine'. Club: 3 tentativi, ogni giocatore ne gioca uno solo; il campo aggiunge +50 di potenza ai tiri con vantaggio di elemento.",
+ "daily": {
+  "anchor_date": "2026-10-20",
+  "anchor_index": 5,
+  "target": {
+   "attack": 650000,
+   "defense": 500000
+  },
+  "bosses": [
+   {
+    "id": "d0",
+    "name": "Nero",
+    "mode": "attack",
+    "element": "Wind",
+    "tech": "Barriera Temporale"
+   },
+   {
+    "id": "d1",
+    "name": "Shawn Froste",
+    "mode": "defense",
+    "element": "Wind",
+    "tech": "Richiamo del Lupo"
+   },
+   {
+    "id": "d2",
+    "name": "Darren LaChance",
+    "mode": "attack",
+    "element": "Forest",
+    "tech": "Mano di Luce"
+   },
+   {
+    "id": "d3",
+    "name": "David Samford",
+    "mode": "defense",
+    "element": "Forest",
+    "tech": "Pinguino Imperatore N°2"
+   },
+   {
+    "id": "d4",
+    "name": "Joseph King",
+    "mode": "attack",
+    "element": "Fire",
+    "tech": "Barriera di Forza"
+   },
+   {
+    "id": "d5",
+    "name": "Xavier Foster",
+    "mode": "defense",
+    "element": "Fire",
+    "tech": "Scarica Stellare"
+   },
+   {
+    "id": "d6",
+    "name": "Mark Evans",
+    "mode": "attack",
+    "element": "Mountain",
+    "tech": "Mano di Luce"
+   },
+   {
+    "id": "d7",
+    "name": "Shin Aphrodi",
+    "mode": "defense",
+    "element": "Mountain",
+    "tech": "Colpo Supremo Makina"
+   }
+  ]
+ },
+ "club": {
+  "anchor_date": "2026-10-20",
+  "anchor_index": 2,
+  "attempts": 3,
+  "field_bonus": 50,
+  "max_score": 170480000,
+  "bosses": [
+   {
+    "id": "c0",
+    "name": "Mark Evans gigante",
+    "mode": "attack",
+    "element": "Mountain",
+    "tech": null
+   },
+   {
+    "id": "c1",
+    "name": "Byron Love gigante",
+    "mode": "attack",
+    "element": "Forest",
+    "tech": null
+   },
+   {
+    "id": "c2",
+    "name": "Gran gigante",
+    "mode": "attack",
+    "element": "Fire",
+    "tech": null
+   },
+   {
+    "id": "c3",
+    "name": "Bellatrix gigante",
+    "mode": "attack",
+    "element": "Wind",
+    "tech": null
+   }
+  ]
+ }
+}

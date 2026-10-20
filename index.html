@@ -16,6 +16,7 @@
         <button class="tab active" data-tab="catalog">Personaggi <span id="owned-badge" class="pill" title="Personaggi in possesso">0</span></button>
         <button class="tab" data-tab="builder">Team Builder</button>
         <button class="tab" data-tab="coaches">Tecnici</button>
+        <button class="tab" data-tab="boss">Boss</button>
       </nav>
       <label class="langsel" title="Lingua"><span class="sr">Lingua</span>
         <select id="lang" data-i18n="skip" aria-label="Lingua"><option value="it">Italiano</option><option value="en">English</option><option value="ja">日本語 (Originale)</option></select></label>
@@ -67,7 +68,7 @@
       <div id="co-grid" class="grid"></div>
     </section>
     <section id="builder" hidden>
-      <p class="muted">Propone le migliori squadre con i personaggi che hai segnato in "La mia collezione". Il punteggio è una stima trasparente basata su statistiche e passive: non è la formula del gioco. Considera tecnico (passiva sempre attiva, passiva di formazione solo se tutte le condizioni sono soddisfatte), ruoli liberi e 5v5 senza tecnico.</p>
+      <p class="muted">Propone le migliori squadre con i personaggi che hai segnato in "In possesso" (pagina Personaggi). Il punteggio usa la formula di potenza verificata (statistica, risveglio, equipaggiamento, passive, elemento) contro un rivale di riferimento: è una stima, non il risultato esatto di una partita. Considera tecnico (passiva sempre attiva, passiva di formazione solo se tutte le condizioni sono soddisfatte), ruoli liberi e 5v5 senza tecnico.</p>
       <div class="b-controls">
         <label>Modalità
           <select id="b-mode"><option value="coach">11 contro 11 con tecnico</option><option value="5v5">5 contro 5 (senza tecnico)</option></select>
@@ -100,6 +101,18 @@
       <p id="b-msg" class="muted" aria-live="polite"></p>
       <div id="b-out"></div>
     </section>
+    <section id="boss" hidden>
+        <h2>Boss</h2>
+        <p class="muted small">Cinque giocatori in fila: ogni tecnica dopo una dello stesso elemento fa ×1,1 (catena), il vantaggio di elemento dà +0,1, tutte le passive contano come soddisfatte, equipaggiamento completo al livello del giocatore. Formula verificata con la guida di RR_o.</p>
+        <div class="fgrid">
+          <label class="field"><span>Tipo di prova</span><select id="bo-kind"><option value="daily">Prova giornaliera</option><option value="club">Boss del club</option></select></label>
+          <label class="field"><span>Boss</span><select id="bo-boss"></select></label>
+          <label class="field"><span>Giocatori</span><select id="bo-pool"><option value="owned">Solo la mia collezione</option><option value="all">Tutti i personaggi</option></select></label>
+          <label class="field" id="bo-target-wrap"><span>Potenza del boss (Senza fine)</span><input type="number" id="bo-target" min="0" step="1000"></label>
+        </div>
+        <p><button id="bo-run" class="btn primary" type="button">Calcola la squadra</button> <span id="bo-msg" class="muted small"></span></p>
+        <div id="bo-out"></div>
+    </section>
   </main>
 
   <footer class="wrap muted small">
@@ -115,5 +128,6 @@
   <script src="js/catalog.js"></script>
   <script src="js/builder.js"></script>
   <script src="js/coaches.js"></script>
+  <script src="js/boss.js"></script>
 </body>
 </html>

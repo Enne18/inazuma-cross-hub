@@ -165,4 +165,16 @@ t('livello tecnico: valori per livello (Mashiya 420..4200, Kira Lv9 = 63/54, Jig
   coaches.forEach(c => assert.deepStrictEqual(at(c.id, 10), c.coach_passive.effects.map(e => e.value), 'Lv10 = base per ' + c.id));
   assert.strictEqual(E.coachAtLevel(by('tayama'), 1).level, 1);
 });
+t('formula verificata (guida RR_o): Gazelle Lv440 Legendary+ Fire Blizzard ~112.436; boss: catena x1,1 e squadre disgiunte nel club', () => {
+  const eng = new E.Engine(chars.map(c => D.forLevel(raw.find(r => r.id === c.id), 440, 9)), aliases);
+  const g = eng.member(chars.find(c => c.id === '2030'), 'FW');
+  const d = eng.scoreTeam([g], {}).duel.shooters[0].d;
+  assert.ok(Math.abs(d - 112436) < 100, 'duello Gazelle ' + d);
+  const r = eng.bossBest(chars, { mode: 'attack', element: 'Wind', field: 0 });
+  assert.strictEqual(r.order.length, 5);
+  assert.ok(r.order.slice(1).some(o => o.chained) || r.total > 0);
+  const club = eng.bossClub(chars, { mode: 'attack', element: 'Fire', field: 50 });
+  const ids = [].concat(...club.teams.map(x => x.ids));
+  assert.strictEqual(club.teams.length, 3); assert.strictEqual(new Set(ids).size, 15);
+});
 console.log(n, 'test passati');

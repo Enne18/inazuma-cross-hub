@@ -283,3 +283,8 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Bonus di potenza ora per categoria/elemento/mossa (parsePassive: pcat/pel/pname); mosse senza elemento nei dati => elemento del personaggio (stima). Debuff nemici riducono il rivale.
 - Squadre community: 72-98% del migliore del motore (prima 51-77%).
 - DA FARE: zone ideali S/A/B (+15/10/5% solo stat propria) non applicate; adesivi/passive di allenamento non modellati; livello tecniche assunto 10; bench da tarare; ricerca squadre da migliorare (a Lv345 la squadra B batte il "migliore").
+
+## Tappa 13 — Pagina Boss
+- `data/bosses.json` (8 prove giornaliere a rotazione, oggi 20/10 = Xavier Foster; 4 boss del club, oggi Gran gigante): dati inseriti dall'utente, uso personale. Potenza "Senza fine": attacco 650.000, difesa 500.000.
+- engine: `scoreTeam(…, {allSat, cf, noScore})` (tutte le passive soddisfatte, cumulative una volta), `bossScore` (catena x1,1 tra tecniche dello stesso elemento, vantaggio +0,1, svantaggio -0,1, bonus campo +50 sui tiri in vantaggio, ordine ottimale 120 permutazioni + DP sulle mosse), `bossBest` (esaustivo sui 13 migliori + scambi), `bossClub` (3 squadre disgiunte, greedy).
+- `js/boss.js` + tab Boss. Non incluso: giocatori già usati oggi, zone, adesivi, livello tecniche (assunto max).

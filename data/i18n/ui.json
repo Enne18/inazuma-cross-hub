@@ -345,6 +345,46 @@
   "Punteggio {0}/100": {
    "en": "Score {0}/100",
    "ja": "スコア {0}/100"
+  },
+  "Boss": {
+   "en": "Bosses",
+   "ja": "ボス"
+  },
+  "Prova giornaliera": {
+   "en": "Daily trial",
+   "ja": "デイリー試練"
+  },
+  "Boss del club": {
+   "en": "Club boss",
+   "ja": "クラブボス"
+  },
+  "Tipo di prova": {
+   "en": "Trial type",
+   "ja": "試練の種類"
+  },
+  "Giocatori": {
+   "en": "Players",
+   "ja": "プレイヤー"
+  },
+  "Solo la mia collezione": {
+   "en": "My collection only",
+   "ja": "所持キャラクターのみ"
+  },
+  "Tutti i personaggi": {
+   "en": "All characters",
+   "ja": "全キャラクター"
+  },
+  "Potenza del boss (Senza fine)": {
+   "en": "Boss power (Endless)",
+   "ja": "ボスの威力（エンドレス）"
+  },
+  "Calcola la squadra": {
+   "en": "Calculate team",
+   "ja": "チームを計算"
+  },
+  "Squadra consigliata, in ordine di schieramento": {
+   "en": "Recommended team, in lineup order",
+   "ja": "おすすめチーム（配置順）"
   }
  }
 }
