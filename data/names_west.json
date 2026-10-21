@@ -57,12 +57,10 @@
    "west": "Caleb Stonewall"
   },
   "バーン": {
-   "west": "Torch",
-   "note": "nella tabella dell'utente: Torch = Haruya Nagumo (南雲 晴矢); nel sito il personaggio è 'バーン'. Identificazione mia: da confermare."
+   "west": "Claude Beacons"
   },
   "ガゼル": {
-   "west": "Gazelle",
-   "note": "nella tabella dell'utente: Gazelle = Fuusuke Suzuno (涼野 風介); nel sito il personaggio è 'ガゼル'. Identificazione mia: da confermare."
+   "west": "Bryce Whitingale"
   },
   "基山ヒロト": {
    "west": "Xavier Foster"
@@ -281,6 +279,33 @@
   },
   "シン・アフロディ": {
    "west": "Shin Aphrodi"
+  },
+  "グレント": {
+   "west": "Grent"
+  },
+  "バーラ": {
+   "west": "Barra"
+  },
+  "クララ": {
+   "west": "Clara"
+  },
+  "ゴッカ": {
+   "west": "Gokka"
+  },
+  "ボンバ": {
+   "west": "Bomba"
+  },
+  "ヒート": {
+   "west": "Heat"
+  },
+  "ドロル": {
+   "west": "Droll"
+  },
+  "リオーネ": {
+   "west": "Lionne"
+  },
+  "ネッパー": {
+   "west": "Nepper"
   }
  }
 }

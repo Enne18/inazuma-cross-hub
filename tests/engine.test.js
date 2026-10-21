@@ -177,4 +177,14 @@ t('formula verificata (guida RR_o): Gazelle Lv440 Legendary+ Fire Blizzard ~112.
   const ids = [].concat(...club.teams.map(x => x.ids));
   assert.strictEqual(club.teams.length, 3); assert.strictEqual(new Set(ids).size, 15);
 });
+t('livello mosse: forLevel applica power_by_level (Lv1 < Lv10) e il Team Builder usa quella potenza', () => {
+  const base = raw.find(c => c.id === '1001');
+  const lo = D.forLevel(base, 440, 9, { 0: 1, 1: 1 }), hi = D.forLevel(base, 440, 9, { 0: 10, 1: 10 });
+  assert.strictEqual(lo.skills[0].power, base.skills[0].power_by_level[0]);
+  assert.strictEqual(hi.skills[0].power, base.skills[0].power_by_level[9]);
+  assert.ok(lo.skills[0].power < hi.skills[0].power);
+  const dl = new E.Engine([lo], aliases).damageOf(Object.assign(Object.create(lo), { position: 'GK', native: 'GK' }), {}, {});
+  const dh = new E.Engine([hi], aliases).damageOf(Object.assign(Object.create(hi), { position: 'GK', native: 'GK' }), {}, {});
+  assert.ok(dl < dh, 'il danno cresce col livello della mossa');
+});
 console.log(n, 'test passati');

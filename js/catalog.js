@@ -214,7 +214,7 @@
   ];
 
   function haystack(c) {
-    var I = window.IECI18N, parts = [c.name_ja, c.name_en || '', c.team_ja || '', c.version || '', (c.tags_ja || []).join(' ')];
+    var I = window.IECI18N, parts = [c.name_ja, c.name_en || '', c.name_alt || '', c.team_ja || '', c.version || '', (c.tags_ja || []).join(' ')];
     if (I && I.ready()) {                                   // anche le traduzioni (it/en): nomi, squadra, tag, mosse
       parts.push(I.variants(c.name_en || c.name_ja).join(' '), I.nameIn(c, 'it'), I.nameIn(c, 'en'), I.variants(c.team_ja || '').join(' '));
       (c.tags_ja || []).forEach(function (t) { parts.push(I.variants(t).join(' ')); });

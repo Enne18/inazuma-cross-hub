@@ -300,3 +300,8 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Ricerca anche sulle traduzioni (it/en): "giovane" trova Seymour Hillman (Giovane) e Joseph Yosemite (Giovane).
 - Shin Aphrodi (シン・アフロディ, id 10072, Shin Zeus) aggiunto a names_west.json e chars.json.
 - Stile: header a gradiente blu con ⚡, tab a pillola, card con sfumatura dell'elemento, ombre, dark mode.
+
+## Tappa 16 — layout compatto
+- Intestazione su una riga (titolo a sinistra, tab accanto, lingua a destra), filtri staccati dalla barra, contenuto a tutta larghezza (max 1760px), card tutte di uguale altezza (206px) e larghezza (griglia auto-fill 380px+).
+- Nomi occidentali Chaos: Grent, Barra, Clara, Gokka, Bomba, Heat, Droll, Lionne, Nepper (chars.json + names_west.json). Gazelle/Torch restano "Gazelle"/"Torch".
+- Test: livello mosse -> potenza (24 test). Squadra community E (Kira: Gazelle, Seymour Giovane, Bellatrix, Riccardo, Jude Raimon, Lionne, Garret, Goldie, Gabi, Bobby, Silvia): 89% (grado 9) / 86% (grado 5) del migliore del motore a Lv345; formazione NON attiva (slot 1 = Gazelle, serve Foresta).
