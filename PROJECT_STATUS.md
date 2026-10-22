@@ -313,3 +313,11 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Lingua fase 2: `js/passives.js` traduce le passive dei personaggi (testo e nome) in IT/EN leggendo la struttura della frase; 3440/3440 testi e 246/246 nomi coperti (`tests/passives.test.js`). Giapponese = originale. I nomi occidentali delle tecniche in EN sono quelli italiani (non esistono nomi EN nei dati). Etichette tra parentesi quadre (結束, 破竹, ecc.) tradotte liberamente da me: da verificare.
 - Passive dei tecnici (testo) NON ancora tradotte (fase 3): hanno un'altra sintassi.
 - Prossimo: fase 3 (Team Builder/Tecnici in EN/JA), ricerca squadre, zone ideali, esclusione giocatori già usati.
+- 22/10: nomi Gazelle (2030) e Torch (2031) corretti (nei dati c'erano Bryce Whitingale / Claude Beacons per errore: confermati dall'utente "Gazelle"/"Torch").
+- Calibrazione "Potenza totale" (dati utente 22/10): "Abilità complessiva" per giocatore ≈ somma delle 4 statistiche con equipaggiamento (45-49k a Lv349, quasi piatta); squadra A: Σ=522.421, totale 532.390 (+9.969). Sostituendo Gazelle con William Glass (slot 1, Foresta) la formazione di Kira si attiva e il totale diventa 639.254 (Σ=522.933): +106.864 (+20%) dovuti alla formazione. Il motore NON riproduce questo salto (bonus stat 33k→35k). Ipotesi aperta. Guida RR_o riletta: formula già implementata.
+
+## Tappa 18 (22/10)
+- Team Builder: la squadra è disegnata sul campo (una riga per ruolo della casella: FW in alto, GK in basso; numero = casella della formazione; nome con la squadra tra parentesi per gli omonimi, es. Axel Blaze (Inazuma Japan) / (Royal Academy)). Dettagli in tooltip.
+- Dato utente: squadra con tecnico Seth Nichols Lv9 formazione non attiva: Σ abilità = 531.240, potenza totale 537.866 (+6.626). Con Lina non attiva: +9.969. La potenza totale è un indice del gioco, non il risultato in partita (parole dell'utente): non lo ottimizziamo.
+- 22/10 (2): campo con le posizioni vere del gioco: `data/pitch_layouts.json` (13 formazioni su 14, lette dalle schermate dell'utente; manca F-Beginner → righe per ruolo). Le caselle con requisito sono cerchiate (verde ✓ soddisfatto / rosso ! no).
+- CORRETTO: Igajima (F-Shuriken) ha i requisiti nelle caselle 1/5/10 (prima 2/6/11 da Gamerch): confermato dalla schermata. Tutti gli altri tecnici coincidono con le schermate (caselle e ruoli).

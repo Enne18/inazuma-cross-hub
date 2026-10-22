@@ -13,15 +13,15 @@
     return n;
   }
   function getJSON(p) { return fetch(p).then(function (r) { if (!r.ok) throw new Error(p + ' → HTTP ' + r.status); return r.json(); }); }
-  function nm(c) { return c.name_en || c.name_ja; }
+  function nm(c) { var b = (window.IEC && window.IEC.state.byId[c.id]) || c; return window.IECI18N ? window.IECI18N.primaryName(b) : (b.name_en || b.name_ja); }
 
-  var coaches = [], f5 = [];
+  var coaches = [], f5 = [], PL = null;
   function init() {
     if (data) return;
     data = window.IEC.state;
     data.chars.forEach(function (c) { byId[c.id] = c; });
-    Promise.all([getJSON('data/coaches.json'), getJSON('data/tag_aliases.json')]).then(function (r) {
-      coaches = r[0].coaches; f5 = r[0].five_vs_five_formations.formations; aliases = r[1];
+    Promise.all([getJSON('data/coaches.json'), getJSON('data/tag_aliases.json'), getJSON('data/pitch_layouts.json').catch(function () { return { layouts: {} }; })]).then(function (r) {
+      PL = r[2].layouts; coaches = r[0].coaches; f5 = r[0].five_vs_five_formations.formations; aliases = r[1];
       $('b-mode').addEventListener('change', onMode);
       $('b-run').addEventListener('click', run);
       setupPick();
@@ -67,19 +67,37 @@
         (d.coach.formationActive ? 'ATTIVA' : 'NON attiva (condizioni non tutte soddisfatte)'));
       box.appendChild(ch);
     }
-    var ro = el('div', 'roster');
-    t.slots.forEach(function (s) {
-      var c = s.char; if (!c) return;
-      var p = el('div', 'pl');
+    // campo: se la formazione del tecnico ha le posizioni lette dal gioco le usa, altrimenti una riga per ruolo
+    var pos = d.coach && PL && PL[d.coach.id], pitch = el('div', 'pitch' + (pos ? ' abs' : ''));
+    var reqs = {}; if (d.coach && d.coach.conditions) d.coach.conditions.forEach(function (c) { reqs[c.slot] = c.ok; });
+    if (pos) { pitch.appendChild(el('div', 'pbox ptop')); pitch.appendChild(el('div', 'pbox pbot')); pitch.appendChild(el('div', 'pmid')); pitch.appendChild(el('div', 'pcirc')); }
+    function token(s) {
+      var c = s.char, p = el('div', 'pt');
       p.style.setProperty('--el', 'var(--' + c.element + ')');
-      p.appendChild(window.IECUI.avatar(c, 'sm'));
-      var tx = el('div', 'ptx');
-      tx.appendChild(el('b', null, s.slot + '. ' + nm(c)));
-      tx.appendChild(el('small', null, 'slot ' + s.role + (c.position !== s.role ? ' (nativo ' + c.position + ')' : '') + ' · ' + data.meta.elements[c.element].it + ' · ' + '★'.repeat(c.rarity) + (c.team_ja ? ' · ' + c.team_ja : '') + (d.members && d.members[s.slot - 1] && d.members[s.slot - 1].damage ? ' · tiro/mossa migliore ~' + Math.round(d.members[s.slot - 1].damage).toLocaleString('it-IT') : '')));
-      p.appendChild(tx);
-      ro.appendChild(p);
-    });
-    box.appendChild(ro);
+      p.appendChild(window.IECUI.avatar(c, 'md'));
+      p.appendChild(el('span', 'slotn', String(s.slot)));
+      if (reqs[s.slot] !== undefined) { p.classList.add(reqs[s.slot] ? 'req-ok' : 'req-ko'); p.appendChild(el('span', 'reqmark', reqs[s.slot] ? '✓' : '!')); }
+      p.appendChild(el('span', 'pname', nm(c)));
+      p.appendChild(el('small', 'pinfo', (c.position !== s.role ? 'nativo ' + c.position + ' · ' : '') + data.meta.elements[c.element].it + ' · ' + '★'.repeat(c.rarity)));
+      var dm = d.members && d.members[s.slot - 1] && d.members[s.slot - 1].damage;
+      p.title = nm(c) + ' · casella ' + s.slot + ' (' + s.role + ')' + (reqs[s.slot] !== undefined ? (reqs[s.slot] ? ' · requisito della formazione soddisfatto' : ' · requisito della formazione NON soddisfatto') : '') + (c.team_ja ? ' · ' + c.team_ja : '') + (dm ? ' · tiro/mossa migliore ~' + Math.round(dm).toLocaleString('it-IT') : '');
+      return p;
+    }
+    if (pos) {
+      t.slots.forEach(function (s) {
+        if (!s.char) return; var xy = pos[s.slot], p = token(s);
+        if (xy) { p.style.left = (xy[0] * 100) + '%'; p.style.top = (xy[1] * 100) + '%'; }
+        pitch.appendChild(p);
+      });
+    } else {
+      ORDER.forEach(function (role) {
+        var row = el('div', 'prow');
+        t.slots.forEach(function (s) { if (s.char && s.role === role) row.appendChild(token(s)); });
+        if (row.childNodes.length) pitch.appendChild(row);
+      });
+    }
+    box.appendChild(pitch);
+    if (Object.keys(reqs).length) box.appendChild(el('small', 'muted', 'Cerchio verde ✓ = casella con requisito della formazione soddisfatto; rosso ! = non soddisfatto.'));
 
     var act = d.effects.slice().sort(function (a, b) { return b.points - a.points; }).slice(0, 8);
     box.appendChild(el('h4', null, 'Sinergie principali attive'));

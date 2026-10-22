@@ -295,3 +295,29 @@ main.wrap { padding-top: 26px; }
 .hcard .hc-lvl label { gap: 4px; }
 .hcard .hc-move .mvsel { width: auto; max-width: none; font-size: .78rem; }
 .coach-card .hc-lvl select { width: 6.5em; max-width: none; font-size: .8rem; }
+
+/* ===== Tappa 18: squadra sul campo ===== */
+.pitch { background: repeating-linear-gradient(180deg, #2f7d3b 0 56px, #2a7335 56px 112px); border: 2px solid #e8f3e6; border-radius: 14px; padding: 14px 8px 10px; margin: 10px 0; position: relative; }
+.pitch::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 2px solid rgba(255,255,255,.35); }
+.prow { display: flex; justify-content: space-evenly; align-items: flex-start; gap: 6px; margin: 6px 0 14px; position: relative; }
+.pt { width: 104px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; }
+.pt .avatar.md { width: 58px; height: 58px; border: 2px solid rgba(255,255,255,.85); box-shadow: 0 3px 8px rgba(0,0,0,.35); }
+.pt .slotn { position: absolute; top: -6px; left: 14px; background: #fff; color: #111; font-weight: 800; font-size: .72rem; border-radius: 999px; min-width: 20px; height: 20px; line-height: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.4); z-index: 2; }
+.pt .pname { margin-top: 4px; background: rgba(8,16,30,.82); color: #fff; font-size: .74rem; font-weight: 700; border-radius: 6px; padding: 1px 6px; max-width: 100%; line-height: 1.25; }
+.pt .pinfo { color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.7); font-size: .66rem; margin-top: 1px; }
+@media (max-width: 520px) { .pt { width: 70px; } .pt .avatar.md { width: 46px; height: 46px; } .pt .slotn { left: 6px; } .pt .pname { font-size: .66rem; } }
+.pitch.abs { aspect-ratio: 4 / 5; max-width: 600px; margin: 10px auto; padding: 0; overflow: hidden; }
+.pitch.abs::before { display: none; }
+.pitch.abs .pt { position: absolute; transform: translate(-50%, -50%); width: 17%; min-width: 74px; }
+.pitch .pbox { position: absolute; left: 21%; right: 21%; border: 2px solid rgba(255,255,255,.55); height: 17%; }
+.pitch .pbox.ptop { top: 0; border-top: 0; } .pitch .pbox.pbot { bottom: 0; border-bottom: 0; }
+.pitch .pmid { position: absolute; left: 0; right: 0; top: 50%; border-top: 2px solid rgba(255,255,255,.55); }
+.pitch .pcirc { position: absolute; left: 50%; top: 50%; width: 26%; aspect-ratio: 1; border: 2px solid rgba(255,255,255,.55); border-radius: 50%; transform: translate(-50%, -50%); }
+.pt.req-ok .avatar { border-color: #4ade80; box-shadow: 0 0 0 3px rgba(74,222,128,.55), 0 3px 8px rgba(0,0,0,.35); }
+.pt.req-ko .avatar { border-color: #f87171; box-shadow: 0 0 0 3px rgba(248,113,113,.6), 0 3px 8px rgba(0,0,0,.35); }
+.pt .reqmark { position: absolute; top: -6px; right: 14px; width: 20px; height: 20px; line-height: 20px; border-radius: 50%; font-weight: 800; font-size: .72rem; z-index: 2; color: #fff; }
+.pt.req-ok .reqmark { background: #16a34a; } .pt.req-ko .reqmark { background: #dc2626; }
+@media (max-width: 520px) { .pitch.abs .pt { width: 20%; min-width: 58px; } .pt .pinfo { display: none; } }
+.pitch.abs .pt .avatar.md { width: 50px; height: 50px; }
+.pitch.abs .pt .pname { font-size: .66rem; padding: 0 5px; }
+.pitch.abs .pt .pinfo { font-size: .6rem; }
