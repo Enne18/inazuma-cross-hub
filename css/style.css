@@ -91,7 +91,7 @@ summary { cursor: pointer; font-weight: 600; font-size: .9rem; }
 .chip{border:1px solid var(--border,#bbb);background:transparent;color:inherit;border-radius:1rem;padding:.15rem .6rem;font-size:.8rem;cursor:pointer}
 
 .coach-lv{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.4rem;margin:.5rem 0}
-.coach-lv input{width:4rem;padding:4px 6px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--text)}
+.coach-lv select{padding:4px 6px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--text)}
 
 .coach-head{display:flex;gap:12px;align-items:center;margin-bottom:6px}
 .coach-img{width:84px;height:100px;object-fit:contain;border-radius:8px;background:var(--bg)}
@@ -266,3 +266,32 @@ main.wrap { padding-top: 26px; }
 .hc-main { overflow: hidden; }
 .hc-lvl select { width: 10.6em; max-width: 10.6em; font-size: .78rem; }
 .hc-lvl { gap: 4px 8px; }
+
+/* ===== Tappa 17: immagine a tutta altezza nella card; tecnici come i giocatori ===== */
+.hcard { padding: 0; gap: 0; grid-template-columns: 112px 1fr; }
+.hc-img { align-self: stretch; border-radius: 0; display: block; position: relative; min-height: 0; }
+.hc-img .avatar.lg { width: 100%; height: 100%; border-radius: 0; box-shadow: none; }
+.hc-img:hover .avatar { transform: none; filter: brightness(1.06); }
+.hc-img .avatar img { object-position: center 18%; }
+.hc-img .avatar .ini { font-size: 2.6rem; }
+.hc-main { padding: 10px 12px; }
+@media (max-width: 520px) { .hcard { grid-template-columns: 88px 1fr; } .hc-img .avatar.lg { width: 100%; height: 100%; } }
+#co-grid.grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: 12px; align-items: start; }
+.coach-card { height: auto; min-height: 206px; }
+.coach-card .hc-main { overflow: visible; height: auto; }
+.coach-card .hc-img .avatar.lg { background: linear-gradient(160deg, var(--accent), #1b2a52); }
+.coach-card .hc-img .avatar img { object-fit: cover; object-position: center top; }
+.coach-card .hc-lvl.off { opacity: .55; }
+.cdet { border-top: 1px solid var(--line); padding: 4px 0; font-size: .85rem; }
+.cdet summary { cursor: pointer; font-weight: 600; }
+.cdet h3 { font-size: .85rem; margin: .5rem 0 .2rem; }
+.cdet ul { margin: .2rem 0; padding-left: 1.1rem; }
+.coach-card .hc-lvl select { width: 6.5em; }
+.hcard { align-content: stretch; grid-template-rows: minmax(0, 1fr); }
+.coach-card { grid-template-rows: auto; }
+.hcard .hc-lvl select { width: 11.6em; max-width: 11.6em; font-size: .74rem; padding: 3px 3px; }
+.hcard .hc-lvl { gap: 4px 6px; }
+.hcard .hc-lvl .lvtxt { width: 3.2em; }
+.hcard .hc-lvl label { gap: 4px; }
+.hcard .hc-move .mvsel { width: auto; max-width: none; font-size: .78rem; }
+.coach-card .hc-lvl select { width: 6.5em; max-width: none; font-size: .8rem; }

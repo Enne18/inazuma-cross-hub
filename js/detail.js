@@ -14,9 +14,18 @@
     rows.forEach(function (r) { var tr = el('tr'); r.forEach(function (v) { tr.appendChild(el('td', null, v === null || v === undefined ? '—' : String(v))); }); t.appendChild(tr); });
     return t;
   }
+  var movesLoaded = false;
+  function lang() { return window.IECI18N ? window.IECI18N.lang() : 'it'; }
+  function trP(t) { var P = window.IECPassives, L = lang(); if (!P || L === 'ja') return t; return P.tr(t, L) || t; }
+  function trN(n) { var P = window.IECPassives, L = lang(); if (!P || L === 'ja') return n; return P.trName(n, L) || n; }
+  function loadMoves() {
+    if (movesLoaded || !window.IECPassives) return; movesLoaded = true;
+    fetch('data/moves.json').then(function (r) { return r.json(); }).then(function (d) { window.IECPassives.setMoves(d.moves); if (cur) render(cur); }).catch(function () {});
+  }
   function sec(title) { var s = el('section', 'dsec'); s.appendChild(el('h3', null, title)); return s; }
 
   function render(id) {
+    loadMoves();
     var IEC = window.IEC, ops = IEC.ops, S = IEC.state, base = S.byId[id], root = $('detail');
     root.textContent = '';
     if (!base) { root.appendChild(el('p', 'muted', 'Personaggio non trovato.')); return; }
@@ -97,9 +106,9 @@
       if (!list || !list.length) return;
       ps.appendChild(el('h4', null, title));
       list.forEach(function (p) {
-        var d = el('details'); d.appendChild(el('summary', null, p.name_ja + (p.tier ? ' [' + p.tier + ']' : '')));
+        var d = el('details'); d.appendChild(el('summary', null, trN(p.name_ja) + (p.tier ? ' [' + p.tier + ']' : '')));
         (p.levels || []).forEach(function (l, i) {
-          d.appendChild(el('div', 'item', 'Lv ' + (i + 1) + (l.unlock_lv ? ' (sblocco Lv ' + l.unlock_lv + ')' : '') + ': ' + l.text));
+          var row = el('div', 'item', 'Lv ' + (i + 1) + (l.unlock_lv ? ' (sblocco Lv ' + l.unlock_lv + ')' : '') + ': ' + trP(l.text)); row.title = l.text; d.appendChild(row);
         });
         ps.appendChild(d);
       });

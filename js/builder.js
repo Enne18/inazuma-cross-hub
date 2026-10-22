@@ -136,10 +136,12 @@
     loadCoachLv();
     var box = $('b-coach-lv'); box.textContent = '';
     coaches.forEach(function (c) {
-      var lb = el('label', null, (c.name_west || c.name_ja) + ' '), inp = el('input');
-      inp.type = 'number'; inp.min = '0'; inp.max = '10'; inp.value = String(lvOf(c.id));
+      var lb = el('label', null, (c.name_west || c.name_ja) + ' '), inp = el('select');
+      var o0 = el('option', null, 'Non posseduto'); o0.value = '0'; inp.appendChild(o0);
+      for (var n = 1; n <= 10; n++) { var o = el('option', null, 'Lv ' + n); o.value = String(n); inp.appendChild(o); }
+      inp.value = String(lvOf(c.id));
       inp.addEventListener('change', function () {
-        var v = Math.max(0, Math.min(10, Math.round(+inp.value) || 0)); inp.value = String(v); coachLv[c.id] = v;
+        var v = Math.max(0, Math.min(10, Math.round(+inp.value) || 0)); coachLv[c.id] = v;
         try { window.localStorage.setItem(KEY_CLV, JSON.stringify(coachLv)); } catch (e) { /* ignora */ }
       });
       lb.appendChild(inp); box.appendChild(lb);

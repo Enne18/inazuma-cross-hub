@@ -305,3 +305,11 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Intestazione su una riga (titolo a sinistra, tab accanto, lingua a destra), filtri staccati dalla barra, contenuto a tutta larghezza (max 1760px), card tutte di uguale altezza (206px) e larghezza (griglia auto-fill 380px+).
 - Nomi occidentali Chaos: Grent, Barra, Clara, Gokka, Bomba, Heat, Droll, Lionne, Nepper (chars.json + names_west.json). Gazelle/Torch restano "Gazelle"/"Torch".
 - Test: livello mosse -> potenza (24 test). Squadra community E (Kira: Gazelle, Seymour Giovane, Bellatrix, Riccardo, Jude Raimon, Lionne, Garret, Goldie, Gabi, Bobby, Silvia): 89% (grado 9) / 86% (grado 5) del migliore del motore a Lv345; formazione NON attiva (slot 1 = Gazelle, serve Foresta).
+
+## Tappa 17 (21/10)
+- Card giocatori: immagine a tutta altezza sul lato sinistro (nessun padding, cover).
+- Tecnici: card come i giocatori (immagine a tutta altezza, "Ce l'ho", livello a tendina Lv 1-10, dettagli in sezioni apribili); anche il pannello livelli del Team Builder usa tendine (0 = non posseduto). Tolto il commento su Lina Schiller: progressione lineare confermata.
+- Nomi Gemini Storm aggiunti (Galileo, Coral, Gig, Ganymede, Charon, Pandora, Gringo, Io, Rhime, Janus, Diam). Gazelle/Torch restano così (confermato).
+- Lingua fase 2: `js/passives.js` traduce le passive dei personaggi (testo e nome) in IT/EN leggendo la struttura della frase; 3440/3440 testi e 246/246 nomi coperti (`tests/passives.test.js`). Giapponese = originale. I nomi occidentali delle tecniche in EN sono quelli italiani (non esistono nomi EN nei dati). Etichette tra parentesi quadre (結束, 破竹, ecc.) tradotte liberamente da me: da verificare.
+- Passive dei tecnici (testo) NON ancora tradotte (fase 3): hanno un'altra sintassi.
+- Prossimo: fase 3 (Team Builder/Tecnici in EN/JA), ricerca squadre, zone ideali, esclusione giocatori già usati.

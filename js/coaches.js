@@ -38,39 +38,57 @@
   }
 
   function card(c) {
-    var root = el('article', 'card coach');
-    var head = el('div', 'coach-head');
-    var img = el('img', 'coach-img'); img.src = 'img/coaches/' + c.id + '.png'; img.alt = c.name_west || c.name_ja; img.loading = 'lazy';
+    var root = el('article', 'card hcard coach-card'); root.style.setProperty('--el', 'var(--accent)');
+    var l = c.layout, roles = [];
+    ['FW', 'MF', 'DF', 'GK'].forEach(function (p) { for (var i = 0; i < (l[p] || 0); i++) roles.push(p); });
+
+    var a = el('div', 'hc-img');
+    var av = el('div', 'avatar lg coach-av'); av.appendChild(el('span', 'ini', (c.name_west || c.name_ja || '?').charAt(0)));
+    var img = el('img'); img.src = 'img/coaches/' + c.id + '.png'; img.alt = ''; img.loading = 'lazy';
     img.addEventListener('error', function () { img.remove(); });
-    head.appendChild(img);
-    var t = el('div');
-    t.appendChild(el('h2', null, c.name_west || c.name_ja));
-    t.appendChild(el('div', 'ja', c.name_ja + ' · formazione ' + c.formation_ja));
-    var l = c.layout;
-    t.appendChild(el('div', 'ja', 'Schieramento ' + (l.DF || 0) + '-' + (l.MF || 0) + '-' + (l.FW || 0) + ' (+ portiere)' + (c.unlock_ja ? ' · ' + c.unlock_ja : '')));
-    head.appendChild(t); root.appendChild(head);
+    img.addEventListener('load', function () { av.classList.add('has-img'); });
+    av.appendChild(img); a.appendChild(av); root.appendChild(a);
 
-    var roles = []; ['FW', 'MF', 'DF', 'GK'].forEach(function (p) { for (var i = 0; i < (l[p] || 0); i++) roles.push(p); });
-    root.appendChild(el('h3', null, 'Condizioni per attivare la formazione'));
-    var ul = el('ul'); c.formation_condition.forEach(function (x) { ul.appendChild(el('li', null, cond(x, roles[x.slot - 1]))); }); root.appendChild(ul);
-    root.appendChild(el('h3', null, 'Passiva di formazione (solo se tutte le condizioni sono soddisfatte)'));
-    var u2 = el('ul'); c.formation_passive.effects.forEach(function (e) { u2.appendChild(el('li', null, effect(e))); }); root.appendChild(u2);
-    root.appendChild(el('small', 'muted', c.formation_passive.text_ja));
+    var main = el('div', 'hc-main'), top = el('div', 'hc-top'), ht = el('div', 'ctitle');
+    ht.appendChild(el('h2', null, c.name_west || c.name_ja));
+    ht.appendChild(el('div', 'hc-team', c.name_ja + ' · ' + c.formation_ja));
+    top.appendChild(ht);
+    var own = el('button', 'btn own'); own.type = 'button';
+    function paintOwn() { var on = lvOf(c.id) > 0; own.textContent = on ? "✓ Ce l'ho" : "+ Ce l'ho"; own.classList.toggle('on', on); own.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+    top.appendChild(own); main.appendChild(top);
 
-    root.appendChild(el('h3', null, 'Passiva sempre attiva'));
-    var row = el('div', 'lvl'), lab = el('label', null, 'Livello del mio tecnico (0 = non ce l\'ho) '), inp = el('input');
-    inp.type = 'number'; inp.min = '0'; inp.max = '10'; inp.value = String(lvOf(c.id)); lab.appendChild(inp); row.appendChild(lab);
-    var out = el('ul');
-    function draw() {
-      out.textContent = '';
-      var n = Math.max(1, lvOf(c.id) || 10), L = c.coach_passive.levels && c.coach_passive.levels[n - 1];
-      c.coach_passive.effects.forEach(function (e) { out.appendChild(el('li', null, effect(e, e.ref && L && L[e.ref] !== undefined ? (e.sign || 1) * L[e.ref] : e.value))); });
-      note.textContent = lvOf(c.id) === 0 ? 'Non posseduto: qui sono mostrati i valori al livello 10.' : 'Valori al livello ' + n + '.';
-    }
+    var b = el('div', 'badges');
+    b.appendChild(el('span', 'badge el', 'Tecnico'));
+    b.appendChild(el('span', 'badge', (l.DF || 0) + '-' + (l.MF || 0) + '-' + (l.FW || 0)));
+    if (c.unlock_ja) b.appendChild(el('span', 'badge soft', c.unlock_ja));
+    main.appendChild(b);
+
+    var lvRow = el('div', 'hc-lvl'), lab = el('label', null, 'Livello '), sel = el('select', 'mvsel');
+    sel.setAttribute('aria-label', 'Livello del tecnico');
+    for (var n = 1; n <= 10; n++) { var o = el('option', null, 'Lv ' + n); o.value = String(n); sel.appendChild(o); }
+    lab.appendChild(sel); lvRow.appendChild(lab); main.appendChild(lvRow);
     var note = el('small', 'muted');
-    inp.addEventListener('change', function () { var v = Math.max(0, Math.min(10, Math.round(+inp.value) || 0)); inp.value = String(v); lv[c.id] = v; save(); draw(); });
-    root.appendChild(row); root.appendChild(out); root.appendChild(note);
-    if (c.coach_passive.levels_note) root.appendChild(el('div', 'warn', c.coach_passive.levels_note));
+
+    var d1 = el('details', 'cdet'); d1.appendChild(el('summary', null, 'Formazione e condizioni'));
+    d1.appendChild(el('h3', null, 'Condizioni per attivare la formazione'));
+    var ul = el('ul'); c.formation_condition.forEach(function (x) { ul.appendChild(el('li', null, cond(x, roles[x.slot - 1]))); }); d1.appendChild(ul);
+    d1.appendChild(el('h3', null, 'Passiva di formazione (solo se tutte le condizioni sono soddisfatte)'));
+    var u2 = el('ul'); c.formation_passive.effects.forEach(function (e) { u2.appendChild(el('li', null, effect(e))); }); d1.appendChild(u2);
+    d1.appendChild(el('small', 'muted', c.formation_passive.text_ja));
+    var d2 = el('details', 'cdet'); d2.appendChild(el('summary', null, 'Passiva sempre attiva'));
+    var out = el('ul'); d2.appendChild(out); d2.appendChild(note);
+    function draw() {
+      var on = lvOf(c.id) > 0, nn = on ? lvOf(c.id) : 10, L = c.coach_passive.levels && c.coach_passive.levels[nn - 1];
+      sel.value = String(nn); sel.disabled = !on; lvRow.classList.toggle('off', !on);
+      out.textContent = '';
+      c.coach_passive.effects.forEach(function (e) { out.appendChild(el('li', null, effect(e, e.ref && L && L[e.ref] !== undefined ? (e.sign || 1) * L[e.ref] : e.value))); });
+      note.textContent = on ? 'Valori al livello ' + nn + '.' : 'Non posseduto: qui sono mostrati i valori al livello 10.';
+      paintOwn();
+    }
+    sel.addEventListener('change', function () { lv[c.id] = Math.max(1, Math.min(10, +sel.value || 10)); save(); draw(); });
+    own.addEventListener('click', function () { lv[c.id] = lvOf(c.id) > 0 ? 0 : 10; save(); draw(); });
+    main.appendChild(d1); main.appendChild(d2);
+    root.appendChild(main);
     draw();
     return root;
   }
