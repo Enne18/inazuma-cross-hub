@@ -332,3 +332,13 @@ main.wrap { padding-top: 26px; }
 .tcstate { font-weight: 700; font-size: .85rem; } .tcoach.active .tcstate { color: #16a34a; } .tcoach.inactive .tcstate { color: #d97706; }
 .tside h4 { margin: .9rem 0 .3rem; font-size: .9rem; } .tside ul { margin: .2rem 0; padding-left: 1.1rem; font-size: .84rem; }
 @media (max-width: 800px) { .tbody { grid-template-columns: 1fr; } }
+
+/* ===== Sincronizzazione ===== */
+.sy-box { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--line); }
+.sy-box h4 { margin: 0 0 .3rem; }
+.sy-box input[type=password] { flex: 1 1 260px; min-width: 0; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text); font: inherit; }
+
+/* ===== Tappa 21: sincronizzazione ===== */
+.sync { border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; margin: 10px 0; }
+.sync legend { font-weight: 700; padding: 0 6px; }
+.sync input[type=password] { flex: 1 1 220px; min-width: 0; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text); }

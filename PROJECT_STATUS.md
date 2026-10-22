@@ -322,3 +322,9 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - 22/10 (2): campo con le posizioni vere del gioco: `data/pitch_layouts.json` (13 formazioni su 14, lette dalle schermate dell'utente; manca F-Beginner → righe per ruolo). Le caselle con requisito sono cerchiate (verde ✓ soddisfatto / rosso ! no).
 - CORRETTO: Igajima (F-Shuriken) ha i requisiti nelle caselle 1/5/10 (prima 2/6/11 da Gamerch): confermato dalla schermata. Tutti gli altri tecnici coincidono con le schermate (caselle e ruoli).
 - 22/10 (3): Team Builder: tecnico con immagine a sinistra (nome, livello, stato formazione) + sinergie sotto; campo a destra. Nomi delle passive tradotti nelle sinergie.
+
+## Tappa 21
+- Sync Gist ripristinato (js/sync.js API Sync + syncui.js in "Gestione collezione"); test sync ok.
+- Boss difesa: 4 posti con tecniche di blocco, parate (portieri) solo nell'ultimo posto (engine.bossScore/bossBest); test aggiunto (25 test).
+- Scheda dettaglio Tecnico (#coach=ID) dall'immagine; nome non più cliccabile nei giocatori (solo immagine).
+- Zone ideali (S +15%, A +10%, B +5%): NESSUN dato per giocatore nei nostri file; in attesa di dati dall'utente.

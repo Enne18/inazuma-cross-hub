@@ -177,6 +177,12 @@ t('formula verificata (guida RR_o): Gazelle Lv440 Legendary+ Fire Blizzard ~112.
   const ids = [].concat(...club.teams.map(x => x.ids));
   assert.strictEqual(club.teams.length, 3); assert.strictEqual(new Set(ids).size, 15);
 });
+t('boss difesa: tecniche di blocco nei primi 4 posti, parate (portieri) solo in ultima posizione', () => {
+  const eng = new E.Engine(chars.map(c => D.forLevel(raw.find(r => r.id === c.id), 440, 9)), aliases);
+  const r = eng.bossBest(chars, { mode: 'defense', element: 'Wind', field: 0 });
+  assert.strictEqual(r.order.length, 5);
+  r.order.slice(0, 4).forEach(o => { assert.ok(o.cat ? o.cat === 'block' : true, 'posto non-ultimo con parata'); });
+});
 t('livello mosse: forLevel applica power_by_level (Lv1 < Lv10) e il Team Builder usa quella potenza', () => {
   const base = raw.find(c => c.id === '1001');
   const lo = D.forLevel(base, 440, 9, { 0: 1, 1: 1 }), hi = D.forLevel(base, 440, 9, { 0: 10, 1: 10 });

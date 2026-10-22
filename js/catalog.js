@@ -149,7 +149,7 @@
     root.appendChild(a);
 
     var main = el('div', 'hc-main'), top = el('div', 'hc-top'), ht = el('div', 'ctitle');
-    var h = el('h2'); var ha = el('a'); ha.href = '#char=' + c.id; ha.textContent = I18 ? I18.primaryName(c) : (c.name_en || c.name_ja); h.appendChild(ha);
+    var h = el('h2'); h.textContent = I18 ? I18.primaryName(c) : (c.name_en || c.name_ja);
     ht.appendChild(h);
     ht.appendChild(el('div', 'hc-team', c.team_ja || ''));
     top.appendChild(ht);
@@ -281,10 +281,10 @@
   function flash(msg) { $('c-msg').textContent = msg; }
 
   function showTab(name) {
-    ['catalog', 'builder', 'coaches', 'boss', 'detail'].forEach(function (t) { $(t).hidden = (t !== name); });
+    ['catalog', 'builder', 'coaches', 'boss', 'detail', 'cdetail'].forEach(function (t) { $(t).hidden = (t !== name); });
     document.dispatchEvent(new CustomEvent('iec-tab', { detail: name }));
     Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (b) {
-      b.classList.toggle('active', b.getAttribute('data-tab') === (name === 'detail' ? 'catalog' : name));
+      b.classList.toggle('active', b.getAttribute('data-tab') === (name === 'detail' ? 'catalog' : name === 'cdetail' ? 'coaches' : name));
     });
   }
 

@@ -410,12 +410,13 @@
       (m.skills || []).forEach(function (k) {
         var c = SKILLCAT[k.category] || k.category;
         if (cats.indexOf(c) < 0 || k.power == null || s[c] == null) return;
+        if (boss.restrict && boss.restrict !== c) return;   // solo per la selezione dei candidati (vedi bossBest)
         var stat = Math.max(0, Math.floor(s[c] * awk) + eqAt(nat, c, L) + (sb[c] || 0)), ke = k.element || m.element;
         var bonus = (pb[c] || 0) + (pb.all || 0) + (pb['el:' + ke] || 0) + (pb[c + '|el:' + ke] || 0) + (pb['mv:' + k.name_ja] || 0);
         var adv = BEATS[ke] === boss.element, dis = BEATS[boss.element] === ke;
         var power = k.power + Math.max(-1000, Math.min(1000, bonus)) + (adv && boss.field ? boss.field : 0);
         var mult = 1 + (ke === m.element ? 0.2 : 0) + (adv ? 0.1 : 0) - (dis ? 0.1 : 0);
-        out.push({ el: ke, name: k.name_ja, v: Math.floor(stat * Math.max(0, power) * mult * 0.01), power: power, stat: stat, mult: mult });
+        out.push({ cat: c, el: ke, name: k.name_ja, v: Math.floor(stat * Math.max(0, power) * mult * 0.01), power: power, stat: stat, mult: mult });
       });
       out.sort(function (a, b) { return b.v - a.v; });
       return out.slice(0, 3);
@@ -426,7 +427,9 @@
       var dp = null;   // [{sum, prev, mv}] per mossa dell'ultimo giocatore
       var trace = [];
       order.forEach(function (mi, pos) {
-        var cur = cand[mi].map(function (mv) {
+        // prova di difesa: le parate (portieri) valgono solo nell'ultimo posto; gli altri quattro devono usare tecniche di blocco
+        var lim = boss.mode === 'defense' && members.length === 5 && pos < 4;
+        var cur = cand[mi].filter(function (mv) { return !lim || mv.cat === 'block'; }).map(function (mv) {
           var b = -1, from = -1;
           if (pos === 0) b = mv.v;
           else dp.forEach(function (d, di) { var v = d.sum + (d.mv.el === mv.el ? Math.floor(mv.v * 1.1) : mv.v); if (v > b) { b = v; from = di; } });
@@ -455,12 +458,20 @@
     if (cs.length < 5) return null;
     function mem(c) { return self.member(c, c.position); }
     function ev(arr) { return self.bossScore(arr.map(mem), boss); }
-    var solo = cs.map(function (c) { return { c: c, v: self.bossScore([mem(c)], boss).total }; }).sort(function (a, b) { return b.v - a.v; });
-    var top = solo.slice(0, 13).map(function (x) { return x.c; }), bestT = null, bestV = -1, idx = [0, 1, 2, 3, 4];
+    var top, bestT = null, bestV = -1;
+    function soloTop(restrict, n) {
+      var b2 = {}; Object.keys(boss).forEach(function (k) { b2[k] = boss[k]; }); b2.restrict = restrict;
+      return cs.map(function (c) { return { c: c, v: self.bossScore([mem(c)], b2).total }; }).filter(function (x) { return x.v > 0; }).sort(function (a, b) { return b.v - a.v; }).slice(0, n).map(function (x) { return x.c; });
+    }
+    if (boss.mode === 'defense') {   // 4 difensori con tecniche di blocco + (al massimo) 1 portiere in ultima posizione
+      top = soloTop('block', 12); soloTop('catch', 3).forEach(function (c) { if (top.indexOf(c) < 0) top.push(c); });
+    } else top = soloTop(null, 13);
+    if (top.length < 5) { top = cs.slice(0, 13); }
     (function comb(start, cur) {
       if (cur.length === 5) { var r = ev(cur); if (r.total > bestV) { bestV = r.total; bestT = cur.slice(); } return; }
       for (var i = start; i < top.length; i++) { cur.push(top[i]); comb(i + 1, cur); cur.pop(); }
     })(0, []);
+    if (!bestT) return null;
     for (var round = 0; round < 4; round++) {
       var improved = false;
       for (var pos = 0; pos < 5; pos++) {

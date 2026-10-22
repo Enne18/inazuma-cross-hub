@@ -37,12 +37,12 @@
     return 'Slot ' + c.slot + ' (' + ROLE[role] + '): ' + p.join(', ');
   }
 
-  function card(c) {
+  function card(c, full) {
     var root = el('article', 'card hcard coach-card'); root.style.setProperty('--el', 'var(--accent)');
     var l = c.layout, roles = [];
     ['FW', 'MF', 'DF', 'GK'].forEach(function (p) { for (var i = 0; i < (l[p] || 0); i++) roles.push(p); });
 
-    var a = el('div', 'hc-img');
+    var a = full ? el('div', 'hc-img') : el('a', 'hc-img'); if (!full) { a.href = '#coach=' + c.id; a.title = 'Apri la scheda completa'; }
     var av = el('div', 'avatar lg coach-av'); av.appendChild(el('span', 'ini', (c.name_west || c.name_ja || '?').charAt(0)));
     var img = el('img'); img.src = 'img/coaches/' + c.id + '.png'; img.alt = ''; img.loading = 'lazy';
     img.addEventListener('error', function () { img.remove(); });
@@ -87,6 +87,7 @@
     }
     sel.addEventListener('change', function () { lv[c.id] = Math.max(1, Math.min(10, +sel.value || 10)); save(); draw(); });
     own.addEventListener('click', function () { lv[c.id] = lvOf(c.id) > 0 ? 0 : 10; save(); draw(); });
+    if (full) { d1.open = true; d2.open = true; }
     main.appendChild(d1); main.appendChild(d2);
     root.appendChild(main);
     draw();
@@ -104,5 +105,26 @@
     coaches.forEach(function (c) { g.appendChild(card(c)); });
     $('co-msg').textContent = coaches.length + ' tecnici';
   }
+  // pagina di dettaglio del tecnico: #coach=ID (si apre dal clic sull'immagine)
+  var curC = null, y0 = 0;
+  function showDetail(id) {
+    var c = coaches.filter(function (x) { return x.id === id; })[0], root = $('cdetail'); root.textContent = '';
+    var back = el('a', 'btn dback', '← Tecnici'); back.href = '#'; back.addEventListener('click', function (e) { e.preventDefault(); history.pushState('', document.title, location.pathname + location.search); route(); });
+    root.appendChild(back);
+    root.appendChild(c ? card(c, true) : el('p', 'muted', 'Tecnico non trovato.'));
+    if (window.IECI18N) window.IECI18N.apply(root);
+  }
+  function route() {
+    var m = /^#coach=(.+)$/.exec(location.hash || ''), ops = window.IEC && window.IEC.ops;
+    if (!ops || !window.IEC.loaded) return;
+    if (m) {
+      if (!curC) y0 = window.scrollY;
+      var go = function () { curC = decodeURIComponent(m[1]); load(); showDetail(curC); ops.showTab('cdetail'); window.scrollTo(0, 0); };
+      if (coaches) go(); else { started = true; fetch('data/coaches.json').then(function (r) { return r.json(); }).then(function (d) { coaches = d.coaches; go(); }); }
+    } else if (curC) { curC = null; ops.showTab('coaches'); start(); window.scrollTo(0, y0); }
+  }
+  window.addEventListener('hashchange', route);
+  document.addEventListener('iec-ready', route);
+  document.addEventListener('iec-tab', function (e) { if (e.detail !== 'cdetail' && curC) { curC = null; history.replaceState('', document.title, location.pathname + location.search); } });
   document.addEventListener('iec-tab', function (e) { if (e.detail === 'coaches' && window.IEC && window.IEC.loaded) start(); });
 })();
