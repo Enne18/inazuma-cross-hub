@@ -13,6 +13,7 @@
     return n;
   }
   function getJSON(p) { return fetch(p).then(function (r) { if (!r.ok) throw new Error(p + ' → HTTP ' + r.status); return r.json(); }); }
+  function pn(n) { var P = window.IECPassives, L = window.IECI18N ? window.IECI18N.lang() : 'it'; if (!P || L === 'ja' || !n) return n; return P.trName(n, L) || n; }
   function nm(c) { var b = (window.IEC && window.IEC.state.byId[c.id]) || c; return window.IECI18N ? window.IECI18N.primaryName(b) : (b.name_en || b.name_ja); }
 
   var coaches = [], f5 = [], PL = null;
@@ -62,10 +63,17 @@
     box.appendChild(h);
     if (d.estimated) box.appendChild(el('div', 'warn', d.estimated + ' giocatori hanno statistiche stimate (dati mancanti nella fonte): il punteggio è meno affidabile.'));
 
+    var body = el('div', 'tbody'), side = el('div', 'tside'), main = el('div', 'tmain');
     if (d.coach) {
-      var ch = el('div', d.coach.formationActive ? 'okline' : 'warn', 'Tecnico: ' + (d.coach.name_west ? d.coach.name_west + ' / ' : '') + d.coach.name_ja + (d.coach.level ? ' Lv' + d.coach.level : '') + ' (' + d.coach.formation_ja + ') · passiva di formazione ' +
-        (d.coach.formationActive ? 'ATTIVA' : 'NON attiva (condizioni non tutte soddisfatte)'));
-      box.appendChild(ch);
+      var cc = el('div', 'tcoach ' + (d.coach.formationActive ? 'active' : 'inactive'));
+      var im = el('img', 'tcimg'); im.src = 'img/coaches/' + d.coach.id + '.png'; im.alt = ''; im.addEventListener('error', function () { im.remove(); });
+      cc.appendChild(im);
+      var ci = el('div', 'tcinfo');
+      ci.appendChild(el('b', null, d.coach.name_west || d.coach.name_ja));
+      ci.appendChild(el('small', 'muted', d.coach.name_ja + (d.coach.level ? ' · Lv ' + d.coach.level : '') + ' · ' + d.coach.formation_ja));
+      ci.appendChild(el('span', 'tcstate', d.coach.formationActive ? '✓ Formazione ATTIVA' : '✗ Formazione NON attiva'));
+      if (!d.coach.formationActive) ci.appendChild(el('small', 'muted', 'condizioni non tutte soddisfatte (caselle rosse sul campo)'));
+      cc.appendChild(ci); side.appendChild(cc);
     }
     // campo: se la formazione del tecnico ha le posizioni lette dal gioco le usa, altrimenti una riga per ruolo
     var pos = d.coach && PL && PL[d.coach.id], pitch = el('div', 'pitch' + (pos ? ' abs' : ''));
@@ -96,27 +104,28 @@
         if (row.childNodes.length) pitch.appendChild(row);
       });
     }
-    box.appendChild(pitch);
-    if (Object.keys(reqs).length) box.appendChild(el('small', 'muted', 'Cerchio verde ✓ = casella con requisito della formazione soddisfatto; rosso ! = non soddisfatto.'));
+    main.appendChild(pitch);
+    if (Object.keys(reqs).length) main.appendChild(el('small', 'muted', 'Cerchio verde ✓ = casella con requisito della formazione soddisfatto; rosso ! = non soddisfatto.'));
 
     var act = d.effects.slice().sort(function (a, b) { return b.points - a.points; }).slice(0, 8);
-    box.appendChild(el('h4', null, 'Sinergie principali attive'));
+    side.appendChild(el('h4', null, 'Sinergie principali attive'));
     var ul = el('ul');
     if (!act.length) ul.appendChild(el('li', null, 'Nessuna sinergia attiva.'));
     act.forEach(function (e) {
       var src = byId[e.source] || { name_ja: e.passive };
       var who = e.enemy ? 'avversari' : e.affected.length + (e.affected.length === 1 ? ' giocatore' : ' giocatori');
-      ul.appendChild(el('li', null, (e.coach ? '' : nm(src) + ' · ') + e.passive + ' → ' + who + ' (+' + e.points.toFixed(1) + (e.conditional ? ', condizionale' : '') + ')'));
+      ul.appendChild(el('li', null, (e.coach ? '' : nm(src) + ' · ') + pn(e.passive) + ' → ' + who + ' (+' + e.points.toFixed(1) + (e.conditional ? ', condizionale' : '') + ')'));
     });
-    box.appendChild(ul);
+    side.appendChild(ul);
 
     var um = d.unmet.slice().sort(function (a, b) { return b.points - a.points; }).slice(0, 4);
     if (um.length) {
-      box.appendChild(el('h4', null, 'Sinergie non attive (potenziale)'));
+      side.appendChild(el('h4', null, 'Sinergie non attive (potenziale)'));
       var u2 = el('ul');
-      um.forEach(function (u) { u2.appendChild(el('li', null, nm(byId[u.source]) + ' · ' + u.passive + ': ' + need(u) + ' (+' + u.points.toFixed(1) + ')')); });
-      box.appendChild(u2);
+      um.forEach(function (u) { u2.appendChild(el('li', null, nm(byId[u.source]) + ' · ' + pn(u.passive) + ': ' + need(u) + ' (+' + u.points.toFixed(1) + ')')); });
+      side.appendChild(u2);
     }
+    body.appendChild(side); body.appendChild(main); box.appendChild(body);
     if (d.unparsed.length) box.appendChild(el('div', 'warn', d.unparsed.length + ' effetti di passive non interpretati (non contati).'));
     return box;
   }

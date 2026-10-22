@@ -321,3 +321,14 @@ main.wrap { padding-top: 26px; }
 .pitch.abs .pt .avatar.md { width: 50px; height: 50px; }
 .pitch.abs .pt .pname { font-size: .66rem; padding: 0 5px; }
 .pitch.abs .pt .pinfo { font-size: .6rem; }
+
+/* ===== Tappa 20: tecnico a sinistra, campo a destra ===== */
+.tbody { display: grid; grid-template-columns: minmax(250px, 340px) 1fr; gap: 16px; align-items: start; }
+.tbody .tmain .pitch.abs { margin: 0 auto; }
+.tcoach { display: grid; grid-template-columns: 110px 1fr; gap: 10px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); }
+.tcoach.active { border-color: #22a55b; } .tcoach.inactive { border-color: #d97706; }
+.tcimg { width: 110px; height: 100%; min-height: 130px; object-fit: cover; object-position: center top; background: linear-gradient(160deg, var(--accent), #1b2a52); }
+.tcinfo { padding: 8px 8px 8px 0; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.tcstate { font-weight: 700; font-size: .85rem; } .tcoach.active .tcstate { color: #16a34a; } .tcoach.inactive .tcstate { color: #d97706; }
+.tside h4 { margin: .9rem 0 .3rem; font-size: .9rem; } .tside ul { margin: .2rem 0; padding-left: 1.1rem; font-size: .84rem; }
+@media (max-width: 800px) { .tbody { grid-template-columns: 1fr; } }

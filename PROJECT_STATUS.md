@@ -321,3 +321,4 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Dato utente: squadra con tecnico Seth Nichols Lv9 formazione non attiva: Σ abilità = 531.240, potenza totale 537.866 (+6.626). Con Lina non attiva: +9.969. La potenza totale è un indice del gioco, non il risultato in partita (parole dell'utente): non lo ottimizziamo.
 - 22/10 (2): campo con le posizioni vere del gioco: `data/pitch_layouts.json` (13 formazioni su 14, lette dalle schermate dell'utente; manca F-Beginner → righe per ruolo). Le caselle con requisito sono cerchiate (verde ✓ soddisfatto / rosso ! no).
 - CORRETTO: Igajima (F-Shuriken) ha i requisiti nelle caselle 1/5/10 (prima 2/6/11 da Gamerch): confermato dalla schermata. Tutti gli altri tecnici coincidono con le schermate (caselle e ruoli).
+- 22/10 (3): Team Builder: tecnico con immagine a sinistra (nome, livello, stato formazione) + sinergie sotto; campo a destra. Nomi delle passive tradotti nelle sinergie.
