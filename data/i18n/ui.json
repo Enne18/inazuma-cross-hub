@@ -718,6 +718,26 @@
   "Tutti (per provare)": {
    "en": "All (to try out)",
    "ja": "すべて（お試し用）"
+  },
+  "La migliore tra tutte le formazioni": {
+   "en": "Best of all formations",
+   "ja": "全フォーメーションの中で最良"
+  },
+  "Boss di oggi": {
+   "en": "Today's boss",
+   "ja": "本日のボス"
+  },
+  "Cambia alle 22:00 (ora di Roma) · tra {0}": {
+   "en": "Changes at 22:00 (Rome time) · in {0}",
+   "ja": "22:00（ローマ時間）に切り替わり · あと{0}"
+  },
+  "Domani: {0}": {
+   "en": "Tomorrow: {0}",
+   "ja": "明日：{0}"
+  },
+  "Squadra migliore per oggi": {
+   "en": "Best team for today",
+   "ja": "今日の最適チーム"
   }
  }
 }

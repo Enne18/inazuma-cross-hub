@@ -366,3 +366,10 @@ main.wrap { padding-top: 26px; }
 .coach-card .cohint { margin-top: auto; }
 .hcard .badges .badge { min-width: 0; overflow: hidden; text-overflow: ellipsis; flex: 0 1 auto; }
 .hcard .badges .badge.soft { flex: 1 1 0; }
+
+/* ===== Tappa 26: boss di oggi, 5v5 migliore formazione ===== */
+.bo-today { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; padding: 12px 14px; margin: 8px 0 12px; border-radius: 14px; border: 1px solid var(--line); background: linear-gradient(100deg, color-mix(in srgb, var(--accent) 14%, var(--panel)), var(--panel)); box-shadow: var(--shadow); }
+.bo-today .bo-t-main { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.05rem; }
+.bo-today small { flex: 1 1 100%; }
+.bo-today .btn { margin-left: auto; }
+.f5tag { font-size: .8rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; background: var(--accent); color: #fff; margin-right: 6px; }

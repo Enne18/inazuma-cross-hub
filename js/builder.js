@@ -45,7 +45,7 @@
       fill($('b-coach'), coaches, function (c) { return (c.name_west ? c.name_west + ' (' + c.name_ja + ')' : c.name_ja) + ' · ' + c.formation_ja + ' · ' + layoutStr(c.layout); });
       $('b-coach').insertBefore(all, $('b-coach').firstChild); $('b-coach').value = 'all';
     }
-    if (m === '5v5' && !$('b-f5').options.length) fill($('b-f5'), f5, function (f) { return f.name_ja + ' (FW' + f.slots.FW + ' MF' + f.slots.MF + ' DF' + f.slots.DF + ')'; });
+    if (m === '5v5' && !$('b-f5').options.length) { fill($('b-f5'), f5, function (f) { return f.name_ja + ' (FW' + f.slots.FW + ' MF' + f.slots.MF + ' DF' + f.slots.DF + ')'; }); var oa = document.createElement('option'); oa.value = 'all'; oa.textContent = 'La migliore tra tutte le formazioni'; $('b-f5').insertBefore(oa, $('b-f5').firstChild); $('b-f5').value = 'all'; }
   }
 
   function need(u) {
@@ -57,6 +57,7 @@
   function teamBox(t, rank) {
     var d = t.detail, box = el('article', 'team');
     var h = el('h3', null, '#' + rank + ' · ');
+    if (t.f5name) h.appendChild(el('span', 'f5tag', t.f5name + ' '));
     h.appendChild(el('span', 'score', 'Punteggio ' + d.total.toFixed(1) + '/100'));
     if (d.parts) h.appendChild(el('small', 'muted', ' attacco ' + Math.round(d.parts.attack * 100) + '% · portiere/difesa ' + Math.round(d.parts.defense * 100) + '% · dribbling ' + Math.round(d.parts.dribble * 100) + '% · contrasto ' + Math.round(d.parts.block * 100) + '%'));
     h.appendChild(document.createTextNode(' (somma dei danni della mossa migliore di ogni giocatore, con bonus di sinergie e tecnico)'));
@@ -195,9 +196,20 @@
         var eng = new window.IECEngine.Engine(data.chars, aliases, cfg), res, t0 = Date.now(), m = $('b-mode').value;
         eng.setZones(ZC, ZS);
         if (m === '5v5') {
-          var f = f5.filter(function (x) { return x.id === $('b-f5').value; })[0];
-          eng.setZoneOverride(f.zones);
-          res = eng.build(pool, eng.rolesFromLayout(f.slots), null);
+          if ($('b-f5').value === 'all') {            // la migliore tra tutte le formazioni 5v5
+            var allT = [];
+            f5.forEach(function (ff) {
+              eng.setZoneOverride(ff.zones);
+              var rr = eng.build(pool, eng.rolesFromLayout(ff.slots), null, { restarts: 4, topN: 2 });
+              rr.teams.forEach(function (t) { t.f5name = ff.name_ja; allT.push(t); });
+            });
+            allT.sort(function (a, b) { return b.score - a.score; });
+            res = { teams: allT.slice(0, 5), poolSize: pool.length, missing: {} };
+          } else {
+            var f = f5.filter(function (x) { return x.id === $('b-f5').value; })[0];
+            eng.setZoneOverride(f.zones);
+            res = eng.build(pool, eng.rolesFromLayout(f.slots), null);
+          }
         } else if ($('b-coach').value === 'all') {
           res = eng.buildAllCoaches(pool, coaches.filter(function (c) { return lvOf(c.id) > 0; }).map(leveled));
         } else {

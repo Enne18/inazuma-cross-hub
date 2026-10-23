@@ -37,6 +37,25 @@
     $('bo-target').value = String(B.daily.target[b.mode]);
   }
 
+  // riquadro "oggi": boss in corso, quanto manca al cambio (22:00 ora di Roma), boss di domani
+  function untilChange() {
+    var t = new Date(Date.now() + 2 * 3600000), p = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Rome', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }).format(t).split(':');
+    var left = 86400 - (+p[0] * 3600 + +p[1] * 60 + +p[2]), h = Math.floor(left / 3600), m = Math.floor((left % 3600) / 60);
+    return h + ' h ' + (m < 10 ? '0' : '') + m + ' min';
+  }
+  function bossLine(b) { return b.name + ' · ' + EL[b.element] + ' · ' + (b.mode === 'attack' ? 'attacco' : 'difesa'); }
+  function renderToday() {
+    var box = $('bo-today'), blk = B.daily, t = todayIndex(blk), L = blk.bosses.length;
+    box.textContent = '';
+    box.appendChild(el('strong', null, 'Boss di oggi'));
+    var big = el('div', 'bo-t-main'); big.appendChild(bossAvatar(blk.bosses[t])); big.appendChild(el('span', 'bo-t-name', bossLine(blk.bosses[t]))); box.appendChild(big);
+    box.appendChild(el('small', 'muted', 'Cambia alle 22:00 (ora di Roma) · tra ' + untilChange()));
+    box.appendChild(el('small', 'muted', 'Domani: ' + bossLine(blk.bosses[(t + 1) % L])));
+    var go = el('button', 'btn primary', 'Squadra migliore per oggi'); go.type = 'button';
+    go.addEventListener('click', function () { $('bo-kind').value = 'daily'; fillBosses(); $('bo-pool').value = 'owned'; run(); });
+    box.appendChild(go);
+  }
+
   function row(o, i) {
     var c = byId[o.id], li = el('li', 'bo-row');
     li.style.setProperty('--el', 'var(--' + (o.element || c.element) + ')');
@@ -110,7 +129,9 @@
       $('bo-kind').addEventListener('change', fillBosses);
       $('bo-boss').addEventListener('change', onBoss);
       $('bo-run').addEventListener('click', run);
-      fillBosses();
+      fillBosses(); renderToday();
+      setInterval(function () { if (!$('boss').hidden) renderToday(); }, 60000);
+      if (window.IEC.ownedChars().length >= 5) run();          // all'apertura mostra già la squadra per il boss di oggi
     }).catch(function (e) { $('bo-msg').textContent = 'Impossibile caricare i dati dei boss: ' + e.message; });
   }
   document.addEventListener('iec-ready', init);
