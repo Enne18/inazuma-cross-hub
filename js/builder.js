@@ -16,13 +16,13 @@
   function pn(n) { var P = window.IECPassives, L = window.IECI18N ? window.IECI18N.lang() : 'it'; if (!P || L === 'ja' || !n) return n; return P.trName(n, L) || n; }
   function nm(c) { var b = (window.IEC && window.IEC.state.byId[c.id]) || c; return window.IECI18N ? window.IECI18N.primaryName(b) : (b.name_en || b.name_ja); }
 
-  var coaches = [], f5 = [], PL = null;
+  var coaches = [], f5 = [], PL = null, ZC = {}, ZS = {};
   function init() {
     if (data) return;
     data = window.IEC.state;
     data.chars.forEach(function (c) { byId[c.id] = c; });
-    Promise.all([getJSON('data/coaches.json'), getJSON('data/tag_aliases.json'), getJSON('data/pitch_layouts.json').catch(function () { return { layouts: {} }; })]).then(function (r) {
-      PL = r[2].layouts; coaches = r[0].coaches; f5 = r[0].five_vs_five_formations.formations; aliases = r[1];
+    Promise.all([getJSON('data/coaches.json'), getJSON('data/tag_aliases.json'), getJSON('data/pitch_layouts.json').catch(function () { return { layouts: {} }; }), getJSON('data/zones.json').catch(function () { return { zones: {} }; }), getJSON('data/zone_slots.json').catch(function () { return { slots: {} }; })]).then(function (r) {
+      PL = r[2].layouts; ZC = r[3].zones; ZS = r[4].slots; coaches = r[0].coaches; f5 = r[0].five_vs_five_formations.formations; aliases = r[1];
       $('b-mode').addEventListener('change', onMode);
       $('b-run').addEventListener('click', run);
       setupPick();
@@ -88,7 +88,8 @@
       p.appendChild(el('span', 'pname', nm(c)));
       p.appendChild(el('small', 'pinfo', (c.position !== s.role ? 'nativo ' + c.position + ' · ' : '') + data.meta.elements[c.element].it + ' · ' + '★'.repeat(c.rarity)));
       var dm = d.members && d.members[s.slot - 1] && d.members[s.slot - 1].damage;
-      p.title = nm(c) + ' · casella ' + s.slot + ' (' + s.role + ')' + (reqs[s.slot] !== undefined ? (reqs[s.slot] ? ' · requisito della formazione soddisfatto' : ' · requisito della formazione NON soddisfatto') : '') + (c.team_ja ? ' · ' + c.team_ja : '') + (dm ? ' · tiro/mossa migliore ~' + Math.round(dm).toLocaleString('it-IT') : '');
+      var T = function (x) { return window.IECI18N ? window.IECI18N.t(x) : x; };
+      p.title = nm(c) + ' · ' + T('casella') + ' ' + s.slot + ' (' + s.role + ')' + (reqs[s.slot] !== undefined ? ' · ' + T(reqs[s.slot] ? 'requisito della formazione soddisfatto' : 'requisito della formazione NON soddisfatto') : '') + (c.team_ja ? ' · ' + c.team_ja : '') + (dm ? ' · ' + T('tiro/mossa migliore') + ' ~' + Math.round(dm).toLocaleString('it-IT') : '');
       return p;
     }
     if (pos) {
@@ -114,7 +115,9 @@
     act.forEach(function (e) {
       var src = byId[e.source] || { name_ja: e.passive };
       var who = e.enemy ? 'avversari' : e.affected.length + (e.affected.length === 1 ? ' giocatore' : ' giocatori');
-      ul.appendChild(el('li', null, (e.coach ? '' : nm(src) + ' · ') + pn(e.passive) + ' → ' + who + ' (+' + e.points.toFixed(1) + (e.conditional ? ', condizionale' : '') + ')'));
+      var li = el('li', null, (e.coach ? '' : nm(src) + ' · ') + pn(e.passive) + ' ');
+      li.appendChild(el('span', null, '→ ' + who + ' (+' + e.points.toFixed(1) + (e.conditional ? ', condizionale' : '') + ')'));
+      ul.appendChild(li);
     });
     side.appendChild(ul);
 
@@ -122,7 +125,7 @@
     if (um.length) {
       side.appendChild(el('h4', null, 'Sinergie non attive (potenziale)'));
       var u2 = el('ul');
-      um.forEach(function (u) { u2.appendChild(el('li', null, nm(byId[u.source]) + ' · ' + pn(u.passive) + ': ' + need(u) + ' (+' + u.points.toFixed(1) + ')')); });
+      um.forEach(function (u) { var li = el('li', null, nm(byId[u.source]) + ' · ' + pn(u.passive) + ': '); li.appendChild(el('span', null, need(u))); li.appendChild(document.createTextNode(' (+' + u.points.toFixed(1) + ')')); u2.appendChild(li); });
       side.appendChild(u2);
     }
     body.appendChild(side); body.appendChild(main); box.appendChild(body);
@@ -190,8 +193,10 @@
         if ($('b-rai').checked) cfg.optionalTeams['雷門'] = true;
         if ($('b-jp').checked) cfg.optionalTeams['イナズマジャパン'] = true;
         var eng = new window.IECEngine.Engine(data.chars, aliases, cfg), res, t0 = Date.now(), m = $('b-mode').value;
+        eng.setZones(ZC, ZS);
         if (m === '5v5') {
           var f = f5.filter(function (x) { return x.id === $('b-f5').value; })[0];
+          eng.setZoneOverride(f.zones);
           res = eng.build(pool, eng.rolesFromLayout(f.slots), null);
         } else if ($('b-coach').value === 'all') {
           res = eng.buildAllCoaches(pool, coaches.filter(function (c) { return lvOf(c.id) > 0; }).map(leveled));

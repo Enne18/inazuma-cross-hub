@@ -163,6 +163,16 @@
     return this.parsed[c.id].filter(function (p) { return cfg.unlocks.indexOf(p.unlock) >= 0; });
   };
 
+  // Zone ideali: setZones(zonesById {id:['B2','A9',..]}, slotMap {coachId:{slot:zona}}). Bonus S x1.15, A x1.10, B x1.05 solo su stat x risveglio.
+  var ZMUL = { S: 1.15, A: 1.10, B: 1.05 };
+  Engine.prototype.setZones = function (byId, slotMap) { this.zonesById = byId || {}; this.zoneSlots = slotMap || {}; };
+  Engine.prototype.setZoneOverride = function (arr) { var m = {}; (arr || []).forEach(function (z, i) { m[i + 1] = z; }); this.zoneOverride = arr ? m : null; };
+  Engine.prototype.zoneMult = function (c, coach, slot) {
+    var zm = coach ? (this.zoneSlots && this.zoneSlots[coach.id]) : this.zoneOverride, z = zm && zm[slot], list = this.zonesById && this.zonesById[c.id];
+    if (!z || !list) return 1;
+    for (var i = 0; i < list.length; i++) if (+list[i].slice(1) === z) return ZMUL[list[i].charAt(0)] || 1;
+    return 1;
+  };
   // 'membro' = personaggio che gioca in un certo ruolo (slot). position = ruolo giocato, native = ruolo del personaggio.
   Engine.prototype.member = function (c, role) {
     var k = c.id + '|' + role;
@@ -320,7 +330,8 @@
     if (coach) this.addCoach(coach, members, out);
     if (opts && opts.noScore) { out.total = 0; return out; }
     if (cfg.model === 'duel') {
-      var D = this.duelScore(members, SB, PB, out._rm);
+      var ZM = members.map(function (m, i) { return self.zoneMult(m, coach, opts && opts.slots ? opts.slots[i] : i + 1); });
+      var D = this.duelScore(members, SB, PB, out._rm, ZM);
       out.total = D.score; out.parts = D.parts; out.duel = D;
       members.forEach(function (m, i) { var d = self.damageOf(m, SB[i], PB[i]); out.members[i].damage = d === null ? 0 : d; });
     } else if (cfg.model === 'damage') {
@@ -339,7 +350,7 @@
 
   function winProb(r, e) { var x = Math.pow(Math.max(0, r), e); return x / (x + 1); }
   // Duello = stat (con bonus) x potenza mossa (con bonus) x elemento x 0.01, contro un rivale di riferimento (meta).
-  Engine.prototype.duelScore = function (members, SB, PB, RM) {
+  Engine.prototype.duelScore = function (members, SB, PB, RM, ZM) {
     var self = this, cfg = this.cfg, E = cfg.duelExp, W = cfg.duelWeights;
     var B = {}, k, Lsum = 0;
     members.forEach(function (m) { Lsum += m.level || 440; });
@@ -354,7 +365,7 @@
       (m.skills || []).forEach(function (k) {
         var c = SKILLCAT[k.category] || k.category;
         if (!c || k.power == null || s[c] == null) return;
-        var stat = Math.max(0, Math.floor(s[c] * awk) + eqAt(nat, c, L) + (sb[c] || 0));
+        var stat = Math.max(0, Math.floor(s[c] * awk * ((ZM && ZM[i]) || 1)) + eqAt(nat, c, L) + (sb[c] || 0));
         var ke = k.element || m.element;     // mosse senza elemento nei dati: si assume quello del personaggio (la maggior parte lo condivide)
         var power = k.power + (pb[c] || 0) + (pb.all || 0) + (pb['el:' + ke] || 0) + (pb[c + '|el:' + ke] || 0) + (pb['mv:' + k.name_ja] || 0);
         var d = Math.floor(stat * Math.max(0, power) * 0.01 * (ke === m.element ? cfg.moveElementStab : 1));
@@ -555,8 +566,9 @@
     var self = this, cfg = this.cfg, rand = rng(cfg.seed), n = roles.length;
     function ev(team) {
       var ms = [];
-      for (var i = 0; i < n; i++) if (team[i]) ms.push(self.member(team[i], roles[i]));
-      return self.scoreTeam(ms, { coach: coach }).total;
+      var sl = [];
+      for (var i = 0; i < n; i++) if (team[i]) { ms.push(self.member(team[i], roles[i])); sl.push(i + 1); }
+      return self.scoreTeam(ms, { coach: coach, slots: sl }).total;
     }
     var solo = {};
     function soloOf(c, role) {
@@ -639,7 +651,8 @@
       if (found[key]) continue;
       found[key] = true;
       var ms = team.map(function (c, i) { return c ? self.member(c, roles[i]) : null; }).filter(Boolean);
-      var detail = self.scoreTeam(ms, { coach: coach });
+      var sl2 = []; team.forEach(function (c, i) { if (c) sl2.push(i + 1); });
+      var detail = self.scoreTeam(ms, { coach: coach, slots: sl2 });
       results.push({ team: team.filter(Boolean), slots: team.map(function (c, i) { return { slot: i + 1, role: roles[i], char: c }; }), ids: ids.slice().sort(), detail: detail, score: detail.total, coach: coach ? coach.id : null });
     }
     results.sort(function (a, b) { return b.score - a.score; });

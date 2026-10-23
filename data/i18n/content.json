@@ -620,6 +620,74 @@
   "風神の舞": {
    "en": "Dance of the Wind God",
    "it": "Danza del Dio del Vento"
+  },
+  "初期から解放": {
+   "en": "Unlocked from the start",
+   "it": "Sbloccato dall'inizio"
+  },
+  "メイン3章の報酬マスで解放": {
+   "en": "Unlocked at the reward tile of main story chapter 3",
+   "it": "Sbloccato dalla casella premio del capitolo 3 (storia principale)"
+  },
+  "メイン2章の報酬マスで解放": {
+   "en": "Unlocked at the reward tile of main story chapter 2",
+   "it": "Sbloccato dalla casella premio del capitolo 2 (storia principale)"
+  },
+  "リミテッドサッカーバトル:グループBステ1クリア": {
+   "en": "Limited Soccer Battle: clear Group B, stage 1",
+   "it": "Limited Soccer Battle: completa il Gruppo B, stage 1"
+  },
+  "リミテッドサッカーバトル:グループBステ5クリア": {
+   "en": "Limited Soccer Battle: clear Group B, stage 5",
+   "it": "Limited Soccer Battle: completa il Gruppo B, stage 5"
+  },
+  "リミテッドサッカーバトル:グループBステ10クリア": {
+   "en": "Limited Soccer Battle: clear Group B, stage 10",
+   "it": "Limited Soccer Battle: completa il Gruppo B, stage 10"
+  },
+  "メイン4章試合2クリア": {
+   "en": "Clear match 2 of chapter 4",
+   "it": "Completa la partita 2 del capitolo 4"
+  },
+  "メイン4章試合4クリア": {
+   "en": "Clear match 4 of chapter 4",
+   "it": "Completa la partita 4 del capitolo 4"
+  },
+  "メイン4章試合6クリア": {
+   "en": "Clear match 6 of chapter 4",
+   "it": "Completa la partita 6 del capitolo 4"
+  },
+  "メイン3章試合4クリア": {
+   "en": "Clear match 4 of chapter 3",
+   "it": "Completa la partita 4 del capitolo 3"
+  },
+  "メイン3章試合2クリア": {
+   "en": "Clear match 2 of chapter 3",
+   "it": "Completa la partita 2 del capitolo 3"
+  },
+  "「世宇子降臨」のイベントボードをクリア": {
+   "en": "Clear the event board “Zeus Descends” (世宇子降臨)",
+   "it": "Completa il tabellone evento «Zeus scende in campo» (世宇子降臨)"
+  },
+  "人脈ボードNo5を全てクリア後にミッションから入手": {
+   "en": "Obtained from missions after clearing all of Connection Board No. 5",
+   "it": "Ottenuto dalle missioni dopo aver completato tutto il tabellone Contatti n. 5"
+  },
+  "「宇宙人が来た」のイベントボード(ノーマル)をクリア": {
+   "en": "Clear the event board (Normal) “The Aliens Are Here” (宇宙人が来た)",
+   "it": "Completa il tabellone evento (Normale) «Sono arrivati gli alieni» (宇宙人が来た)"
+  },
+  "帝国": {
+   "en": "Royal Academy",
+   "it": "Royal Academy"
+  },
+  "雷門": {
+   "en": "Raimon",
+   "it": "Raimon"
+  },
+  "雷門または稲妻KFC": {
+   "en": "Raimon or Inazuma KFC",
+   "it": "Raimon o Inazuma KFC"
   }
  }
 }

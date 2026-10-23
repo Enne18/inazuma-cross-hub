@@ -342,3 +342,27 @@ main.wrap { padding-top: 26px; }
 .sync { border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; margin: 10px 0; }
 .sync legend { font-weight: 700; padding: 0 6px; }
 .sync input[type=password] { flex: 1 1 220px; min-width: 0; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text); }
+
+/* ===== Tappa 25: card giocatori con più carattere, mosse senza sbordare, terza mossa ===== */
+.hcard { height: auto; min-height: 196px; }
+.hcard::before { content: ''; position: absolute; inset: 0 auto 0 0; width: 5px; background: linear-gradient(180deg, var(--el), color-mix(in srgb, var(--el) 40%, transparent)); z-index: 1; }
+.hcard::after { content: ''; position: absolute; right: -34px; top: -34px; width: 110px; height: 110px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--el) 28%, transparent), transparent 70%); pointer-events: none; }
+.hcard h2 { font-weight: 800; letter-spacing: .01em; }
+.hc-img .avatar.lg { border: 3px solid var(--el); box-shadow: 0 0 0 3px color-mix(in srgb, var(--el) 25%, transparent), 0 6px 14px rgba(0,0,0,.28); }
+.hcard .badge.el { background: var(--el); color: #fff; border-color: transparent; font-weight: 700; box-shadow: 0 2px 6px color-mix(in srgb, var(--el) 45%, transparent); }
+.hcard.owned-card { background: linear-gradient(100deg, color-mix(in srgb, var(--el) 24%, var(--panel)) 0, var(--panel) 45%); }
+.hcard .btn.own.on { background: var(--el); border-color: var(--el); color: #fff; }
+/* mosse: il nome si accorcia con "…", il menù del livello resta sempre dentro la card */
+.hc-moves { min-width: 0; }
+.hc-move { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; border-left: 3px solid var(--el); min-width: 0; }
+.hc-move .mname { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hc-move .mvsel { flex: none; }
+.hc-move.extra { border-left-style: dashed; background: transparent; border: 1px dashed color-mix(in srgb, var(--el) 55%, var(--line)); border-left-width: 3px; }
+.hc-move.extra .xmsel { min-width: 0; width: 100%; font: inherit; font-size: .8rem; padding: 3px 6px; border: 0; background: transparent; color: var(--muted); border-radius: 6px; text-overflow: ellipsis; }
+.hc-move.extra:has(.mvsel) .xmsel { color: var(--text); font-weight: 600; }
+.hc-move.extra:has(.mvsel) { grid-template-columns: minmax(0, 1fr) auto; }
+.hc-move.extra:not(:has(.mvsel)) { grid-template-columns: minmax(0, 1fr); }
+/* tecnici: scheda essenziale */
+.coach-card .cohint { margin-top: auto; }
+.hcard .badges .badge { min-width: 0; overflow: hidden; text-overflow: ellipsis; flex: 0 1 auto; }
+.hcard .badges .badge.soft { flex: 1 1 0; }

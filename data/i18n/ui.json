@@ -402,6 +402,322 @@
   "Lv mossa": {
    "en": "Move Lv",
    "ja": "必殺技Lv"
+  },
+  "11 contro 11 con tecnico": {
+   "en": "11 vs 11 with coach",
+   "ja": "11対11（監督あり）"
+  },
+  "5 contro 5 (senza tecnico)": {
+   "en": "5 vs 5 (no coach)",
+   "ja": "5対5（監督なし）"
+  },
+  "Il migliore tra tutti i tecnici": {
+   "en": "Best of all coaches",
+   "ja": "全監督の中で最良"
+  },
+  "I 14 tecnici: condizioni di formazione, passive e livello. Il livello che imposti qui è lo stesso usato dal Team Builder.": {
+   "en": "The 14 coaches: formation conditions, passives and level. The level you set here is the same one the Team Builder uses.",
+   "ja": "14人の監督：フォーメーション条件・パッシブ・レベル。ここで設定したレベルはチームビルダーでも使われます。"
+  },
+  "{0} tecnici": {
+   "en": "{0} coaches",
+   "ja": "{0}人の監督"
+  },
+  "Tecnico": {
+   "en": "Coach",
+   "ja": "監督"
+  },
+  "Condizioni per attivare la formazione": {
+   "en": "Conditions to activate the formation",
+   "ja": "フォーメーション発動条件"
+  },
+  "Formazione e condizioni": {
+   "en": "Formation and conditions",
+   "ja": "フォーメーションと条件"
+  },
+  "Passiva di formazione (solo se tutte le condizioni sono soddisfatte)": {
+   "en": "Formation passive (only if all conditions are met)",
+   "ja": "フォーメーションパッシブ（全条件を満たした場合のみ）"
+  },
+  "Passiva sempre attiva": {
+   "en": "Always-active passive",
+   "ja": "常時発動パッシブ"
+  },
+  "Non posseduto": {
+   "en": "Not owned",
+   "ja": "未所持"
+  },
+  "Valori al livello {0}.": {
+   "en": "Values at level {0}.",
+   "ja": "レベル{0}の値。"
+  },
+  "Non posseduto: qui sono mostrati i valori al livello 10.": {
+   "en": "Not owned: values at level 10 are shown.",
+   "ja": "未所持：レベル10の値を表示しています。"
+  },
+  "Livello del tecnico": {
+   "en": "Coach level",
+   "ja": "監督のレベル"
+  },
+  "Apri la scheda completa": {
+   "en": "Open full profile",
+   "ja": "詳細を開く"
+  },
+  "Personaggio principale": {
+   "en": "Main character",
+   "ja": "主人公"
+  },
+  "← Tecnici": {
+   "en": "← Coaches",
+   "ja": "← 監督"
+  },
+  "← Personaggi": {
+   "en": "← Characters",
+   "ja": "← キャラクター"
+  },
+  "Modalità": {
+   "en": "Mode",
+   "ja": "モード"
+  },
+  "Formazione 5v5": {
+   "en": "5v5 formation",
+   "ja": "5対5フォーメーション"
+  },
+  "Obbligatori": {
+   "en": "Required",
+   "ja": "必須"
+  },
+  "Esclusi": {
+   "en": "Excluded",
+   "ja": "除外"
+  },
+  "(sempre in squadra)": {
+   "en": "(always in the team)",
+   "ja": "（常にチームに入れる）"
+  },
+  "(mai in squadra)": {
+   "en": "(never in the team)",
+   "ja": "（チームに入れない）"
+  },
+  "scrivi un nome e scegli…": {
+   "en": "type a name and choose…",
+   "ja": "名前を入力して選択…"
+  },
+  "Calcola le migliori squadre": {
+   "en": "Calculate the best teams",
+   "ja": "最適なチームを計算"
+  },
+  "Calcolo in corso…": {
+   "en": "Calculating…",
+   "ja": "計算中…"
+  },
+  "Conta {0} come tag {1} (non confermato)": {
+   "en": "Count {0} as tag {1} (unconfirmed)",
+   "ja": "{0}をタグ{1}として数える（未確認）"
+  },
+  "Livello dei miei tecnici (0 = non ce l'ho)": {
+   "en": "My coaches' levels (0 = not owned)",
+   "ja": "所持監督のレベル（0＝未所持）"
+  },
+  "Il livello cambia la passiva \"sempre attiva\" del tecnico (valori per livello dal repository iecrosshub). La passiva di formazione non dipende dal livello. In \"Il migliore tra tutti i tecnici\" contano solo quelli con livello maggiore di 0.": {
+   "en": "The level changes the coach's \"always-active\" passive (per-level values from the iecrosshub repository). The formation passive does not depend on the level. \"Best of all coaches\" only considers coaches with a level above 0.",
+   "ja": "レベルは監督の「常時発動」パッシブを変化させます（レベル別の値はiecrosshubリポジトリより）。フォーメーションパッシブはレベルに依存しません。「全監督の中で最良」ではレベル1以上の監督のみが対象です。"
+  },
+  "Propone le migliori squadre con i personaggi che hai segnato in \"In possesso\" (pagina Personaggi). Il punteggio usa la formula di potenza verificata (statistica, risveglio, equipaggiamento, passive, elemento) contro un rivale di riferimento: è una stima, non il risultato esatto di una partita. Considera tecnico (passiva sempre attiva, passiva di formazione solo se tutte le condizioni sono soddisfatte), ruoli liberi e 5v5 senza tecnico.": {
+   "en": "Suggests the best teams from the characters you marked as \"Owned\" (Characters page). The score uses the verified power formula (stats, awakening, equipment, passives, element) against a reference rival: it is an estimate, not the exact result of a match. It takes into account the coach (always-active passive; formation passive only if all conditions are met), free roles and 5v5 without a coach.",
+   "ja": "「所持している」にしたキャラクター（キャラクターページ）から最適なチームを提案します。スコアは検証済みの威力計算式（ステータス・覚醒・装備・パッシブ・属性）を基準ライバルと比較したもので、試合の正確な結果ではなく推定値です。監督（常時パッシブ、フォーメーションパッシブは全条件を満たした場合のみ）、自由なポジション、監督なしの5対5を考慮します。"
+  },
+  "Cinque giocatori in fila: ogni tecnica dopo una dello stesso elemento fa ×1,1 (catena), il vantaggio di elemento dà +0,1, tutte le passive contano come soddisfatte, equipaggiamento completo al livello del giocatore. Formula verificata con la guida di RR_o.": {
+   "en": "Five players in a row: each move after one of the same element gets ×1.1 (chain), element advantage gives +0.1, all passives count as satisfied, full equipment at the player's level. Formula verified with the RR_o guide.",
+   "ja": "5人が一列：同じ属性の技の直後は×1.1（チェイン）、属性有利は+0.1、全パッシブ条件成立とみなし、装備はプレイヤーのレベルに応じてフル装備。計算式はRR_oのガイドで検証済み。"
+  },
+  "Stima: livelli delle tecniche assunti al massimo, zone ideali e adesivi non inclusi.": {
+   "en": "Estimate: move levels assumed at maximum, ideal zones and stickers not included.",
+   "ja": "推定：技レベルは最大と仮定。理想ゾーンとシールは含まれません。"
+  },
+  "(somma dei danni della mossa migliore di ogni giocatore, con bonus di sinergie e tecnico)": {
+   "en": "(sum of each player's best-move damage, with synergy and coach bonuses)",
+   "ja": "（各選手の最強技ダメージの合計、シナジーと監督ボーナス込み）"
+  },
+  "Sinergie non attive (potenziale)": {
+   "en": "Inactive synergies (potential)",
+   "ja": "未発動のシナジー（潜在）"
+  },
+  "Sinergie principali attive": {
+   "en": "Main active synergies",
+   "ja": "主な発動中シナジー"
+  },
+  "condizioni non tutte soddisfatte (caselle rosse sul campo)": {
+   "en": "not all conditions met (red slots on the pitch)",
+   "ja": "条件が全て満たされていません（ピッチ上の赤い枠）"
+  },
+  "✓ Formazione ATTIVA": {
+   "en": "✓ Formation ACTIVE",
+   "ja": "✓ フォーメーション発動"
+  },
+  "✗ Formazione NON attiva": {
+   "en": "✗ Formation NOT active",
+   "ja": "✗ フォーメーション未発動"
+  },
+  "Cerchio verde ✓ = casella con requisito della formazione soddisfatto; rosso ! = non soddisfatto.": {
+   "en": "Green circle ✓ = slot whose formation requirement is met; red ! = not met.",
+   "ja": "緑の丸 ✓＝フォーメーション条件を満たす枠；赤 !＝満たしていない枠。"
+  },
+  "attacco {0}% · portiere/difesa {1}% · dribbling {2}% · contrasto {3}%": {
+   "en": "attack {0}% · keeper/defense {1}% · dribble {2}% · tackle {3}%",
+   "ja": "攻撃 {0}% · GK/守備 {1}% · ドリブル {2}% · ブロック {3}%"
+  },
+  "nativo {0} · {1} · {2}": {
+   "en": "native {0} · {1} · {2}",
+   "ja": "本来 {0} · {1} · {2}"
+  },
+  "{0} · {1}": {
+   "en": "{0} · {1}",
+   "ja": "{0} · {1}"
+  },
+  "casella": {
+   "en": "slot",
+   "ja": "枠"
+  },
+  "requisito della formazione soddisfatto": {
+   "en": "formation requirement met",
+   "ja": "フォーメーション条件を満たす"
+  },
+  "requisito della formazione NON soddisfatto": {
+   "en": "formation requirement NOT met",
+   "ja": "フォーメーション条件を満たさない"
+  },
+  "tiro/mossa migliore": {
+   "en": "best shot/move",
+   "ja": "最強技"
+  },
+  "servono {0} giocatori con tag {1} (ne hai {2})": {
+   "en": "need {0} players with tag {1} (you have {2})",
+   "ja": "タグ{1}のプレイヤーが{0}人必要（所持{2}人）"
+  },
+  "servono {0} giocatori di elemento {1} (ne hai {2})": {
+   "en": "need {0} players of element {1} (you have {2})",
+   "ja": "{1}属性のプレイヤーが{0}人必要（所持{2}人）"
+  },
+  "{0} giocatori hanno statistiche stimate (dati mancanti nella fonte): il punteggio è meno affidabile.": {
+   "en": "{0} players have estimated stats (data missing in the source): the score is less reliable.",
+   "ja": "{0}人のプレイヤーのステータスは推定値です（出典にデータなし）：スコアの信頼性は低めです。"
+  },
+  "{0} effetti di passive non interpretati (non contati).": {
+   "en": "{0} passive effects not interpreted (not counted).",
+   "ja": "{0}件のパッシブ効果は未解釈（計算に含まれません）。"
+  },
+  "passiva tecnico ({0}) → {1} giocatori ({2})": {
+   "en": "coach passive ({0}) → {1} players ({2})",
+   "ja": "監督パッシブ（{0}）→ {1}人（{2}）"
+  },
+  "La collezione è vuota: segna i personaggi con \"Ce l'ho\" nella pagina Personaggi (oppure scegli \"Tutti\").": {
+   "en": "The collection is empty: mark characters as \"Owned\" on the Characters page (or choose \"All\").",
+   "ja": "コレクションが空です：キャラクターページで「所持」を付けてください（または「すべて」を選択）。"
+  },
+  "{0} squadre proposte da {1} personaggi ({2} s).": {
+   "en": "{0} teams suggested from {1} characters ({2} s).",
+   "ja": "{1}キャラクターから{0}チームを提案（{2}秒）。"
+  },
+  "{0} squadre proposte da {1} personaggi ({2} s). Attenzione: mancano {3} personaggi per completare la formazione.": {
+   "en": "{0} teams suggested from {1} characters ({2} s). Warning: {3} characters are missing to complete the formation.",
+   "ja": "{1}キャラクターから{0}チームを提案（{2}秒）。注意：フォーメーションを完成させるには{3}キャラクター不足しています。"
+  },
+  "Errore nel calcolo: {0}": {
+   "en": "Calculation error: {0}",
+   "ja": "計算エラー：{0}"
+  },
+  "Servono almeno {0} personaggi (ne hai {1}). Segna i personaggi che possiedi nella pagina Personaggi, oppure scegli \"Tutti\".": {
+   "en": "At least {0} characters are needed (you have {1}). Mark the characters you own on the Characters page, or choose \"All\".",
+   "ja": "最低{0}キャラクター必要です（所持{1}）。キャラクターページで所持キャラクターを選択するか、「すべて」を選んでください。"
+  },
+  "Fatto ({0} s).": {
+   "en": "Done ({0} s).",
+   "ja": "完了（{0}秒）。"
+  },
+  "· prova di attacco (tiri)": {
+   "en": "· attack trial (shots)",
+   "ja": "· 攻撃の試練（シュート）"
+  },
+  "· prova di difesa (parate/contrasti)": {
+   "en": "· defense trial (catches/blocks)",
+   "ja": "· 守備の試練（キャッチ／ブロック）"
+  },
+  "· tiri contro il boss (campo +{0} ai tiri in vantaggio)": {
+   "en": "· shots against the boss (field +{0} on advantaged shots)",
+   "ja": "· ボスへのシュート（有利なシュートに場+{0}）"
+  },
+  "✔ Battuto: {0} contro {1} ({2})": {
+   "en": "✔ Beaten: {0} vs {1} ({2})",
+   "ja": "✔ 撃破：{0} 対 {1}（{2}）"
+  },
+  "✘ Non basta: {0} contro {1} ({2})": {
+   "en": "✘ Not enough: {0} vs {1} ({2})",
+   "ja": "✘ 不足：{0} 対 {1}（{2}）"
+  },
+  "{0} — oggi": {
+   "en": "{0} — today",
+   "ja": "{0} — 本日"
+  },
+  "{0} — totale {1}": {
+   "en": "{0} — total {1}",
+   "ja": "{0} — 合計 {1}"
+  },
+  "Tentativo {0}": {
+   "en": "Attempt {0}",
+   "ja": "挑戦 {0}"
+  },
+  "Stima della somma dei {0} tentativi: {1}": {
+   "en": "Estimated sum of the {0} attempts: {1}",
+   "ja": "{0}回の挑戦の合計推定値：{1}"
+  },
+  "potenza {0} · stat {1} · catena ×1,1": {
+   "en": "power {0} · stat {1} · chain ×1.1",
+   "ja": "威力 {0} · ステータス {1} · チェイン ×1.1"
+  },
+  "potenza {0} · stat {1}": {
+   "en": "power {0} · stat {1}",
+   "ja": "威力 {0} · ステータス {1}"
+  },
+  "attacco": {
+   "en": "attack",
+   "ja": "攻撃"
+  },
+  "difesa": {
+   "en": "defense",
+   "ja": "守備"
+  },
+  "→ {0} giocatori (+{1})": {
+   "en": "→ {0} players (+{1})",
+   "ja": "→ {0}人 (+{1})"
+  },
+  "→ {0} giocatori (+{1}, condizionale)": {
+   "en": "→ {0} players (+{1}, conditional)",
+   "ja": "→ {0}人 (+{1}、条件付き)"
+  },
+  "→ 1 giocatore (+{0})": {
+   "en": "→ 1 player (+{0})",
+   "ja": "→ 1人 (+{0})"
+  },
+  "→ 1 giocatore (+{0}, condizionale)": {
+   "en": "→ 1 player (+{0}, conditional)",
+   "ja": "→ 1人 (+{0}、条件付き)"
+  },
+  "→ avversari (+{0})": {
+   "en": "→ opponents (+{0})",
+   "ja": "→ 相手 (+{0})"
+  },
+  "→ avversari (+{0}, condizionale)": {
+   "en": "→ opponents (+{0}, conditional)",
+   "ja": "→ 相手 (+{0}、条件付き)"
+  },
+  "{0} e {1}": {
+   "en": "{0} and {1}",
+   "ja": "{0}と{1}"
+  },
+  "Tutti (per provare)": {
+   "en": "All (to try out)",
+   "ja": "すべて（お試し用）"
   }
  }
 }

@@ -63,7 +63,8 @@
 
   // Copia del personaggio al livello L, nel formato che usano motore e catalogo.
   // moveLv: {indice mossa: livello 1-10}; senza indicazione la potenza resta quella del livello 10 (dato base)
-  function forLevel(c, L, rarity, moveLv) {
+  // extra: terza mossa scelta dall'utente (oggetto skill di un altro personaggio), moveLv.x = suo livello
+  function forLevel(c, L, rarity, moveLv, extra) {
     L = clampLevel(L);
     var o = {}, k;
     for (k in c) o[k] = c[k];
@@ -77,6 +78,12 @@
       n.move_level = lv; if (pw !== undefined && pw !== null) n.power = pw;
       return n;
     });
+    if (extra) {
+      var xl = Math.max(1, Math.min(10, Math.round(moveLv && moveLv.x) || 1)), xp = extra.power_by_level && extra.power_by_level[xl - 1], x = {};
+      for (var xk in extra) x[xk] = extra[xk];
+      x.move_level = xl; x.unlock_lv = 1; x.extra = true; if (xp !== undefined && xp !== null) x.power = xp;
+      o.skills = (o.skills || c.skills || []).concat([x]);
+    }
     return o;
   }
 

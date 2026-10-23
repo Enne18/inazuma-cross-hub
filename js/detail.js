@@ -14,6 +14,11 @@
     rows.forEach(function (r) { var tr = el('tr'); r.forEach(function (v) { tr.appendChild(el('td', null, v === null || v === undefined ? '—' : String(v))); }); t.appendChild(tr); });
     return t;
   }
+  var ZONES = null, zonesReq = false;
+  function loadZones() {
+    if (zonesReq) return; zonesReq = true;
+    fetch('data/zones.json').then(function (r) { return r.json(); }).then(function (d) { ZONES = d.zones; if (cur) render(cur); }).catch(function () {});
+  }
   var movesLoaded = false;
   function lang() { return window.IECI18N ? window.IECI18N.lang() : 'it'; }
   function trP(t) { var P = window.IECPassives, L = lang(); if (!P || L === 'ja') return t; return P.tr(t, L) || t; }
@@ -25,7 +30,7 @@
   function sec(title) { var s = el('section', 'dsec'); s.appendChild(el('h3', null, title)); return s; }
 
   function render(id) {
-    loadMoves();
+    loadMoves(); loadZones();
     var IEC = window.IEC, ops = IEC.ops, S = IEC.state, base = S.byId[id], root = $('detail');
     root.textContent = '';
     if (!base) { root.appendChild(el('p', 'muted', 'Personaggio non trovato.')); return; }
@@ -117,6 +122,11 @@
     passList('Passive di risveglio (grado)', base.rarity_passives);
     root.appendChild(ps);
 
+    if (ZONES && ZONES[id]) {
+      var zs = sec('Zone ideali (S +15%, A +10%, B +5%)'), zr = el('div', 'badges');
+      ZONES[id].forEach(function (z) { zr.appendChild(el('span', 'badge' + (z.charAt(0) === 'S' ? ' el' : ' soft'), z.charAt(0) + ' · zona ' + z.slice(1))); });
+      zs.appendChild(zr); root.appendChild(zs);
+    }
     if (c.notes && c.notes.length) { var ns = sec('Note'); ns.appendChild(el('p', null, c.notes.join(' '))); root.appendChild(ns); }
     if (window.IECI18N) window.IECI18N.apply(root);
   }

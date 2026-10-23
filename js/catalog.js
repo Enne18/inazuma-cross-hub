@@ -2,8 +2,8 @@
    state.base = dati grezzi; state.chars = personaggi al livello massimo (440) nel formato del motore (js/iecdata.js). */
 (function () {
   'use strict';
-  var state = { meta: null, base: [], chars: [], byId: {}, owned: {}, levels: {}, defaultLevel: 440, rar: {}, mv: {}, migration: {} };
-  var KEY = 'iecross.collection.v1', KEY_LV = 'iecross.levels.v1', KEY_DEF = 'iecross.deflevel.v1', KEY_RAR = 'iecross.rarity.v1', KEY_MV = 'iecross.movelv.v1';
+  var state = { meta: null, base: [], chars: [], byId: {}, owned: {}, levels: {}, defaultLevel: 440, rar: {}, mv: {}, xm: {}, migration: {} };
+  var KEY = 'iecross.collection.v1', KEY_LV = 'iecross.levels.v1', KEY_DEF = 'iecross.deflevel.v1', KEY_RAR = 'iecross.rarity.v1', KEY_MV = 'iecross.movelv.v1', KEY_XM = 'iecross.extramove.v1';
   var MAXLV = 440;
   function clampLv(v) { v = Math.round(+v); return isFinite(v) ? Math.max(1, Math.min(MAXLV, v)) : MAXLV; }
   function loadLevels() {
@@ -31,7 +31,19 @@
   function loadMv() { try { var o = JSON.parse(window.localStorage.getItem(KEY_MV) || '{}'); Object.keys(o).forEach(function (id) { state.mv[id] = o[id]; }); } catch (e) { /* ignora */ } }
   function saveMv() { try { window.localStorage.setItem(KEY_MV, JSON.stringify(state.mv)); } catch (e) { /* archiviazione bloccata */ } }
   function setMv(id, i, v) { (state.mv[id] = state.mv[id] || {})[i] = clampMv(v); saveMv(); }
-  function flv(id, L) { var m = {}; for (var i = 0; i < 4; i++) m[i] = mvOf(id, i); return window.IECData.forLevel(state.byId[id], L === undefined ? levelOf(id) : L, rarOf(id), m); }
+  // terza mossa a scelta (qualsiasi mossa del gioco): state.xm[id] = nome_ja; livello in state.mv[id].x
+  function loadXm() { try { state.xm = JSON.parse(window.localStorage.getItem(KEY_XM) || '{}') || {}; } catch (e) { state.xm = {}; } }
+  function saveXm() { try { window.localStorage.setItem(KEY_XM, JSON.stringify(state.xm)); } catch (e) { /* ignora */ } }
+  function movePool() {
+    if (state._pool) return state._pool;
+    var seen = {}, out = [];
+    state.base.forEach(function (c) { c.skills.forEach(function (k) { if (!seen[k.name_ja]) { seen[k.name_ja] = true; out.push(k); } }); });
+    var ORD = { shoot: 0, dribble: 1, block: 2, catch: 3 };
+    out.sort(function (a, b) { return ((ORD[a.category] || 0) - (ORD[b.category] || 0)) || a.name_ja.localeCompare(b.name_ja, 'ja'); });
+    return (state._pool = out);
+  }
+  function extraOf(id) { var n = state.xm[id]; if (!n) return null; return movePool().filter(function (k) { return k.name_ja === n; })[0] || null; }
+  function flv(id, L) { var m = {}; for (var i = 0; i < 4; i++) m[i] = mvOf(id, i); m.x = mvOf(id, 'x'); return window.IECData.forLevel(state.byId[id], L === undefined ? levelOf(id) : L, rarOf(id), m, extraOf(id)); }
 
   function loadOwned() {
     try {
@@ -190,7 +202,7 @@
     }
 
     var mv = el('div', 'hc-moves');
-    c.skills.forEach(function (k, ki) {
+    c.skills.filter(function (k) { return !k.extra; }).forEach(function (k, ki) {
       var it = el('div', 'hc-move');
       it.appendChild(el('span', 'mname', k.name_ja));
       if (inCollection) {
@@ -202,6 +214,30 @@
       }
       mv.appendChild(it);
     });
+    if (inCollection) {                                   // terza mossa a scelta (di default nessuna)
+      var xr = el('div', 'hc-move extra'), xs = el('select', 'xmsel'); xs.setAttribute('aria-label', 'Terza mossa');
+      var o0 = el('option', null, '+ Terza mossa (nessuna)'); o0.value = ''; xs.appendChild(o0);
+      var CATN = { shoot: 'Tiro', dribble: 'Dribbling', block: 'Blocco', catch: 'Parata' }, grp = null, lastCat = null;
+      movePool().forEach(function (k) {
+        if (c.skills.some(function (s) { return !s.extra && s.name_ja === k.name_ja; })) return;
+        if (k.category !== lastCat) { grp = el('optgroup'); grp.label = CATN[k.category] || k.category; xs.appendChild(grp); lastCat = k.category; }
+        var o = el('option', null, k.name_ja); o.value = k.name_ja; grp.appendChild(o);
+      });
+      xs.value = state.xm[c.id] || '';
+      xr.appendChild(xs);
+      if (state.xm[c.id]) {
+        var xl = el('select', 'mvsel'); xl.setAttribute('aria-label', 'Livello mossa');
+        for (var q = 1; q <= 10; q++) { var oq = el('option', null, 'Lv ' + q); oq.value = String(q); xl.appendChild(oq); }
+        xl.value = String(mvOf(c.id, 'x'));
+        xl.addEventListener('change', function () { setMv(c.id, 'x', xl.value); replaceWith(root, c.id); });
+        xr.appendChild(xl);
+      }
+      xs.addEventListener('change', function () {
+        if (xs.value) state.xm[c.id] = xs.value; else delete state.xm[c.id];
+        saveXm(); document.dispatchEvent(new CustomEvent('iec-collection', { detail: c.id })); replaceWith(root, c.id);
+      });
+      mv.appendChild(xr);
+    }
     main.appendChild(mv);
     root.appendChild(main);
     return root;
@@ -391,7 +427,7 @@
     });
     if (moved) saveOwned();
     state.levels = loadLevels();
-    loadRar(); loadMv();
+    loadRar(); loadMv(); loadXm();
     Object.keys(state.owned).forEach(function (id) { if (!state.levels[id]) state.levels[id] = MAXLV; });
     saveLevels();
     updateBadge();
