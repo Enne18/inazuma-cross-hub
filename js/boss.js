@@ -48,7 +48,8 @@
     var box = $('bo-today'), blk = B.daily, t = todayIndex(blk), L = blk.bosses.length;
     box.textContent = '';
     box.appendChild(el('strong', null, 'Boss di oggi'));
-    var big = el('div', 'bo-t-main'); big.appendChild(bossAvatar(blk.bosses[t])); big.appendChild(el('span', 'bo-t-name', bossLine(blk.bosses[t]))); box.appendChild(big);
+    var big = el('div', 'bo-t-main'); big.appendChild(bossAvatar(blk.bosses[t])); box.appendChild(big);
+    box.appendChild(el('strong', 'bo-t-name', bossLine(blk.bosses[t])));
     box.appendChild(el('small', 'muted', 'Cambia alle 22:00 (ora di Roma) · tra ' + untilChange()));
     box.appendChild(el('small', 'muted', 'Domani: ' + bossLine(blk.bosses[(t + 1) % L])));
     var go = el('button', 'btn primary', 'Squadra migliore per oggi'); go.type = 'button';

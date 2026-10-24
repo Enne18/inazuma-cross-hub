@@ -373,3 +373,51 @@ main.wrap { padding-top: 26px; }
 .bo-today small { flex: 1 1 100%; }
 .bo-today .btn { margin-left: auto; }
 .f5tag { font-size: .8rem; font-weight: 700; padding: 1px 8px; border-radius: 999px; background: var(--accent); color: #fff; margin-right: 6px; }
+
+/* ===== Tappa 27: vista da cellulare ===== */
+.b-controls label, .b-controls select, .b-opts input, .fgrid label, .fgrid select { min-width: 0; max-width: 100%; }
+.dt { max-width: 100%; }
+@media (max-width: 640px) {
+  body { padding-bottom: calc(66px + env(safe-area-inset-bottom)); -webkit-text-size-adjust: 100%; }
+  .top h1 { box-sizing: border-box; max-width: 100%; white-space: normal; font-size: 1.1rem; padding: 10px 0 10px; padding-right: 120px; line-height: 1.2; }
+  .langsel { top: 9px; right: 14px; }
+  .langsel select { font-size: .8rem; max-width: 110px; }
+  /* le sezioni diventano una barra in basso, raggiungibile col pollice */
+  .tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; padding: 6px 6px calc(6px + env(safe-area-inset-bottom)); overflow: visible; background: #0b1f5c; box-shadow: 0 -4px 18px rgba(0,0,0,.28); }
+  .tab { padding: 8px 2px; font-size: .78rem; border-radius: 12px; text-align: center; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+  .tab[data-tab=catalog]::before { content: '👥'; font-size: 1.15rem; } .tab[data-tab=builder]::before { content: '⚽'; font-size: 1.15rem; }
+  .tab[data-tab=coaches]::before { content: '📋'; font-size: 1.15rem; } .tab[data-tab=boss]::before { content: '👹'; font-size: 1.15rem; }
+  .tab .pill { position: absolute; margin: -34px 0 0 26px; font-size: .62rem; padding: 0 5px; }
+  .wrap { padding: 0 12px; }
+  /* card giocatore: più compatta, il nome può andare a capo */
+  .hcard { grid-template-columns: 74px minmax(0, 1fr); gap: 10px; padding: 10px; min-height: 0; }
+  .hc-img .avatar.lg { width: 74px; height: 74px; }
+  .hcard h2 { white-space: normal; font-size: .98rem; min-height: 0; line-height: 1.2; }
+  .hc-top { flex-wrap: wrap; gap: 6px; }
+  .hc-top .ctitle { flex: 1 1 100%; order: 1; }
+  .hc-top .btn.own { order: 0; margin-left: auto; }
+  .hcard .badges { flex-wrap: wrap; overflow: visible; }
+  .hcard .badges .badge.soft { flex: 0 1 auto; }
+  .hc-lvl { gap: 6px 10px; }
+  .hc-lvl select, .mvsel, .xmsel, .lvtxt { min-height: 34px; }
+  .hc-move { padding: 5px 8px; }
+  /* filtri e controlli a tutta larghezza */
+  .fgrid { grid-template-columns: 1fr 1fr; }
+  .b-controls { display: grid; grid-template-columns: 1fr; gap: 8px; }
+  .b-controls select, .b-opts input:not([type=checkbox]) { width: 100%; }
+  .btn { min-height: 40px; }
+  #b-run, #bo-run { width: 100%; }
+  /* squadra: tecnico sopra, campo sotto a tutta larghezza */
+  .tbody { grid-template-columns: 1fr; }
+  .tcoach { grid-template-columns: 84px 1fr; }
+  .tcimg { width: 84px; }
+  .pitch.abs { max-width: 100%; }
+  .team h3, .hcard + .hcard { word-break: break-word; }
+  .bo-today { padding: 10px; } .bo-today .btn { margin-left: 0; width: 100%; }
+  .bo-row { flex-wrap: wrap; }
+  .dhead { flex-direction: column; align-items: flex-start; }
+  table.dt { display: block; overflow-x: auto; white-space: nowrap; }
+  .dback { display: inline-block; margin-bottom: 8px; }
+}
+@media (max-width: 360px) { .tab { font-size: .7rem; } .hcard { grid-template-columns: 64px minmax(0, 1fr); } .hc-img .avatar.lg { width: 64px; height: 64px; } }
+.bo-today .bo-t-name { flex: 1 1 100%; font-size: 1rem; }

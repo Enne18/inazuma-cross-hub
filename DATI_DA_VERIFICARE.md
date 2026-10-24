@@ -61,3 +61,4 @@ Servono Calcio / Tecnica / Blocco / Presa (e Velocità) **al livello massimo**. 
 ## Aggiornamento 15/10 (sera)
 Risolto dall'utente: ruoli liberi, nessun tecnico in 5v5, layout dei 14 tecnici, ADVANCED sempre al massimo, versioni duplicate ammesse.
 Ancora aperti: (1) passive delle formazioni B del 5v5; (2) "推奨FW/DF/MF/GK" = ruolo nativo? (3) "味方FW" nelle passive dei personaggi = ruolo dello slot o nativo? (4) i conteggi tag includono chi ha la passiva? (5) nomi tecnici tradotti da Google: confermare "Allius"=Kageyama世宇子 e Terra/Tayama/Toyama; (6) stat mancanti dei 65 personaggi.
+- Etichette passive tradotte liberamente (Tappa 17): 結束 Coesione/Unity, 破竹 Slancio/Momentum, 阻止 Parata/Stop, 連動 Sinergia/Link, 共鳴 Risonanza, 逆境 Avversità, 救援 Soccorso, 自得点, 連鎖, 発動, 奮起, 好機, 失点, 決定機, 劣勢, 攻勢, 守勢, 受球.
