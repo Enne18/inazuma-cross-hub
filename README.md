@@ -149,4 +149,4 @@ Add or correct entries following `data/SCHEMA.md`. Leave unknown values empty (`
 
 ## Support
 
-If the site is useful to you, you can support its development through the floating ☕ button at the bottom right of every page: it links to the project on GitHub and to <https://buymeacoffee.com/ennedev>. It is entirely optional; the site stays free.
+If the site is useful to you, you can support its development through the two round floating buttons at the bottom right of every page: the GitHub one opens the project page and the coffee one opens <https://buymeacoffee.com/ennedev>. It is entirely optional; the site stays free.
