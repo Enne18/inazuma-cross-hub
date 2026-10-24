@@ -1,0 +1,108 @@
+{
+ "_doc": "Novità mostrate nella pagina Novità. Aggiungere in cima. Testi in it/en/ja (traduzioni di Claude).",
+ "releases": [
+  {
+   "version": "1.3",
+   "date": "2026-10-24",
+   "title": {
+    "it": "Vista da cellulare e supporto",
+    "en": "Mobile view and support",
+    "ja": "スマホ表示とサポート"
+   },
+   "items": [
+    {
+     "it": "Vista da cellulare: barra delle sezioni in basso, card compatte, nessuno scorrimento orizzontale.",
+     "en": "Mobile view: bottom navigation bar, compact cards, no sideways scrolling.",
+     "ja": "スマホ表示：下部ナビゲーション、コンパクトなカード、横スクロールなし。"
+    },
+    {
+     "it": "Puoi aggiungere il sito alla schermata Home del telefono e usarlo come un'app.",
+     "en": "You can add the site to your phone's home screen and use it like an app.",
+     "ja": "ホーム画面に追加して、アプリのように使えます。"
+    },
+    {
+     "it": "Nuova pagina Novità e pulsanti rotondi in basso a destra (GitHub e offerta per lo sviluppo).",
+     "en": "New What's new page and round buttons at the bottom right (GitHub and a way to support development).",
+     "ja": "新しい「更新情報」ページと、右下の丸いボタン（GitHubと開発支援）。"
+    },
+    {
+     "it": "Team Builder: tolta la gestione duplicata del livello dei tecnici, che si imposta solo nella pagina Tecnici.",
+     "en": "Team Builder: removed the duplicate coach-level panel; coach levels are now set only on the Coaches page.",
+     "ja": "チームビルダー：監督レベルの重複設定を削除。監督レベルは「監督」ページのみで設定します。"
+    }
+   ]
+  },
+  {
+   "version": "1.2",
+   "date": "2026-10-23",
+   "title": {
+    "it": "Boss di oggi, 5v5 completo e terza mossa",
+    "en": "Boss of the day, full 5v5 and third move",
+    "ja": "本日のボス、5対5完全対応、3つ目の技"
+   },
+   "items": [
+    {
+     "it": "Pagina Boss: riquadro \"Boss di oggi\" con il tempo al cambio (22:00 ora di Roma) e la squadra migliore calcolata subito.",
+     "en": "Bosses page: \"Boss of the day\" panel with the time until the change (22:00 Rome time) and the best team calculated right away.",
+     "ja": "ボスページ：「本日のボス」パネル（切り替えまでの時間、22:00ローマ時間）と、すぐに計算される最適チーム。"
+    },
+    {
+     "it": "5 contro 5: ora ci sono tutte le 9 formazioni e l'opzione \"La migliore tra tutte le formazioni\".",
+     "en": "5 vs 5: all 9 formations are now available, plus a \"Best of all formations\" option.",
+     "ja": "5対5：9つ全てのフォーメーションに対応し、「全フォーメーションの中で最良」も選べます。"
+    },
+    {
+     "it": "Terza mossa a scelta per ogni giocatore in collezione, usata anche dal Team Builder.",
+     "en": "Pick a third move for each owned player; the Team Builder uses it too.",
+     "ja": "所持している選手に3つ目の技を選択でき、チームビルダーでも使われます。"
+    },
+    {
+     "it": "Card dei giocatori rinnovate; card dei Tecnici più essenziali (i dettagli sono nella scheda del tecnico).",
+     "en": "Refreshed player cards; simpler coach cards (details are on the coach page).",
+     "ja": "選手カードを刷新。監督カードはシンプルにし、詳細は監督ページへ。"
+    },
+    {
+     "it": "Team Builder, Tecnici e Boss tradotti in inglese e giapponese.",
+     "en": "Team Builder, Coaches and Bosses translated into English and Japanese.",
+     "ja": "チームビルダー、監督、ボスページを英語と日本語に翻訳。"
+    }
+   ]
+  },
+  {
+   "version": "1.1",
+   "date": "2026-10-22",
+   "title": {
+    "it": "Zone ideali, sincronizzazione e schede dei tecnici",
+    "en": "Ideal zones, sync and coach pages",
+    "ja": "得意エリア、同期、監督ページ"
+   },
+   "items": [
+    {
+     "it": "Zone ideali S/A/B di ogni personaggio (+15% / +10% / +5%), usate nel calcolo delle squadre.",
+     "en": "Ideal S/A/B zones for every character (+15% / +10% / +5%), used when calculating teams.",
+     "ja": "全キャラクターの得意エリアS/A/B（+15% / +10% / +5%）をチーム計算に反映。"
+    },
+    {
+     "it": "Sincronizzazione della collezione tra dispositivi con un Gist privato su GitHub.",
+     "en": "Collection sync between devices using a private GitHub Gist.",
+     "ja": "非公開のGitHub Gistで、端末間のコレクション同期。"
+    },
+    {
+     "it": "Campo del Team Builder con le posizioni reali degli slot di ogni formazione e tecnico accanto.",
+     "en": "Team Builder pitch with the real slot positions of each formation, with the coach beside it.",
+     "ja": "チームビルダーのピッチに各フォーメーションの実際の配置を表示し、監督を横に配置。"
+    },
+    {
+     "it": "Pagina dettaglio dei tecnici; le prove di difesa dei boss usano tecniche di blocco nei primi quattro posti e il portiere solo per ultimo.",
+     "en": "Coach detail pages; boss defence trials use block moves in the first four positions and the goalkeeper only last.",
+     "ja": "監督の詳細ページ。ボスの守備試練では最初の4枠にブロック技、GKは最後のみ。"
+    },
+    {
+     "it": "Il nome del giocatore non apre più la scheda (si può copiare): si apre dall'immagine.",
+     "en": "A player's name no longer opens the detail page (so you can copy it); use the image instead.",
+     "ja": "選手名をクリックしても詳細は開きません（コピー可能）。画像から開きます。"
+    }
+   ]
+  }
+ ]
+}

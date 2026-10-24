@@ -750,6 +750,22 @@
   "Supporta lo sviluppo": {
    "en": "Support development",
    "ja": "開発を支援"
+  },
+  "Il livello dei tuoi tecnici si imposta nella pagina Tecnici e vale anche qui. Con \"Il migliore tra tutti i tecnici\" contano solo quelli con livello maggiore di 0.": {
+   "en": "Your coaches' levels are set on the Coaches page and apply here too. \"Best of all coaches\" only considers coaches with a level above 0.",
+   "ja": "監督のレベルは「監督」ページで設定し、ここにも反映されます。「全監督の中で最良」ではレベル1以上の監督のみが対象です。"
+  },
+  "Novità": {
+   "en": "What's new",
+   "ja": "更新情報"
+  },
+  "Ultima": {
+   "en": "Latest",
+   "ja": "最新"
+  },
+  "Segnala un errore o proponi un'idea": {
+   "en": "Report a mistake or suggest an idea",
+   "ja": "間違いの報告・アイデアの提案"
   }
  }
 }

@@ -317,7 +317,7 @@
   function flash(msg) { $('c-msg').textContent = msg; }
 
   function showTab(name) {
-    ['catalog', 'builder', 'coaches', 'boss', 'detail', 'cdetail'].forEach(function (t) { $(t).hidden = (t !== name); });
+    ['catalog', 'builder', 'coaches', 'boss', 'detail', 'cdetail', 'news'].forEach(function (t) { $(t).hidden = (t !== name); });
     document.dispatchEvent(new CustomEvent('iec-tab', { detail: name }));
     Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (b) {
       b.classList.toggle('active', b.getAttribute('data-tab') === (name === 'detail' ? 'catalog' : name === 'cdetail' ? 'coaches' : name));

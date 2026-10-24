@@ -338,3 +338,4 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Tappa 27: vista da cellulare (≤640px): barra sezioni in basso, card giocatore compatte (nome a capo, badge che vanno a capo), controlli a tutta larghezza, nessuno scroll orizzontale (verificato a 390px su tutte le pagine); manifest + icona per "Aggiungi a schermata Home" (senza modalità offline).
 - README riscritto in inglese (link del sito, funzioni, sync, accuratezza dati, sviluppo).
 - Tappa 28: due pulsanti rotondi fissi in basso a destra (GitHub + Buy me a coffee), sopra la barra in basso su mobile; README aggiornato.
+- Tappa 29: pagina Novità (js/news.js + data/changelog.json, pallino sul tab), livello tecnici tolto dal Team Builder (resta solo in Tecnici), anteprima social (og:image img/og.png + meta), modelli di segnalazione in .github/ISSUE_TEMPLATE, tab mobile a 5 colonne.

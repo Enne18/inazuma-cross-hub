@@ -383,10 +383,10 @@ main.wrap { padding-top: 26px; }
   .langsel { top: 9px; right: 14px; }
   .langsel select { font-size: .8rem; max-width: 110px; }
   /* le sezioni diventano una barra in basso, raggiungibile col pollice */
-  .tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; padding: 6px 6px calc(6px + env(safe-area-inset-bottom)); overflow: visible; background: #0b1f5c; box-shadow: 0 -4px 18px rgba(0,0,0,.28); }
+  .tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; padding: 6px 4px calc(6px + env(safe-area-inset-bottom)); overflow: visible; background: #0b1f5c; box-shadow: 0 -4px 18px rgba(0,0,0,.28); }
   .tab { padding: 8px 2px; font-size: .78rem; border-radius: 12px; text-align: center; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
   .tab[data-tab=catalog]::before { content: '👥'; font-size: 1.15rem; } .tab[data-tab=builder]::before { content: '⚽'; font-size: 1.15rem; }
-  .tab[data-tab=coaches]::before { content: '📋'; font-size: 1.15rem; } .tab[data-tab=boss]::before { content: '👹'; font-size: 1.15rem; }
+  .tab[data-tab=news]::before { content: '🆕'; font-size: 1.15rem; } .tab[data-tab=coaches]::before { content: '📋'; font-size: 1.15rem; } .tab[data-tab=boss]::before { content: '👹'; font-size: 1.15rem; }
   .tab .pill { position: absolute; margin: -34px 0 0 26px; font-size: .62rem; padding: 0 5px; }
   .wrap { padding: 0 12px; }
   /* card giocatore: più compatta, il nome può andare a capo */
@@ -429,3 +429,13 @@ main.wrap { padding-top: 26px; }
 .fab-coffee { background: #ffdd00; color: #1b2230; }
 .fab-gh { background: #24292f; color: #fff; }
 @media (max-width: 640px) { .fab { right: 12px; bottom: calc(76px + env(safe-area-inset-bottom)); gap: 8px; } .fab-btn { width: 46px; height: 46px; } }
+
+/* ===== Tappa 29: pagina Novità ===== */
+.tab.has-new { position: relative; }
+.tab.has-new::after { content: ''; position: absolute; top: 6px; right: 8px; width: 9px; height: 9px; border-radius: 50%; background: #ff4d4f; box-shadow: 0 0 0 2px #0b1f5c; }
+.news-card { padding: 14px 16px; margin: 10px 0; }
+.news-head { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.news-ver { background: var(--accent); color: #fff; font-weight: 800; font-size: .8rem; padding: 2px 9px; border-radius: 999px; }
+.news-card ul { margin: .6rem 0 0; padding-left: 1.2rem; display: grid; gap: 4px; }
+@media (max-width: 640px) { .tab { font-size: .7rem; } .tab.has-new::after { right: 14px; } }
+.news-head .badge.el { background: #16a34a; color: #fff; border-color: transparent; font-weight: 700; }

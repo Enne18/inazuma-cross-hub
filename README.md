@@ -24,7 +24,7 @@ It is free, has no account, no ads and no backend: plain HTML, CSS and JavaScrip
 
 ## What you will find inside
 
-The site has four sections: **Characters**, **Team Builder**, **Coaches** and **Bosses**.
+The site has five sections: **Characters**, **Team Builder**, **Coaches**, **Bosses** and **What's new**.
 
 ### Characters
 - A catalogue of **124 characters** with element (Fire, Wind, Forest, Mountain), role (GK / DF / MF / FW), rarity, team, type, series, stats, moves and passives.
@@ -62,6 +62,9 @@ Every character has three ideal zones (numbered 1–11 on the pitch) rated **S (
 ### Languages
 Interface, character names, teams, tags, passives, coach conditions and boss texts are available in **Italian, English and Japanese**. Translations were produced by the maintainer and may be imperfect; where the game text is Japanese-only, the original is shown.
 
+### What's new
+A changelog page (in Italian, English and Japanese) lists every release, and a red dot on the tab tells you when there is something you have not seen yet. It also links to **GitHub Issues** to report a mistake or suggest an idea.
+
 ### Syncing your collection between devices (optional, free)
 Your collection normally lives only in the browser you used. To use it on a second computer or phone:
 1. Create a **GitHub personal access token** with the **Gists: read and write** permission (GitHub → Settings → Developer settings → Personal access tokens).
@@ -83,7 +86,7 @@ Without sync you can still use **Export / Import** (JSON file) to back up or mov
 - **Not known / not modelled:** passives of the 5v5 "B" formations; the zone map of Ray Dark (4-3-3); stickers; exact in-game match simulation.
 - Rule of the project: **no invented data**. Unknown values stay empty, and open questions are listed in `DATI_DA_VERIFICARE.md`.
 
-If you spot a mistake, please open an issue or send a screenshot from the game.
+If you spot a mistake, use the link on the **What's new** page (or open an issue on GitHub) and choose a template: *wrong or missing data*, *idea or request*, or *team from the game* (to help calibrate the scores with the total power shown in-game). A screenshot from the game is the best proof.
 
 ## Privacy
 
@@ -126,6 +129,8 @@ Common problems:
 | `js/engine.js`, `js/builder.js` | scoring engine (power formula, synergies, zones, bosses) and Team Builder interface |
 | `js/boss.js` | Bosses page |
 | `js/i18n.js`, `js/passives.js` | language switcher and passive-text translator (IT/EN/JA) |
+| `js/news.js`, `data/changelog.json` | What's new page and its release notes |
+| `.github/ISSUE_TEMPLATE/` | issue templates (data error, idea, calibration team) |
 | `js/sync.js`, `js/syncui.js` | cloud sync through a private GitHub Gist |
 | `data/site/chars.json` | the 124 characters used by the site |
 | `data/coaches.json`, `data/pitch_layouts.json`, `data/zone_slots.json`, `data/zones.json` | coaches, in-game slot positions, slot→zone maps and per-character ideal zones; 5v5 formations are inside `coaches.json` |

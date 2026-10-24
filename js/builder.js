@@ -26,7 +26,7 @@
       $('b-mode').addEventListener('change', onMode);
       $('b-run').addEventListener('click', run);
       setupPick();
-      setupCoachLv();
+      loadCoachLv();
       onMode();
     }).catch(function (e) { $('b-msg').textContent = 'Impossibile caricare i dati dei tecnici: ' + e.message; });
   }
@@ -163,24 +163,10 @@
   var KEY_CLV = 'iecross.coachlv.v1', coachLv = {};
   function loadCoachLv() { try { coachLv = JSON.parse(window.localStorage.getItem(KEY_CLV) || '{}') || {}; } catch (e) { coachLv = {}; } }
   function lvOf(id) { var v = coachLv[id]; return v === undefined ? 10 : Math.max(0, Math.min(10, +v)); }
-  function setupCoachLv() {
-    loadCoachLv();
-    var box = $('b-coach-lv'); box.textContent = '';
-    coaches.forEach(function (c) {
-      var lb = el('label', null, (c.name_west || c.name_ja) + ' '), inp = el('select');
-      var o0 = el('option', null, 'Non posseduto'); o0.value = '0'; inp.appendChild(o0);
-      for (var n = 1; n <= 10; n++) { var o = el('option', null, 'Lv ' + n); o.value = String(n); inp.appendChild(o); }
-      inp.value = String(lvOf(c.id));
-      inp.addEventListener('change', function () {
-        var v = Math.max(0, Math.min(10, Math.round(+inp.value) || 0)); coachLv[c.id] = v;
-        try { window.localStorage.setItem(KEY_CLV, JSON.stringify(coachLv)); } catch (e) { /* ignora */ }
-      });
-      lb.appendChild(inp); box.appendChild(lb);
-    });
-  }
   function leveled(c) { return window.IECEngine.coachAtLevel(c, lvOf(c.id) || 10); }
 
   function run() {
+    loadCoachLv();
     var out = $('b-out'), msg = $('b-msg');
     out.textContent = '';
     var pool = $('b-pool').value === 'owned' ? window.IEC.ownedChars() : data.chars.slice();
@@ -225,6 +211,6 @@
 
   function boot() { if (window.IEC && window.IEC.loaded) init(); }
   document.addEventListener('iec-ready', boot);
-  document.addEventListener('iec-tab', function (e) { if (e.detail === 'builder') { boot(); if (data && coaches.length) setupCoachLv(); } });
+  document.addEventListener('iec-tab', function (e) { if (e.detail === 'builder') { boot(); loadCoachLv(); } });
   boot();
 })();
