@@ -738,6 +738,18 @@
   "Squadra migliore per oggi": {
    "en": "Best team for today",
    "ja": "今日の最適チーム"
+  },
+  "☕ Offrimi un caffè": {
+   "en": "☕ Buy me a coffee",
+   "ja": "☕ コーヒーをおごる"
+  },
+  "⭐ Il progetto su GitHub": {
+   "en": "⭐ Project on GitHub",
+   "ja": "⭐ GitHubのプロジェクト"
+  },
+  "Supporta lo sviluppo": {
+   "en": "Support development",
+   "ja": "開発を支援"
   }
  }
 }

@@ -421,3 +421,13 @@ main.wrap { padding-top: 26px; }
 }
 @media (max-width: 360px) { .tab { font-size: .7rem; } .hcard { grid-template-columns: 64px minmax(0, 1fr); } .hc-img .avatar.lg { width: 64px; height: 64px; } }
 .bo-today .bo-t-name { flex: 1 1 100%; font-size: 1rem; }
+
+/* ===== Tappa 28: pulsante volante "supporta lo sviluppo" ===== */
+.fab { position: fixed; right: 14px; bottom: 14px; z-index: 30; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.fab-btn { width: 46px; height: 46px; border-radius: 50%; border: 0; cursor: pointer; font-size: 1.3rem; background: #ffdd00; color: #1b2230; box-shadow: 0 4px 14px rgba(0,0,0,.3); transition: transform .12s; }
+.fab-btn:hover { transform: scale(1.08); }
+.fab-menu { display: flex; flex-direction: column; gap: 6px; padding: 8px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+.fab-menu[hidden] { display: none; }
+.fab-menu a { padding: 8px 12px; border-radius: 8px; text-decoration: none; color: var(--text); font-weight: 600; font-size: .9rem; white-space: nowrap; }
+.fab-menu a:hover { background: color-mix(in srgb, var(--accent) 14%, transparent); }
+@media (max-width: 640px) { .fab { bottom: calc(76px + env(safe-area-inset-bottom)); right: 12px; } .fab-btn { width: 42px; height: 42px; } }

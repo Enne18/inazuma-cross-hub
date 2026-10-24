@@ -141,5 +141,21 @@
   <script src="js/detail.js"></script>
   <script src="js/sync.js"></script>
   <script src="js/syncui.js"></script>
+  <div class="fab" id="fab">
+    <div class="fab-menu" id="fab-menu" hidden>
+      <a href="https://buymeacoffee.com/ennedev" target="_blank" rel="noopener noreferrer">☕ Offrimi un caffè</a>
+      <a href="https://github.com/enne18/inazuma-cross-hub" target="_blank" rel="noopener noreferrer">⭐ Il progetto su GitHub</a>
+    </div>
+    <button type="button" class="fab-btn" id="fab-btn" aria-expanded="false" aria-controls="fab-menu" aria-label="Supporta lo sviluppo" title="Supporta lo sviluppo">☕</button>
+  </div>
+  <script>
+    (function () {
+      var b = document.getElementById('fab-btn'), m = document.getElementById('fab-menu');
+      function set(o) { m.hidden = !o; b.setAttribute('aria-expanded', o ? 'true' : 'false'); }
+      b.addEventListener('click', function (e) { e.stopPropagation(); set(m.hidden); });
+      document.addEventListener('click', function (e) { if (!m.hidden && !m.contains(e.target)) set(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+    })();
+  </script>
 </body>
 </html>

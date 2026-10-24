@@ -337,3 +337,4 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Tappa 26: Boss — riquadro "Boss di oggi" (boss in corso, tempo al cambio delle 22:00 Roma, boss di domani, pulsante) e calcolo automatico all'apertura se hai almeno 5 personaggi; 5v5 — opzione "La migliore tra tutte le formazioni" (default), le squadre mostrano il nome della formazione.
 - Tappa 27: vista da cellulare (≤640px): barra sezioni in basso, card giocatore compatte (nome a capo, badge che vanno a capo), controlli a tutta larghezza, nessuno scroll orizzontale (verificato a 390px su tutte le pagine); manifest + icona per "Aggiungi a schermata Home" (senza modalità offline).
 - README riscritto in inglese (link del sito, funzioni, sync, accuratezza dati, sviluppo).
+- Tappa 28: pulsante volante ☕ in basso a destra (Buy me a coffee + GitHub), sopra la barra in basso su mobile; README aggiornato.

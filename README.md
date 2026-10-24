@@ -146,3 +146,7 @@ node tests/sync.test.js
 ## Contributing data
 
 Add or correct entries following `data/SCHEMA.md`. Leave unknown values empty (`null`) instead of guessing, and mention the source (screenshot, page or guide) so it can be verified.
+
+## Support
+
+If the site is useful to you, you can support its development through the floating ☕ button at the bottom right of every page: it links to the project on GitHub and to <https://buymeacoffee.com/ennedev>. It is entirely optional; the site stays free.
