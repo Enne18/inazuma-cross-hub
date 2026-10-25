@@ -1,6 +1,8 @@
-/* Motore del Team Builder: funzioni pure, nessun accesso al DOM.
-   Punteggio = base (statistiche per ruolo, o stima se mancanti) + sinergie lette dal testo giapponese delle passive.
-   Tutti i pesi sono in DEFAULTS e modificabili. Le passive non interpretabili sono elencate in 'unparsed', mai inventate. */
+/* Motore del Team Builder e dei Boss: funzioni pure, nessun accesso al DOM.
+   Team Builder: punteggio a duelli contro un rivale di riferimento (formula di potenza verificata: statistica x risveglio x zona + equipaggiamento,
+   x potenza della mossa x elemento), con sinergie lette dal testo giapponese delle passive e dal tecnico.
+   Boss: catena di 5 giocatori con la loro migliore mossa (livello di mossa scelto dall'utente). Pesi in DEFAULTS.
+   Le passive non interpretabili sono elencate in 'unparsed', mai inventate. */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory();
   else root.IECEngine = factory();
@@ -8,11 +10,11 @@
   'use strict';
 
   var DEFAULTS = {
-    statWeight: 0.01,          // punti per ogni punto statistica
-    powerWeight: 0.1,          // punti per ogni punto di potenza tecnica
+    statWeight: 0.01,          // punti per ogni punto statistica (stima delle sinergie)
+    powerWeight: 0.1,          // punti per ogni punto di potenza tecnica (stima delle sinergie)
     debuffWeight: 0.5,         // peso dei malus sugli avversari (contati una volta)
     conditionalFactor: 0.5,    // peso dei bonus che richiedono eventi di partita (tiri fermati, dribbling riusciti...)
-    unlocks: ['初期', 'Lv11', 'Lv41', 'ADVANCED', 'ADVANCED+'], // tutte attive (l'utente gioca con tutto al massimo)
+    unlocks: ['初期', 'Lv11', 'Lv41', 'ADVANCED', 'ADVANCED+'], // tipi di passiva ammessi; quali sono davvero sbloccate lo decidono livello e grado (IECData.passivesAt)
     optionalTeams: {},         // es. {"雷門": true} per contare anche le squadre 'opzionali' degli alias
     uniqueNames: false,        // due versioni dello stesso personaggio POSSONO giocare insieme (confermato dall'utente)
     roleWeights: {
@@ -28,9 +30,9 @@
     duelExp: 1.5, duelWeights: { attack: 40, defense: 30, dribble: 15, block: 15 },           // 'damage' = formula del gioco (stat x potenza mossa); 'legacy' = vecchio punteggio a pesi
     roleDamageWeight: { FW: 1, MF: 1, DF: 1, GK: 1 },   // peso del danno per ruolo dello slot (calibrazione: difesa vs attacco)
     moveElementStab: 1.2,      // bonus elemento mossa = elemento personaggio (formula iecrosshub)
-    nativeRoleMult: 1.1,       // ipotesi: moltiplicatore ruolo (iecrosshub: B 1.05, A 1.10, S 1.15) nel ruolo naturale
-    offRoleMult: 1.0,          // ipotesi: fuori ruolo = nessun bonus; le mosse restano usabili
-    offRoleMovePenalty: 0.5    // ipotesi: mossa non adatta al ruolo giocato (DF/GK devono parare/bloccare; FW/MF tirano o dribblano)
+    nativeRoleMult: 1.1,       // solo modello 'damage': moltiplicatore ruolo nel ruolo naturale (ipotesi)
+    offRoleMult: 1.0,          // solo modello 'damage': fuori ruolo = nessun bonus (ipotesi)
+    offRoleMovePenalty: 0.5    // solo modello 'damage': mossa non adatta al ruolo giocato (ipotesi)
   };
 
   // Guida RR_o (IE Cross Database, v1.4.0): potenza base = stat x risveglio + equipaggiamento del ruolo NATIVO + bonus.
@@ -427,7 +429,7 @@
         var adv = BEATS[ke] === boss.element, dis = BEATS[boss.element] === ke;
         var power = k.power + Math.max(-1000, Math.min(1000, bonus)) + (adv && boss.field ? boss.field : 0);
         var mult = 1 + (ke === m.element ? 0.2 : 0) + (adv ? 0.1 : 0) - (dis ? 0.1 : 0);
-        out.push({ cat: c, el: ke, name: k.name_ja, v: Math.floor(stat * Math.max(0, power) * mult * 0.01), power: power, stat: stat, mult: mult });
+        out.push({ cat: c, el: ke, name: k.name_ja, level: k.move_level || 10, extra: !!k.extra, v: Math.floor(stat * Math.max(0, power) * mult * 0.01), power: power, stat: stat, mult: mult });
       });
       out.sort(function (a, b) { return b.v - a.v; });
       return out.slice(0, 3);
@@ -455,7 +457,7 @@
         for (var p = trace.length - 1; p >= 0; p--) { var e = trace[p][idx]; seq.unshift(e); idx = e.from; }
         best = { total: dp[bi].sum, order: seq.map(function (e, p) {
           var prev = p > 0 ? seq[p - 1].mv.el : null, chained = prev && prev === e.mv.el, v = chained ? Math.floor(e.mv.v * 1.1) : e.mv.v;
-          return { id: members[e.mi].id, move: e.mv.name, element: e.mv.el, power: e.mv.power, stat: e.mv.stat, base: e.mv.v, value: v, chained: !!chained };
+          return { id: members[e.mi].id, move: e.mv.name, element: e.mv.el, power: e.mv.power, stat: e.mv.stat, level: e.mv.level, extra: !!e.mv.extra, cat: e.mv.cat, base: e.mv.v, value: v, chained: !!chained };
         }) };
       }
     });

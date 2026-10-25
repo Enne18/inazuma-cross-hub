@@ -766,6 +766,34 @@
   "Segnala un errore o proponi un'idea": {
    "en": "Report a mistake or suggest an idea",
    "ja": "間違いの報告・アイデアの提案"
+  },
+  "Lv {0}": {
+   "en": "Lv {0}",
+   "ja": "Lv {0}"
+  },
+  "Lv {0} (massimo)": {
+   "en": "Lv {0} (max)",
+   "ja": "Lv {0}（最大）"
+  },
+  "terza mossa": {
+   "en": "third move",
+   "ja": "3つ目の技"
+  },
+  "nessuna tecnica adatta": {
+   "en": "no suitable move",
+   "ja": "適した技なし"
+  },
+  "Stima: con \"Tutti i personaggi\" le tecniche sono al livello massimo; zone ideali e adesivi non inclusi.": {
+   "en": "Estimate: with \"All characters\" moves are at maximum level; ideal zones and stickers are not included.",
+   "ja": "推定：「すべてのキャラクター」では技は最大レベルとして計算。得意エリアとシールは含まれません。"
+  },
+  "Stima: usa i livelli di personaggio e di tecnica che hai impostato nella tua collezione; zone ideali e adesivi non inclusi.": {
+   "en": "Estimate: uses the character and move levels you set in your collection; ideal zones and stickers are not included.",
+   "ja": "推定：コレクションで設定したキャラクターと技のレベルを使用。得意エリアとシールは含まれません。"
+  },
+  "Le ultime funzioni del sito, versione dopo versione.": {
+   "en": "The latest features of the site, release by release.",
+   "ja": "サイトの最新機能を、バージョンごとに紹介。"
   }
  }
 }

@@ -210,6 +210,13 @@ t('terza mossa a scelta: forLevel la aggiunge (potenza per livello) e il motore 
   assert.strictEqual(D.forLevel(base, 440, 9, { 0: 10, 1: 10 }).skills.length, 2);
   const lo = D.forLevel(base, 440, 9, { x: 1 }, fire); assert.strictEqual(lo.skills[2].power, fire.power_by_level[0]);
 });
+t('boss: il calcolo usa il livello delle mosse impostato e lo restituisce per ogni giocatore', () => {
+  const mk = lv => new E.Engine(raw.map(r => D.forLevel(r, 440, 9, { 0: lv, 1: lv })), aliases);
+  const lo = mk(1), hi = mk(10), boss = { mode: 'attack', element: 'Wind', field: 0 };
+  const rl = lo.bossBest(lo.chars || raw.map(r => D.forLevel(r, 440, 9, { 0: 1, 1: 1 })), boss), rh = hi.bossBest(raw.map(r => D.forLevel(r, 440, 9, { 0: 10, 1: 10 })), boss);
+  assert.ok(rl.total < rh.total, 'Lv1 < Lv10: ' + rl.total + ' vs ' + rh.total);
+  assert.ok(rl.order.every(o => o.level === 1) && rh.order.every(o => o.level === 10), 'livello della mossa nel risultato');
+});
 t('livello mosse: forLevel applica power_by_level (Lv1 < Lv10) e il Team Builder usa quella potenza', () => {
   const base = raw.find(c => c.id === '1001');
   const lo = D.forLevel(base, 440, 9, { 0: 1, 1: 1 }), hi = D.forLevel(base, 440, 9, { 0: 10, 1: 10 });

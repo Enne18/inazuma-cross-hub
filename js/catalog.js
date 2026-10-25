@@ -25,7 +25,7 @@
   function loadRar() { try { var o = JSON.parse(window.localStorage.getItem(KEY_RAR) || '{}'); Object.keys(o).forEach(function (id) { state.rar[id] = clampRar(o[id]); }); } catch (e) { /* ignora */ } }
   function saveRar() { try { window.localStorage.setItem(KEY_RAR, JSON.stringify(state.rar)); } catch (e) { /* archiviazione bloccata */ } }
   function setRar(id, r) { state.rar[id] = clampRar(r); saveRar(); }
-  // livello delle mosse (1-10) per personaggio e mossa: state.mv[id] = {indice: livello}; default 10
+  // livello delle mosse (1-10) per personaggio e mossa: state.mv[id] = {indice: livello, x: terza mossa}; default Lv 1 (nuova mossa)
   function clampMv(v) { v = Math.round(+v); return isNaN(v) ? 1 : Math.max(1, Math.min(10, v)); }
   function mvOf(id, i) { var o = state.mv[id]; return o && o[i] !== undefined ? clampMv(o[i]) : 1; }
   function loadMv() { try { var o = JSON.parse(window.localStorage.getItem(KEY_MV) || '{}'); Object.keys(o).forEach(function (id) { state.mv[id] = o[id]; }); } catch (e) { /* ignora */ } }

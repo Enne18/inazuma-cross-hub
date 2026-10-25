@@ -21,10 +21,10 @@
   }
   function kind() { return $('bo-kind').value; }
   function fillBosses() {
-    var blk = B[kind()], sel = $('bo-boss'), t = todayIndex(blk);
+    var blk = B[kind()], sel = $('bo-boss'), daily = kind() === 'daily', t = daily ? todayIndex(blk) : 0;   // i boss del club non cambiano col giorno
     sel.textContent = '';
     blk.bosses.forEach(function (b, i) {
-      var o = el('option', null, b.name + ' · ' + EL[b.element] + (kind() === 'daily' ? ' · ' + (b.mode === 'attack' ? 'attacco' : 'difesa') : '') + (i === t ? ' — oggi' : ''));
+      var o = el('option', null, b.name + ' · ' + EL[b.element] + (kind() === 'daily' ? ' · ' + (b.mode === 'attack' ? 'attacco' : 'difesa') : '') + (daily && i === t ? ' — oggi' : ''));
       o.value = String(i); sel.appendChild(o);
     });
     sel.value = String(t);
@@ -57,6 +57,7 @@
     box.appendChild(go);
   }
 
+  var usedAll = false;   // pool "Tutti i personaggi": le tecniche sono al livello massimo
   function row(o, i) {
     var c = byId[o.id], li = el('li', 'bo-row');
     li.style.setProperty('--el', 'var(--' + (o.element || c.element) + ')');
@@ -64,7 +65,14 @@
     li.appendChild(window.IECUI.avatar(c, 'md'));
     var tx = el('div', 'bo-tx');
     tx.appendChild(el('strong', null, nm(c)));
-    tx.appendChild(el('div', null, (o.move || 'nessuna tecnica adatta') + ' · ' + (EL[o.element] || '–')));
+    var mv = el('div', 'bo-move');
+    if (o.move) {
+      mv.appendChild(el('span', 'mv-name', o.move));
+      mv.appendChild(el('span', 'mv-lv', 'Lv ' + o.level + (usedAll ? ' (massimo)' : '')));
+      if (o.extra) mv.appendChild(el('span', 'mv-x', 'terza mossa'));
+      mv.appendChild(el('span', 'mv-el', EL[o.element] || '–'));
+    } else mv.appendChild(el('span', 'mv-name', 'nessuna tecnica adatta'));
+    tx.appendChild(mv);
     tx.appendChild(el('small', 'muted', 'potenza ' + fmt(o.power) + ' · stat ' + fmt(o.stat) + (o.chained ? ' · catena ×1,1' : '')));
     li.appendChild(tx);
     li.appendChild(el('strong', 'bo-val', fmt(o.value)));
@@ -93,6 +101,7 @@
   function run() {
     var out = $('bo-out'), msg = $('bo-msg');
     out.textContent = '';
+    usedAll = $('bo-pool').value !== 'owned';
     var blk = B[kind()], b = blk.bosses[+$('bo-boss').value];
     var pool = $('bo-pool').value === 'owned' ? window.IEC.ownedChars() : data.chars.slice();
     var need = kind() === 'club' ? 15 : 5;
@@ -115,7 +124,7 @@
           out.appendChild(el('p', null, 'Stima della somma dei 3 tentativi: ' + fmt(c.total)));
           c.teams.forEach(function (t, i) { out.appendChild(teamBlock(t, 'Tentativo ' + (i + 1))); });
         }
-        out.appendChild(el('p', 'muted small', 'Stima: livelli delle tecniche assunti al massimo, zone ideali e adesivi non inclusi.'));
+        out.appendChild(el('p', 'muted small', usedAll ? 'Stima: con "Tutti i personaggi" le tecniche sono al livello massimo; zone ideali e adesivi non inclusi.' : 'Stima: usa i livelli di personaggio e di tecnica che hai impostato nella tua collezione; zone ideali e adesivi non inclusi.'));
         msg.textContent = 'Fatto (' + ((Date.now() - t0) / 1000).toFixed(1) + ' s).';
       } catch (e) { msg.textContent = 'Errore nel calcolo: ' + e.message; }
     }, 20);
