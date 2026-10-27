@@ -1,0 +1,23 @@
+name: Dato sbagliato o mancante / Wrong or missing data
+description: Un personaggio, una mossa, una passiva, un tecnico o una formazione non corrispondono al gioco. / Something does not match the game.
+title: "[Dati] "
+labels: ["data"]
+body:
+  - type: input
+    id: what
+    attributes:
+      label: Cosa è sbagliato? / What is wrong?
+      placeholder: "Es. Zone di Mark Evans, passiva di Lina Schiller… / e.g. Mark Evans' zones, Lina Schiller's passive…"
+    validations:
+      required: true
+  - type: textarea
+    id: correct
+    attributes:
+      label: Valore corretto / Correct value
+      description: Scrivi cosa mostra il gioco. Se puoi, allega una schermata. / Write what the game shows; attach a screenshot if you can.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versione del gioco o data / Game version or date

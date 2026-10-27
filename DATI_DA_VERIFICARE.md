@@ -34,3 +34,6 @@ Ruoli liberi in qualsiasi slot; nessuna riserva; nessun tecnico nel 5v5; layout,
 - Ray Dark: nessuna mappa zone, nessuna azione. Formazioni 5v5: nessuna passiva propria (i giocatori mantengono le loro). 選手総合能力: non determinabile, non modellata.
 - Passive di tempra: sono sempre 3 insieme. Equipaggiamento: scatti di 5 livelli, limite 350 oggi.
 - Prima/dopo di Tenma: 46.541 (nessuna passiva) → 48.091 (Potenza dribbling+〈Vento〉 Lv7, Potenza dribbling+ Lv2, Potenza tiro+ Lv5; 110000 monete + 5 oggetti).
+## Wandaba e Halloween (27/10)
+- Wandaba: nome giapponese della passiva del tecnico e metodo di sblocco non noti; valori ai livelli 2-9 ipotizzati lineari (Lv1 = 6, Lv10 = 60 confermati); tag イナイレクロス assunto uguale agli altri personaggi.
+- Nathan Swift / David Samford (Halloween): valori delle passive ai livelli intermedi riscalati da passive simili (stimati); passive ADVANCED+ stimate ai gradi Advanced+/Top+ (solo il valore a Legendary+ è dato dal sito); nomi inglesi delle mosse non noti (mostrato l'originale); immagini dal sito dei dati (potrebbero non esserci ancora).

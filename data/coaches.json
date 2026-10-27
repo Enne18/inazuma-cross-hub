@@ -2193,6 +2193,146 @@
    "layout_source": "utente (15/10/2026), formato DF-MF-FW; ordine slot assunto: FW, MF, DF, GK(⑪)",
    "name_west": "Lina Schiller",
    "name_west_source": "tabella dell'utente 17/10"
+  },
+  {
+   "id": "wandaba",
+   "name_ja": "ワンダバ",
+   "formation_ja": "F-クロス",
+   "unlock_ja": null,
+   "sources": [
+    "https://iecrossdb.com/formacion?lang=it",
+    "utente (screenshot 27/10/2026)"
+   ],
+   "formation_condition": [
+    {
+     "slot": 2,
+     "position": "FW"
+    },
+    {
+     "slot": 3,
+     "position": "MF"
+    },
+    {
+     "slot": 8,
+     "position": "DF"
+    }
+   ],
+   "formation_passive": {
+    "text_ja": "味方がシュート技を止めるたび 味方全員の技威力を40上昇 終了条件:味方がゴールを入れた時",
+    "effects": [
+     {
+      "timing": "on_event",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "all",
+      "value": 40,
+      "event": "quando un alleato ferma un tiro avversario; termina al gol"
+     }
+    ]
+   },
+   "coach_passive": {
+    "name_ja": "イナイレクロス&MF・FWブースト",
+    "text_ja": "試合開始時 イナイレクロスタグの味方:技威力60上昇 推奨MF・FWの味方:シュート技威力60上昇",
+    "level_used": 10,
+    "effects": [
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": null,
+       "element": null,
+       "tag": "イナイレクロス",
+       "type": null
+      },
+      "kind": "power",
+      "skill": "all",
+      "value": 60,
+      "ref": "val",
+      "sign": 1
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "MF",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "shoot",
+      "value": 60,
+      "ref": "val",
+      "sign": 1
+     },
+     {
+      "timing": "start",
+      "target": {
+       "who": "ally",
+       "pos": "FW",
+       "element": null,
+       "tag": null,
+       "type": null
+      },
+      "kind": "power",
+      "skill": "shoot",
+      "value": 60,
+      "ref": "val",
+      "sign": 1
+     }
+    ],
+    "levels": [
+     {
+      "val": 6
+     },
+     {
+      "val": 12
+     },
+     {
+      "val": 18
+     },
+     {
+      "val": 24
+     },
+     {
+      "val": 30
+     },
+     {
+      "val": 36
+     },
+     {
+      "val": 42
+     },
+     {
+      "val": 48
+     },
+     {
+      "val": 54
+     },
+     {
+      "val": 60
+     }
+    ]
+   },
+   "verified": "parziale",
+   "notes": [
+    "Dati dallo screenshot dell'utente (27/10/2026): Lv1 = 6, Lv10 = 60 (livelli 2-9 = multipli di 6, ipotesi lineare). Il nome giapponese della passiva del tecnico e il metodo di sblocco non sono noti (nome ricostruito). Il tag 'Inazuma Eleven Cross' è registrato come イナイレクロス come per gli altri personaggi."
+   ],
+   "layout": {
+    "FW": 2,
+    "MF": 4,
+    "DF": 4,
+    "GK": 1
+   },
+   "layout_source": "utente (27/10/2026) da schermata di iecrossdb",
+   "name_west": "Wandaba",
+   "name_west_source": "iecrossdb.com"
   }
  ]
 }

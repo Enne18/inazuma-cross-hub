@@ -1,0 +1,22 @@
+name: Squadra dal gioco (per calibrare i punteggi) / Team from the game (to calibrate scores)
+description: Aiuta a rendere i punteggi più vicini a quelli del gioco. / Help make scores closer to the in-game ones.
+title: "[Calibrazione] "
+labels: ["calibration"]
+body:
+  - type: textarea
+    id: team
+    attributes:
+      label: Squadra e tecnico / Team and coach
+      description: Giocatori nei vari slot, livelli, gradi e tecnico (con livello). Una schermata va benissimo. / Players per slot, levels, grades and the coach (with level). A screenshot is fine.
+    validations:
+      required: true
+  - type: input
+    id: total
+    attributes:
+      label: Potenza totale mostrata dal gioco / Total power shown in game
+    validations:
+      required: true
+  - type: textarea
+    id: per
+    attributes:
+      label: "\"Abilità complessiva\" di ogni giocatore (facoltativo) / Each player's overall ability (optional)"

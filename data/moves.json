@@ -510,6 +510,21 @@
    "element": "Fire",
    "name_it": "Pugno di Fuoco(熱血パンチ)",
    "kind": "Parata"
+  },
+  "デーモンカット（ハロウィン）": {
+   "element": "Forest",
+   "name_it": "Calcio delle Tenebre (Halloween)",
+   "kind": "Blocco"
+  },
+  "風神の舞（ハロウィン）": {
+   "element": "Wind",
+   "name_it": "Turbine Supremo (Halloween)",
+   "kind": "Dribbling"
+  },
+  "分身ペンギン（ハロウィン）": {
+   "element": "Forest",
+   "name_it": "Pinguino Illusorio (Halloween)",
+   "kind": "Tiro"
   }
  }
 }

@@ -60,6 +60,36 @@
  ],
  "releases": [
   {
+   "version": "1.7",
+   "date": "2026-10-27",
+   "title": {
+    "it": "Wandaba e gli Halloween",
+    "en": "Wandaba and the Halloween pair",
+    "ja": "ワンダバとハロウィン"
+   },
+   "icon": "🎃",
+   "items": [
+    {
+     "icon": "🧸",
+     "it": "Nuovo tecnico: Wandaba (F-Cross), con condizioni di formazione, passive e zone ideali.",
+     "en": "New coach: Wandaba (F-Cross), with formation conditions, passives and ideal zones.",
+     "ja": "新監督ワンダバ（F-クロス）を追加。"
+    },
+    {
+     "icon": "🎃",
+     "it": "Due nuovi personaggi Halloween: Nathan Swift e David Samford, con mosse e passive nuove.",
+     "en": "Two new Halloween characters: Nathan Swift and David Samford, with new moves and passives.",
+     "ja": "ハロウィン限定の風丸一郎太と佐久間次郎を追加。"
+    },
+    {
+     "icon": "🖼️",
+     "it": "Ritratto di Kira aggiornato.",
+     "en": "Updated Kira portrait.",
+     "ja": "吉良瞳子の画像を更新。"
+    }
+   ]
+  },
+  {
    "version": "1.6",
    "date": "2026-10-26",
    "title": {

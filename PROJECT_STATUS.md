@@ -350,3 +350,5 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Tappa 35: equipaggiamento con limite EQ_CAP=350 (punto 352 rimosso, Engine.setEquipCap per la guida RR_o a 440); 3 passive di tempra sempre insieme (le altre due si riempiono da sole); chiusi Ray Dark / passive 5v5 B / 総合能力.
 - Tappa 36: scheda a due livelli (foto+dettagli / mosse e tempra a tutta larghezza), Novità pagina iniziale e prima scheda, nomi tempra 'giapponese (traduzione)', equipaggiamento a scatti di 5 (EQ_CAP 350), versione 1.6 nel footer (serve per verificare quale build è online).
 - Tappa 37: numero di versione file ?v=36 (la cache del browser serviva i vecchi js/css con ?v=30).
+- 27/10: dati Wandaba (solo zone) e due Halloween (10073, 10074) raccolti in data/staging/nuovi_2026-10-27.md; non inseriti: mancano nomi giapponesi, stelle, stat Lv1, valori Wandaba.
+- Tappa 38: aggiunti Wandaba (15° tecnico: dati, zone, layout, immagine) e i due Halloween 10073/10074 (126 personaggi); ritratto di Kira aggiornato; changelog 1.7.

@@ -1,0 +1,15 @@
+name: Idea o richiesta / Idea or request
+description: Una funzione che vorresti nel sito. / A feature you would like.
+title: "[Idea] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Cosa vorresti? / What would you like?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: A cosa ti servirebbe? / How would you use it?

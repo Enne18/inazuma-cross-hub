@@ -27,7 +27,7 @@ It is free, has no account, no ads and no backend: plain HTML, CSS and JavaScrip
 The site has five sections: **What's new** (the home page), **Characters**, **Team Builder**, **Coaches** and **Bosses**.
 
 ### Characters
-- A catalogue of **124 characters** with element (Fire, Wind, Forest, Mountain), role (GK / DF / MF / FW), rarity, team, type, series, stats, moves and passives.
+- A catalogue of **126 characters** with element (Fire, Wind, Forest, Mountain), role (GK / DF / MF / FW), rarity, team, type, series, stats, moves and passives.
 - Search by name, team, move or passive (works across Italian, English and Japanese names) and filter by ownership, element, role, rarity, team and series; sort by name, rarity or any stat.
 - **Your collection:** press **"Ce l'ho"** (I own it) on a character. For every owned character you can set:
   - its **level** (1–440; stats between level 1 and 440 are a linear estimate, because the data source only provides those two values),
@@ -39,7 +39,7 @@ The site has five sections: **What's new** (the home page), **Characters**, **Te
 - *Collection management* panel: set a level or grade for everyone at once, export/import a backup (JSON file), clear the collection, show/hide images (a coloured badge is used when an image is missing).
 
 ### Coaches
-- All **14 coaches** with portrait, formation (e.g. 4-4-2, 5-3-2), how they are unlocked and a level selector (1–10, or "not owned").
+- All **15 coaches** with portrait, formation (e.g. 4-4-2, 5-3-2), how they are unlocked and a level selector (1–10, or "not owned").
 - Click a coach's image to open the **coach page**: formation activation conditions per slot, the formation passive (only active when *all* conditions are met), and the always-active passive with values for the selected level.
 - The level you set here is the one used by the Team Builder.
 
@@ -52,7 +52,7 @@ Proposes the best teams from the characters you own (or from all characters, to 
 - The score is a **transparent estimate**, not the game's own number: it uses the verified power formula (stat × awakening × ideal-zone bonus + equipment + passives) × (move power ± bonuses) × element, compared against a reference rival. It does not reproduce every in-game rule (for example the total-power jump when a formation activates), so use it to compare options, not to predict exact match results.
 
 ### Ideal zones
-Every character has three ideal zones (numbered 1–11 on the pitch) rated **S (+15%)**, **A (+10%)** or **B (+5%)**. When a player stands in one of their zones, the bonus is applied to *stat × awakening* only (not to equipment), both in 11 vs 11 (zones mapped for 13 of the 14 coaches; Ray Dark has none) and in 5 vs 5 (zones mapped for all 9 formations).
+Every character has three ideal zones (numbered 1–11 on the pitch) rated **S (+15%)**, **A (+10%)** or **B (+5%)**. When a player stands in one of their zones, the bonus is applied to *stat × awakening* only (not to equipment), both in 11 vs 11 (zones mapped for 14 of the 15 coaches; Ray Dark has none) and in 5 vs 5 (zones mapped for all 9 formations).
 
 ### Bosses
 - **Boss of the day banner:** shows today's boss, the time left before the change (the game day rolls over at **22:00 Rome time**) and tomorrow's boss, with a button for the best team. If you own at least five characters, the best team for today is calculated as soon as you open the page.
@@ -134,7 +134,7 @@ Common problems:
 | `js/news.js`, `data/changelog.json` | What's new page and its release notes |
 | `.github/ISSUE_TEMPLATE/` | issue templates (data error, idea, calibration team) |
 | `js/sync.js`, `js/syncui.js` | cloud sync through a private GitHub Gist |
-| `data/site/chars.json` | the 124 characters used by the site |
+| `data/site/chars.json` | the 126 characters used by the site |
 | `data/coaches.json`, `data/pitch_layouts.json`, `data/zone_slots.json`, `data/zones.json` | coaches, in-game slot positions, slot→zone maps and per-character ideal zones; 5v5 formations are inside `coaches.json` |
 | `data/bosses.json`, `data/moves.json`, `data/tag_aliases.json`, `data/meta.json` | bosses, moves, tag aliases, metadata |
 | `data/i18n/` | UI and content translations |

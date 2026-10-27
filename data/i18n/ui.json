@@ -415,10 +415,6 @@
    "en": "Best of all coaches",
    "ja": "全監督の中で最良"
   },
-  "I 14 tecnici: condizioni di formazione, passive e livello. Il livello che imposti qui è lo stesso usato dal Team Builder.": {
-   "en": "The 14 coaches: formation conditions, passives and level. The level you set here is the same one the Team Builder uses.",
-   "ja": "14人の監督：フォーメーション条件・パッシブ・レベル。ここで設定したレベルはチームビルダーでも使われます。"
-  },
   "{0} tecnici": {
    "en": "{0} coaches",
    "ja": "{0}人の監督"
@@ -809,6 +805,10 @@
    "it": "+ Passive tempra (nessuna)",
    "en": "+ Training passives (none)",
    "ja": "＋パッシブ鍛錬（なし）"
+  },
+  "I 15 tecnici: condizioni di formazione, passive e livello. Il livello che imposti qui è lo stesso usato dal Team Builder.": {
+   "en": "The 15 coaches: formation conditions, passives and level. The level you set here is the same one the Team Builder uses.",
+   "ja": "15人の監督：フォーメーション条件・パッシブ・レベル。ここで設定したレベルはチームビルダーでも使われます。"
   }
  }
 }
