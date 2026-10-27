@@ -180,7 +180,7 @@
         if ($('b-rai').checked) cfg.optionalTeams['雷門'] = true;
         if ($('b-jp').checked) cfg.optionalTeams['イナズマジャパン'] = true;
         var eng = new window.IECEngine.Engine(data.chars, aliases, cfg), res, t0 = Date.now(), m = $('b-mode').value;
-        eng.setZones(ZC, ZS);
+        eng.setZones(ZC, ZS); eng.setTraining(window.IECTraining);
         if (m === '5v5') {
           if ($('b-f5').value === 'all') {            // la migliore tra tutte le formazioni 5v5
             var allT = [];

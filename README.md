@@ -24,7 +24,7 @@ It is free, has no account, no ads and no backend: plain HTML, CSS and JavaScrip
 
 ## What you will find inside
 
-The site has five sections: **Characters**, **Team Builder**, **Coaches**, **Bosses** and **What's new**.
+The site has five sections: **What's new** (the home page), **Characters**, **Team Builder**, **Coaches** and **Bosses**.
 
 ### Characters
 - A catalogue of **124 characters** with element (Fire, Wind, Forest, Mountain), role (GK / DF / MF / FW), rarity, team, type, series, stats, moves and passives.
@@ -33,6 +33,7 @@ The site has five sections: **Characters**, **Team Builder**, **Coaches**, **Bos
   - its **level** (1–440; stats between level 1 and 440 are a linear estimate, because the data source only provides those two values),
   - its **grade** (Normal Player … Legendary Player +), which decides which ADVANCED / ADVANCED+ passives are unlocked,
   - the **level of each move** (1–10; move power is read per level),
+  - the **3 training passives** (パッシブ鍛錬, always set together; the Japanese in-game name is shown with a translation in brackets), chosen from the pool of the character's role (source: iecrossdb.com), each with a level 1–10; stat boosts and move-power boosts are used by the Team Builder and bosses,
   - an optional **third move**: a drop-down with every move in the game (nothing selected by default). The chosen move is used by the Team Builder as if the character knew it.
 - Click a character's **image** to open its detail page (full stats, move power by level, all passives by level, and its three **ideal zones** with S / A / B ratings). Clicking the name does nothing, so you can select and copy names.
 - *Collection management* panel: set a level or grade for everyone at once, export/import a backup (JSON file), clear the collection, show/hide images (a coloured badge is used when an image is missing).
@@ -51,7 +52,7 @@ Proposes the best teams from the characters you own (or from all characters, to 
 - The score is a **transparent estimate**, not the game's own number: it uses the verified power formula (stat × awakening × ideal-zone bonus + equipment + passives) × (move power ± bonuses) × element, compared against a reference rival. It does not reproduce every in-game rule (for example the total-power jump when a formation activates), so use it to compare options, not to predict exact match results.
 
 ### Ideal zones
-Every character has three ideal zones (numbered 1–11 on the pitch) rated **S (+15%)**, **A (+10%)** or **B (+5%)**. When a player stands in one of their zones, the bonus is applied to *stat × awakening* only (not to equipment), both in 11 vs 11 (zones mapped for 13 of the 14 coaches) and in 5 vs 5 (zones mapped for all 9 formations).
+Every character has three ideal zones (numbered 1–11 on the pitch) rated **S (+15%)**, **A (+10%)** or **B (+5%)**. When a player stands in one of their zones, the bonus is applied to *stat × awakening* only (not to equipment), both in 11 vs 11 (zones mapped for 13 of the 14 coaches; Ray Dark has none) and in 5 vs 5 (zones mapped for all 9 formations).
 
 ### Bosses
 - **Boss of the day banner:** shows today's boss, the time left before the change (the game day rolls over at **22:00 Rome time**) and tomorrow's boss, with a button for the best team. If you own at least five characters, the best team for today is calculated as soon as you open the page.
@@ -73,7 +74,7 @@ Your collection normally lives only in the browser you used. To use it on a seco
 4. On the other device, paste the same token, press **Connect**, then **Download from cloud**.
 5. Optional: tick **Save automatically after every change**. The site warns if the cloud copy is newer than the last one this browser saved, so you do not overwrite changes by mistake.
 
-Synced data: owned characters, levels, grades, move levels, third moves, coach levels, language and image preference. Never share your token; if it leaks, delete it on GitHub and create a new one.
+Synced data: owned characters, levels, grades, move levels, third moves, training passives, coach levels, language and image preference. Never share your token; if it leaks, delete it on GitHub and create a new one.
 
 Without sync you can still use **Export / Import** (JSON file) to back up or move your collection.
 
@@ -83,7 +84,7 @@ Without sync you can still use **Export / Import** (JSON file) to back up or mov
 
 - Character data (stats, moves, passives) comes from fan sites; a few characters have partial or estimated data and are marked on their card ("Partial data / Missing data").
 - Formation slot positions, ideal zones, 5v5 formations and coach formation requirements were read from in-game screenshots and tables provided by players.
-- **Not known / not modelled:** passives of the 5v5 "B" formations; the zone map of Ray Dark (4-3-3); stickers; exact in-game match simulation.
+- **Not modelled:** stickers, the in-game "total player power" number (选手総合能力), and the exact match simulation. Equipment is estimated from in-game screenshots, rises in steps of 5 levels and is capped at Lv350, the current in-game limit. Ray Dark has no zone map, so no zone bonus is applied with that coach. 5v5 formations have no passives of their own: players keep theirs.
 - Rule of the project: **no invented data**. Unknown values stay empty, and open questions are listed in `DATI_DA_VERIFICARE.md`.
 
 If you spot a mistake, use the link on the **What's new** page (or open an issue on GitHub) and choose a template: *wrong or missing data*, *idea or request*, or *team from the game* (to help calibrate the scores with the total power shown in-game). A screenshot from the game is the best proof.
@@ -128,6 +129,7 @@ Common problems:
 | `js/coaches.js` | coach cards and coach detail page |
 | `js/engine.js`, `js/builder.js` | scoring engine (power formula, synergies, zones, bosses) and Team Builder interface |
 | `js/boss.js` | Bosses page |
+| `js/training.js` | training passives (パッシブ鍛錬) per role with values per level |
 | `js/i18n.js`, `js/passives.js` | language switcher and passive-text translator (IT/EN/JA) |
 | `js/news.js`, `data/changelog.json` | What's new page and its release notes |
 | `.github/ISSUE_TEMPLATE/` | issue templates (data error, idea, calibration team) |

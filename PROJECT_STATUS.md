@@ -340,3 +340,13 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Tappa 28: due pulsanti rotondi fissi in basso a destra (GitHub + Buy me a coffee), sopra la barra in basso su mobile; README aggiornato.
 - Tappa 29: pagina Novità (js/news.js + data/changelog.json, pallino sul tab), livello tecnici tolto dal Team Builder (resta solo in Tecnici), anteprima social (og:image img/og.png + meta), modelli di segnalazione in .github/ISSUE_TEMPLATE, tab mobile a 5 colonne.
 - Tappa 30: boss — il calcolo usa i livelli di mossa impostati e mostra per ogni giocatore la mossa usata + livello (+ "terza mossa"); boss del club senza rotazione giornaliera (niente "oggi"); pagina Novità con hero, scorciatoie e cronologia (solo funzioni, niente piccoli fix); pulizia commenti/testi vecchi (header engine, unlocks, nota boss), DATI_DA_VERIFICARE.md riscritto, eliminati i fogli *_DA_COMPILARE.md. 29 test.
+- Tappa 31: nomi mosse Técnica 13016/19011 tradotti (IT dall'utente, EN provvisorio); changelog fetch no-cache; cache-busting ?v=30 su css/js.
+- Tappa 32: prove di difesa escludono Scivolata Micidiale (non blocca i tiri); nome IT unificato.
+- Calibrazione: salvati i dati della partita 25/10 in data/calibration/ (da chiarire attribuzione squadre e dati del tecnico Lina Sheerer).
+- Calibrazione 25/10: chiarita attribuzione; Lina Schiller = kira (già nei dati); potenza per giocatore non scomponibile senza schermata di dettaglio.
+- Calibrazione 26/10: 3 schermate (FW/DF/GK). Equip. del modello ~3,5% troppo alto a Lv351; pesi di 選手総合能力 per ruolo da determinare (servono MF + altri punti).
+- Tappa 33: curva equipaggiamento corretta (punti 350/352 x0,965) da 7 schermate; 総合能力 per ruolo ancora non determinato.
+- Tappa 34: passive di tempra (js/training.js, 3 slot per personaggio, chiave iecross.training.v1, in engine/builder/boss/export/sync); changelog 1.5.
+- Tappa 35: equipaggiamento con limite EQ_CAP=350 (punto 352 rimosso, Engine.setEquipCap per la guida RR_o a 440); 3 passive di tempra sempre insieme (le altre due si riempiono da sole); chiusi Ray Dark / passive 5v5 B / 総合能力.
+- Tappa 36: scheda a due livelli (foto+dettagli / mosse e tempra a tutta larghezza), Novità pagina iniziale e prima scheda, nomi tempra 'giapponese (traduzione)', equipaggiamento a scatti di 5 (EQ_CAP 350), versione 1.6 nel footer (serve per verificare quale build è online).
+- Tappa 37: numero di versione file ?v=36 (la cache del browser serviva i vecchi js/css con ?v=30).

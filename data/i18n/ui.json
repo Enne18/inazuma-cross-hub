@@ -794,6 +794,21 @@
   "Le ultime funzioni del sito, versione dopo versione.": {
    "en": "The latest features of the site, release by release.",
    "ja": "サイトの最新機能を、バージョンごとに紹介。"
+  },
+  "Passive tempra": {
+   "it": "Passive tempra",
+   "en": "Training passives",
+   "ja": "パッシブ鍛錬"
+  },
+  "+ Terza mossa (nessuna)": {
+   "it": "+ Terza mossa (nessuna)",
+   "en": "+ Third move (none)",
+   "ja": "＋3つ目の技（なし）"
+  },
+  "+ Passive tempra (nessuna)": {
+   "it": "+ Passive tempra (nessuna)",
+   "en": "+ Training passives (none)",
+   "ja": "＋パッシブ鍛錬（なし）"
   }
  }
 }

@@ -166,10 +166,12 @@ t('livello tecnico: valori per livello (Mashiya 420..4200, Kira Lv9 = 63/54, Jig
   assert.strictEqual(E.coachAtLevel(by('tayama'), 1).level, 1);
 });
 t('formula verificata (guida RR_o): Gazelle Lv440 Legendary+ Fire Blizzard ~112.436; boss: catena x1,1 e squadre disgiunte nel club', () => {
+  E.setEquipCap(440);   // la guida RR_o assume equipaggiamento Lv440; oggi il gioco arriva a Lv350
   const eng = new E.Engine(chars.map(c => D.forLevel(raw.find(r => r.id === c.id), 440, 9)), aliases);
   const g = eng.member(chars.find(c => c.id === '2030'), 'FW');
   const d = eng.scoreTeam([g], {}).duel.shooters[0].d;
   assert.ok(Math.abs(d - 112436) < 100, 'duello Gazelle ' + d);
+  E.setEquipCap(350);
   const r = eng.bossBest(chars, { mode: 'attack', element: 'Wind', field: 0 });
   assert.strictEqual(r.order.length, 5);
   assert.ok(r.order.slice(1).some(o => o.chained) || r.total > 0);
@@ -228,3 +230,25 @@ t('livello mosse: forLevel applica power_by_level (Lv1 < Lv10) e il Team Builder
   assert.ok(dl < dh, 'il danno cresce col livello della mossa');
 });
 console.log(n, 'test passati');
+t('boss difesa: Scivolata Micidiale (キラースライド) non viene usata', () => {
+  const eng = new E.Engine(chars, aliases), b = chars.find(c => String(c.id) === '1013');
+  const pool = [b].concat(chars.filter(c => String(c.id) !== '1013' && c.position === 'DF').slice(0, 4));
+  const r = eng.bossScore(pool, { mode: 'defense', element: 'Fire' });
+  r.order.forEach(o => assert.notStrictEqual(o.move, 'キラースライド'));
+  const a = eng.bossScore(pool, { mode: 'attack', element: 'Fire' }); assert.ok(a.total >= 0);
+});
+
+t('passive di tempra: Tenma (MF Vento) con Potenza dribbling+ <Vento> Lv7 = +21, Tecnica+ Lv5 = +200, Tiro+ Lv10 = +250; max 3 slot', () => {
+  const T = require('../js/training.js'); const eng = new E.Engine(chars, aliases); eng.setTraining(T);
+  const m = Object.create(chars.find(c => String(c.id) === '4008')); m.native = 'MF'; m.position = 'MF';
+  const sb = {}, pb = {}; m.training = [{ e: 'dribp_wi', lv: 7 }, { e: 'tech', lv: 5 }, { e: 'kick', lv: 10 }, { e: 'blockp', lv: 3 }];
+  eng.trainingBonus(m, sb, pb);
+  assert.strictEqual(pb['technique|el:Wind'], 21); assert.strictEqual(sb.technique, 200); assert.strictEqual(sb.kick, 250);   // MF: Tecnica+ Lv5 = 200 (MF 50,75,100,150,200); Tiro+ Lv10 = 250; blockp assente? (MF: sì, ma 4° slot ignorato)
+  assert.strictEqual(pb.block, undefined);
+});
+t('equipaggiamento: oltre il limite Lv350 non cresce (stesso valore a Lv351 e Lv352 per statistica base uguale)', () => {
+  const mk = L => { const c = D.forLevel(raw.find(r => String(r.id) === '10003'), L, 5); c.stats_max = Object.assign({}, raw.find(r => String(r.id) === '10003').stats_max); return c; };
+  const a = mk(352), b = mk(351), eng = new E.Engine([a, b], aliases);
+  const da = eng.scoreTeam([eng.member(a, 'FW')], {}).duel.shooters[0].d, db = eng.scoreTeam([eng.member(b, 'FW')], {}).duel.shooters[0].d;
+  assert.strictEqual(da, db);
+});

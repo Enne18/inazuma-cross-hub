@@ -38,14 +38,17 @@
   // Guida RR_o (IE Cross Database, v1.4.0): potenza base = stat x risveglio + equipaggiamento del ruolo NATIVO + bonus.
   // le statistiche del sito sono già a Legendary+ (x2: Gazelle Lv440 Tiro 7230 = 3612 x 2), quindi si scala x AWK[grado]/2
   var AWK = [1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.85, 2];
-  var EQ_CURVE = { FW: [[1, 0], [50, 618], [100, 1924], [200, 8125], [300, 13314], [360, 16883], [400, 19783], [440, 23181]],
-                   MF: [[1, 0], [50, 615], [100, 1899], [200, 8031], [300, 13158], [360, 16686], [400, 19551], [440, 22902]],
-                   DF: [[1, 0], [50, 593], [100, 1851], [200, 7819], [300, 12812], [360, 16246], [400, 19035], [440, 22305]],
-                   GK: [[1, 0], [50, 580], [100, 1805], [200, 7621], [300, 12488], [360, 15835], [400, 18555], [440, 21742]] };
+  // L'equipaggiamento sale a scatti di 5 livelli e ha un limite (oggi Lv350, EQ_CAP): oltre il limite non cresce. Il punto a Lv350 = curva x 0,965, calibrato su 7 schermate del gioco (Lv351-352, senza adesivi).
+  var EQ_CAP = 350;
+  var EQ_CURVE = { FW: [[1, 0], [50, 618], [100, 1924], [200, 8125], [300, 13314], [350, 15718], [360, 16883], [400, 19783], [440, 23181]],
+                   MF: [[1, 0], [50, 615], [100, 1899], [200, 8031], [300, 13158], [350, 15535], [360, 16686], [400, 19551], [440, 22902]],
+                   DF: [[1, 0], [50, 593], [100, 1851], [200, 7819], [300, 12812], [350, 15125], [360, 16246], [400, 19035], [440, 22305]],
+                   GK: [[1, 0], [50, 580], [100, 1805], [200, 7621], [300, 12488], [350, 14742], [360, 15835], [400, 18555], [440, 21742]] };
   var EQ440 = { FW: { kick: 23181, technique: 17031, block: 11143, catch: 5798 }, MF: { kick: 16760, technique: 22902, block: 11143, catch: 5798 },
                 DF: { kick: 6854, technique: 11541, block: 22305, catch: 15552 }, GK: { kick: 11677, technique: 6477, block: 16086, catch: 21742 } };
   var EQ_MAIN = { FW: 'kick', MF: 'technique', DF: 'block', GK: 'catch' };
-  function eqAt(role, stat, L) {
+  function eqAt(role, stat, L, raw) {
+    if (!raw) L = Math.max(5, Math.floor(Math.min(L, EQ_CAP) / 5) * 5);   // l'equipaggiamento sale di 5 in 5 (5, 10, ... 350, 355, ... 440) fino al limite; raw = senza scatti né limite (solo per scalare il rivale di riferimento)
     var pts = EQ_CURVE[role], v = pts[pts.length - 1][1];
     for (var i = 1; i < pts.length; i++) if (L <= pts[i][0]) { var a = pts[i - 1], b = pts[i]; v = a[1] + (b[1] - a[1]) * (L - a[0]) / (b[0] - a[0]); break; }
     return EQ440[role][stat] * v / EQ_CURVE[role][pts.length - 1][1];   // le altre statistiche: stessa curva della principale (stima)
@@ -169,6 +172,17 @@
   var ZMUL = { S: 1.15, A: 1.10, B: 1.05 };
   Engine.prototype.setZones = function (byId, slotMap) { this.zonesById = byId || {}; this.zoneSlots = slotMap || {}; };
   Engine.prototype.setZoneOverride = function (arr) { var m = {}; (arr || []).forEach(function (z, i) { m[i + 1] = z; }); this.zoneOverride = arr ? m : null; };
+  // Passive di tempra (js/training.js): ogni membro può avere c.training = [{e:'kick', lv:5}, ...] (max 3). Bonus statistica (SB) o potenza tecniche (PB).
+  Engine.prototype.setTraining = function (tbl) { this.trainTbl = tbl || null; };
+  Engine.prototype.trainingBonus = function (m, sb, pb) {
+    var T = this.trainTbl, tr = m.training; if (!T || !tr || !tr.length) return;
+    var list = T.pos[m.native || m.position] || [];
+    tr.slice(0, 3).forEach(function (t) {
+      var e = list.filter(function (x) { return x.e === t.e; })[0], d = e && T.effects[t.e]; if (!e || !d) return;
+      var v = e.v[Math.max(1, Math.min(e.v.length, +t.lv || 1)) - 1];
+      if (d.stat) sb[d.stat] = (sb[d.stat] || 0) + v; else if (d.pk) pb[d.pk] = (pb[d.pk] || 0) + v;
+    });
+  };
   Engine.prototype.zoneMult = function (c, coach, slot) {
     var zm = coach ? (this.zoneSlots && this.zoneSlots[coach.id]) : this.zoneOverride, z = zm && zm[slot], list = this.zonesById && this.zonesById[c.id];
     if (!z || !list) return 1;
@@ -330,6 +344,7 @@
       });
     });
     if (coach) this.addCoach(coach, members, out);
+    members.forEach(function (m, i) { self.trainingBonus(m, SB[i], PB[i]); });
     if (opts && opts.noScore) { out.total = 0; return out; }
     if (cfg.model === 'duel') {
       var ZM = members.map(function (m, i) { return self.zoneMult(m, coach, opts && opts.slots ? opts.slots[i] : i + 1); });
@@ -356,7 +371,7 @@
     var self = this, cfg = this.cfg, E = cfg.duelExp, W = cfg.duelWeights;
     var B = {}, k, Lsum = 0;
     members.forEach(function (m) { Lsum += m.level || 440; });
-    var Lm = Lsum / Math.max(1, members.length), lf = (eqAt('FW', 'kick', Lm) + 7200 * (0.1 + 0.9 * Lm / 440)) / (23181 + 7200);
+    var Lm = Lsum / Math.max(1, members.length), lf = (eqAt('FW', 'kick', Lm, true) + 7200 * (0.1 + 0.9 * Lm / 440)) / (23181 + 7200);
     ['shot', 'catch', 'dribble', 'block'].forEach(function (r) {
       var b = cfg.bench[r], m = RM[r] || { stat: 0, power: 0 };
       B[r] = Math.max(1, cfg.bench[r] * lf - (m.stat || 0) * cfg.bench[r] / 30000 - (m.power || 0) * cfg.bench[r] / 330);
@@ -410,6 +425,8 @@
   };
 
   /* ---------- prove boss ---------- */
+  // Tecniche di blocco che NON fermano i tiri (segnalato dall'utente): escluse dalle prove di difesa, dove il boss tira.
+  var NO_SHOT_BLOCK = { 'キラースライド': true };
   var BEATS = { Wind: 'Mountain', Mountain: 'Fire', Fire: 'Forest', Forest: 'Wind' };   // A batte B
   var PERMS5 = (function () { var out = []; (function rec(a, rest) { if (!rest.length) { out.push(a); return; } rest.forEach(function (x, i) { rec(a.concat(x), rest.filter(function (_, j) { return j !== i; })); }); })([], [0, 1, 2, 3, 4]); return out; })();
 
@@ -442,7 +459,7 @@
       order.forEach(function (mi, pos) {
         // prova di difesa: le parate (portieri) valgono solo nell'ultimo posto; gli altri quattro devono usare tecniche di blocco
         var lim = boss.mode === 'defense' && members.length === 5 && pos < 4;
-        var cur = cand[mi].filter(function (mv) { return !lim || mv.cat === 'block'; }).map(function (mv) {
+        var cur = cand[mi].filter(function (mv) { return boss.mode !== 'defense' || !NO_SHOT_BLOCK[mv.name] ? (!lim || mv.cat === 'block') : false; }).map(function (mv) {
           var b = -1, from = -1;
           if (pos === 0) b = mv.v;
           else dp.forEach(function (d, di) { var v = d.sum + (d.mv.el === mv.el ? Math.floor(mv.v * 1.1) : mv.v); if (v > b) { b = v; from = di; } });
@@ -695,5 +712,5 @@
     return out;
   }
 
-  return { Engine: Engine, DEFAULTS: DEFAULTS, coachAtLevel: coachAtLevel, parsePassive: parsePassive, parseTarget: parseTarget };
+  return { Engine: Engine, setEquipCap: function (n) { EQ_CAP = n; }, DEFAULTS: DEFAULTS, coachAtLevel: coachAtLevel, parsePassive: parsePassive, parseTarget: parseTarget };
 });

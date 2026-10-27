@@ -223,7 +223,7 @@
   },
   "キラースライド": {
    "en": "Killer Slide",
-   "it": "Scivolata Assassina"
+   "it": "Scivolata Micidiale"
   },
   "キラーフィールズ": {
    "en": "Killer Fields",
@@ -688,6 +688,122 @@
   "雷門または稲妻KFC": {
    "en": "Raimon or Inazuma KFC",
    "it": "Raimon o Inazuma KFC"
+  },
+  "Técnica 13016": {
+   "it": "Avvitamento esplosivo",
+   "en": "Explosive Screw"
+  },
+  "Técnica 19011": {
+   "it": "Salto temporale",
+   "en": "Time Jump"
+  },
+  "【後半】ＴＰ＋": {
+   "it": "TP+ (secondo tempo)",
+   "en": "TP+ (2nd half)"
+  },
+  "ＴＰ上限＋": {
+   "it": "TP massimo+",
+   "en": "Max TP+"
+  },
+  "キック＋": {
+   "it": "Tiro+",
+   "en": "Kick+"
+  },
+  "テクニック＋": {
+   "it": "Tecnica+",
+   "en": "Technique+"
+  },
+  "ブロック＋": {
+   "it": "Blocco+",
+   "en": "Block+"
+  },
+  "キャッチ＋": {
+   "it": "Parata+",
+   "en": "Catch+"
+  },
+  "スピード＋": {
+   "it": "Velocità+",
+   "en": "Speed+"
+  },
+  "シュートパワー＋": {
+   "it": "Potenza tiro+",
+   "en": "Shoot Power+"
+  },
+  "ドリブルパワー＋": {
+   "it": "Potenza dribbling+",
+   "en": "Dribble Power+"
+  },
+  "ブロックパワー＋": {
+   "it": "Potenza blocco+",
+   "en": "Block Power+"
+  },
+  "キーパーパワー＋": {
+   "it": "Potenza parata+",
+   "en": "Keeper Power+"
+  },
+  "シュートパワー＋〈火〉": {
+   "it": "Potenza tiro+ 〈Fuoco〉",
+   "en": "Shoot Power+ <Fire>"
+  },
+  "ドリブルパワー＋〈火〉": {
+   "it": "Potenza dribbling+ 〈Fuoco〉",
+   "en": "Dribble Power+ <Fire>"
+  },
+  "ブロックパワー＋〈火〉": {
+   "it": "Potenza blocco+ 〈Fuoco〉",
+   "en": "Block Power+ <Fire>"
+  },
+  "キーパーパワー＋〈火〉": {
+   "it": "Potenza parata+ 〈Fuoco〉",
+   "en": "Keeper Power+ <Fire>"
+  },
+  "シュートパワー＋〈山〉": {
+   "it": "Potenza tiro+ 〈Montagna〉",
+   "en": "Shoot Power+ <Mountain>"
+  },
+  "ドリブルパワー＋〈山〉": {
+   "it": "Potenza dribbling+ 〈Montagna〉",
+   "en": "Dribble Power+ <Mountain>"
+  },
+  "ブロックパワー＋〈山〉": {
+   "it": "Potenza blocco+ 〈Montagna〉",
+   "en": "Block Power+ <Mountain>"
+  },
+  "キーパーパワー＋〈山〉": {
+   "it": "Potenza parata+ 〈Montagna〉",
+   "en": "Keeper Power+ <Mountain>"
+  },
+  "シュートパワー＋〈風〉": {
+   "it": "Potenza tiro+ 〈Vento〉",
+   "en": "Shoot Power+ <Wind>"
+  },
+  "ドリブルパワー＋〈風〉": {
+   "it": "Potenza dribbling+ 〈Vento〉",
+   "en": "Dribble Power+ <Wind>"
+  },
+  "ブロックパワー＋〈風〉": {
+   "it": "Potenza blocco+ 〈Vento〉",
+   "en": "Block Power+ <Wind>"
+  },
+  "キーパーパワー＋〈風〉": {
+   "it": "Potenza parata+ 〈Vento〉",
+   "en": "Keeper Power+ <Wind>"
+  },
+  "シュートパワー＋〈林〉": {
+   "it": "Potenza tiro+ 〈Foresta〉",
+   "en": "Shoot Power+ <Forest>"
+  },
+  "ドリブルパワー＋〈林〉": {
+   "it": "Potenza dribbling+ 〈Foresta〉",
+   "en": "Dribble Power+ <Forest>"
+  },
+  "ブロックパワー＋〈林〉": {
+   "it": "Potenza blocco+ 〈Foresta〉",
+   "en": "Block Power+ <Forest>"
+  },
+  "キーパーパワー＋〈林〉": {
+   "it": "Potenza parata+ 〈Foresta〉",
+   "en": "Keeper Power+ <Forest>"
   }
  }
 }

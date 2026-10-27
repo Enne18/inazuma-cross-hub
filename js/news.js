@@ -56,7 +56,7 @@
     if (window.IECI18N) window.IECI18N.apply(root);
   }
   function load() {
-    return fetch('data/changelog.json').then(function (r) { return r.json(); }).then(function (d) { data = d; paintDot(); render(); }).catch(function () {});
+    return fetch('data/changelog.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) { data = d; paintDot(); render(); if (!$('news').hidden) markSeen(); }).catch(function () {});
   }
   document.addEventListener('iec-tab', function (e) { if (e.detail === 'news') { if (!data) load().then(markSeen); else { render(); markSeen(); } } });
   document.addEventListener('iec-lang', function () { if (data) render(); });

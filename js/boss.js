@@ -110,6 +110,7 @@
     setTimeout(function () {
       try {
         var eng = new window.IECEngine.Engine(data.chars, aliases, {}), t0 = Date.now();
+        eng.setTraining(window.IECTraining);
         var boss = { mode: b.mode, element: b.element, field: kind() === 'club' ? blk.field_bonus : 0 };
         var h = el('h3', null, b.name + ' · ' + EL[b.element] + (b.tech ? ' · ' + b.tech : ''));
         h.appendChild(document.createTextNode(kind() === 'daily' ? (b.mode === 'attack' ? ' · prova di attacco (tiri)' : ' · prova di difesa (parate/contrasti)') : ' · tiri contro il boss (campo +' + blk.field_bonus + ' ai tiri in vantaggio)'));

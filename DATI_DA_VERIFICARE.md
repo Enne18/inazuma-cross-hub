@@ -3,8 +3,6 @@
 Cosa non si è potuto ricavare con certezza e cambia i risultati. Una risposta breve o una schermata del gioco basta. (Questo elenco sostituisce quello delle prime versioni: le domande già risolte sono state tolte.)
 
 ## Aperti
-- [ ] **Ray Dark 4-3-3 (F-ゼウス):** mappa slot → zona del campo (l'utente non può ancora usare questo tecnico).
-- [ ] **Passive delle formazioni 5v5 "B":** non note, quindi non calcolate.
 - [ ] **Totale squadra del gioco:** il gioco somma circa +20% quando la formazione si attiva; il motore non lo riproduce. Servono altre squadre con totale e "Abilità complessiva" per giocatore (modello di segnalazione "Squadra dal gioco" su GitHub).
 - [ ] **Zone ideali nelle prove boss:** non è noto se e come contino; oggi nei boss non sono applicate (il Team Builder le usa).
 - [ ] **Adesivi (sticker):** non modellati.
@@ -20,3 +18,19 @@ Cosa non si è potuto ricavare con certezza e cambia i risultati. Una risposta b
 
 ## Confermati dall'utente
 Ruoli liberi in qualsiasi slot; nessuna riserva; nessun tecnico nel 5v5; layout, posizioni e zone di 13 tecnici su 14; formazione attiva solo se tutte le condizioni sono soddisfatte (la passiva sempre attiva del tecnico vale comunque); livello massimo dei personaggi 440; due versioni dello stesso personaggio possono giocare insieme; ogni personaggio ha tag di squadra, di tipo e di serie.
+
+## Nomi delle mosse segnalati dall'utente
+- "Técnica 13016" = Avvitamento esplosivo; "Técnica 19011" = Salto temporale (fonte: utente 25/10). I nomi inglesi ("Explosive Screw", "Time Jump") e giapponesi sono miei/da trovare.
+
+## Tecniche di blocco che non fermano i tiri
+- Segnalato dall'utente: Scivolata Micidiale (キラースライド) è di blocco ma non blocca i tiri → esclusa dalle prove di difesa. Verificare se altre tecniche di blocco/difesa hanno lo stesso limite (elenco in `NO_SHOT_BLOCK`, js/engine.js).
+
+## Passive tempra
+- Valori da iecrossdb.com/entrenamiento (26/10). Non confermato: se la 選手総合能力 le includa e con che peso. Osservazione utente: Tenma (stat identiche) è passato da 46.541 a 48.091 (+1.550) dopo aver impostato Potenza dribbling+〈Vento〉 Lv7, Potenza dribbling+ Lv2, Potenza tiro+ Lv5; lo stato precedente delle passive non è noto.
+- Non verificato se le statistiche Tiro+/Tecnica+/... aumentino le stat mostrate o solo in partita; il sito le somma alle stat.
+
+
+## Chiusi dall'utente (26/10)
+- Ray Dark: nessuna mappa zone, nessuna azione. Formazioni 5v5: nessuna passiva propria (i giocatori mantengono le loro). 選手総合能力: non determinabile, non modellata.
+- Passive di tempra: sono sempre 3 insieme. Equipaggiamento: scatti di 5 livelli, limite 350 oggi.
+- Prima/dopo di Tenma: 46.541 (nessuna passiva) → 48.091 (Potenza dribbling+〈Vento〉 Lv7, Potenza dribbling+ Lv2, Potenza tiro+ Lv5; 110000 monete + 5 oggetti).

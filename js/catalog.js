@@ -2,8 +2,8 @@
    state.base = dati grezzi; state.chars = personaggi al livello massimo (440) nel formato del motore (js/iecdata.js). */
 (function () {
   'use strict';
-  var state = { meta: null, base: [], chars: [], byId: {}, owned: {}, levels: {}, defaultLevel: 440, rar: {}, mv: {}, xm: {}, migration: {} };
-  var KEY = 'iecross.collection.v1', KEY_LV = 'iecross.levels.v1', KEY_DEF = 'iecross.deflevel.v1', KEY_RAR = 'iecross.rarity.v1', KEY_MV = 'iecross.movelv.v1', KEY_XM = 'iecross.extramove.v1';
+  var state = { meta: null, base: [], chars: [], byId: {}, owned: {}, levels: {}, defaultLevel: 440, rar: {}, mv: {}, xm: {}, tr: {}, migration: {} };
+  var KEY = 'iecross.collection.v1', KEY_LV = 'iecross.levels.v1', KEY_DEF = 'iecross.deflevel.v1', KEY_RAR = 'iecross.rarity.v1', KEY_MV = 'iecross.movelv.v1', KEY_XM = 'iecross.extramove.v1', KEY_TR = 'iecross.training.v1';
   var MAXLV = 440;
   function clampLv(v) { v = Math.round(+v); return isFinite(v) ? Math.max(1, Math.min(MAXLV, v)) : MAXLV; }
   function loadLevels() {
@@ -42,8 +42,54 @@
     out.sort(function (a, b) { return ((ORD[a.category] || 0) - (ORD[b.category] || 0)) || a.name_ja.localeCompare(b.name_ja, 'ja'); });
     return (state._pool = out);
   }
+  // passive di tempra (パッシブ鍛錬): state.tr[id] = [{e:'kick', lv:5}, ...] (max 3); definizioni in js/training.js
+  function loadTr() { try { state.tr = JSON.parse(window.localStorage.getItem(KEY_TR) || '{}') || {}; } catch (e) { state.tr = {}; } }
+  function saveTr() { try { window.localStorage.setItem(KEY_TR, JSON.stringify(state.tr)); } catch (e) { /* ignora */ } }
   function extraOf(id) { var n = state.xm[id]; if (!n) return null; return movePool().filter(function (k) { return k.name_ja === n; })[0] || null; }
-  function flv(id, L) { var m = {}; for (var i = 0; i < 4; i++) m[i] = mvOf(id, i); m.x = mvOf(id, 'x'); return window.IECData.forLevel(state.byId[id], L === undefined ? levelOf(id) : L, rarOf(id), m, extraOf(id)); }
+  function flv(id, L) { var m = {}, o; for (var i = 0; i < 4; i++) m[i] = mvOf(id, i); m.x = mvOf(id, 'x'); o = window.IECData.forLevel(state.byId[id], L === undefined ? levelOf(id) : L, rarOf(id), m, extraOf(id)); var t = state.tr[id]; if (t && t.length) o.training = t; return o; }
+
+  // Passive di tempra: sono sempre 3 insieme (se sbloccate non se ne può avere una sola). Scegliendo la prima, le altre due si riempiono e si possono cambiare.
+  // nome giapponese (come nel gioco) + traduzione tra parentesi nella lingua scelta (niente parentesi in giapponese)
+  function trName(id) {
+    var d = window.IECTraining.effects[id], l = window.IECI18N ? window.IECI18N.lang() : 'it';
+    return l === 'ja' ? d.ja : d.ja + ' (' + (l === 'en' ? d.en : d.it) + ')';
+  }
+  function trainingBox(c, root) {
+    var T = window.IECTraining, list = T.pos[c.position] || [], cur = (state.tr[c.id] || []).slice(0, 3), box = el('div', 'hc-train');
+    box.appendChild(el('div', 'hc-train-h', 'Passive tempra'));
+    function commit() {
+      if (!cur[0]) { delete state.tr[c.id]; }
+      else {
+        for (var i = 1; i < 3; i++) if (!cur[i]) {
+          var f = list.filter(function (x) { return !cur.some(function (t) { return t && t.e === x.e; }); })[0];
+          if (f) cur[i] = { e: f.e, lv: 1 };
+        }
+        state.tr[c.id] = cur.filter(Boolean);
+      }
+      saveTr(); document.dispatchEvent(new CustomEvent('iec-collection', { detail: c.id })); replaceWith(root, c.id);
+    }
+    for (var i = 0; i < 3; i++) (function (i) {
+      var row = el('div', 'hc-move tr'), sel = el('select', 'xmsel'); sel.setAttribute('aria-label', 'Passiva tempra'); sel.setAttribute('data-i18n', 'skip'); sel.title = cur[i] && cur[i].e ? trName(cur[i].e) : '';
+      if (i === 0) { var o0 = el('option', null, ({ it: '+ Passive tempra (nessuna)', en: '+ Training passives (none)', ja: '＋パッシブ鍛錬（なし）' })[window.IECI18N ? window.IECI18N.lang() : 'it']); o0.value = ''; sel.appendChild(o0); }
+      list.forEach(function (x) {
+        if (cur.some(function (t, j) { return j !== i && t && t.e === x.e; })) return;
+        var o = el('option', null, trName(x.e)); o.value = x.e; sel.appendChild(o);
+      });
+      if (i > 0 && !cur[0]) sel.disabled = true;
+      sel.value = cur[i] && cur[i].e || ''; row.appendChild(sel);
+      if (cur[i] && cur[i].e) {
+        var ls = el('select', 'mvsel'); ls.setAttribute('aria-label', 'Livello passiva');
+        var e = list.filter(function (x) { return x.e === cur[i].e; })[0], n = e ? e.v.length : 10;
+        for (var q = 1; q <= n; q++) { var oq = el('option', null, 'Lv ' + q + (e ? ' (+' + e.v[q - 1] + ')' : '')); oq.value = String(q); ls.appendChild(oq); }
+        ls.value = String(Math.min(n, cur[i].lv || 1));
+        ls.addEventListener('change', function () { cur[i] = { e: cur[i].e, lv: +ls.value }; commit(); });
+        row.appendChild(ls);
+      }
+      sel.addEventListener('change', function () { if (i === 0 && !sel.value) cur = []; else cur[i] = { e: sel.value, lv: (cur[i] && cur[i].lv) || 1 }; commit(); });
+      box.appendChild(row);
+    })(i);
+    return box;
+  }
 
   function loadOwned() {
     try {
@@ -238,8 +284,10 @@
       });
       mv.appendChild(xr);
     }
-    main.appendChild(mv);
     root.appendChild(main);
+    var below = el('div', 'hc-below'); below.appendChild(mv);
+    if (inCollection && window.IECTraining) below.appendChild(trainingBox(c, root));
+    root.appendChild(below);
     return root;
   }
 
@@ -329,7 +377,7 @@
       b.addEventListener('click', function () { showTab(b.getAttribute('data-tab')); });
     });
     $('c-export').addEventListener('click', function () {
-      var data = { app: 'inazuma-cross-hub', version: 2, exported_on: new Date().toISOString().slice(0, 10), owned: Object.keys(state.owned), levels: state.levels, default_level: state.defaultLevel, rarity: state.rar, move_levels: state.mv };
+      var data = { app: 'inazuma-cross-hub', version: 2, exported_on: new Date().toISOString().slice(0, 10), owned: Object.keys(state.owned), levels: state.levels, default_level: state.defaultLevel, rarity: state.rar, move_levels: state.mv, extra_moves: state.xm, training: state.tr };
       var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
@@ -362,6 +410,7 @@
           ok.forEach(function (id) { if (d && d.rarity && d.rarity[id] !== undefined) state.rar[id] = clampRar(d.rarity[id]); });
           saveRar();
           state.mv = {}; ok.forEach(function (id) { if (d && d.move_levels && d.move_levels[id]) state.mv[id] = d.move_levels[id]; }); saveMv();
+          state.xm = {}; state.tr = {}; ok.forEach(function (id) { if (d && d.extra_moves && d.extra_moves[id]) state.xm[id] = d.extra_moves[id]; if (d && d.training && Array.isArray(d.training[id])) state.tr[id] = d.training[id].slice(0, 3); }); saveXm(); saveTr();
           if (d && d.default_level) state.defaultLevel = clampLv(d.default_level);
           saveLevels(); saveOwned(); updateBadge(); render();
           flash('Importati ' + ok.length + ' personaggi' + (skipped ? ' (' + skipped + ' id sconosciuti ignorati)' : '') + '. La collezione precedente è stata sostituita.');
@@ -427,7 +476,7 @@
     });
     if (moved) saveOwned();
     state.levels = loadLevels();
-    loadRar(); loadMv(); loadXm();
+    loadRar(); loadMv(); loadXm(); loadTr();
     Object.keys(state.owned).forEach(function (id) { if (!state.levels[id]) state.levels[id] = MAXLV; });
     saveLevels();
     updateBadge();

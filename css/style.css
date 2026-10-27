@@ -468,3 +468,34 @@ main.wrap { padding-top: 26px; }
 .bo-move .mv-lv { background: var(--accent); border-color: transparent; color: #fff; }
 .bo-move .mv-x { border-style: dashed; }
 .bo-move .mv-el { background: var(--el); border-color: transparent; color: #fff; }
+
+/* Tappa 34: passive di tempra sulla scheda */
+.hc-train { display: grid; gap: 4px; margin-top: 6px; }
+.hc-train-h { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.hc-move.tr { border-left-style: dashed; background: transparent; border: 1px dashed color-mix(in srgb, var(--el) 40%, var(--line)); border-left-width: 3px; grid-template-columns: minmax(0, 1fr) auto; }
+.hc-move.tr:not(:has(.mvsel)) { grid-template-columns: minmax(0, 1fr); }
+.hc-move.tr .xmsel { min-width: 0; width: 100%; font: inherit; font-size: .8rem; padding: 3px 6px; border: 0; background: transparent; color: var(--muted); border-radius: 6px; text-overflow: ellipsis; }
+.hc-move.tr:has(.mvsel) .xmsel { color: var(--text); font-weight: 600; }
+
+/* Tappa 36: scheda a due livelli — foto + dettagli in alto, mosse e passive di tempra sotto a tutta larghezza */
+.hcard { grid-template-columns: 104px minmax(0, 1fr); grid-template-rows: auto auto; height: auto; min-height: 0; align-content: start; overflow: hidden; }
+.hcard > .hc-img { grid-column: 1; grid-row: 1; min-height: 120px; }
+.hcard > .hc-main { grid-column: 2; grid-row: 1; height: auto; overflow: visible; }
+.hcard > .hc-below { grid-column: 1 / -1; grid-row: 2; display: grid; gap: 8px; padding: 0 12px 12px; min-width: 0; }
+.hcard .hc-below .hc-moves { margin: 0; }
+.hcard .hc-below .hc-move .mname { max-width: none; }
+.hcard .hc-lvl select { width: auto; max-width: 100%; }
+.hc-train .xmsel { text-overflow: ellipsis; }
+.coach-card > .hc-below { display: none; }
+@media (max-width: 640px) { .hcard { grid-template-columns: 84px minmax(0, 1fr); } .hcard > .hc-below { padding: 0 10px 10px; } .hcard .hc-img .avatar.lg { width: 100%; height: 100%; } }
+.hcard .hc-lvl { flex-wrap: wrap; }
+.hcard .hc-lvl label { min-width: 0; }
+.hcard .hc-lvl select { max-width: 100%; }
+.hcard > .hc-below { overflow: hidden; }
+.hc-train, .hc-move.tr { min-width: 0; max-width: 100%; }
+.hc-move.tr:has(.mvsel) { grid-template-columns: minmax(0, 1fr) 8.4em; }
+.hc-move.tr .mvsel { width: 100%; min-width: 0; }
+/* passive di tempra: nome (giapponese + traduzione) a tutta larghezza, livello sotto */
+.hc-move.tr, .hc-move.tr:has(.mvsel) { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; padding: 4px 8px; }
+.hc-move.tr .xmsel { flex: 1 1 100%; width: 100%; font-size: .78rem; }
+.hc-move.tr .mvsel { flex: 0 0 auto; width: auto; margin-left: auto; }

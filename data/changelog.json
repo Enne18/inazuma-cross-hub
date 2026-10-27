@@ -60,6 +60,72 @@
  ],
  "releases": [
   {
+   "version": "1.6",
+   "date": "2026-10-26",
+   "title": {
+    "it": "Schede più comode",
+    "en": "Roomier cards",
+    "ja": "見やすいカード"
+   },
+   "icon": "🃏",
+   "items": [
+    {
+     "icon": "🖼️",
+     "it": "Nuova scheda: foto con livello e grado a fianco, mosse e passive di tempra sotto a tutta larghezza.",
+     "en": "New card: photo with level and grade beside it, moves and training passives below at full width.",
+     "ja": "新しいカード：写真の横にレベルとグレード、その下に技とパッシブ鍛錬を全幅で表示。"
+    },
+    {
+     "icon": "🈶",
+     "it": "Le passive di tempra mostrano il nome giapponese del gioco con la traduzione tra parentesi.",
+     "en": "Training passives show the in-game Japanese name with the translation in brackets.",
+     "ja": "パッシブ鍛錬はゲーム内の日本語名を表示し、括弧内に翻訳を添えています。"
+    },
+    {
+     "icon": "🏠",
+     "it": "Le Novità sono la pagina iniziale.",
+     "en": "What's new is now the home page.",
+     "ja": "「新着情報」がトップページになりました。"
+    },
+    {
+     "icon": "🛡️",
+     "it": "L'equipaggiamento nel calcolo sale di 5 livelli alla volta, fino al limite attuale (Lv350).",
+     "en": "Equipment in the calculation rises 5 levels at a time, up to the current limit (Lv350).",
+     "ja": "計算上の装備レベルは5刻みで、現在の上限（Lv350）まで。"
+    }
+   ]
+  },
+  {
+   "version": "1.5",
+   "date": "2026-10-26",
+   "title": {
+    "it": "Passive tempra",
+    "en": "Training passives",
+    "ja": "パッシブ鍛錬"
+   },
+   "icon": "🏋️",
+   "items": [
+    {
+     "icon": "🧩",
+     "it": "Sulla scheda di ogni personaggio che possiedi puoi scegliere fino a 3 passive di tempra e il loro livello.",
+     "en": "On every owned character's card you can pick up to 3 training passives and their level.",
+     "ja": "所持キャラのカードで、パッシブ鍛錬を最大3つまで選べます。"
+    },
+    {
+     "icon": "⚖️",
+     "it": "Team Builder e boss le contano nel calcolo; entrano anche nel backup e nella sincronizzazione.",
+     "en": "The Team Builder and bosses count them; they are also part of backups and sync.",
+     "ja": "チームビルダーとボス計算に反映。バックアップと同期にも含まれます。"
+    },
+    {
+     "icon": "🎯",
+     "it": "Stime più vicine al gioco: equipaggiamento calibrato su schermate reali a Lv350-352.",
+     "en": "Estimates closer to the game: equipment calibrated on real screenshots at Lv350-352.",
+     "ja": "Lv350〜352の実画面で装備値を補正し、ゲームに近い数値に。"
+    }
+   ]
+  },
+  {
    "version": "1.4",
    "date": "2026-10-25",
    "title": {
