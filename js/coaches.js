@@ -34,7 +34,7 @@
     var l = L();
     if (t.who === 'enemy') return l === 'en' ? 'Opponents' : l === 'ja' ? '相手' : 'Avversari';
     var p = [];
-    if (t.pos) p.push(l === 'en' ? 'recommended ' + pk(ROLE[t.pos]) + ' (natural role)' : l === 'ja' ? '推奨' + pk(ROLE[t.pos]) : pk(ROLE[t.pos]) + ' consigliato (ruolo naturale)');
+    if (t.pos) p.push(l === 'en' ? 'recommended ' + pk(ROLE[t.pos]) + ' (player in that slot)' : l === 'ja' ? '推奨' + pk(ROLE[t.pos]) : pk(ROLE[t.pos]) + ' consigliato (giocatore in quello slot)');
     if (t.element) p.push(l === 'en' ? 'element ' + elIt(t.element) : l === 'ja' ? elIt(t.element) + '属性' : 'di elemento ' + elIt(t.element));
     if (t.tag) p.push((l === 'en' ? 'tag ' : l === 'ja' ? 'タグ ' : 'con tag ') + tg(t.tag));
     if (t.type) p.push((l === 'en' ? 'type ' : l === 'ja' ? 'タイプ ' : 'tipo ') + tg(t.type));

@@ -86,6 +86,12 @@
      "it": "Boss, prova di difesa: le passive «a ogni blocco fallito» (come quella di Silvia) ora contano per intero, perché i compagni non fermano mai il tiro. Il totale si avvicina molto di più al gioco.",
      "en": "Boss defence trial: “on every failed block” passives (like Silvia's) now count in full, since teammates never stop the shot. Totals are much closer to the game.",
      "ja": "ボス守備戦：「ブロック失敗のたび」系パッシブを満額で計算（味方はシュートを止めないため）。ゲーム内の数値に近づきました。"
+    },
+    {
+     "icon": "🎯",
+     "it": "Bonus dei tecnici «posizione consigliata»: ora valgono per i giocatori effettivamente negli slot FW/MF/DF/GK, non per il ruolo scritto sulla scheda.",
+     "en": "Coach “recommended position” bonuses now apply to players actually placed in the FW/MF/DF/GK slots, not to the role printed on their card.",
+     "ja": "監督の「推奨ポジション」ボーナスは、カードの役割ではなく実際に配置されたFW/MF/DF/GKスロットの選手に適用。"
     }
    ]
   },

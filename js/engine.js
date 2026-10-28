@@ -552,7 +552,7 @@
         if (t.who === 'enemy') { affected = []; units = 1; }
         else {
           affected = members.filter(function (m) {
-            if (t.pos && (m.native || m.position) !== t.pos) return false;   // 推奨 = ruolo consigliato del personaggio
+            if (t.pos && m.position !== t.pos) return false;   // 推奨 = giocatore effettivamente nello slot di quel ruolo (confermato dall'utente 28/10)
             if (t.element && m.element !== t.element) return false;
             if (t.tag && !self.hasTag(m, t.tag)) return false;
             if (t.type && m.type_ja !== t.type) return false;
