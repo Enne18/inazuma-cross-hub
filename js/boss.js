@@ -147,6 +147,13 @@
     }).catch(function (e) { $('bo-msg').textContent = 'Impossibile caricare i dati dei boss: ' + e.message; });
   }
   document.addEventListener('iec-ready', init);
-  document.addEventListener('iec-tab', function (e) { if (e.detail === 'boss') init(); });
+  // la collezione (livelli, passive, adesivi...) è cambiata: al ritorno sulla pagina Boss il risultato viene ricalcolato
+  var dirty = false;
+  document.addEventListener('iec-collection', function () { dirty = true; });
+  document.addEventListener('iec-tab', function (e) {
+    if (e.detail !== 'boss') return;
+    init();
+    if (dirty && ready && window.IEC.ownedChars().length >= 5) { dirty = false; run(); }
+  });
   init();
 })();

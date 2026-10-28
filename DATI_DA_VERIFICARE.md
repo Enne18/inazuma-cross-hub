@@ -44,3 +44,6 @@ Ruoli liberi in qualsiasi slot; nessuna riserva; nessun tecnico nel 5v5; layout,
 - Gli adesivi a evento (破竹, 連動, ecc.) usano il fattore condizionale 0.5 (stima). La rarita degli adesivi non e indicata dalla pagina.
 
 - Mosse "Blocca tiro" (28/10): elenco fornito dall utente; mappatura nomi IT->JA fatta da me sui personaggi (Furia Stellare = アステロイドベルト, Gravità Massima = グラビテイション, Muro di Fiamme = バーンアウト, Buco Nero/Tunnel Spaziale = ブラックホール/ワームホール). Le mosse non in elenco sono escluse anche se future: aggiornare SHOT_BLOCK in engine.js con i nuovi personaggi.
+
+## Calibrazione boss difesa Xavier Foster (28/10)
+- Squadra Goldie/Garret/Seymour(Il Muro)/Jack/Silvia: motore 394.605, gioco 448.080 (parziali gioco: 59.479 / 113.483 / 134.816 / 249.425 / 448.080). Passive tempra e adesivi sono inclusi nel calcolo (verificato riproducendo il totale in locale). Scarto per giocatore (gioco/motore): Goldie 0,996, Garret 1,023, Seymour 1,305, Jack 1,07 (catena inclusa), Silvia 1,25. Causa non nota; da chiarire livello reale de Il Muro di Seymour (Lv6 darebbe ~21.200) e potenza mostrata in gioco per Silvia/Jack.

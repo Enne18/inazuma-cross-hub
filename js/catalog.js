@@ -115,7 +115,7 @@
         if (!groups[g]) { groups[g] = el('optgroup'); groups[g].label = ST_TXT.g[g][l]; sel.appendChild(groups[g]); }
         var o = el('option', null, stName(d)); o.value = d.id; groups[g].appendChild(o);
       });
-      var d0 = cur[i] && find(i, cur[i].e); sel.value = d0 ? d0.id : ''; if (d0) sel.title = stName(d0); row.appendChild(sel);
+      var d0 = cur[i] && find(i, cur[i].e); sel.value = d0 ? d0.id : ''; if (d0) { sel.title = stName(d0); row.classList.add('sel'); } row.appendChild(sel);
       if (d0 && d0.v.length > 1) {
         var ls = el('select', 'mvsel'); ls.setAttribute('aria-label', 'Livello adesivo');
         for (var q = 1; q <= d0.v.length; q++) { var oq = el('option', null, 'Lv ' + q + ' (+' + d0.v[q - 1] + ')'); oq.value = String(q); ls.appendChild(oq); }

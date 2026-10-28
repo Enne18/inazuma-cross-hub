@@ -475,7 +475,7 @@ main.wrap { padding-top: 26px; }
 .hc-move.tr { border-left-style: dashed; background: transparent; border: 1px dashed color-mix(in srgb, var(--el) 40%, var(--line)); border-left-width: 3px; grid-template-columns: minmax(0, 1fr) auto; }
 .hc-move.tr:not(:has(.mvsel)) { grid-template-columns: minmax(0, 1fr); }
 .hc-move.tr .xmsel { min-width: 0; width: 100%; font: inherit; font-size: .8rem; padding: 3px 6px; border: 0; background: transparent; color: var(--muted); border-radius: 6px; text-overflow: ellipsis; }
-.hc-move.tr:has(.mvsel) .xmsel { color: var(--text); font-weight: 600; }
+.hc-move.tr:has(.mvsel) .xmsel, .hc-move.tr.sel .xmsel { color: var(--text); font-weight: 600; }
 
 /* Tappa 36: scheda a due livelli — foto + dettagli in alto, mosse e passive di tempra sotto a tutta larghezza */
 .hcard { grid-template-columns: 104px minmax(0, 1fr); grid-template-rows: auto auto; height: auto; min-height: 0; align-content: start; overflow: hidden; }
