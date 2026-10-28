@@ -436,8 +436,13 @@
   };
 
   /* ---------- prove boss ---------- */
-  // Tecniche di blocco che NON fermano i tiri (segnalato dall'utente): escluse dalle prove di difesa, dove il boss tira.
-  var NO_SHOT_BLOCK = { 'キラースライド': true };
+  // Prove di difesa (il boss tira): valgono solo le tecniche col tag "Blocca tiro" (elenco da iecrossdb.com/jugadores, 28/10/2026).
+  // Le altre (Ciclone, Scivolata Micidiale, Terremoto, Tackle Fulmineo, ecc.) NON fermano i tiri e sono escluse.
+  var SHOT_BLOCK = {};
+  ['ゴッドハンド', 'ゴッドハンド2', '爆裂パンチ', '熱血パンチ', 'バーンアウト', '怒りの鉄槌', 'ザ・ウォール', 'ザ・マウンテン', 'スピニングカット', '旋風陣', '真空魔',
+   'パワーシールド', 'フルパワーシールド', 'ムゲン・ザ・ハンド', 'キラーブレード', 'ゆがむ空間', 'シュートポケット', 'ロケットこぶし', 'スーパー四股踏み',
+   'もちもち黄粉餅（花火）', 'つなみウォール', 'ギガントウォール', '裁きの鉄槌', 'ディープミスト', 'ブラックホール', 'ワームホール', 'アステロイドベルト',
+   'グラビテイション', 'ザ・タワー', 'デーモンカット（ハロウィン）'].forEach(function (n) { SHOT_BLOCK[n] = true; });
   var BEATS = { Wind: 'Mountain', Mountain: 'Fire', Fire: 'Forest', Forest: 'Wind' };   // A batte B
   var PERMS5 = (function () { var out = []; (function rec(a, rest) { if (!rest.length) { out.push(a); return; } rest.forEach(function (x, i) { rec(a.concat(x), rest.filter(function (_, j) { return j !== i; })); }); })([], [0, 1, 2, 3, 4]); return out; })();
 
@@ -470,7 +475,7 @@
       order.forEach(function (mi, pos) {
         // prova di difesa: le parate (portieri) valgono solo nell'ultimo posto; gli altri quattro devono usare tecniche di blocco
         var lim = boss.mode === 'defense' && members.length === 5 && pos < 4;
-        var cur = cand[mi].filter(function (mv) { return boss.mode !== 'defense' || !NO_SHOT_BLOCK[mv.name] ? (!lim || mv.cat === 'block') : false; }).map(function (mv) {
+        var cur = cand[mi].filter(function (mv) { return boss.mode !== 'defense' || SHOT_BLOCK[mv.name] ? (!lim || mv.cat === 'block') : false; }).map(function (mv) {
           var b = -1, from = -1;
           if (pos === 0) b = mv.v;
           else dp.forEach(function (d, di) { var v = d.sum + (d.mv.el === mv.el ? Math.floor(mv.v * 1.1) : mv.v); if (v > b) { b = v; from = di; } });

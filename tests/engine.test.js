@@ -230,6 +230,12 @@ t('livello mosse: forLevel applica power_by_level (Lv1 < Lv10) e il Team Builder
   assert.ok(dl < dh, 'il danno cresce col livello della mossa');
 });
 console.log(n, 'test passati');
+t('boss difesa: solo mosse "Blocca tiro" (niente Ciclone, Terremoto, Tackle Fulmineo...)', () => {
+  const eng = new E.Engine(chars, aliases), bad = ['サイクロン', 'ブルーサイクロン', 'アースクェイク', 'クイックドロウ', 'キラースライド', 'コイルターン', '怨霊', 'ブレードアタック', 'ザ・ミスト', 'フォトンフラッシュ', 'パーフェクト・タワー'];
+  const ci = chars.find(c => String(c.id) === '2045');
+  const pool = [ci].concat(chars.filter(c => String(c.id) !== '2045' && c.position === 'DF').slice(0, 4));
+  ['Fire', 'Wind', 'Forest', 'Mountain'].forEach(el => eng.bossScore(pool, { mode: 'defense', element: el }).order.forEach(o => assert.ok(bad.indexOf(o.move) < 0, o.move)));
+});
 t('boss difesa: Scivolata Micidiale (キラースライド) non viene usata', () => {
   const eng = new E.Engine(chars, aliases), b = chars.find(c => String(c.id) === '1013');
   const pool = [b].concat(chars.filter(c => String(c.id) !== '1013' && c.position === 'DF').slice(0, 4));

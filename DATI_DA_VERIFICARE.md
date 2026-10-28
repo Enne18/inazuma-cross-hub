@@ -42,3 +42,5 @@ Ruoli liberi in qualsiasi slot; nessuna riserva; nessun tecnico nel 5v5; layout,
 - Nomi italiani/inglesi degli adesivi sono etichette di servizio (non ufficiali); i nomi giapponesi vengono dalla pagina.
 - Non e modellato l'inventario degli adesivi (ognuno su un solo giocatore): l'utente puo assegnare lo stesso adesivo a piu personaggi.
 - Gli adesivi a evento (破竹, 連動, ecc.) usano il fattore condizionale 0.5 (stima). La rarita degli adesivi non e indicata dalla pagina.
+
+- Mosse "Blocca tiro" (28/10): elenco fornito dall utente; mappatura nomi IT->JA fatta da me sui personaggi (Furia Stellare = アステロイドベルト, Gravità Massima = グラビテイション, Muro di Fiamme = バーンアウト, Buco Nero/Tunnel Spaziale = ブラックホール/ワームホール). Le mosse non in elenco sono escluse anche se future: aggiornare SHOT_BLOCK in engine.js con i nuovi personaggi.
