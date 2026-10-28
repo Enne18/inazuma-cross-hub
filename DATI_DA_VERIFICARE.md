@@ -4,26 +4,20 @@ Cosa non si è potuto ricavare con certezza e cambia i risultati. Una risposta b
 
 ## Aperti
 - [ ] **Totale squadra del gioco:** il gioco somma circa +20% quando la formazione si attiva; il motore non lo riproduce. Servono altre squadre con totale e "Abilità complessiva" per giocatore (modello di segnalazione "Squadra dal gioco" su GitHub).
-- [ ] **Zone ideali nelle prove boss:** non è noto se e come contino; oggi nei boss non sono applicate (il Team Builder le usa).
-- [ ] **Adesivi (sticker):** non modellati.
-- [ ] **Posizione consigliata dei bonus dei tecnici** (推奨FW/DF/MF/GK) e "味方FW" nelle passive: si assume il ruolo nativo del personaggio; da confermare.
-- [ ] **Conteggio "3 o più" con tag:** si assume che includa chi ha la passiva; da confermare.
+- [ ] **Posizione consigliata:** nei bonus dei tecnici (推奨FW/DF/MF/GK) il motore usa il ruolo scritto sulla scheda del personaggio (es. Silvia = GK); nelle passive dei personaggi ("味方FW", "味方DF") usa invece il ruolo dello slot in cui lo metti. Da confermare: se metti un MF in uno slot d'attacco, il bonus tecnico "推奨FW" si applica? E una passiva "味方FW" lo conta come FW?
 - [x] **Tag opzionali** (日本代表2026, 雷門OB, 革命の雷門): confermato dall utente (28/10) che NON contano come イナズマジャパン / 雷門; interruttori rimossi.
-- [ ] **Valori incerti nelle fonti dei tecnici:** Tayama (400 o 40?), Nikaido Striker (89 o 85), Kuon (dribbling MF o DF), Mashiya; Kira, seconda riga di condizioni con ⑥風.
-- [ ] **Statistiche mancanti o stimate** di alcuni personaggi (segnati "Dati parziali/mancanti" nelle card): servono Calcio / Tecnica / Blocco / Presa al livello massimo.
-- [ ] **Valori incerti nelle fonti:** Kidou ★3 (Teikoku), Midorikawa, Kirino ★3 (passiva Lv11), Hiroto (Calcio 7394 o 5670), Ukijima, Kinako/Fei.
+- [ ] **Due valori dei tecnici:** Kuon (= Percival Travis, tecnico Inazuma Japan): il +87 di potenza dribbling del Lv10 va ai MF (usato, fonte Game8) o ai DF (fonte AppMedia)? Mashiya (= Manny Artic, tecnico Otaku): il +4200 ai MF dopo l'intervallo è Tecnica (usato) o Presa (AppMedia)?
 - [ ] **Nomi occidentali dei tecnici** (nel gioco compaiono come Kageyama Reiji, Kudou Michiya…) e di alcuni personaggi con nome inglese non verificato.
 - [ ] **Traduzioni EN/JA** del sito e le etichette delle passive (結束 Coesione/Unity, 破竹 Slancio/Momentum, 阻止 Parata/Stop, 連動 Sinergia/Link, 共鳴 Risonanza…): sono traduzioni libere, da rivedere.
-- [ ] **Roster:** 124 personaggi (ver 1.4, 13/10/2026): controllare se ne mancano di nuovi.
 
 ## Confermati dall'utente
-Ruoli liberi in qualsiasi slot; nessuna riserva; nessun tecnico nel 5v5; layout, posizioni e zone di 13 tecnici su 14; formazione attiva solo se tutte le condizioni sono soddisfatte (la passiva sempre attiva del tecnico vale comunque); livello massimo dei personaggi 440; due versioni dello stesso personaggio possono giocare insieme; ogni personaggio ha tag di squadra, di tipo e di serie.
+Zone ideali nelle prove boss: non contano (28/10). Conteggio "3 o più" con tag: include chi ha la passiva (28/10). Tayama: potenza Vento +40 (non 400); Nikaido: Striker +85 (non 89); Kira: lo slot 6 può essere Foresta o Vento (28/10). Kidou: 3 versioni ★3 e quella Teikoku/Royal Academy ★2, statistiche del sito coincidenti con le tue (28/10). Roster: aggiornato dall'utente quando escono nuovi personaggi. Ruoli liberi in qualsiasi slot; nessuna riserva; nessun tecnico nel 5v5; layout, posizioni e zone di 13 tecnici su 14; formazione attiva solo se tutte le condizioni sono soddisfatte (la passiva sempre attiva del tecnico vale comunque); livello massimo dei personaggi 440; due versioni dello stesso personaggio possono giocare insieme; ogni personaggio ha tag di squadra, di tipo e di serie.
 
 ## Nomi delle mosse segnalati dall'utente
 - "Técnica 13016" = Avvitamento esplosivo; "Técnica 19011" = Salto temporale (fonte: utente 25/10). I nomi inglesi ("Explosive Screw", "Time Jump") e giapponesi sono miei/da trovare.
 
 ## Tecniche di blocco che non fermano i tiri
-- Segnalato dall'utente: Scivolata Micidiale (キラースライド) è di blocco ma non blocca i tiri → esclusa dalle prove di difesa. Verificare se altre tecniche di blocco/difesa hanno lo stesso limite (elenco in `NO_SHOT_BLOCK`, js/engine.js).
+- Segnalato dall'utente: Scivolata Micidiale (キラースライド) è di blocco ma non blocca i tiri → esclusa dalle prove di difesa. Sostituito il 28/10 da un elenco di mosse ammesse (`SHOT_BLOCK`, js/engine.js).
 
 ## Passive tempra
 - Valori da iecrossdb.com/entrenamiento (26/10). Non confermato: se la 選手総合能力 le includa e con che peso. Osservazione utente: Tenma (stat identiche) è passato da 46.541 a 48.091 (+1.550) dopo aver impostato Potenza dribbling+〈Vento〉 Lv7, Potenza dribbling+ Lv2, Potenza tiro+ Lv5; lo stato precedente delle passive non è noto.
@@ -40,7 +34,7 @@ Ruoli liberi in qualsiasi slot; nessuna riserva; nessun tecnico nel 5v5; layout,
 
 ## Adesivi (28/10)
 - Nomi italiani/inglesi degli adesivi sono etichette di servizio (non ufficiali); i nomi giapponesi vengono dalla pagina.
-- Non e modellato l'inventario degli adesivi (ognuno su un solo giocatore): l'utente puo assegnare lo stesso adesivo a piu personaggi.
+- Adesivi: sono modellati (1 principale + 4 secondari per personaggio). Non e modellato l'inventario degli adesivi (ognuno su un solo giocatore): l'utente puo assegnare lo stesso adesivo a piu personaggi.
 - Gli adesivi a evento (破竹, 連動, ecc.) usano il fattore condizionale 0.5 (stima). La rarita degli adesivi non e indicata dalla pagina.
 
 - Mosse "Blocca tiro" (28/10): elenco fornito dall utente; mappatura nomi IT->JA fatta da me sui personaggi (Furia Stellare = アステロイドベルト, Gravità Massima = グラビテイション, Muro di Fiamme = バーンアウト, Buco Nero/Tunnel Spaziale = ブラックホール/ワームホール). Le mosse non in elenco sono escluse anche se future: aggiornare SHOT_BLOCK in engine.js con i nuovi personaggi.

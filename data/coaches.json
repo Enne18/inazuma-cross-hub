@@ -1003,7 +1003,7 @@
    },
    "verified": "parziale",
    "notes": [
-    "Valore potenza coach incoerente tra fonti (400 vs Lv1=4): verificare."
+    "Lv10 = 40 (potenza tecniche di Vento di tutti gli alleati): confermato dall'utente (28/10)."
    ],
    "layout": {
     "FW": 3,
@@ -1550,7 +1550,7 @@
       "kind": "power",
       "skill": "shoot",
       "value": 85,
-      "note": "89 -> 85 (repo iecrosshub sethNichols.js Niv.10 val2=85)",
+      "note": "85 confermato dall'utente (28/10)",
       "ref": "val2",
       "sign": 1
      }
@@ -1600,7 +1600,7 @@
    },
    "verified": "parziale",
    "notes": [
-    "Game8 tabella Lv10: FW 60, Striker 89; AppMedia: 60 e 85 (discordanza): usato Game8."
+    "Lv10: FW consigliati +60, Strikers +85: confermato dall'utente (28/10)."
    ],
    "layout": {
     "FW": 3,
