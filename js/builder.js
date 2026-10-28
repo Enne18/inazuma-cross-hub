@@ -177,8 +177,6 @@
     setTimeout(function () {
       try {
         var cfg = { optionalTeams: {}, lockIds: lock.slice() };
-        if ($('b-rai').checked) cfg.optionalTeams['雷門'] = true;
-        if ($('b-jp').checked) cfg.optionalTeams['イナズマジャパン'] = true;
         var eng = new window.IECEngine.Engine(data.chars, aliases, cfg), res, t0 = Date.now(), m = $('b-mode').value;
         eng.setZones(ZC, ZS); eng.setTraining(window.IECTraining); eng.setStickers(window.IECStickers);
         if (m === '5v5') {

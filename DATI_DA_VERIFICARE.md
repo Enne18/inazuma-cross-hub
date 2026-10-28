@@ -8,7 +8,7 @@ Cosa non si è potuto ricavare con certezza e cambia i risultati. Una risposta b
 - [ ] **Adesivi (sticker):** non modellati.
 - [ ] **Posizione consigliata dei bonus dei tecnici** (推奨FW/DF/MF/GK) e "味方FW" nelle passive: si assume il ruolo nativo del personaggio; da confermare.
 - [ ] **Conteggio "3 o più" con tag:** si assume che includa chi ha la passiva; da confermare.
-- [ ] **Tag opzionali** (日本代表2026 → イナズマジャパン, 雷門OB e 革命の雷門 → 雷門): attivabili nel Team Builder, non confermati.
+- [x] **Tag opzionali** (日本代表2026, 雷門OB, 革命の雷門): confermato dall utente (28/10) che NON contano come イナズマジャパン / 雷門; interruttori rimossi.
 - [ ] **Valori incerti nelle fonti dei tecnici:** Tayama (400 o 40?), Nikaido Striker (89 o 85), Kuon (dribbling MF o DF), Mashiya; Kira, seconda riga di condizioni con ⑥風.
 - [ ] **Statistiche mancanti o stimate** di alcuni personaggi (segnati "Dati parziali/mancanti" nelle card): servono Calcio / Tecnica / Blocco / Presa al livello massimo.
 - [ ] **Valori incerti nelle fonti:** Kidou ★3 (Teikoku), Midorikawa, Kirino ★3 (passiva Lv11), Hiroto (Calcio 7394 o 5670), Ukijima, Kinako/Fei.
@@ -47,3 +47,4 @@ Ruoli liberi in qualsiasi slot; nessuna riserva; nessun tecnico nel 5v5; layout,
 
 ## Calibrazione boss difesa Xavier Foster (28/10)
 - Squadra Goldie/Garret/Seymour(Il Muro)/Jack/Silvia: motore 394.605, gioco 448.080 (parziali gioco: 59.479 / 113.483 / 134.816 / 249.425 / 448.080). Passive tempra e adesivi sono inclusi nel calcolo (verificato riproducendo il totale in locale). Scarto per giocatore (gioco/motore): Goldie 0,996, Garret 1,023, Seymour 1,305, Jack 1,07 (catena inclusa), Silvia 1,25. Causa non nota; da chiarire livello reale de Il Muro di Seymour (Lv6 darebbe ~21.200) e potenza mostrata in gioco per Silvia/Jack.
+- Silvia Woods Lv354 (28/10): stat base gioco catch 20.440 vs motore 20.363 (ok); Mano Divina Lv10 potenza 123 (ok). Il divario nella prova boss sta nei bonus a inizio partita/eventi. Ipotesi: 【救援/累】キーパーパワー＋ (+49 per ogni blocco fallito dei compagni) si accumula; il motore usa un fattore fisso.

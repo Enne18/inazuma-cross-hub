@@ -60,6 +60,30 @@
  ],
  "releases": [
   {
+   "version": "1.9",
+   "date": "2026-10-28",
+   "title": {
+    "it": "Pagina Personaggi più veloce",
+    "en": "Faster Characters page",
+    "ja": "キャラ一覧を高速化"
+   },
+   "icon": "⚡",
+   "items": [
+    {
+     "icon": "⚡",
+     "it": "Pagina Personaggi molto più fluida: i menu di passive, adesivi e terza mossa si riempiono solo quando li apri.",
+     "en": "Characters page much smoother: the passive, sticker and third-move menus now fill in only when opened.",
+     "ja": "キャラ一覧が軽く：パッシブ・シール・3つ目の技のメニューは開いた時だけ読み込み。"
+    },
+    {
+     "icon": "🏷️",
+     "it": "Tolti i due interruttori «non confermato» dei tag: 雷門OB/革命の雷門 e 日本代表2026 non contano come 雷門 / イナズマジャパン.",
+     "en": "Removed the two “unconfirmed” tag switches: the other Raimon and Japan 2026 teams do not count as Raimon / Inazuma Japan.",
+     "ja": "「未確認」のタグ切替を削除：雷門OB等・日本代表2026は雷門／イナズマジャパンとして数えません。"
+    }
+   ]
+  },
+  {
    "version": "1.8",
    "date": "2026-10-28",
    "title": {

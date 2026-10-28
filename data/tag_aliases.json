@@ -5,12 +5,8 @@
    "teams": [
     "雷門中"
    ],
-   "optional_teams": [
-    "雷門OB",
-    "革命の雷門"
-   ],
    "status": "assumed",
-   "note": "Le passive dicono 雷門タグ; la fonte non elenca chi ha il tag. Squadra 雷門中 assunta; 雷門OB e 革命の雷門 incerti (opzionali)."
+   "note": "Confermato dall'utente (28/10/2026): 雷門OB e 革命の雷門 NON contano come tag 雷門 (tag diverso)."
   },
   "帝国": {
    "teams": [
@@ -47,11 +43,8 @@
    "teams": [
     "イナズマジャパン"
    ],
-   "optional_teams": [
-    "日本代表2026"
-   ],
    "status": "exact",
-   "note": "日本代表2026 (2 personaggi) potrebbe condividere il tag: non confermato, opzionale."
+   "note": "Confermato dall'utente (28/10/2026): 日本代表2026 NON conta come tag イナズマジャパン (tag diverso)."
   },
   "木戸川清修": {
    "teams": [

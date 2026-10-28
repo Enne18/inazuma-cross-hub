@@ -57,6 +57,13 @@
     var d = window.IECTraining.effects[id], l = window.IECI18N ? window.IECI18N.lang() : 'it';
     return l === 'ja' ? d.ja : d.ja + ' (' + (l === 'en' ? d.en : d.it) + ')';
   }
+  // Le liste lunghe (passive, adesivi, mosse) si riempiono solo quando si apre il menu: all'inizio contengono solo la voce scelta (la pagina era lenta con migliaia di opzioni).
+  function lazySelect(sel, build) {
+    var full = false;
+    function go() { if (full) return; full = true; build(sel, true); }
+    build(sel, false);
+    ['pointerdown', 'mousedown', 'touchstart', 'focus', 'keydown'].forEach(function (ev) { sel.addEventListener(ev, go, { passive: true }); });
+  }
   function trainingBox(c, root) {
     var T = window.IECTraining, list = T.pos[c.position] || [], cur = (state.tr[c.id] || []).slice(0, 3), box = el('div', 'hc-train');
     box.appendChild(el('div', 'hc-train-h', 'Passive tempra'));
@@ -73,13 +80,18 @@
     }
     for (var i = 0; i < 3; i++) (function (i) {
       var row = el('div', 'hc-move tr'), sel = el('select', 'xmsel'); sel.setAttribute('aria-label', 'Passiva tempra'); sel.setAttribute('data-i18n', 'skip'); sel.title = cur[i] && cur[i].e ? trName(cur[i].e) : '';
-      if (i === 0) { var o0 = el('option', null, ({ it: '+ Passive tempra (nessuna)', en: '+ Training passives (none)', ja: '＋パッシブ鍛錬（なし）' })[window.IECI18N ? window.IECI18N.lang() : 'it']); o0.value = ''; sel.appendChild(o0); }
-      list.forEach(function (x) {
-        if (cur.some(function (t, j) { return j !== i && t && t.e === x.e; })) return;
-        var o = el('option', null, trName(x.e)); o.value = x.e; sel.appendChild(o);
+      lazySelect(sel, function (S, full) {
+        S.textContent = '';
+        if (i === 0) { var o0 = el('option', null, ({ it: '+ Passive tempra (nessuna)', en: '+ Training passives (none)', ja: '＋パッシブ鍛錬（なし）' })[window.IECI18N ? window.IECI18N.lang() : 'it']); o0.value = ''; S.appendChild(o0); }
+        list.forEach(function (x) {
+          if (cur.some(function (t, j) { return j !== i && t && t.e === x.e; })) return;
+          if (!full && !(cur[i] && cur[i].e === x.e)) return;
+          var o = el('option', null, trName(x.e)); o.value = x.e; S.appendChild(o);
+        });
+        S.value = cur[i] && cur[i].e || '';
       });
       if (i > 0 && !cur[0]) sel.disabled = true;
-      sel.value = cur[i] && cur[i].e || ''; row.appendChild(sel);
+      row.appendChild(sel);
       if (cur[i] && cur[i].e) {
         var ls = el('select', 'mvsel'); ls.setAttribute('aria-label', 'Livello passiva');
         var e = list.filter(function (x) { return x.e === cur[i].e; })[0], n = e ? e.v.length : 10;
@@ -106,16 +118,21 @@
     function commit() { var v = cur.slice(); if (v.some(Boolean)) state.st[c.id] = v; else delete state.st[c.id]; saveSt(); document.dispatchEvent(new CustomEvent('iec-collection', { detail: c.id })); replaceWith(root, c.id); }
     for (var i = 0; i < 5; i++) (function (i) {
       var row = el('div', 'hc-move tr st'), sel = el('select', 'xmsel'); sel.setAttribute('aria-label', ST_TXT.head[l]); sel.setAttribute('data-i18n', 'skip');
-      var o0 = el('option', null, i === 0 ? ST_TXT.main[l] : ST_TXT.sub[l]); o0.value = ''; sel.appendChild(o0);
       var used = {}; cur.forEach(function (t, j) { if (t && j !== i) { var d = find(j, t.e); if (d) used[d.ja] = true; } });
-      var groups = { stat: null, pow: null, cond: null };
-      (i === 0 ? T.main : T.sub).forEach(function (d) {
-        if (used[d.ja]) return;
-        var g = d.cond ? 'cond' : d.kind === 'stat' ? 'stat' : 'pow';
-        if (!groups[g]) { groups[g] = el('optgroup'); groups[g].label = ST_TXT.g[g][l]; sel.appendChild(groups[g]); }
-        var o = el('option', null, stName(d)); o.value = d.id; groups[g].appendChild(o);
+      lazySelect(sel, function (S, full) {
+        S.textContent = '';
+        var o0 = el('option', null, i === 0 ? ST_TXT.main[l] : ST_TXT.sub[l]); o0.value = ''; S.appendChild(o0);
+        var groups = { stat: null, pow: null, cond: null };
+        (i === 0 ? T.main : T.sub).forEach(function (d) {
+          if (used[d.ja]) return;
+          if (!full && !(cur[i] && cur[i].e === d.id)) return;
+          var g = d.cond ? 'cond' : d.kind === 'stat' ? 'stat' : 'pow';
+          if (!groups[g]) { groups[g] = el('optgroup'); groups[g].label = ST_TXT.g[g][l]; S.appendChild(groups[g]); }
+          var o = el('option', null, stName(d)); o.value = d.id; groups[g].appendChild(o);
+        });
+        S.value = cur[i] && find(i, cur[i].e) ? cur[i].e : '';
       });
-      var d0 = cur[i] && find(i, cur[i].e); sel.value = d0 ? d0.id : ''; if (d0) { sel.title = stName(d0); row.classList.add('sel'); } row.appendChild(sel);
+      var d0 = cur[i] && find(i, cur[i].e); if (d0) { sel.title = stName(d0); row.classList.add('sel'); } row.appendChild(sel);
       if (d0 && d0.v.length > 1) {
         var ls = el('select', 'mvsel'); ls.setAttribute('aria-label', 'Livello adesivo');
         for (var q = 1; q <= d0.v.length; q++) { var oq = el('option', null, 'Lv ' + q + ' (+' + d0.v[q - 1] + ')'); oq.value = String(q); ls.appendChild(oq); }
@@ -300,14 +317,19 @@
     });
     if (inCollection) {                                   // terza mossa a scelta (di default nessuna)
       var xr = el('div', 'hc-move extra'), xs = el('select', 'xmsel'); xs.setAttribute('aria-label', 'Terza mossa');
-      var o0 = el('option', null, '+ Terza mossa (nessuna)'); o0.value = ''; xs.appendChild(o0);
-      var CATN = { shoot: 'Tiro', dribble: 'Dribbling', block: 'Blocco', catch: 'Parata' }, grp = null, lastCat = null;
-      movePool().forEach(function (k) {
-        if (c.skills.some(function (s) { return !s.extra && s.name_ja === k.name_ja; })) return;
-        if (k.category !== lastCat) { grp = el('optgroup'); grp.label = CATN[k.category] || k.category; xs.appendChild(grp); lastCat = k.category; }
-        var o = el('option', null, k.name_ja); o.value = k.name_ja; grp.appendChild(o);
+      var CATN = { shoot: 'Tiro', dribble: 'Dribbling', block: 'Blocco', catch: 'Parata' };
+      lazySelect(xs, function (S, full) {
+        S.textContent = '';
+        var o0 = el('option', null, '+ Terza mossa (nessuna)'); o0.value = ''; S.appendChild(o0);
+        var grp = null, lastCat = null;
+        movePool().forEach(function (k) {
+          if (c.skills.some(function (s) { return !s.extra && s.name_ja === k.name_ja; })) return;
+          if (!full && state.xm[c.id] !== k.name_ja) return;
+          if (k.category !== lastCat) { grp = el('optgroup'); grp.label = CATN[k.category] || k.category; S.appendChild(grp); lastCat = k.category; }
+          var o = el('option', null, k.name_ja); o.value = k.name_ja; grp.appendChild(o);
+        });
+        S.value = state.xm[c.id] || '';
       });
-      xs.value = state.xm[c.id] || '';
       xr.appendChild(xs);
       if (state.xm[c.id]) {
         var xl = el('select', 'mvsel'); xl.setAttribute('aria-label', 'Livello mossa');
@@ -379,6 +401,8 @@
     $('count').textContent = shown + ' di ' + state.chars.length + ' personaggi · ' + ownedCount() + ' in possesso' +
       (shown === 0 ? ' — nessun risultato, prova ad azzerare i filtri' : '');
   }
+  function debounced(f, ms) { var t = null; return function () { clearTimeout(t); t = setTimeout(f, ms); }; }
+  var pager = { obs: null };
   function render() {
     var q = $('q').value.trim().toLowerCase();
     var e = $('f-element').value, p = $('f-position').value, r = $('f-rarity').value;
@@ -397,7 +421,19 @@
     list = sortList(list, $('f-sort').value);
     var grid = $('grid');
     grid.textContent = '';
-    list.forEach(function (c) { grid.appendChild(cardFor(c.id)); });
+    // le schede si caricano a blocchi (la pagina ha centinaia di menu): le prime subito, le altre quando si scorre
+    if (pager.obs) pager.obs.disconnect();
+    var pos = 0, CH = 18, sent = el('div', 'grid-end'); sent.setAttribute('aria-hidden', 'true'); sent.style.cssText = 'height:1px;grid-column:1/-1';
+    function more() {
+      var end = Math.min(list.length, pos + CH);
+      for (; pos < end; pos++) grid.insertBefore(cardFor(list[pos].id), sent);
+      if (pos >= list.length) { if (pager.obs) pager.obs.disconnect(); if (sent.parentNode) grid.removeChild(sent); }
+    }
+    grid.appendChild(sent); more();
+    if (pos < list.length) {
+      if ('IntersectionObserver' in window) { pager.obs = new IntersectionObserver(function (en) { if (en[0].isIntersecting) more(); }, { rootMargin: '900px 0px' }); pager.obs.observe(sent); }
+      else while (pos < list.length) more();
+    }
     shown = list.length; paintCount();
   }
 
@@ -525,7 +561,7 @@
     fillSelect($('f-sort'), SORTS);
     var ids = ['q', 'f-own', 'f-element', 'f-position', 'f-rarity', 'f-team', 'f-series', 'f-sort'];
     ids.forEach(function (id) {
-      $(id).addEventListener(id === 'q' ? 'input' : 'change', render);
+      $(id).addEventListener(id === 'q' ? 'input' : 'change', id === 'q' ? debounced(render, 160) : render);
     });
     $('f-reset').addEventListener('click', function () {
       ids.forEach(function (id) {
