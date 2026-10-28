@@ -236,6 +236,15 @@ t('boss difesa: solo mosse "Blocca tiro" (niente Ciclone, Terremoto, Tackle Fulm
   const pool = [ci].concat(chars.filter(c => String(c.id) !== '2045' && c.position === 'DF').slice(0, 4));
   ['Fire', 'Wind', 'Forest', 'Mountain'].forEach(el => eng.bossScore(pool, { mode: 'defense', element: el }).order.forEach(o => assert.ok(bad.indexOf(o.move) < 0, o.move)));
 });
+t('boss difesa: le passive "a ogni blocco fallito" contano per intero (Silvia: potenza piu alta che con peso 0,5)', () => {
+  const eng = new E.Engine(chars, aliases);
+  const g = id => chars.find(c => String(c.id) === String(id));
+  const pool = [g('10002'), g('2046'), g('2044'), g('3003'), g('1166')];
+  const full = eng.scoreTeam(pool.map((c, i) => eng.member(c, ['DF', 'DF', 'GK', 'DF', 'GK'][i])), { allSat: true, cf: 1, noScore: true, failFull: true })._pb[4];
+  const half = eng.scoreTeam(pool.map((c, i) => eng.member(c, ['DF', 'DF', 'GK', 'DF', 'GK'][i])), { allSat: true, cf: 1, noScore: true })._pb[4];
+  assert.ok((full['mv:ゴッドハンド'] || 0) >= (half['mv:ゴッドハンド'] || 0));
+  assert.ok(eng.bossScore(pool, { mode: 'defense', element: 'Fire' }).total > 0);
+});
 t('boss difesa: Scivolata Micidiale (キラースライド) non viene usata', () => {
   const eng = new E.Engine(chars, aliases), b = chars.find(c => String(c.id) === '1013');
   const pool = [b].concat(chars.filter(c => String(c.id) !== '1013' && c.position === 'DF').slice(0, 4));

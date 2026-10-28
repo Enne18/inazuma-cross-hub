@@ -80,6 +80,12 @@
      "it": "Tolti i due interruttori «non confermato» dei tag: 雷門OB/革命の雷門 e 日本代表2026 non contano come 雷門 / イナズマジャパン.",
      "en": "Removed the two “unconfirmed” tag switches: the other Raimon and Japan 2026 teams do not count as Raimon / Inazuma Japan.",
      "ja": "「未確認」のタグ切替を削除：雷門OB等・日本代表2026は雷門／イナズマジャパンとして数えません。"
+    },
+    {
+     "icon": "🛡️",
+     "it": "Boss, prova di difesa: le passive «a ogni blocco fallito» (come quella di Silvia) ora contano per intero, perché i compagni non fermano mai il tiro. Il totale si avvicina molto di più al gioco.",
+     "en": "Boss defence trial: “on every failed block” passives (like Silvia's) now count in full, since teammates never stop the shot. Totals are much closer to the game.",
+     "ja": "ボス守備戦：「ブロック失敗のたび」系パッシブを満額で計算（味方はシュートを止めないため）。ゲーム内の数値に近づきました。"
     }
    ]
   },
