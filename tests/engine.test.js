@@ -246,6 +246,15 @@ t('passive di tempra: Tenma (MF Vento) con Potenza dribbling+ <Vento> Lv7 = +21,
   assert.strictEqual(pb['technique|el:Wind'], 21); assert.strictEqual(sb.technique, 200); assert.strictEqual(sb.kick, 250);   // MF: Tecnica+ Lv5 = 200 (MF 50,75,100,150,200); Tiro+ Lv10 = 250; blockp assente? (MF: sì, ma 4° slot ignorato)
   assert.strictEqual(pb.block, undefined);
 });
+t('adesivi: [MF] Calcio+ Lv3 = +3600 solo se il ruolo e MF; a evento x0.5; max 5', () => {
+  const S = require('../js/stickers.js'); const eng = new E.Engine(chars, aliases); eng.setStickers(S);
+  const m = Object.create(chars.find(c => String(c.id) === '4008')); m.native = 'MF'; m.position = 'MF';
+  m.stickers = [{ e: 'm3', lv: 3 }, { e: 'm38', lv: 2 }];
+  let sb = {}, pb = {}; eng.stickerBonus(m, sb, pb);
+  assert.strictEqual(sb.kick, 3600); assert.strictEqual(sb.block, 1000);
+  m.position = 'FW'; sb = {}; pb = {}; eng.stickerBonus(m, sb, pb);
+  assert.strictEqual(sb.kick, undefined); assert.strictEqual(sb.block, 1000);
+});
 t('equipaggiamento: oltre il limite Lv350 non cresce (stesso valore a Lv351 e Lv352 per statistica base uguale)', () => {
   const mk = L => { const c = D.forLevel(raw.find(r => String(r.id) === '10003'), L, 5); c.stats_max = Object.assign({}, raw.find(r => String(r.id) === '10003').stats_max); return c; };
   const a = mk(352), b = mk(351), eng = new E.Engine([a, b], aliases);

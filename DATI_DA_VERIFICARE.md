@@ -37,3 +37,8 @@ Ruoli liberi in qualsiasi slot; nessuna riserva; nessun tecnico nel 5v5; layout,
 ## Wandaba e Halloween (27/10)
 - Wandaba: nome giapponese della passiva del tecnico e metodo di sblocco non noti; valori ai livelli 2-9 ipotizzati lineari (Lv1 = 6, Lv10 = 60 confermati); tag イナイレクロス assunto uguale agli altri personaggi.
 - Nathan Swift / David Samford (Halloween): valori delle passive ai livelli intermedi riscalati da passive simili (stimati); passive ADVANCED+ stimate ai gradi Advanced+/Top+ (solo il valore a Legendary+ è dato dal sito); nomi inglesi delle mosse non noti (mostrato l'originale); immagini dal sito dei dati (potrebbero non esserci ancora).
+
+## Adesivi (28/10)
+- Nomi italiani/inglesi degli adesivi sono etichette di servizio (non ufficiali); i nomi giapponesi vengono dalla pagina.
+- Non e modellato l'inventario degli adesivi (ognuno su un solo giocatore): l'utente puo assegnare lo stesso adesivo a piu personaggi.
+- Gli adesivi a evento (破竹, 連動, ecc.) usano il fattore condizionale 0.5 (stima). La rarita degli adesivi non e indicata dalla pagina.

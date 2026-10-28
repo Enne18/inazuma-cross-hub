@@ -2,8 +2,8 @@
    state.base = dati grezzi; state.chars = personaggi al livello massimo (440) nel formato del motore (js/iecdata.js). */
 (function () {
   'use strict';
-  var state = { meta: null, base: [], chars: [], byId: {}, owned: {}, levels: {}, defaultLevel: 440, rar: {}, mv: {}, xm: {}, tr: {}, migration: {} };
-  var KEY = 'iecross.collection.v1', KEY_LV = 'iecross.levels.v1', KEY_DEF = 'iecross.deflevel.v1', KEY_RAR = 'iecross.rarity.v1', KEY_MV = 'iecross.movelv.v1', KEY_XM = 'iecross.extramove.v1', KEY_TR = 'iecross.training.v1';
+  var state = { meta: null, base: [], chars: [], byId: {}, owned: {}, levels: {}, defaultLevel: 440, rar: {}, mv: {}, xm: {}, tr: {}, st: {}, migration: {} };
+  var KEY = 'iecross.collection.v1', KEY_LV = 'iecross.levels.v1', KEY_DEF = 'iecross.deflevel.v1', KEY_RAR = 'iecross.rarity.v1', KEY_MV = 'iecross.movelv.v1', KEY_XM = 'iecross.extramove.v1', KEY_TR = 'iecross.training.v1', KEY_ST = 'iecross.stickers.v1';
   var MAXLV = 440;
   function clampLv(v) { v = Math.round(+v); return isFinite(v) ? Math.max(1, Math.min(MAXLV, v)) : MAXLV; }
   function loadLevels() {
@@ -45,8 +45,11 @@
   // passive di tempra (パッシブ鍛錬): state.tr[id] = [{e:'kick', lv:5}, ...] (max 3); definizioni in js/training.js
   function loadTr() { try { state.tr = JSON.parse(window.localStorage.getItem(KEY_TR) || '{}') || {}; } catch (e) { state.tr = {}; } }
   function saveTr() { try { window.localStorage.setItem(KEY_TR, JSON.stringify(state.tr)); } catch (e) { /* ignora */ } }
+  // adesivi (シール): state.st[id] = array di 5 posti (0 = principale, 1-4 = secondari) con {e, lv} oppure null; definizioni in js/stickers.js
+  function loadSt() { try { state.st = JSON.parse(window.localStorage.getItem(KEY_ST) || '{}') || {}; } catch (e) { state.st = {}; } }
+  function saveSt() { try { window.localStorage.setItem(KEY_ST, JSON.stringify(state.st)); } catch (e) { /* ignora */ } }
   function extraOf(id) { var n = state.xm[id]; if (!n) return null; return movePool().filter(function (k) { return k.name_ja === n; })[0] || null; }
-  function flv(id, L) { var m = {}, o; for (var i = 0; i < 4; i++) m[i] = mvOf(id, i); m.x = mvOf(id, 'x'); o = window.IECData.forLevel(state.byId[id], L === undefined ? levelOf(id) : L, rarOf(id), m, extraOf(id)); var t = state.tr[id]; if (t && t.length) o.training = t; return o; }
+  function flv(id, L) { var m = {}, o; for (var i = 0; i < 4; i++) m[i] = mvOf(id, i); m.x = mvOf(id, 'x'); o = window.IECData.forLevel(state.byId[id], L === undefined ? levelOf(id) : L, rarOf(id), m, extraOf(id)); var t = state.tr[id]; if (t && t.length) o.training = t; var sk = state.st[id]; if (sk && sk.some(Boolean)) o.stickers = sk.filter(Boolean); return o; }
 
   // Passive di tempra: sono sempre 3 insieme (se sbloccate non se ne può avere una sola). Scegliendo la prima, le altre due si riempiono e si possono cambiare.
   // nome giapponese (come nel gioco) + traduzione tra parentesi nella lingua scelta (niente parentesi in giapponese)
@@ -86,6 +89,41 @@
         row.appendChild(ls);
       }
       sel.addEventListener('change', function () { if (i === 0 && !sel.value) cur = []; else cur[i] = { e: sel.value, lv: (cur[i] && cur[i].lv) || 1 }; commit(); });
+      box.appendChild(row);
+    })(i);
+    return box;
+  }
+
+  function lang3() { return window.IECI18N ? window.IECI18N.lang() : 'it'; }
+  function stName(d) { var l = lang3(); return l === 'ja' ? d.ja : d.ja + ' (' + (l === 'en' ? d.en : d.it) + ')'; }
+  var ST_TXT = { head: { it: 'Adesivi', en: 'Stickers', ja: 'シール' }, main: { it: '+ Adesivo principale (nessuno)', en: '+ Main sticker (none)', ja: '＋メインシール（なし）' }, sub: { it: '+ Adesivo secondario (nessuno)', en: '+ Secondary sticker (none)', ja: '＋サブシール（なし）' },
+    g: { stat: { it: 'Statistiche', en: 'Stats', ja: 'ステータス' }, pow: { it: 'Potenza tecniche', en: 'Move power', ja: '技威力' }, cond: { it: 'A evento', en: 'Triggered', ja: '発動条件あり' } } };
+  function stickerBox(c, root) {
+    var T = window.IECStickers, l = lang3(), cur = (state.st[c.id] || []).slice(0, 5), box = el('div', 'hc-train hc-stick');
+    while (cur.length < 5) cur.push(null);
+    box.appendChild(el('div', 'hc-train-h', ST_TXT.head[l]));
+    function find(i, e) { return (i === 0 ? T.main : T.sub).filter(function (d) { return d.id === e; })[0]; }
+    function commit() { var v = cur.slice(); if (v.some(Boolean)) state.st[c.id] = v; else delete state.st[c.id]; saveSt(); document.dispatchEvent(new CustomEvent('iec-collection', { detail: c.id })); replaceWith(root, c.id); }
+    for (var i = 0; i < 5; i++) (function (i) {
+      var row = el('div', 'hc-move tr st'), sel = el('select', 'xmsel'); sel.setAttribute('aria-label', ST_TXT.head[l]); sel.setAttribute('data-i18n', 'skip');
+      var o0 = el('option', null, i === 0 ? ST_TXT.main[l] : ST_TXT.sub[l]); o0.value = ''; sel.appendChild(o0);
+      var used = {}; cur.forEach(function (t, j) { if (t && j !== i) { var d = find(j, t.e); if (d) used[d.ja] = true; } });
+      var groups = { stat: null, pow: null, cond: null };
+      (i === 0 ? T.main : T.sub).forEach(function (d) {
+        if (used[d.ja]) return;
+        var g = d.cond ? 'cond' : d.kind === 'stat' ? 'stat' : 'pow';
+        if (!groups[g]) { groups[g] = el('optgroup'); groups[g].label = ST_TXT.g[g][l]; sel.appendChild(groups[g]); }
+        var o = el('option', null, stName(d)); o.value = d.id; groups[g].appendChild(o);
+      });
+      var d0 = cur[i] && find(i, cur[i].e); sel.value = d0 ? d0.id : ''; if (d0) sel.title = stName(d0); row.appendChild(sel);
+      if (d0 && d0.v.length > 1) {
+        var ls = el('select', 'mvsel'); ls.setAttribute('aria-label', 'Livello adesivo');
+        for (var q = 1; q <= d0.v.length; q++) { var oq = el('option', null, 'Lv ' + q + ' (+' + d0.v[q - 1] + ')'); oq.value = String(q); ls.appendChild(oq); }
+        ls.value = String(Math.min(d0.v.length, cur[i].lv || 1));
+        ls.addEventListener('change', function () { cur[i] = { e: cur[i].e, lv: +ls.value }; commit(); });
+        row.appendChild(ls);
+      }
+      sel.addEventListener('change', function () { cur[i] = sel.value ? { e: sel.value, lv: 1 } : null; commit(); });
       box.appendChild(row);
     })(i);
     return box;
@@ -287,6 +325,7 @@
     root.appendChild(main);
     var below = el('div', 'hc-below'); below.appendChild(mv);
     if (inCollection && window.IECTraining) below.appendChild(trainingBox(c, root));
+    if (inCollection && window.IECStickers) below.appendChild(stickerBox(c, root));
     root.appendChild(below);
     return root;
   }
@@ -377,7 +416,7 @@
       b.addEventListener('click', function () { showTab(b.getAttribute('data-tab')); });
     });
     $('c-export').addEventListener('click', function () {
-      var data = { app: 'inazuma-cross-hub', version: 2, exported_on: new Date().toISOString().slice(0, 10), owned: Object.keys(state.owned), levels: state.levels, default_level: state.defaultLevel, rarity: state.rar, move_levels: state.mv, extra_moves: state.xm, training: state.tr };
+      var data = { app: 'inazuma-cross-hub', version: 2, exported_on: new Date().toISOString().slice(0, 10), owned: Object.keys(state.owned), levels: state.levels, default_level: state.defaultLevel, rarity: state.rar, move_levels: state.mv, extra_moves: state.xm, training: state.tr, stickers: state.st };
       var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
@@ -410,7 +449,7 @@
           ok.forEach(function (id) { if (d && d.rarity && d.rarity[id] !== undefined) state.rar[id] = clampRar(d.rarity[id]); });
           saveRar();
           state.mv = {}; ok.forEach(function (id) { if (d && d.move_levels && d.move_levels[id]) state.mv[id] = d.move_levels[id]; }); saveMv();
-          state.xm = {}; state.tr = {}; ok.forEach(function (id) { if (d && d.extra_moves && d.extra_moves[id]) state.xm[id] = d.extra_moves[id]; if (d && d.training && Array.isArray(d.training[id])) state.tr[id] = d.training[id].slice(0, 3); }); saveXm(); saveTr();
+          state.xm = {}; state.tr = {}; ok.forEach(function (id) { if (d && d.extra_moves && d.extra_moves[id]) state.xm[id] = d.extra_moves[id]; if (d && d.training && Array.isArray(d.training[id])) state.tr[id] = d.training[id].slice(0, 3); }); state.st = {}; ok.forEach(function (id) { if (d && d.stickers && Array.isArray(d.stickers[id])) state.st[id] = d.stickers[id].slice(0, 5); }); saveXm(); saveTr(); saveSt();
           if (d && d.default_level) state.defaultLevel = clampLv(d.default_level);
           saveLevels(); saveOwned(); updateBadge(); render();
           flash('Importati ' + ok.length + ' personaggi' + (skipped ? ' (' + skipped + ' id sconosciuti ignorati)' : '') + '. La collezione precedente è stata sostituita.');
@@ -476,7 +515,7 @@
     });
     if (moved) saveOwned();
     state.levels = loadLevels();
-    loadRar(); loadMv(); loadXm(); loadTr();
+    loadRar(); loadMv(); loadXm(); loadTr(); loadSt();
     Object.keys(state.owned).forEach(function (id) { if (!state.levels[id]) state.levels[id] = MAXLV; });
     saveLevels();
     updateBadge();

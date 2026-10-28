@@ -352,3 +352,4 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Tappa 37: numero di versione file ?v=36 (la cache del browser serviva i vecchi js/css con ?v=30).
 - 27/10: dati Wandaba (solo zone) e due Halloween (10073, 10074) raccolti in data/staging/nuovi_2026-10-27.md; non inseriti: mancano nomi giapponesi, stelle, stat Lv1, valori Wandaba.
 - Tappa 38: aggiunti Wandaba (15° tecnico: dati, zone, layout, immagine) e i due Halloween 10073/10074 (126 personaggi); ritratto di Kira aggiornato; changelog 1.7.
+- Tappa 39: adesivi (シール) da iecrossdb.com/sellos: 58 principali + 84 secondari (js/stickers.js), 5 posti per personaggio (1+4) con livello, effetto per ruolo [FW/MF/DF/GK] e per elemento, effetti a evento con fattore condizionale 0.5; engine `setStickers/stickerBonus`; UI nella scheda collezione; export/import `stickers`; changelog 1.8.

@@ -58,7 +58,7 @@ Every character has three ideal zones (numbered 1–11 on the pitch) rated **S (
 - **Boss of the day banner:** shows today's boss, the time left before the change (the game day rolls over at **22:00 Rome time**) and tomorrow's boss, with a button for the best team. If you own at least five characters, the best team for today is calculated as soon as you open the page.
 - **Daily trials** (five players in a row): the best five players and their order. Moves of the same element in a row chain for ×1.1, and element advantage adds +0.1. In **defence trials** (the boss attacks) the first four positions must use **block** moves, and **goalkeepers (catch moves) can only take the last position**. Compare the result against the boss power (editable).
 - **Club boss:** three disjoint teams of five for the three attempts, with the estimated total.
-- Boss calculations assume move levels at maximum and exclude ideal zones and stickers.
+- Boss calculations assume move levels at maximum and exclude ideal zones.
 
 ### Languages
 Interface, character names, teams, tags, passives, coach conditions and boss texts are available in **Italian, English and Japanese**. Translations were produced by the maintainer and may be imperfect; where the game text is Japanese-only, the original is shown.
@@ -84,7 +84,7 @@ Without sync you can still use **Export / Import** (JSON file) to back up or mov
 
 - Character data (stats, moves, passives) comes from fan sites; a few characters have partial or estimated data and are marked on their card ("Partial data / Missing data").
 - Formation slot positions, ideal zones, 5v5 formations and coach formation requirements were read from in-game screenshots and tables provided by players.
-- **Not modelled:** stickers, the in-game "total player power" number (选手総合能力), and the exact match simulation. Equipment is estimated from in-game screenshots, rises in steps of 5 levels and is capped at Lv350, the current in-game limit. Ray Dark has no zone map, so no zone bonus is applied with that coach. 5v5 formations have no passives of their own: players keep theirs.
+- **Stickers** (1 main + 4 secondary per character, from iecrossdb.com/sellos) are modelled; triggered ones use the conditional factor. **Not modelled:** the in-game "total player power" number (选手総合能力), and the exact match simulation. Equipment is estimated from in-game screenshots, rises in steps of 5 levels and is capped at Lv350, the current in-game limit. Ray Dark has no zone map, so no zone bonus is applied with that coach. 5v5 formations have no passives of their own: players keep theirs.
 - Rule of the project: **no invented data**. Unknown values stay empty, and open questions are listed in `DATI_DA_VERIFICARE.md`.
 
 If you spot a mistake, use the link on the **What's new** page (or open an issue on GitHub) and choose a template: *wrong or missing data*, *idea or request*, or *team from the game* (to help calibrate the scores with the total power shown in-game). A screenshot from the game is the best proof.

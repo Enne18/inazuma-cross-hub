@@ -183,6 +183,17 @@
       if (d.stat) sb[d.stat] = (sb[d.stat] || 0) + v; else if (d.pk) pb[d.pk] = (pb[d.pk] || 0) + v;
     });
   };
+  // Adesivi (js/stickers.js): c.stickers = [{e:'m18', lv:3}, ...] (id dell'adesivo, livello 1-5; max 1 principale + 4 secondari). Gli effetti con 'pos' valgono solo
+  // se il giocatore occupa quel ruolo; quelli 'cond' (a evento) contano col fattore delle condizionali.
+  Engine.prototype.setStickers = function (tbl) { this.stickerTbl = tbl || null; this.stickerIdx = null; if (tbl) { var ix = {}; tbl.main.concat(tbl.sub).forEach(function (d) { ix[d.id] = d; }); this.stickerIdx = ix; } };
+  Engine.prototype.stickerBonus = function (m, sb, pb) {
+    var ix = this.stickerIdx, st = m.stickers, f = this.cfg.conditionalFactor; if (!ix || !st || !st.length) return;
+    st.slice(0, 5).forEach(function (t) {
+      var d = t && ix[t.e]; if (!d || (d.pos && d.pos !== m.position)) return;
+      var v = d.v[Math.max(1, Math.min(d.v.length, +t.lv || 1)) - 1] * (d.cond ? f : 1);
+      if (d.stat) sb[d.stat] = (sb[d.stat] || 0) + v; else if (d.pk) pb[d.pk] = (pb[d.pk] || 0) + v;
+    });
+  };
   Engine.prototype.zoneMult = function (c, coach, slot) {
     var zm = coach ? (this.zoneSlots && this.zoneSlots[coach.id]) : this.zoneOverride, z = zm && zm[slot], list = this.zonesById && this.zonesById[c.id];
     if (!z || !list) return 1;
@@ -344,7 +355,7 @@
       });
     });
     if (coach) this.addCoach(coach, members, out);
-    members.forEach(function (m, i) { self.trainingBonus(m, SB[i], PB[i]); });
+    members.forEach(function (m, i) { self.trainingBonus(m, SB[i], PB[i]); self.stickerBonus(m, SB[i], PB[i]); });
     if (opts && opts.noScore) { out.total = 0; return out; }
     if (cfg.model === 'duel') {
       var ZM = members.map(function (m, i) { return self.zoneMult(m, coach, opts && opts.slots ? opts.slots[i] : i + 1); });

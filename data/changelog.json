@@ -60,6 +60,24 @@
  ],
  "releases": [
   {
+   "version": "1.8",
+   "date": "2026-10-28",
+   "title": {
+    "it": "Adesivi",
+    "en": "Stickers",
+    "ja": "シール"
+   },
+   "icon": "🏷️",
+   "items": [
+    {
+     "icon": "🏷️",
+     "it": "Adesivi per ogni personaggio in collezione: 1 principale + 4 secondari, con livello, inclusi nei calcoli di Squadra e Boss.",
+     "en": "Stickers for each collected character: 1 main + 4 secondary, with level, included in Team Builder and Boss calculations.",
+     "ja": "所持キャラごとにシール（メイン1＋サブ4）を設定でき、チーム・ボス計算に反映。"
+    }
+   ]
+  },
+  {
    "version": "1.7",
    "date": "2026-10-27",
    "title": {
