@@ -270,6 +270,13 @@ t('adesivi: [MF] Calcio+ Lv3 = +3600 solo se il ruolo e MF; a evento x0.5; max 5
   m.position = 'FW'; sb = {}; pb = {}; eng.stickerBonus(m, sb, pb);
   assert.strictEqual(sb.kick, undefined); assert.strictEqual(sb.block, 1000);
 });
+t('tecnici: bonus 推奨FW solo a un FW in slot FW (non a un MF in slot FW, non a un FW in slot MF)', () => {
+  const cs = J('data/coaches.json').coaches, nik = cs.find(c => c.id === 'nikaido'), eng = new E.Engine(chars, aliases);
+  const fw = chars.find(c => c.position === 'FW'), mf = chars.find(c => c.position === 'MF');
+  const pw = (c, role) => { const r = eng.scoreTeam([eng.member(c, role)], { coach: nik, coachLevel: 10, allSat: true, cf: 1, noScore: true }); return (r._pb[0]['shoot'] || r._pb[0]['kick'] || 0); };
+  const a = pw(fw, 'FW'), b = pw(mf, 'FW'), c2 = pw(fw, 'MF');
+  assert.ok(a > b, 'FW in slot FW > MF in slot FW'); assert.ok(a > c2, 'FW in slot FW > FW in slot MF');
+});
 t('equipaggiamento: oltre il limite Lv350 non cresce (stesso valore a Lv351 e Lv352 per statistica base uguale)', () => {
   const mk = L => { const c = D.forLevel(raw.find(r => String(r.id) === '10003'), L, 5); c.stats_max = Object.assign({}, raw.find(r => String(r.id) === '10003').stats_max); return c; };
   const a = mk(352), b = mk(351), eng = new E.Engine([a, b], aliases);

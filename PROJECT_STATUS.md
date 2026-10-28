@@ -358,3 +358,4 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Tappa 42: boss difesa: passive con trigger 失敗 (blocco fallito) a peso pieno (idea dell'utente: i compagni precedenti non bloccano mai). Calibrazione squadra Xavier Foster: totale motore 394.605 -> 426.966 (gioco 448.080, -4,7%). Non applicato l'accumulo per ogni compagno (sovrastima Silvia).
 - Tappa 43: pulizia DATI_DA_VERIFICARE (zone boss, tag 3+, Tayama/Nikaido/Kira/Kidou confermati; voci obsolete tolte: adesivi, stat mancanti, roster).
 - Tappa 44: bonus tecnici 推奨 = ruolo dello slot (confermato dall'utente), non ruolo nativo; Kuon e Mashiya confermati; DATI_DA_VERIFICARE aggiornato.
+- Tappa 44 (corretta): 推奨FW = giocatore FW in slot FW (entrambe le condizioni); un MF in slot FW non riceve il bonus del tecnico.

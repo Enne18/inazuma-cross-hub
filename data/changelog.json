@@ -89,9 +89,9 @@
     },
     {
      "icon": "🎯",
-     "it": "Bonus dei tecnici «posizione consigliata»: ora valgono per i giocatori effettivamente negli slot FW/MF/DF/GK, non per il ruolo scritto sulla scheda.",
-     "en": "Coach “recommended position” bonuses now apply to players actually placed in the FW/MF/DF/GK slots, not to the role printed on their card.",
-     "ja": "監督の「推奨ポジション」ボーナスは、カードの役割ではなく実際に配置されたFW/MF/DF/GKスロットの選手に適用。"
+     "it": "Bonus dei tecnici «posizione consigliata»: valgono solo per i giocatori di quel ruolo messi in uno slot di quel ruolo (un MF in uno slot FW non riceve il bonus FW).",
+     "en": "Coach “recommended position” bonuses apply only to players of that role placed in a slot of that role (an MF in an FW slot does not get the FW bonus).",
+     "ja": "監督の「推奨ポジション」ボーナスは、そのポジションの選手が同じポジションのスロットにいる場合のみ適用（スロットFWのMFは対象外）。"
     }
    ]
   },
