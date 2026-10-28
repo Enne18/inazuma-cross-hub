@@ -50,3 +50,4 @@ Ruoli liberi in qualsiasi slot; nessuna riserva; nessun tecnico nel 5v5; layout,
 - Silvia Woods Lv354 (28/10): stat base gioco catch 20.440 vs motore 20.363 (ok); Mano Divina Lv10 potenza 123 (ok). Il divario nella prova boss sta nei bonus a inizio partita/eventi. Ipotesi: 【救援/累】キーパーパワー＋ (+49 per ogni blocco fallito dei compagni) si accumula; il motore usa un fattore fisso.
 
 - Boss difesa (28/10): con le passive di blocco fallito a peso pieno il motore da 426.966 vs gioco 448.080 (-4,7
+- Boss difesa (28/10): con le passive di blocco fallito a peso pieno il motore dà 426.966 contro 448.080 del gioco (-4,7%). Residui: Seymour 16.513 vs 21.333, Jack 107.569 vs 114.609, Silvia 189.653 vs 198.655; Goldie e Garret entro 1,5%. L'accumulo "per ogni blocco fallito" (x4 su Silvia) sovrastimerebbe: la passiva sembra scattare meno volte o con altro peso. Da chiarire.
