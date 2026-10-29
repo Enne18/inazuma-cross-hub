@@ -2218,7 +2218,7 @@
     }
    ],
    "formation_passive": {
-    "text_ja": "味方がシュート技を止めるたび 味方全員の技威力を40上昇 終了条件:味方がゴールを入れた時",
+    "text_ja": "味方が敵のシュートを止めるたび 味方の技威力を40上昇 終了条件:味方がゴールを入れた時",
     "effects": [
      {
       "timing": "on_event",
@@ -2237,8 +2237,8 @@
     ]
    },
    "coach_passive": {
-    "name_ja": "イナイレクロス&MF・FWブースト",
-    "text_ja": "試合開始時 イナイレクロスタグの味方:技威力60上昇 推奨MF・FWの味方:シュート技威力60上昇",
+    "name_ja": "クロス／ＭＦ＆ＦＷパワーブースト",
+    "text_ja": "試合開始時 イナズマイレブンクロスタグの味方:技威力60上昇 推奨MFと推奨FWの味方:シュート技威力60上昇",
     "level_used": 10,
     "effects": [
      {
@@ -2322,7 +2322,7 @@
    },
    "verified": "parziale",
    "notes": [
-    "Dati dallo screenshot dell'utente (27/10/2026): Lv1 = 6, Lv10 = 60 (livelli 2-9 = multipli di 6, ipotesi lineare). Il nome giapponese della passiva del tecnico e il metodo di sblocco non sono noti (nome ricostruito). Il tag 'Inazuma Eleven Cross' è registrato come イナイレクロス come per gli altri personaggi."
+    "Dati dallo screenshot dell'utente (27/10/2026): Lv1 = 6, Lv10 = 60 (livelli 2-9 = multipli di 6, ipotesi lineare). Nome giapponese della passiva del tecnico e testi confermati dall'utente (29/10). Metodo di sblocco non noto. Il tag 'Inazuma Eleven Cross' (イナズマイレブンクロス) è registrato come イナイレクロス come per gli altri personaggi."
    ],
    "layout": {
     "FW": 2,
