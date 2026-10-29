@@ -806,13 +806,20 @@
    "en": "Keeper Power+ <Forest>"
   },
   "デーモンカット（ハロウィン）": {
-   "it": "Calcio delle Tenebre (Halloween)"
+   "it": "Calcio delle Tenebre (Halloween)",
+   "en": "Diabolical Cut (Halloween)"
   },
   "風神の舞（ハロウィン）": {
-   "it": "Turbine Supremo (Halloween)"
+   "it": "Turbine Supremo (Halloween)",
+   "en": "Wind God's Dance (Halloween)"
   },
   "分身ペンギン（ハロウィン）": {
-   "it": "Pinguino Illusorio (Halloween)"
+   "it": "Pinguino Illusorio (Halloween)",
+   "en": "Clone Penguin (Halloween)"
+  },
+  "イナイレクロス&MF・FWブースト": {
+   "en": "Inazuma Eleven Cross, MF and FW power boost",
+   "it": "Potenziamento Inazuma Eleven Cross, MF e FW"
   }
  }
 }

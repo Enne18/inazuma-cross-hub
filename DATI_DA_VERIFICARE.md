@@ -5,7 +5,6 @@ Cosa non si è potuto ricavare con certezza e cambia i risultati. Una risposta b
 ## Aperti
 - [ ] **Totale squadra del gioco:** il gioco somma circa +20% quando la formazione si attiva; il motore non lo riproduce. Servono altre squadre con totale e "Abilità complessiva" per giocatore (modello di segnalazione "Squadra dal gioco" su GitHub).
 - [x] **Tag opzionali** (日本代表2026, 雷門OB, 革命の雷門): confermato dall utente (28/10) che NON contano come イナズマジャパン / 雷門; interruttori rimossi.
-- [ ] **Nomi occidentali dei tecnici** (nel gioco compaiono come Kageyama Reiji, Kudou Michiya…) e di alcuni personaggi con nome inglese non verificato.
 - [ ] **Traduzioni EN/JA** del sito e le etichette delle passive (結束 Coesione/Unity, 破竹 Slancio/Momentum, 阻止 Parata/Stop, 連動 Sinergia/Link, 共鳴 Risonanza…): sono traduzioni libere, da rivedere.
 
 ## Confermati dall'utente
@@ -27,8 +26,8 @@ Zone ideali nelle prove boss: non contano (28/10). Conteggio "3 o più" con tag:
 - Passive di tempra: sono sempre 3 insieme. Equipaggiamento: scatti di 5 livelli, limite 350 oggi.
 - Prima/dopo di Tenma: 46.541 (nessuna passiva) → 48.091 (Potenza dribbling+〈Vento〉 Lv7, Potenza dribbling+ Lv2, Potenza tiro+ Lv5; 110000 monete + 5 oggetti).
 ## Wandaba e Halloween (27/10)
-- Wandaba: nome giapponese della passiva del tecnico e metodo di sblocco non noti; valori ai livelli 2-9 ipotizzati lineari (Lv1 = 6, Lv10 = 60 confermati); tag イナイレクロス assunto uguale agli altri personaggi.
-- Nathan Swift / David Samford (Halloween): valori delle passive ai livelli intermedi riscalati da passive simili (stimati); passive ADVANCED+ stimate ai gradi Advanced+/Top+ (solo il valore a Legendary+ è dato dal sito); nomi inglesi delle mosse non noti (mostrato l'originale); immagini dal sito dei dati (potrebbero non esserci ancora).
+- Wandaba (inglese: Wonderbot; passiva tecnico "Inazuma Eleven Cross, MF and FW power boost", testi inglesi confermati dall'utente 29/10): nome giapponese della passiva del tecnico e metodo di sblocco non noti; valori ai livelli 2-9 ipotizzati lineari (Lv1 = 6, Lv10 = 60 confermati); tag イナイレクロス assunto uguale agli altri personaggi.
+- Nathan Swift / David Samford (Halloween): valori delle passive ai livelli intermedi riscalati da passive simili (stimati); passive ADVANCED+ stimate ai gradi Advanced+/Top+ (solo il valore a Legendary+ è dato dal sito); nomi inglesi delle mosse confermati dall'utente (29/10: Diabolical Cut, Wind God's Dance, Clone Penguin); immagini dal sito dei dati (potrebbero non esserci ancora).
 
 ## Adesivi (28/10)
 - Nomi italiani/inglesi degli adesivi sono etichette di servizio (non ufficiali); i nomi giapponesi vengono dalla pagina.

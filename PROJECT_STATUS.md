@@ -359,3 +359,4 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Tappa 43: pulizia DATI_DA_VERIFICARE (zone boss, tag 3+, Tayama/Nikaido/Kira/Kidou confermati; voci obsolete tolte: adesivi, stat mancanti, roster).
 - Tappa 44: bonus tecnici 推奨 = ruolo dello slot (confermato dall'utente), non ruolo nativo; Kuon e Mashiya confermati; DATI_DA_VERIFICARE aggiornato.
 - Tappa 44 (corretta): 推奨FW = giocatore FW in slot FW (entrambe le condizioni); un MF in slot FW non riceve il bonus del tecnico.
+- Tappa 45: nomi inglesi mosse Halloween (Diabolical Cut, Wind God's Dance, Clone Penguin), Wandaba = Wonderbot e nome EN della passiva del tecnico; voce 'nomi occidentali dei tecnici' chiusa (elenco fornito dall'utente il 18/10).
