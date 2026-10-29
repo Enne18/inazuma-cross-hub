@@ -94,10 +94,16 @@
      "ja": "監督の「推奨ポジション」ボーナスは、そのポジションの選手が同じポジションのスロットにいる場合のみ適用（スロットFWのMFは対象外）。"
     },
     {
-     "icon": "📐",
-     "it": "Zone ideali ricalibrate sui totali del gioco: S +12%, A +8%, B +4% (prima 15/10/5). La formazione del tecnico si attiva solo con la squadra completa (11 giocatori).",
-     "en": "Ideal zones recalibrated on in-game team totals: S +12%, A +8%, B +4% (was 15/10/5). A coach formation is active only with a full 11-player team.",
-     "ja": "適正ゾーンをゲーム内数値に合わせて再調整：S +12%、A +8%、B +4%（従来15/10/5）。フォーメーションは11人全員が揃った時のみ有効。"
+     "icon": "🛡️",
+     "it": "Prove Boss: tutti i bonus a evento (passive e adesivi) contano per intero e una volta sola, come nel gioco (guida di RR_o).",
+     "en": "Boss trials: all event-based bonuses (passives and stickers) now count in full, once, as in the game (RR_o's guide).",
+     "ja": "ボス戦：イベント型ボーナス（パッシブ・シール）は満額で1回だけ計算（RR_o氏のガイドに準拠）。"
+    },
+    {
+     "icon": "🏟️",
+     "it": "La formazione del tecnico si attiva solo con la squadra completa (11 giocatori).",
+     "en": "A coach formation is active only with a full 11-player team.",
+     "ja": "監督のフォーメーションは11人全員が揃った時のみ有効。"
     }
    ]
   },

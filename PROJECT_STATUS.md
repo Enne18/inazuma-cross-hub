@@ -366,3 +366,4 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Tappa 48b: zone ricontrollate sull'elenco originale dell'utente: tutti i 124 set coincidono; solo i Kidou erano abbinati per ordine sbagliato (corretto).
 - Tappa 48c: zone Jude: IJ S5 A7 B2, Nazionale 2026 S4 A5 B7 (utente), Raimon S5 A7 B9 (dedotto).
 - Tappa 49: Wandaba: nome JA della passiva tecnico (クロス／ＭＦ＆ＦＷパワーブースト) e testi confermati; Jude Raimon confermato.
+- Tappa 50: guida di RR_o letta: zone riportate a S1,15/A1,10/B1,05 (la misura sul totale squadra è un'altra grandezza); boss: tutti i bonus a evento a peso pieno (una volta); stickerBonus(full).

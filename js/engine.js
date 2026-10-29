@@ -168,8 +168,8 @@
     return this.parsed[c.id].filter(function (p) { return cfg.unlocks.indexOf(p.unlock) >= 0; });
   };
 
-  // Zone ideali: setZones(zonesById {id:['B2','A9',..]}, slotMap {coachId:{slot:zona}}). Bonus solo su stat x risveglio. Calibrato sui totali del gioco (29/10, Nikaido): A ~ +8,1%, S ~ +12,3% (prima 10% e 15%); B +4,0% misurato (Celia).
-  var ZMUL = { S: 1.12, A: 1.08, B: 1.04 };
+  // Zone ideali: setZones(zonesById {id:['B2','A9',..]}, slotMap {coachId:{slot:zona}}). Moltiplicano solo stat x risveglio (verificato in partita da RR_o: 4.545 -> 5.227 con S). NB: il totale squadra mostrato dal gioco aumenta meno (A +8%, S +12%, B +4% di stat x risveglio, misure 29/10): e un'altra quantita.
+  var ZMUL = { S: 1.15, A: 1.10, B: 1.05 };
   Engine.prototype.setZones = function (byId, slotMap) { this.zonesById = byId || {}; this.zoneSlots = slotMap || {}; };
   Engine.prototype.setZoneOverride = function (arr) { var m = {}; (arr || []).forEach(function (z, i) { m[i + 1] = z; }); this.zoneOverride = arr ? m : null; };
   // Passive di tempra (js/training.js): ogni membro può avere c.training = [{e:'kick', lv:5}, ...] (max 3). Bonus statistica (SB) o potenza tecniche (PB).
@@ -186,8 +186,8 @@
   // Adesivi (js/stickers.js): c.stickers = [{e:'m18', lv:3}, ...] (id dell'adesivo, livello 1-5; max 1 principale + 4 secondari). Gli effetti con 'pos' valgono solo
   // se il giocatore occupa quel ruolo; quelli 'cond' (a evento) contano col fattore delle condizionali.
   Engine.prototype.setStickers = function (tbl) { this.stickerTbl = tbl || null; this.stickerIdx = null; if (tbl) { var ix = {}; tbl.main.concat(tbl.sub).forEach(function (d) { ix[d.id] = d; }); this.stickerIdx = ix; } };
-  Engine.prototype.stickerBonus = function (m, sb, pb) {
-    var ix = this.stickerIdx, st = m.stickers, f = this.cfg.conditionalFactor; if (!ix || !st || !st.length) return;
+  Engine.prototype.stickerBonus = function (m, sb, pb, full) {
+    var ix = this.stickerIdx, st = m.stickers, f = full ? 1 : this.cfg.conditionalFactor; if (!ix || !st || !st.length) return;
     st.slice(0, 5).forEach(function (t) {
       var d = t && ix[t.e]; if (!d || (d.pos && d.pos !== m.position)) return;
       var v = d.v[Math.max(1, Math.min(d.v.length, +t.lv || 1)) - 1] * (d.cond ? f : 1);
@@ -313,8 +313,8 @@
       self.passivesOf(src).forEach(function (p) {
         var cond = p.cond, ok = true, need = null;
         if (ALL) cond = { type: cond.type === 'event' ? 'event' : 'none', label: cond.label };
-        // prova di difesa del boss: i compagni precedenti non fermano mai il tiro, quindi le passive 'a ogni blocco fallito' scattano per davvero (peso pieno)
-        var failFull = !!(opts && opts.failFull) && cond.type === 'event' && /失敗/.test(cond.label || '');
+        // prove boss: il gioco considera soddisfatte le condizioni di tutte le passive e gli accumuli contano una volta (guida di RR_o, v1.4.0): peso pieno ai bonus a evento
+        var failFull = !!(opts && opts.failFull) && cond.type === 'event';
         if (cond.type === 'tag') {
           var n = members.filter(function (m) { return self.hasTag(m, cond.tag); }).length;
           if (n < cond.n) { ok = false; need = { tag: cond.tag, have: n, need: cond.n }; }
@@ -359,7 +359,7 @@
       });
     });
     if (coach) this.addCoach(coach, members, out);
-    members.forEach(function (m, i) { self.trainingBonus(m, SB[i], PB[i]); self.stickerBonus(m, SB[i], PB[i]); });
+    members.forEach(function (m, i) { self.trainingBonus(m, SB[i], PB[i]); self.stickerBonus(m, SB[i], PB[i], !!(opts && opts.failFull)); });
     if (opts && opts.noScore) { out.total = 0; return out; }
     if (cfg.model === 'duel') {
       var ZM = members.map(function (m, i) { return self.zoneMult(m, coach, opts && opts.slots ? opts.slots[i] : i + 1); });
@@ -453,7 +453,7 @@
   // boss = { mode:'attack'|'defense', element:'Wind', field: 0|50 (bonus di potenza ai tiri in vantaggio) }
   // Cinque giocatori in fila: ogni tecnica dopo una dello stesso elemento fa x1,1 (senza decimali). Tutte le passive contano.
   Engine.prototype.bossScore = function (members, boss) {
-    var cfg = this.cfg, r = this.scoreTeam(members, { allSat: true, cf: 1, noScore: true, failFull: boss.mode === 'defense' });
+    var cfg = this.cfg, r = this.scoreTeam(members, { allSat: true, cf: 1, noScore: true, failFull: true });
     var cats = boss.mode === 'attack' ? ['kick'] : ['block', 'catch'];
     var cand = members.map(function (m, i) {
       var s = m.stats_max || {}, sb = r._sb[i], pb = r._pb[i], awk = AWK[m.rarity_grade == null ? 9 : m.rarity_grade] / 2, nat = m.native || m.position, L = m.level || 440, out = [];
