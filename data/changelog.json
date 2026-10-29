@@ -95,9 +95,9 @@
     },
     {
      "icon": "📐",
-     "it": "Zone ideali ricalibrate sui totali del gioco: S +12%, A +8%, B +4% (prima 15/10/5).",
-     "en": "Ideal zones recalibrated on in-game team totals: S +12%, A +8%, B +4% (was 15/10/5).",
-     "ja": "適正ゾーンをゲーム内数値に合わせて再調整：S +12%、A +8%、B +4%（従来15/10/5）。"
+     "it": "Zone ideali ricalibrate sui totali del gioco: S +12%, A +8%, B +4% (prima 15/10/5). La formazione del tecnico si attiva solo con la squadra completa (11 giocatori).",
+     "en": "Ideal zones recalibrated on in-game team totals: S +12%, A +8%, B +4% (was 15/10/5). A coach formation is active only with a full 11-player team.",
+     "ja": "適正ゾーンをゲーム内数値に合わせて再調整：S +12%、A +8%、B +4%（従来15/10/5）。フォーメーションは11人全員が揃った時のみ有効。"
     }
    ]
   },

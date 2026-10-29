@@ -168,7 +168,7 @@
     return this.parsed[c.id].filter(function (p) { return cfg.unlocks.indexOf(p.unlock) >= 0; });
   };
 
-  // Zone ideali: setZones(zonesById {id:['B2','A9',..]}, slotMap {coachId:{slot:zona}}). Bonus solo su stat x risveglio. Calibrato sui totali del gioco (29/10, Nikaido): A ~ +8,1%, S ~ +12,3% (prima 10% e 15%); B = metà di A (non misurato).
+  // Zone ideali: setZones(zonesById {id:['B2','A9',..]}, slotMap {coachId:{slot:zona}}). Bonus solo su stat x risveglio. Calibrato sui totali del gioco (29/10, Nikaido): A ~ +8,1%, S ~ +12,3% (prima 10% e 15%); B +4,0% misurato (Celia).
   var ZMUL = { S: 1.12, A: 1.08, B: 1.04 };
   Engine.prototype.setZones = function (byId, slotMap) { this.zonesById = byId || {}; this.zoneSlots = slotMap || {}; };
   Engine.prototype.setZoneOverride = function (arr) { var m = {}; (arr || []).forEach(function (z, i) { m[i + 1] = z; }); this.zoneOverride = arr ? m : null; };
@@ -271,7 +271,9 @@
       var m = members[cd.slot - 1];
       return { slot: cd.slot, req: cd, ok: !!m && reqOk(self, cd, m), who: m ? m.id : null };
     });
-    return { ok: det.every(function (d) { return d.ok; }), details: det };
+    // il gioco attiva la formazione solo con la squadra completa (tutti gli slot pieni): confermato dall'utente il 29/10
+    var need = coach.layout ? ['FW', 'MF', 'DF', 'GK'].reduce(function (t, k) { return t + (coach.layout[k] || 0); }, 0) : 0, full = !need || members.filter(Boolean).length >= need;
+    return { ok: full && det.every(function (d) { return d.ok; }), details: det, incomplete: !full };
   };
 
   var ROLECAT = { FW: ['kick'], MF: ['technique', 'kick'], DF: ['block', 'catch'], GK: ['catch'] };
