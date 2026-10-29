@@ -123,7 +123,7 @@
     root.appendChild(ps);
 
     if (ZONES && ZONES[id]) {
-      var zs = sec('Zone ideali (S +15%, A +10%, B +5%)'), zr = el('div', 'badges');
+      var zs = sec('Zone ideali (S +12%, A +8%, B +4%)'), zr = el('div', 'badges');
       ZONES[id].forEach(function (z) { zr.appendChild(el('span', 'badge' + (z.charAt(0) === 'S' ? ' el' : ' soft'), z.charAt(0) + ' · zona ' + z.slice(1))); });
       zs.appendChild(zr); root.appendChild(zs);
     }
