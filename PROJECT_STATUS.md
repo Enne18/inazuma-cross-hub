@@ -360,3 +360,4 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Tappa 44: bonus tecnici 推奨 = ruolo dello slot (confermato dall'utente), non ruolo nativo; Kuon e Mashiya confermati; DATI_DA_VERIFICARE aggiornato.
 - Tappa 44 (corretta): 推奨FW = giocatore FW in slot FW (entrambe le condizioni); un MF in slot FW non riceve il bonus del tecnico.
 - Tappa 45: nomi inglesi mosse Halloween (Diabolical Cut, Wind God's Dance, Clone Penguin), Wandaba = Wonderbot e nome EN della passiva del tecnico; voce 'nomi occidentali dei tecnici' chiusa (elenco fornito dall'utente il 18/10).
+- Tappa 46: calibrazione con totali squadra del gioco (Nikaido, Lv354): formazione attiva = x1,20 sul totale; zone A +8%, S +12% (prima 10/15%), B +4% assunto; engine esporta eqAt. Test passati.

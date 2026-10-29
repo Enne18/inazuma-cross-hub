@@ -168,8 +168,8 @@
     return this.parsed[c.id].filter(function (p) { return cfg.unlocks.indexOf(p.unlock) >= 0; });
   };
 
-  // Zone ideali: setZones(zonesById {id:['B2','A9',..]}, slotMap {coachId:{slot:zona}}). Bonus S x1.15, A x1.10, B x1.05 solo su stat x risveglio.
-  var ZMUL = { S: 1.15, A: 1.10, B: 1.05 };
+  // Zone ideali: setZones(zonesById {id:['B2','A9',..]}, slotMap {coachId:{slot:zona}}). Bonus solo su stat x risveglio. Calibrato sui totali del gioco (29/10, Nikaido): A ~ +8,1%, S ~ +12,3% (prima 10% e 15%); B = metà di A (non misurato).
+  var ZMUL = { S: 1.12, A: 1.08, B: 1.04 };
   Engine.prototype.setZones = function (byId, slotMap) { this.zonesById = byId || {}; this.zoneSlots = slotMap || {}; };
   Engine.prototype.setZoneOverride = function (arr) { var m = {}; (arr || []).forEach(function (z, i) { m[i + 1] = z; }); this.zoneOverride = arr ? m : null; };
   // Passive di tempra (js/training.js): ogni membro può avere c.training = [{e:'kick', lv:5}, ...] (max 3). Bonus statistica (SB) o potenza tecniche (PB).
@@ -730,5 +730,5 @@
     return out;
   }
 
-  return { Engine: Engine, setEquipCap: function (n) { EQ_CAP = n; }, DEFAULTS: DEFAULTS, coachAtLevel: coachAtLevel, parsePassive: parsePassive, parseTarget: parseTarget };
+  return { Engine: Engine, eqAt: eqAt, setEquipCap: function (n) { EQ_CAP = n; }, DEFAULTS: DEFAULTS, coachAtLevel: coachAtLevel, parsePassive: parsePassive, parseTarget: parseTarget };
 });

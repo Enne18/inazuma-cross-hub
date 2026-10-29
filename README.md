@@ -52,7 +52,7 @@ Proposes the best teams from the characters you own (or from all characters, to 
 - The score is a **transparent estimate**, not the game's own number: it uses the verified power formula (stat × awakening × ideal-zone bonus + equipment + passives) × (move power ± bonuses) × element, compared against a reference rival. It does not reproduce every in-game rule (for example the total-power jump when a formation activates), so use it to compare options, not to predict exact match results.
 
 ### Ideal zones
-Every character has three ideal zones (numbered 1–11 on the pitch) rated **S (+15%)**, **A (+10%)** or **B (+5%)**. When a player stands in one of their zones, the bonus is applied to *stat × awakening* only (not to equipment), both in 11 vs 11 (zones mapped for 14 of the 15 coaches; Ray Dark has none) and in 5 vs 5 (zones mapped for all 9 formations).
+Every character has three ideal zones (numbered 1–11 on the pitch) rated **S (+12%)**, **A (+8%)** or **B (+4%)** (S and A measured on in-game team totals on 29/10/2026; B assumed). When a player stands in one of their zones, the bonus is applied to *stat × awakening* only (not to equipment), both in 11 vs 11 (zones mapped for 14 of the 15 coaches; Ray Dark has none) and in 5 vs 5 (zones mapped for all 9 formations).
 
 ### Bosses
 - **Boss of the day banner:** shows today's boss, the time left before the change (the game day rolls over at **22:00 Rome time**) and tomorrow's boss, with a button for the best team. If you own at least five characters, the best team for today is calculated as soon as you open the page.

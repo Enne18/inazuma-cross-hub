@@ -189,9 +189,9 @@ t('zone ideali: bonus S/A/B solo se lo slot cade in una zona del personaggio; se
   const eng = new E.Engine(chars.map(c => D.forLevel(raw.find(r => r.id === c.id), 440, 9)), aliases);
   const g = chars.find(c => c.id === '2030');                       // Gazelle: S2 A3 B5
   eng.setZones({ '2030': ['S2', 'A3', 'B5'] }, { kira: { 1: 2, 2: 3, 3: 5, 4: 9 } });
-  assert.strictEqual(eng.zoneMult(g, { id: 'kira' }, 1), 1.15);
-  assert.strictEqual(eng.zoneMult(g, { id: 'kira' }, 2), 1.10);
-  assert.strictEqual(eng.zoneMult(g, { id: 'kira' }, 3), 1.05);
+  assert.strictEqual(eng.zoneMult(g, { id: 'kira' }, 1), 1.12);
+  assert.strictEqual(eng.zoneMult(g, { id: 'kira' }, 2), 1.08);
+  assert.strictEqual(eng.zoneMult(g, { id: 'kira' }, 3), 1.04);
   assert.strictEqual(eng.zoneMult(g, { id: 'kira' }, 4), 1);
   assert.strictEqual(eng.zoneMult(g, { id: 'altro' }, 1), 1);
   const co = JSON.parse(JSON.stringify(coaches.find(c => c.id === 'kira'))), m = eng.member(g, 'FW');
@@ -203,7 +203,7 @@ t('5v5: 9 formazioni con zone per slot; l\'override di zona vale senza tecnico',
   f5.forEach(f => { const n = f.slots.FW + f.slots.MF + f.slots.DF + f.slots.GK; assert.strictEqual(n, 5, f.id); assert.strictEqual(f.zones.length, 5, f.id); assert.strictEqual(f.zones[4], 11, 'GK nel campo 11'); });
   const eng = new E.Engine(chars.map(c => D.forLevel(raw.find(r => r.id === c.id), 440, 9)), aliases), g = chars.find(c => c.id === '2030');
   eng.setZones({ '2030': ['S2', 'A3', 'B5'] }, {}); eng.setZoneOverride([2, 2, 5, 9, 11]);
-  assert.strictEqual(eng.zoneMult(g, null, 1), 1.15); assert.strictEqual(eng.zoneMult(g, null, 3), 1.05); assert.strictEqual(eng.zoneMult(g, null, 4), 1);
+  assert.strictEqual(eng.zoneMult(g, null, 1), 1.12); assert.strictEqual(eng.zoneMult(g, null, 3), 1.04); assert.strictEqual(eng.zoneMult(g, null, 4), 1);
 });
 t('terza mossa a scelta: forLevel la aggiunge (potenza per livello) e il motore la usa', () => {
   const base = raw.find(c => c.id === '1001'), fire = raw.find(c => c.id === '2030').skills[0];
