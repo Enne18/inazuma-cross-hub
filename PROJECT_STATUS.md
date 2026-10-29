@@ -362,3 +362,4 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Tappa 45: nomi inglesi mosse Halloween (Diabolical Cut, Wind God's Dance, Clone Penguin), Wandaba = Wonderbot e nome EN della passiva del tecnico; voce 'nomi occidentali dei tecnici' chiusa (elenco fornito dall'utente il 18/10).
 - Tappa 46: calibrazione con totali squadra del gioco (Nikaido, Lv354): formazione attiva = x1,20 sul totale; zone A +8%, S +12% (prima 10/15%), B +4% assunto; engine esporta eqAt. Test passati.
 - Tappa 47: dati utente 29/10 (Jude slot 6 54.713, Celia slot 5 47.146, Silvia slot 11 52.290): zone B +4,0% e S +11,4% confermate; formazione attiva solo con 11 slot pieni (engine); zona slot 6 di Nikaido rimossa (ignota).
+- Tappa 48: zone Jude IJ corrette (S5 A7 B2, utente) e Raimon scambiato; Nikaido slot 6 = campo 4 ripristinato.

@@ -1,5 +1,5 @@
 {
- "_doc": "Zone ideali per personaggio (S +15%, A +10%, B +5%): fornite dall'utente il 22/10 (indice -> nome, abbinato per nome giapponese e ordine di id per gli omonimi). Numeri 1-11 = zone del campo del gioco.",
+ "_doc": "Zone ideali per personaggio (S +12%, A +8%, B +4%): fornite dall'utente il 22/10 (indice -> nome, abbinato per nome giapponese e ordine di id per gli omonimi). Numeri 1-11 = zone del campo del gioco. Correzione 29/10: Jude Inazuma Japan (3014) = S5 A7 B2 (confermato dall'utente); i set di Jude Raimon (1169) scambiati di conseguenza (S4 A5 B7, dedotto). L'abbinamento degli omonimi per ordine di id può essere sbagliato anche per altri.",
  "zones": {
   "1001": [
    "B2",
@@ -162,9 +162,9 @@
    "A6"
   ],
   "1169": [
-   "B2",
-   "S5",
-   "A7"
+   "S4",
+   "A5",
+   "B7"
   ],
   "3017": [
    "S1",
@@ -322,9 +322,9 @@
    "B7"
   ],
   "3014": [
-   "S4",
-   "A5",
-   "B7"
+   "S5",
+   "A7",
+   "B2"
   ],
   "1155": [
    "A9",

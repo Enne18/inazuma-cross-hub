@@ -1,5 +1,5 @@
 {
- "_doc": "Slot formazione -> zona del campo 1-11, forniti dall'utente (22-23/10). protagonist = hibiki (stessa formazione). jigiryu slot 7 = zona 10 (confermato). kageyama_zeus (Ray Dark 4-3-3): non disponibile. Nikaido slot 6: zona NON nota (la mappa precedente diceva 4, ma Jude S4 nello slot 6 non riceve bonus: prova utente 29/10).",
+ "_doc": "Slot formazione -> zona del campo 1-11, forniti dall'utente (22-23/10). protagonist = hibiki (stessa formazione). jigiryu slot 7 = zona 10 (confermato). kageyama_zeus (Ray Dark 4-3-3): non disponibile.",
  "slots": {
   "protagonist": {
    "1": 2,
@@ -115,7 +115,8 @@
    "7": 4,
    "9": 9,
    "10": 9,
-   "11": 11
+   "11": 11,
+   "6": 4
   },
   "kuon": {
    "1": 2,
