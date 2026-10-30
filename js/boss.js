@@ -85,6 +85,10 @@
     card.style.setProperty('--el', 'var(--' + b.element + ')');
     var f = c ? c : { name_ja: base, element: b.element, position: '', rarity: 0 };
     var av = window.IECUI.avatar(f, 'lg'); card.appendChild(av);
+    if (!c && b.image && window.IECUI.imagesOn()) {   // boss senza scheda: immagine locale
+      var im = document.createElement('img'); im.alt = ''; im.addEventListener('error', function () { im.remove(); });
+      im.addEventListener('load', function () { av.classList.add('has-img'); }); im.src = b.image; av.appendChild(im);
+    }
     var tx = el('div', 'bo-tx');
     tx.appendChild(el('strong', null, b.name));
     tx.appendChild(el('div', null, EL[b.element] + (b.tech ? ' · ' + b.tech : '')));

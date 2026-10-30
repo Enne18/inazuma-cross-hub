@@ -50,3 +50,4 @@ Zone: ricontrollate tutte le 124 righe dell'elenco dell'utente (29/10): l'unico 
 - Non verificato: se il +22 valga anche nelle prove di ATTACCO e se sia esattamente 22 (21-22 danno lo stesso risultato).
 
 - Wandaba si acquista nel negozio delle prove (5.000 monete delle prove, ottenute con il boss della prova giornaliera): confermato dall'utente (30/10).
+- Zack Wallside (30/10): l'utente conferma nessun allenamento né adesivo; il −1,5% del motore nella prova giornaliera 4 (Jack→Zack) resta senza spiegazione.

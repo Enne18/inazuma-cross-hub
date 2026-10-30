@@ -285,7 +285,7 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - DA FARE: zone ideali S/A/B (+15/10/5% solo stat propria) non applicate; adesivi/passive di allenamento non modellati; livello tecniche assunto 10; bench da tarare; ricerca squadre da migliorare (a Lv345 la squadra B batte il "migliore").
 
 ## Tappa 13 — Pagina Boss
-- `data/bosses.json` (8 prove giornaliere a rotazione, oggi 20/10 = Xavier Foster; 4 boss del club, oggi Gran gigante): dati inseriti dall'utente, uso personale. Potenza "Senza fine": attacco 650.000, difesa 500.000.
+- `data/bosses.json` (8 prove giornaliere a rotazione, oggi 20/10 = Xavier Foster; 4 boss del club, oggi Xene gigante (già "Gran gigante": nome corretto dall'utente 30/10)): dati inseriti dall'utente, uso personale. Potenza "Senza fine": attacco 650.000, difesa 500.000.
 - engine: `scoreTeam(…, {allSat, cf, noScore})` (tutte le passive soddisfatte, cumulative una volta), `bossScore` (catena x1,1 tra tecniche dello stesso elemento, vantaggio +0,1, svantaggio -0,1, bonus campo +50 sui tiri in vantaggio, ordine ottimale 120 permutazioni + DP sulle mosse), `bossBest` (esaustivo sui 13 migliori + scambi), `bossClub` (3 squadre disgiunte, greedy).
 - `js/boss.js` + tab Boss. Non incluso: giocatori già usati oggi, zone, adesivi, livello tecniche (assunto max).
 
@@ -368,3 +368,4 @@ Tappa 4, lotto 10: idx 76-83 di roster_index.json, una scheda per volta con WebF
 - Tappa 49: Wandaba: nome JA della passiva tecnico (クロス／ＭＦ＆ＦＷパワーブースト) e testi confermati; Jude Raimon confermato.
 - Tappa 50: guida di RR_o letta: zone riportate a S1,15/A1,10/B1,05 (la misura sul totale squadra è un'altra grandezza); boss: tutti i bonus a evento a peso pieno (una volta); stickerBonus(full).
 - Tappa 51: calibrazione boss difesa con 6 prove: +22 potenza alle tecniche con vantaggio di elemento nella prova giornaliera (data/bosses.json daily.field_bonus); totali entro 0,1% (5 su 6). bossScore: opzione fixedOrder. Wandaba: negozio delle prove, 5.000 monete.
+- Tappa 52: schede riordinate (Personaggi, Tecnici, Team Builder, Boss); boss del club «Gran gigante» rinominato «Xene gigante» con immagine locale (img/bosses/xene.png, campo `image` in data/bosses.json). Zack Wallside: nessun allenamento né adesivo (utente 30/10): il −1,5% della prova 4 resta senza spiegazione.

@@ -88,7 +88,8 @@
    },
    {
     "id": "c2",
-    "name": "Gran gigante",
+    "name": "Xene gigante",
+    "image": "img/bosses/xene.png",
     "mode": "attack",
     "element": "Fire",
     "tech": null
