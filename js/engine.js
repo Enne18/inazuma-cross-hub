@@ -472,7 +472,7 @@
       return out.slice(0, 3);
     });
     var best = { total: -1 };
-    PERMS5.slice(0, members.length === 5 ? 120 : 0).concat(members.length === 5 ? [] : [null]).forEach(function (perm) {
+    (boss.fixedOrder ? [null] : PERMS5.slice(0, members.length === 5 ? 120 : 0).concat(members.length === 5 ? [] : [null])).forEach(function (perm) {   // fixedOrder: usa l'ordine dato (per i confronti con il gioco)
       var order = perm || members.map(function (_, i) { return i; });
       var dp = null;   // [{sum, prev, mv}] per mossa dell'ultimo giocatore
       var trace = [];

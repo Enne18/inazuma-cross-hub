@@ -46,4 +46,7 @@ Zone: ricontrollate tutte le 124 righe dell'elenco dell'utente (29/10): l'unico 
 ## Guida di RR_o «Come si calcola la potenza» (29/10, v1.4.0)
 - Conferma la formula del motore (base × potenza tecnica × elemento ÷ 100, bonus potenza limitati a ±1.000, troncamento, catena ×1,1) e la tabella dell'equipaggiamento.
 - Prove boss: il gioco considera soddisfatte le condizioni di tutte le passive e gli accumuli contano UNA volta. Il motore ora usa peso pieno (×1) per tutti i bonus a evento (passive e adesivi) nei boss; l'ipotesi "×4 per ogni blocco fallito" è scartata.
-- Resta senza spiegazione lo scarto di Seymour (+23% nel gioco), Jack (+6%) e Silvia (+4,5%) nella prova di Xavier Foster.
+- Scarto di Seymour/Jack/Silvia nella prova di Xavier Foster: RISOLTO il 30/10. Nelle prove giornaliere le tecniche con vantaggio di elemento prendono circa +22 di potenza (`daily.field_bonus` in data/bosses.json, come il campo +50 delle prove del club). Con 22 il motore torna entro lo 0,1% su 5 prove di difesa su 6 (Xavier Foster 448.061 vs 448.080; Shin Aphrodi T1 427.393 vs 427.615, T2 −0,1%, T3 +0,1%, T5 0,0%); T4 −1,5% perché non conosco passive/adesivi di Zack Wallside.
+- Non verificato: se il +22 valga anche nelle prove di ATTACCO e se sia esattamente 22 (21-22 danno lo stesso risultato).
+
+- Wandaba si acquista nel negozio delle prove (5.000 monete delle prove, ottenute con il boss della prova giornaliera): confermato dall'utente (30/10).

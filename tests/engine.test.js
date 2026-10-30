@@ -245,6 +245,14 @@ t('boss difesa: le passive "a ogni blocco fallito" contano per intero (Silvia: p
   assert.ok((full['mv:ゴッドハンド'] || 0) >= (half['mv:ゴッドハンド'] || 0));
   assert.ok(eng.bossScore(pool, { mode: 'defense', element: 'Fire' }).total > 0);
 });
+t('boss: bonus campo solo alle tecniche con vantaggio di elemento (Vento batte Montagna; Fuoco in svantaggio non lo riceve)', () => {
+  const eng = new E.Engine(chars, aliases), g = id => chars.find(c => String(c.id) === String(id));
+  const pool = [g('2046'), g('10002'), g('3004'), g('3003'), g('1166')];   // Garret/Hurley: Vento; Goldie: Fuoco; Jack/Silvia: Montagna
+  const a = eng.bossScore(pool, { mode: 'defense', element: 'Mountain', field: 0, fixedOrder: true }).order, b = eng.bossScore(pool, { mode: 'defense', element: 'Mountain', field: 22, fixedOrder: true }).order;
+  assert.strictEqual(b[0].power - a[0].power, 22);   // Garret (Vento) in vantaggio sul boss di Montagna
+  assert.strictEqual(b[1].power - a[1].power, 0);    // Goldie (Fuoco) in svantaggio
+  assert.strictEqual(b[3].power - a[3].power, 0);    // Jack (Montagna) neutro
+});
 t('boss difesa: Scivolata Micidiale (キラースライド) non viene usata', () => {
   const eng = new E.Engine(chars, aliases), b = chars.find(c => String(c.id) === '1013');
   const pool = [b].concat(chars.filter(c => String(c.id) !== '1013' && c.position === 'DF').slice(0, 4));

@@ -1,5 +1,5 @@
 {
- "_doc": "Boss inseriti dall'utente (uso personale). Rotazione giornaliera: l'ordine è quello della lista; il giorno 'anchor_date' tocca al boss di indice 'anchor_index'. Prove giornaliere: 5 giocatori, 5 tentativi; potenza del boss = livello 'Senza fine'. Club: 3 tentativi, ogni giocatore ne gioca uno solo; il campo aggiunge +50 di potenza ai tiri con vantaggio di elemento.",
+ "_doc": "Boss inseriti dall'utente (uso personale). Rotazione giornaliera: l'ordine è quello della lista; il giorno 'anchor_date' tocca al boss di indice 'anchor_index'. Prove giornaliere: 5 giocatori, 5 tentativi; potenza del boss = livello 'Senza fine'. Club: 3 tentativi, ogni giocatore ne gioca uno solo; il campo aggiunge +50 di potenza ai tiri con vantaggio di elemento. daily.field_bonus = 22: potenza aggiunta alle tecniche con vantaggio di elemento nella prova giornaliera, ricavata dai tentativi dell'utente (30/10, 6 prove di difesa: scarto <2% con 21-22) e non ufficiale.",
  "daily": {
   "anchor_date": "2026-10-20",
   "anchor_index": 5,
@@ -64,7 +64,8 @@
     "element": "Mountain",
     "tech": "Colpo Supremo Makina"
    }
-  ]
+  ],
+  "field_bonus": 22
  },
  "club": {
   "attempts": 3,

@@ -104,6 +104,12 @@
      "it": "La formazione del tecnico si attiva solo con la squadra completa (11 giocatori).",
      "en": "A coach formation is active only with a full 11-player team.",
      "ja": "監督のフォーメーションは11人全員が揃った時のみ有効。"
+    },
+    {
+     "icon": "🎯",
+     "it": "Boss giornaliero: le tecniche con vantaggio di elemento ricevono +22 di potenza (ricavato da 6 prove reali); i totali tornano entro lo 0,1% del gioco.",
+     "en": "Daily boss: moves with an element advantage get +22 power (derived from 6 real trials); totals now match the game within 0.1%.",
+     "ja": "デイリーボス：属性有利の技に威力+22（実測6回から算出）。ゲーム内の数値との差は0.1%以内。"
     }
    ]
   },
