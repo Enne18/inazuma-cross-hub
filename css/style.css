@@ -499,3 +499,12 @@ main.wrap { padding-top: 26px; }
 .hc-move.tr, .hc-move.tr:has(.mvsel) { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; padding: 4px 8px; }
 .hc-move.tr .xmsel { flex: 1 1 100%; width: 100%; font-size: .78rem; }
 .hc-move.tr .mvsel { flex: 0 0 auto; width: auto; margin-left: auto; }
+
+/* Tappa 53: build di adesivi consigliata accanto alla propria */
+.hc-stwrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px; align-items: start; min-width: 0; }
+.hc-rec > summary { cursor: pointer; }
+.hc-rec .btn { justify-self: start; }
+.hc-rec .small { font-size: .8rem; }
+.hc-rec { min-width: 0; overflow-wrap: anywhere; }
+.hc-rec .hc-move { grid-template-columns: minmax(0, 1fr); }
+.hc-rec .hc-move .mname { white-space: normal; overflow: visible; text-overflow: clip; max-width: none; }

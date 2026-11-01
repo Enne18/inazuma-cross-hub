@@ -60,6 +60,30 @@
  ],
  "releases": [
   {
+   "version": "2.0",
+   "date": "2026-11-01",
+   "title": {
+    "it": "Adesivi consigliati",
+    "en": "Recommended stickers",
+    "ja": "おすすめシール"
+   },
+   "icon": "🎯",
+   "items": [
+    {
+     "icon": "🎯",
+     "it": "Nella scheda di ogni personaggio: build di adesivi consigliata (1 principale + 4 secondari al livello massimo) accanto alla tua, con il danno stimato della tecnica migliore e il tasto «Applica alla mia build». È una stima del sito, non un valore del gioco.",
+     "en": "On every character card: a recommended sticker build (1 main + 4 secondary at max level) next to yours, with the estimated damage of the best move and an \"Apply to my build\" button. A site estimate, not a game value.",
+     "ja": "各キャラのカードに、おすすめシール構成（メイン1＋サブ4、最大レベル）をあなたの構成の隣に表示。最良技の推定ダメージと「この構成を適用」ボタン付き。ゲームの値ではなくサイトの推定です。"
+    },
+    {
+     "icon": "↔️",
+     "it": "Le schede Tecnici e Team Builder sono state scambiate; il boss del club «Xene gigante» ha la sua immagine.",
+     "en": "The Coaches and Team Builder tabs were swapped; the club boss \"Xene gigante\" now has its picture.",
+     "ja": "コーチタブとチームビルダータブを入れ替え。クラブボス「Xene gigante」に画像を追加。"
+    }
+   ]
+  },
+  {
    "version": "1.9",
    "date": "2026-10-28",
    "title": {

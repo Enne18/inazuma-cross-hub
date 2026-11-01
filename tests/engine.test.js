@@ -278,6 +278,19 @@ t('adesivi: [MF] Calcio+ Lv3 = +3600 solo se il ruolo e MF; a evento x0.5; max 5
   m.position = 'FW'; sb = {}; pb = {}; eng.stickerBonus(m, sb, pb);
   assert.strictEqual(sb.kick, undefined); assert.strictEqual(sb.block, 1000);
 });
+t('adesivi consigliati: 5 posti, nessun doppione, ruolo rispettato, mai peggio di nessun adesivo e di una build qualsiasi', () => {
+  const S = require('../js/stickers.js'); const eng = new E.Engine(chars, aliases); eng.setStickers(S);
+  const idx = {}; S.main.concat(S.sub).forEach(d => idx[d.id] = d);
+  [1001, 3003, '4008'].forEach(id => {
+    const c = chars.find(x => String(x.id) === String(id)), r = eng.recommendStickers(c);
+    assert.ok(r && r.build.length === 5 && r.build.every(Boolean));
+    const names = r.build.map(t => idx[t.e].ja); assert.strictEqual(new Set(names).size, 5);
+    r.build.forEach(t => { const d = idx[t.e]; assert.strictEqual(t.lv, d.v.length); assert.ok(!d.pos || d.pos === c.position); });
+    assert.ok(r.damage >= r.damageNow);
+    const c2 = Object.assign(Object.create(Object.getPrototypeOf(c)), c); c2.stickers = [{ e: 'm3', lv: 3 }];
+    assert.ok(eng.recommendStickers(c2).damage >= eng.recommendStickers(c2).damageNow);
+  });
+});
 t('tecnici: bonus 推奨FW solo a un FW in slot FW (non a un MF in slot FW, non a un FW in slot MF)', () => {
   const cs = J('data/coaches.json').coaches, nik = cs.find(c => c.id === 'nikaido'), eng = new E.Engine(chars, aliases);
   const fw = chars.find(c => c.position === 'FW'), mf = chars.find(c => c.position === 'MF');

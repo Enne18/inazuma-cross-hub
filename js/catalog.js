@@ -146,6 +146,54 @@
     return box;
   }
 
+  // Build di adesivi consigliata (stima del sito): calcolata solo quando si apre il riquadro (il motore costa pochi ms per personaggio).
+  var REC_TXT = {
+    head: { it: 'Adesivi consigliati (stima)', en: 'Recommended stickers (estimate)', ja: 'おすすめシール（推定）' },
+    dmg: { it: 'Danno stimato della tecnica migliore', en: 'Estimated damage of the best move', ja: '最良技の推定ダメージ' },
+    now: { it: 'adesso', en: 'now', ja: '現在' }, rec: { it: 'consigliata', en: 'recommended', ja: 'おすすめ' },
+    apply: { it: 'Applica alla mia build', en: 'Apply to my build', ja: 'この構成を適用' },
+    note: { it: 'Tutti gli adesivi al livello massimo (5), come riferimento teorico: conta il danno della tecnica migliore del ruolo, con l’allenamento impostato. Stima del sito, non un valore del gioco.', en: 'All stickers at max level (5), as a theoretical reference: it maximises the damage of the role’s best move, with your training applied. Site estimate, not a game value.', ja: '全シールを最大レベル（5）とした理論上の参考値です。ロールの最良技のダメージを最大化し、設定済みの鍛錬を反映します。サイトの推定値で、ゲームの値ではありません。' },
+    main: { it: 'Principale', en: 'Main', ja: 'メイン' }, sub: { it: 'Secondario', en: 'Secondary', ja: 'サブ' }
+  };
+  var recOpen = {}, recEng = null;
+  function recEngine() {
+    if (!recEng && window.IECEngine && window.IECStickers) {
+      recEng = new window.IECEngine.Engine(state.chars, {}, {});
+      if (window.IECTraining) recEng.setTraining(window.IECTraining);
+      recEng.setStickers(window.IECStickers);
+    }
+    return recEng;
+  }
+  function recBox(c, root, inCollection) {
+    var l = lang3(), det = el('details', 'hc-train hc-rec'), sum = el('summary', 'hc-train-h', REC_TXT.head[l]);
+    det.appendChild(sum);
+    function fill() {
+      var eng = recEngine(), r = eng && eng.recommendStickers(c); if (!r) return;
+      var T = window.IECStickers, idx = {}; T.main.concat(T.sub).forEach(function (d) { idx[d.id] = d; });
+      r.build.forEach(function (t, i) {
+        var d = t && idx[t.e], row = el('div', 'hc-move tr st');
+        row.appendChild(el('span', 'mname', (i === 0 ? REC_TXT.main[l] : REC_TXT.sub[l]) + ': ' + (d ? stName(d) + ' · Lv ' + t.lv + ' (+' + d.v[t.lv - 1] + ')' : '—')));
+        det.appendChild(row);
+      });
+      var gain = r.damageNow > 0 ? ' (' + (r.damage >= r.damageNow ? '+' : '') + Math.round((r.damage / r.damageNow - 1) * 100) + '%)' : '';
+      det.appendChild(el('div', 'small', REC_TXT.dmg[l] + ': ' + r.damageNow.toLocaleString() + ' ' + REC_TXT.now[l] + ' → ' + r.damage.toLocaleString() + ' ' + REC_TXT.rec[l] + gain));
+      if (inCollection) {
+        var b = el('button', 'btn small', REC_TXT.apply[l]); b.type = 'button';
+        b.addEventListener('click', function () {
+          state.st[c.id] = r.build.map(function (t) { return t ? { e: t.e, lv: t.lv } : null; }); saveSt();
+          document.dispatchEvent(new CustomEvent('iec-collection', { detail: c.id })); replaceWith(root, c.id);
+        });
+        det.appendChild(b);
+      }
+      det.appendChild(el('div', 'muted small', REC_TXT.note[l]));
+    }
+    var done = false;
+    function open() { if (!done) { done = true; fill(); } }
+    if (recOpen[c.id]) { det.open = true; open(); }
+    det.addEventListener('toggle', function () { recOpen[c.id] = det.open; if (det.open) open(); });
+    return det;
+  }
+
   function loadOwned() {
     try {
       var raw = window.localStorage.getItem(KEY);
@@ -347,7 +395,12 @@
     root.appendChild(main);
     var below = el('div', 'hc-below'); below.appendChild(mv);
     if (inCollection && window.IECTraining) below.appendChild(trainingBox(c, root));
-    if (inCollection && window.IECStickers) below.appendChild(stickerBox(c, root));
+    if (window.IECStickers) {
+      var sw = el('div', 'hc-stwrap');
+      if (inCollection) sw.appendChild(stickerBox(c, root));
+      sw.appendChild(recBox(c, root, inCollection));
+      below.appendChild(sw);
+    }
     root.appendChild(below);
     return root;
   }

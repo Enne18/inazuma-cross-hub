@@ -51,3 +51,4 @@ Zone: ricontrollate tutte le 124 righe dell'elenco dell'utente (29/10): l'unico 
 
 - Wandaba si acquista nel negozio delle prove (5.000 monete delle prove, ottenute con il boss della prova giornaliera): confermato dall'utente (30/10).
 - Zack Wallside (30/10): l'utente conferma nessun allenamento né adesivo; il −1,5% del motore nella prova giornaliera 4 (Jack→Zack) resta senza spiegazione.
+- Adesivi consigliati (1/11): assumono tutti gli adesivi al livello 5 e sempre disponibili; il criterio è il danno della tecnica migliore (modello del sito). Non verificato nel gioco se si possono equipaggiare due adesivi con lo stesso effetto (il motore li somma). Servono schermate di schede (4 statistiche, livello, grado, potenza totale) di MF e altri ruoli per modellare la potenza totale 選手総合能力.

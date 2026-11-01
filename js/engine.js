@@ -194,6 +194,42 @@
       if (d.stat) sb[d.stat] = (sb[d.stat] || 0) + v; else if (d.pk) pb[d.pk] = (pb[d.pk] || 0) + v;
     });
   };
+  // Build di adesivi consigliata per un personaggio nel ruolo `role` (default: il suo): massimizza il danno della tecnica migliore
+  // (modello 'damage', con l'allenamento già impostato), a parità la somma dei danni delle tecniche; tutti gli adesivi al livello massimo.
+  // Salita per coordinate: ogni posto (1 principale + 4 secondari) prende l'adesivo migliore dato il resto, più passate.
+  // Restituisce { build: [{e, lv}|null x5], damage, damageNow, stats: {kick,..: bonus} }. Stima del sito: non è un valore del gioco.
+  Engine.prototype.recommendStickers = function (c, role, opts) {
+    var T = this.stickerTbl, self = this; if (!T) return null;
+    role = role || c.position;
+    var base = Object.create(c); base.position = role; base.native = c.position;
+    function ev(build) {
+      base.stickers = build.filter(Boolean);
+      var sb = {}, pb = {}, o = { sum: 0 };
+      self.trainingBonus(base, sb, pb); self.stickerBonus(base, sb, pb, false);
+      var d = self.damageOf(base, sb, pb, o);
+      return { d: d === null ? 0 : d, v: (d === null ? 0 : d) + 0.001 * o.sum, sb: sb };
+    }
+    var maxLv = function (d) { return d.v.length; }, build = [null, null, null, null, null], cur = ev(build);
+    var now = ev((c.stickers || []).slice(0, 5)), maxP = (opts && opts.passes) || 3;
+    for (var pass = 0; pass < maxP; pass++) {
+      var changed = false;
+      for (var i = 0; i < 5; i++) {
+        var used = {}; build.forEach(function (t, j) { if (t && j !== i) used[self.stickerIdx[t.e].ja] = true; });
+        var bestT = build[i], bestV = cur.v;
+        (i === 0 ? T.main : T.sub).forEach(function (d) {
+          if (used[d.ja] || (d.pos && d.pos !== role)) return;
+          var t = { e: d.id, lv: maxLv(d) }, keep = build[i]; build[i] = t;
+          var r = ev(build); build[i] = keep;
+          if (r.v > bestV + 1e-9) { bestV = r.v; bestT = t; }
+        });
+        if (bestT !== build[i]) { build[i] = bestT; changed = true; }
+        cur = ev(build);
+      }
+      if (!changed) break;
+    }
+    base.stickers = build.filter(Boolean);
+    return { build: build, damage: cur.d, damageNow: now.d, stats: cur.sb };
+  };
   Engine.prototype.zoneMult = function (c, coach, slot) {
     var zm = coach ? (this.zoneSlots && this.zoneSlots[coach.id]) : this.zoneOverride, z = zm && zm[slot], list = this.zonesById && this.zonesById[c.id];
     if (!z || !list) return 1;
@@ -281,7 +317,7 @@
   var POWKIND = { shoot: 'kick', dribble: 'technique', block: 'block', catch: 'catch', keeper: 'catch', all: 'all' };
 
   // Danno stimato di un membro: floor(stat x potenza/100) per la sua mossa migliore (formula iecrosshub/calculator.js).
-  Engine.prototype.damageOf = function (m, sb, pb) {
+  Engine.prototype.damageOf = function (m, sb, pb, sumOut) {
     var cats = ROLECAT[m.position], s = m.stats_max || {}, best = null, self = this;
     (m.skills || []).forEach(function (k) {
       var c = SKILLCAT[k.category] || k.category, pw = k.power;
@@ -292,6 +328,7 @@
       var d = Math.floor(stat * power * 0.01);
       if (ke === m.element) d = Math.floor(d * self.cfg.moveElementStab);
       if (cats.indexOf(c) < 0) d = d * self.cfg.offRoleMovePenalty;
+      if (sumOut) sumOut.sum = (sumOut.sum || 0) + d;
       if (best === null || d > best) best = d;
     });
     return best;
