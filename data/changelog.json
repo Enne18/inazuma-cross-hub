@@ -60,6 +60,30 @@
  ],
  "releases": [
   {
+   "version": "2.1",
+   "date": "2026-11-03",
+   "title": {
+    "it": "Team Builder contro un avversario",
+    "en": "Team Builder against an opponent",
+    "ja": "対戦相手を指定したチームビルダー"
+   },
+   "icon": "⚔️",
+   "items": [
+    {
+     "icon": "⚔️",
+     "it": "Nuova sezione «Avversario» nel Team Builder: inserisci tecnico e giocatori avversari e il sito cerca la squadra migliore per batterlo. Il tiro di un attaccante viene parato dai due difensori del suo lato e poi dal portiere (formazione avversaria specchiata). Stima del sito, non verificata nel gioco.",
+     "en": "New \"Opponent\" section in the Team Builder: enter the opponent's coach and players and the site looks for the best team to beat it. A shot is stopped by the two defenders on its side, then the keeper (the opposing formation is mirrored). A site estimate, not verified in the game.",
+     "ja": "チームビルダーに「対戦相手」欄を追加。相手のコーチと選手を入力すると、倒すのに最適なチームを探します。シュートは同じ側の守備2人、次にGKが止める想定（相手の布陣は左右反転）。サイトの推定で、ゲームでは未検証です。"
+    },
+    {
+     "icon": "🔀",
+     "it": "I giocatori fuori ruolo sono sempre presi in considerazione: la scelta dei candidati non dipende più solo dal loro ruolo nativo.",
+     "en": "Out-of-role players are always considered: candidates are no longer picked by their native role only.",
+     "ja": "役割外の選手も常に候補に入るようになりました（本来のポジションだけで絞り込まない）。"
+    }
+   ]
+  },
+  {
    "version": "2.0",
    "date": "2026-11-01",
    "title": {

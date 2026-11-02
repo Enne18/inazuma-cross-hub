@@ -508,3 +508,10 @@ main.wrap { padding-top: 26px; }
 .hc-rec { min-width: 0; overflow-wrap: anywhere; }
 .hc-rec .hc-move { grid-template-columns: minmax(0, 1fr); }
 .hc-rec .hc-move .mname { white-space: normal; overflow: visible; text-overflow: clip; max-width: none; }
+/* Tappa 54: avversario nel Team Builder */
+.b-opp { margin: 8px 0; padding: 8px 10px; border: 1px dashed var(--line); border-radius: 8px; }
+.b-opp > summary { cursor: pointer; font-weight: 600; }
+.b-opp-slots { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 6px; margin-top: 8px; }
+.b-opp-slot { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 6px; align-items: center; }
+.b-opp-slot input { min-width: 0; }
+.b-match { margin: 4px 0 8px; font-size: .88rem; }

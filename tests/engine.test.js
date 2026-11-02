@@ -95,7 +95,7 @@ t('tecnico: passiva sempre attiva, formazione tutto-o-niente', () => {
   const eng = new E.Engine(chars, aliases);
   const co = coaches.find(c => c.id === 'protagonist'), roles = eng.rolesFromLayout(co.layout);
   const pool = chars.slice();
-  const r = eng.build(pool, roles, co, { restarts: 3 });
+  const r = eng.build(pool, roles, co, { restarts: 3, freeRoles: false });
   const d = r.teams[0].detail;
   assert.ok(d.coach.formationActive, 'con tutto il roster la formazione deve attivarsi');
   assert.ok(d.coach.coachPoints > 0 && d.coach.formationPoints > 0);
@@ -290,6 +290,31 @@ t('adesivi consigliati: 5 posti, nessun doppione, ruolo rispettato, mai peggio d
     const c2 = Object.assign(Object.create(Object.getPrototypeOf(c)), c); c2.stickers = [{ e: 'm3', lv: 3 }];
     assert.ok(eng.recommendStickers(c2).damage >= eng.recommendStickers(c2).damageNow);
   });
+});
+t('avversario: i difensori che parano sono quelli del lato da cui arriva il tiro (formazione specchiata)', () => {
+  const eng = new E.Engine(chars, aliases);
+  const mk = (id, pos) => ({ id, position: pos });
+  const att = { members: [mk('a', 'FW')], tab: [{ kick: { d: 1000, range: 10, element: 'Fire' } }], xs: [0.2] };       // mio attaccante a sinistra
+  const strong = { block: { d: 5000, element: 'Fire' } }, weak = { block: { d: 10, element: 'Fire' } };
+  // difensori avversari nella LORO vista: x=0.8 (la loro destra) copre la mia sinistra; x=0.2 la mia destra
+  const defOf = (leftCover, rightCover, third) => ({ members: [mk('d1', 'DF'), mk('d2', 'DF'), mk('d3', 'DF')], tab: [leftCover, rightCover, third], xs: [0.8, 0.2, 0.5] });
+  const g1 = eng.attackChance(att, defOf(strong, weak, weak)).chance;     // il forte copre il mio lato: tiro fermato
+  const g2 = eng.attackChance(att, defOf(weak, strong, weak)).chance;     // il forte sta dall'altro lato: il tiro passa
+  assert.ok(g2 > g1 * 5, 'lato sbagliato: ' + g1 + ' vs ' + g2);
+  assert.deepStrictEqual(eng.attackChance(att, defOf(strong, weak, weak)).shooters[0].blockers.slice(0, 1), ['d1']);
+  const m = eng.matchup(att.members.length ? { members: att.members, tab: att.tab, xs: att.xs } : null, { members: [mk('d1', 'DF')], tab: [strong], xs: [0.5] });
+  assert.ok(m.score >= 0 && m.score <= 100);
+});
+t('avversario: la build con un avversario produce confronto per lato; i ruoli liberi non peggiorano il punteggio', () => {
+  const eng = new E.Engine(chars, aliases); eng.setTraining(require('../js/training.js')); eng.setStickers(require('../js/stickers.js'));
+  const PL = J('data/pitch_layouts.json').layouts; eng.setLayouts(PL);
+  const co = coaches.find(c => c.id === 'hibiki'), roles = eng.rolesFromLayout(co.layout);
+  const strongOpp = chars.filter(c => c.rarity >= 3).slice(0, 11);
+  const pack = eng.opponentPack({ chars: strongOpp, roles, coach: co });
+  assert.ok(pack.xs.every(x => x !== null) && pack.tab.length === 11);
+  const r = eng.build(chars.slice(), roles, co, { restarts: 2, opponentPack: pack });
+  const t0 = r.teams[0];
+  assert.ok(t0.detail.matchup && typeof t0.detail.matchup.score === 'number' && t0.score !== t0.detail.total);
 });
 t('tecnici: bonus 推奨FW solo a un FW in slot FW (non a un MF in slot FW, non a un FW in slot MF)', () => {
   const cs = J('data/coaches.json').coaches, nik = cs.find(c => c.id === 'nikaido'), eng = new E.Engine(chars, aliases);

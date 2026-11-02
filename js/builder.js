@@ -26,6 +26,7 @@
       $('b-mode').addEventListener('change', onMode);
       $('b-run').addEventListener('click', run);
       setupPick();
+      setupOpp();
       loadCoachLv();
       onMode();
     }).catch(function (e) { $('b-msg').textContent = 'Impossibile caricare i dati dei tecnici: ' + e.message; });
@@ -62,6 +63,16 @@
     if (d.parts) h.appendChild(el('small', 'muted', ' attacco ' + Math.round(d.parts.attack * 100) + '% · portiere/difesa ' + Math.round(d.parts.defense * 100) + '% · dribbling ' + Math.round(d.parts.dribble * 100) + '% · contrasto ' + Math.round(d.parts.block * 100) + '%'));
     h.appendChild(document.createTextNode(' (somma dei danni della mossa migliore di ogni giocatore, con bonus di sinergie e tecnico)'));
     box.appendChild(h);
+    if (d.matchup) {
+      var M = d.matchup, nmOf = function (id) { return byId[id] ? nm(byId[id]) : id; };
+      var mt = el('div', 'b-match');
+      mt.appendChild(el('b', null, 'Contro l\'avversario (stima): '));
+      mt.appendChild(document.createTextNode('occasioni da gol tue ' + (M.mine.chance * 100).toFixed(0) + '% · sue ' + (M.theirs.chance * 100).toFixed(0) + '% (saldo ' + (M.score >= 0 ? '+' : '') + M.score.toFixed(1) + '). '));
+      var sh = M.mine.shooters[0], sh2 = M.theirs.shooters[0];
+      if (sh) mt.appendChild(el('span', 'muted', 'Il tuo tiro migliore (' + nmOf(sh.id) + ') ' + (sh.blockers.length ? 'trova ' + sh.blockers.map(nmOf).join(' e ') + ' sul suo lato. ' : 'non trova difensori con tecnica «Blocca tiro» sul suo lato. ')));
+      if (sh2) mt.appendChild(el('span', 'muted', 'Il loro tiro migliore (' + nmOf(sh2.id) + ') ' + (sh2.blockers.length ? 'trova ' + sh2.blockers.map(nmOf).join(' e ') + '.' : 'non trova difensori con tecnica «Blocca tiro» sul suo lato.')));
+      box.appendChild(mt);
+    }
     if (d.estimated) box.appendChild(el('div', 'warn', d.estimated + ' giocatori hanno statistiche stimate (dati mancanti nella fonte): il punteggio è meno affidabile.'));
 
     var body = el('div', 'tbody'), side = el('div', 'tside'), main = el('div', 'tmain');
@@ -165,6 +176,55 @@
   function lvOf(id) { var v = coachLv[id]; return v === undefined ? 10 : Math.max(0, Math.min(10, +v)); }
   function leveled(c) { return window.IECEngine.coachAtLevel(c, lvOf(c.id) || 10); }
 
+  // ---------- avversario ----------
+  var KEY_OPP = 'iecross.opponent.v1', opp = { on: false, coach: 'hibiki', lv: 350, clv: 10, rar: 9, slots: {} };
+  function loadOpp() { try { var o = JSON.parse(window.localStorage.getItem(KEY_OPP) || 'null'); if (o && typeof o === 'object') { opp = { on: !!o.on, coach: o.coach || opp.coach, lv: +o.lv || 350, clv: +o.clv || 10, rar: o.rar === undefined ? 9 : +o.rar, slots: o.slots || {} }; } } catch (e) { /* ignora */ } }
+  function saveOpp() { try { window.localStorage.setItem(KEY_OPP, JSON.stringify(opp)); } catch (e) { /* ignora */ } }
+  function oppCoach() { return coaches.filter(function (c) { return c.id === opp.coach; })[0] || null; }
+  function renderOppSlots() {
+    var box = $('b-opp-slots'), co = oppCoach(); box.textContent = '';
+    if (!co) return;
+    window.IECEngine.Engine.prototype.rolesFromLayout.call(null, co.layout).forEach(function (role, i) {
+      var row = el('label', 'b-opp-slot'), inp = el('input'), id = opp.slots[i + 1];
+      row.appendChild(el('span', 'slotn', (i + 1) + ' · ' + role));
+      inp.setAttribute('list', 'b-names'); inp.placeholder = 'scrivi un nome e scegli…'; inp.autocomplete = 'off';
+      inp.value = id && byId[id] ? label(byId[id]) : '';
+      inp.addEventListener('change', function () {
+        var m = this.value.match(/\[(\d+)\]\s*$/);
+        if (m && byId[m[1]]) opp.slots[i + 1] = m[1]; else if (!this.value) delete opp.slots[i + 1];
+        saveOpp();
+      });
+      row.appendChild(inp); box.appendChild(row);
+    });
+  }
+  function setupOpp() {
+    loadOpp();
+    fill($('b-opp-coach'), coaches.filter(function (c) { return c.layout; }), function (c) { return (c.name_west ? c.name_west + ' (' + c.name_ja + ')' : c.name_ja) + ' · ' + c.formation_ja + ' · ' + layoutStr(c.layout); });
+    $('b-opp-coach').value = oppCoach() ? opp.coach : coaches[0].id; opp.coach = $('b-opp-coach').value;
+    (window.IECData.RARITY_NAMES || []).forEach(function (n, i) { var o = el('option', null, n); o.value = String(i); $('b-opp-rar').appendChild(o); });
+    $('b-opp-rar').value = String(opp.rar); $('b-opp-on').checked = opp.on; $('b-opp-clv').value = opp.clv; $('b-opp-lv').value = opp.lv;
+    $('b-opp-on').addEventListener('change', function () { opp.on = this.checked; saveOpp(); });
+    $('b-opp-clv').addEventListener('change', function () { opp.clv = Math.max(1, Math.min(10, +this.value || 10)); saveOpp(); });
+    $('b-opp-lv').addEventListener('change', function () { opp.lv = Math.max(1, Math.min(440, +this.value || 350)); saveOpp(); });
+    $('b-opp-rar').addEventListener('change', function () { opp.rar = +this.value; saveOpp(); });
+    $('b-opp-coach').addEventListener('change', function () { opp.coach = this.value; opp.slots = {}; saveOpp(); renderOppSlots(); });
+    renderOppSlots();
+    $('b-opp').open = opp.on;
+  }
+  // Squadra avversaria pronta per il motore, o un messaggio d'errore
+  function oppPack(eng0) {
+    var co = oppCoach(); if (!co) return { err: 'Scegli il tecnico avversario.' };
+    var roles = window.IECEngine.Engine.prototype.rolesFromLayout.call(null, co.layout), base = window.IEC.state.byId, chars = [];
+    for (var i = 0; i < roles.length; i++) {
+      var id = opp.slots[i + 1];
+      if (!id || !base[id]) return { err: 'Avversario: manca il giocatore dello slot ' + (i + 1) + ' (' + roles[i] + ').' };
+      chars.push(window.IECData.forLevel(base[id], opp.lv, opp.rar));
+    }
+    var oe = new window.IECEngine.Engine(data.chars, aliases, { optionalTeams: {} });
+    oe.setZones(ZC, ZS); oe.setTraining(window.IECTraining); oe.setStickers(window.IECStickers); oe.setLayouts(PL);
+    return { pack: oe.opponentPack({ chars: chars, roles: roles, coach: window.IECEngine.coachAtLevel(co, opp.clv) }) };
+  }
+
   function run() {
     loadCoachLv();
     var out = $('b-out'), msg = $('b-msg');
@@ -178,7 +238,12 @@
       try {
         var cfg = { optionalTeams: {}, lockIds: lock.slice() };
         var eng = new window.IECEngine.Engine(data.chars, aliases, cfg), res, t0 = Date.now(), m = $('b-mode').value;
-        eng.setZones(ZC, ZS); eng.setTraining(window.IECTraining); eng.setStickers(window.IECStickers);
+        eng.setZones(ZC, ZS); eng.setTraining(window.IECTraining); eng.setStickers(window.IECStickers); eng.setLayouts(PL);
+        var ov = null, oppNote = '';
+        if (opp.on && m !== '5v5') {
+          var op = oppPack(eng); if (op.err) { msg.textContent = op.err; return; }
+          ov = { opponentPack: op.pack }; oppNote = ' Contro l\'avversario (stima): punteggio = confronto per lato + punteggio generale.';
+        }
         if (m === '5v5') {
           if ($('b-f5').value === 'all') {            // la migliore tra tutte le formazioni 5v5
             var allT = [];
@@ -195,13 +260,13 @@
             res = eng.build(pool, eng.rolesFromLayout(f.slots), null);
           }
         } else if ($('b-coach').value === 'all') {
-          res = eng.buildAllCoaches(pool, coaches.filter(function (c) { return lvOf(c.id) > 0; }).map(leveled));
+          res = eng.buildAllCoaches(pool, coaches.filter(function (c) { return lvOf(c.id) > 0; }).map(leveled), ov);
         } else {
           var co = coaches.filter(function (x) { return x.id === $('b-coach').value; })[0];
-          res = eng.build(pool, eng.rolesFromLayout(co.layout), leveled(co));
+          res = eng.build(pool, eng.rolesFromLayout(co.layout), leveled(co), ov);
         }
         var miss = res.missing && res.missing.slots ? ' Attenzione: mancano ' + res.missing.slots + ' personaggi per completare la formazione.' : '';
-        msg.textContent = res.teams.length + ' squadre proposte da ' + res.poolSize + ' personaggi (' + ((Date.now() - t0) / 1000).toFixed(1) + ' s).' + miss;
+        msg.textContent = res.teams.length + ' squadre proposte da ' + res.poolSize + ' personaggi (' + ((Date.now() - t0) / 1000).toFixed(1) + ' s).' + miss + oppNote;
         res.teams.forEach(function (t, i) { out.appendChild(teamBox(t, i + 1)); });
       } catch (e) { msg.textContent = 'Errore nel calcolo: ' + e.message; }
     }, 20);

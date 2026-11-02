@@ -401,6 +401,7 @@
     if (cfg.model === 'duel') {
       var ZM = members.map(function (m, i) { return self.zoneMult(m, coach, opts && opts.slots ? opts.slots[i] : i + 1); });
       var D = this.duelScore(members, SB, PB, out._rm, ZM);
+      out._zm = ZM;
       out.total = D.score; out.parts = D.parts; out.duel = D;
       members.forEach(function (m, i) { var d = self.damageOf(m, SB[i], PB[i]); out.members[i].damage = d === null ? 0 : d; });
     } else if (cfg.model === 'damage') {
@@ -413,11 +414,31 @@
       });
       out.total = tot;
     } else out.total = out.base + out.synergy;
-    delete out._sb; delete out._pb;
+    if (!(opts && opts.keep)) { delete out._sb; delete out._pb; delete out._zm; }
     return out;
   };
 
   function winProb(r, e) { var x = Math.pow(Math.max(0, r), e); return x / (x + 1); }
+  // Tecnica migliore per categoria (kick/technique/block/catch) di ogni membro: { d (potenza di duello), range, name, element }.
+  // opts.shotBlock: tra le tecniche di blocco contano solo quelle con tag «Blocca tiro» (SHOT_BLOCK).
+  Engine.prototype.moveTable = function (members, SB, PB, ZM, opts) {
+    var cfg = this.cfg;
+    return members.map(function (m, i) {
+      var s = m.stats_max || {}, out = {}, sb = SB[i], pb = PB[i];
+      var awk = AWK[m.rarity_grade == null ? 9 : m.rarity_grade] / 2, nat = m.native || m.position, L = m.level || 440;
+      (m.skills || []).forEach(function (k) {
+        var c = SKILLCAT[k.category] || k.category;
+        if (!c || k.power == null || s[c] == null) return;
+        if (opts && opts.shotBlock && c === 'block' && !SHOT_BLOCK[k.name_ja]) return;
+        var stat = Math.max(0, Math.floor(s[c] * awk * ((ZM && ZM[i]) || 1)) + eqAt(nat, c, L) + (sb[c] || 0));
+        var ke = k.element || m.element;     // mosse senza elemento nei dati: si assume quello del personaggio (la maggior parte lo condivide)
+        var power = k.power + (pb[c] || 0) + (pb.all || 0) + (pb['el:' + ke] || 0) + (pb[c + '|el:' + ke] || 0) + (pb['mv:' + k.name_ja] || 0);
+        var d = Math.floor(stat * Math.max(0, power) * 0.01 * (ke === m.element ? cfg.moveElementStab : 1));
+        if (!out[c] || d > out[c].d) out[c] = { d: d, range: k.range, name: k.name_ja, element: ke };
+      });
+      return out;
+    });
+  };
   // Duello = stat (con bonus) x potenza mossa (con bonus) x elemento x 0.01, contro un rivale di riferimento (meta).
   Engine.prototype.duelScore = function (members, SB, PB, RM, ZM) {
     var self = this, cfg = this.cfg, E = cfg.duelExp, W = cfg.duelWeights;
@@ -428,20 +449,7 @@
       var b = cfg.bench[r], m = RM[r] || { stat: 0, power: 0 };
       B[r] = Math.max(1, cfg.bench[r] * lf - (m.stat || 0) * cfg.bench[r] / 30000 - (m.power || 0) * cfg.bench[r] / 330);
     });
-    var best = members.map(function (m, i) {
-      var s = m.stats_max || {}, out = {}, sb = SB[i], pb = PB[i];
-      var awk = AWK[m.rarity_grade == null ? 9 : m.rarity_grade] / 2, nat = m.native || m.position, L = m.level || 440;
-      (m.skills || []).forEach(function (k) {
-        var c = SKILLCAT[k.category] || k.category;
-        if (!c || k.power == null || s[c] == null) return;
-        var stat = Math.max(0, Math.floor(s[c] * awk * ((ZM && ZM[i]) || 1)) + eqAt(nat, c, L) + (sb[c] || 0));
-        var ke = k.element || m.element;     // mosse senza elemento nei dati: si assume quello del personaggio (la maggior parte lo condivide)
-        var power = k.power + (pb[c] || 0) + (pb.all || 0) + (pb['el:' + ke] || 0) + (pb[c + '|el:' + ke] || 0) + (pb['mv:' + k.name_ja] || 0);
-        var d = Math.floor(stat * Math.max(0, power) * 0.01 * (ke === m.element ? cfg.moveElementStab : 1));
-        if (!out[c] || d > out[c].d) out[c] = { d: d, range: k.range, name: k.name_ja };
-      });
-      return out;
-    });
+    var best = this.moveTable(members, SB, PB, ZM);
     function prop(i) {                       // quanto tira (FW sempre, MF solo con tiro da lontano)
       var m = members[i], t = best[i].kick; if (!t) return 0;
       if (m.position === 'FW') return 1;
@@ -474,6 +482,53 @@
     var wsum = W.attack + W.defense + W.dribble + W.block;
     var score = 100 * (W.attack * attack + W.defense * defense + W.dribble * dribble + W.block * block) / wsum;
     return { score: score, parts: { attack: attack, defense: defense, dribble: dribble, block: block }, bench: B, shooters: shooters.slice(0, 3), keeper: keeper, blockers: blockers.slice(0, 2), dribblers: dribblers.slice(0, 3), tacklers: tacklers.slice(0, 4) };
+  };
+
+  // ---------- partita contro una formazione avversaria ----------
+  // Posizioni sul campo (x in 0..1, vista della propria squadra) per tecnico e slot: Engine.setLayouts(pitch_layouts.layouts).
+  // Regola (utente, 3/11): il tiro dell'attaccante che arriva da un lato viene parato dai difensori di QUEL lato; la formazione avversaria è
+  // specchiata (la sua destra blocca la mia sinistra). Quanti difensori provano a fermarlo: 2, poi il portiere (osservato dall'utente).
+  // Il resto (probabilità di parata = winProb del rapporto di potenza, vantaggio di elemento ±0,1) è una stima del sito, non verificata.
+  Engine.prototype.setLayouts = function (L) { this.layouts = L || null; };
+  Engine.prototype.slotX = function (coachId, slot) { var l = this.layouts && coachId && this.layouts[coachId]; return l && l[slot] ? l[slot][0] : null; };
+  function elemMult(att, def) { return att && def && BEATS[att] === def ? 1.1 : (att && def && BEATS[def] === att ? 0.9 : 1); }
+  // side = { members, tab (moveTable con shotBlock), xs (x per membro, vista propria o null) }
+  Engine.prototype.attackChance = function (att, def) {
+    var cfg = this.cfg, E = cfg.duelExp, SW = [0.55, 0.3, 0.15], defs = [], keeper = null, shooters = [];
+    def.members.forEach(function (m, j) {
+      var b = def.tab[j];
+      if (m.position === 'GK' && b.catch) keeper = b.catch;
+      else if (m.position === 'DF' && b.block) defs.push({ j: j, t: b.block, x: def.xs && def.xs[j] != null ? 1 - def.xs[j] : null });   // x nella vista di chi attacca
+    });
+    att.members.forEach(function (m, i) {
+      var t = att.tab[i].kick; if (!t) return;
+      var r = t.range == null ? 0 : t.range, pr = m.position === 'FW' ? 1 : m.position === 'MF' ? (r >= 29 ? 0.9 : r >= 23 ? 0.6 : 0.25) : (r >= 29 ? 0.3 : 0.1);
+      if (pr < 0.5) return;
+      var x = att.xs && att.xs[i] != null ? att.xs[i] : null, w = Math.min(1, pr + 0.1) * (m.position === 'FW' ? 1 : 0.6);
+      var cand = defs.slice();
+      if (x !== null) cand.sort(function (a, b) { return (a.x === null ? 9 : Math.abs(a.x - x)) - (b.x === null ? 9 : Math.abs(b.x - x)); });
+      else cand.sort(function (a, b) { return b.t.d - a.t.d; });
+      var pass = 1, names = [];
+      cand.slice(0, 2).forEach(function (b) {
+        pass *= 1 - winProb(b.t.d / Math.max(1, t.d * elemMult(t.element, b.t.element)), E); names.push(def.members[b.j].id);
+      });
+      pass *= 1 - (keeper ? winProb(keeper.d / Math.max(1, t.d * elemMult(t.element, keeper.element)), E) : 0);
+      shooters.push({ id: m.id, w: w, goal: pass, d: t.d, blockers: names });
+    });
+    shooters.sort(function (a, b) { return b.w * b.goal - a.w * a.goal; });
+    var tot = 0; shooters.slice(0, 3).forEach(function (x, k) { tot += SW[k] * x.w * x.goal; });
+    return { chance: tot, shooters: shooters.slice(0, 3) };
+  };
+  // Differenza tra le occasioni da gol della mia squadra e quelle dell'avversario (-100..100).
+  Engine.prototype.matchup = function (mine, opp) {
+    var a = this.attackChance(mine, opp), b = this.attackChance(opp, mine);
+    return { score: 100 * (a.chance - b.chance), mine: a, theirs: b };
+  };
+  // Prepara la squadra avversaria: opp = { chars: [personaggio (già al livello/grado scelto)], roles: [ruolo per slot], coach: tecnico (con livello) o null }
+  Engine.prototype.opponentPack = function (opp) {
+    var self = this, ms = opp.chars.map(function (c, i) { return self.member(c, opp.roles[i]); }), sl = ms.map(function (_, i) { return i + 1; });
+    var r = this.scoreTeam(ms, { coach: opp.coach || null, slots: sl, keep: true });
+    return { members: ms, tab: this.moveTable(ms, r._sb, r._pb, r._zm, { shotBlock: true }), xs: sl.map(function (k) { return self.slotX(opp.coach && opp.coach.id, k); }), total: r.total, coachId: opp.coach && opp.coach.id };
   };
 
   /* ---------- prove boss ---------- */
@@ -640,12 +695,19 @@
 
   Engine.prototype._build = function (poolAll, roles, coach) {
     var self = this, cfg = this.cfg, rand = rng(cfg.seed), n = roles.length;
-    function ev(team) {
-      var ms = [];
-      var sl = [];
+    var opp = cfg.opponentPack || null;
+    // valuta una squadra: senza avversario = punteggio a duelli contro il rivale di riferimento; con avversario = mix col confronto per lato
+    function evalTeam(team) {
+      var ms = [], sl = [];
       for (var i = 0; i < n; i++) if (team[i]) { ms.push(self.member(team[i], roles[i])); sl.push(i + 1); }
-      return self.scoreTeam(ms, { coach: coach, slots: sl }).total;
+      var r = self.scoreTeam(ms, { coach: coach, slots: sl, keep: !!opp });
+      if (!opp) return { v: r.total, r: r };
+      var mine = { members: ms, tab: self.moveTable(ms, r._sb, r._pb, r._zm, { shotBlock: true }), xs: sl.map(function (k) { return self.slotX(coach && coach.id, k); }) };
+      var M = self.matchup(mine, opp);
+      delete r._sb; delete r._pb; delete r._zm; r.matchup = M;
+      return { v: (cfg.oppMix === undefined ? 0.25 : cfg.oppMix) * r.total + M.score, r: r };
     }
+    function ev(team) { return evalTeam(team).v; }
     var solo = {};
     function soloOf(c, role) {
       var k = c.id + '|' + role;
@@ -653,7 +715,11 @@
       return solo[k];
     }
     // pool ridotto
-    var ranked = poolAll.slice().sort(function (a, b) { return soloOf(b, b.position) - soloOf(a, a.position); });
+    // Ruoli liberi (default): il pool ridotto sceglie i migliori per il ruolo in cui rendono di più tra quelli della formazione, non solo per il proprio ruolo.
+    var distinct = roles.filter(function (r, i) { return roles.indexOf(r) === i; });
+    function soloBest(c) { if (cfg.freeRoles === false) return soloOf(c, c.position); var b = -Infinity; distinct.forEach(function (r) { var v = soloOf(c, r); if (v > b) b = v; }); return b; }
+    var bestSolo = {}; poolAll.forEach(function (c) { bestSolo[c.id] = soloBest(c); });
+    var ranked = poolAll.slice().sort(function (a, b) { return bestSolo[b.id] - bestSolo[a.id]; });
     var pool = ranked.slice(0, cfg.poolLimit), inPool = {};
     pool.forEach(function (c) { inPool[c.id] = true; });
     var conds = coach ? coach.formation_condition : [];
@@ -726,10 +792,8 @@
       var key = ids.join(',');
       if (found[key]) continue;
       found[key] = true;
-      var ms = team.map(function (c, i) { return c ? self.member(c, roles[i]) : null; }).filter(Boolean);
-      var sl2 = []; team.forEach(function (c, i) { if (c) sl2.push(i + 1); });
-      var detail = self.scoreTeam(ms, { coach: coach, slots: sl2 });
-      results.push({ team: team.filter(Boolean), slots: team.map(function (c, i) { return { slot: i + 1, role: roles[i], char: c }; }), ids: ids.slice().sort(), detail: detail, score: detail.total, coach: coach ? coach.id : null });
+      var fin = evalTeam(team), detail = fin.r;
+      results.push({ team: team.filter(Boolean), slots: team.map(function (c, i) { return { slot: i + 1, role: roles[i], char: c }; }), ids: ids.slice().sort(), detail: detail, score: opp ? fin.v : detail.total, coach: coach ? coach.id : null });
     }
     results.sort(function (a, b) { return b.score - a.score; });
     var picked = [];
