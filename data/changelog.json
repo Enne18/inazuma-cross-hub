@@ -63,17 +63,17 @@
    "version": "2.3",
    "date": "2026-11-03",
    "title": {
-    "it": "Torri lotta",
-    "en": "Battle towers",
-    "ja": "バトルタワー"
+    "it": "Torri lotta (pagina dedicata)",
+    "en": "Battle towers (own page)",
+    "ja": "バトルタワー（専用ページ）"
    },
    "icon": "🗼",
    "items": [
     {
      "icon": "🗼",
-     "it": "Team Builder: nuovo menu «Torre lotta» con le 6 torri 5 contro 5 e le 4 torri 11 contro 11. Scegliendone una il Team Builder passa alla modalità giusta e usa solo i personaggi che rispettano la regola dei tag.",
-     "en": "Team Builder: new \"Battle tower\" menu with the 6 five-a-side and 4 eleven-a-side towers. Picking one switches to the right mode and uses only characters that satisfy the tag rule.",
-     "ja": "チームビルダー：「バトルタワー」メニューを追加（5vs5が6種、11vs11が4種）。選ぶと適切なモードに切り替わり、タグ条件を満たすキャラだけを使用します。"
+     "it": "Nuova pagina «Torri lotta» dopo Boss, con le 6 torri 5 contro 5 e le 4 torri 11 contro 11. La torre fissa la modalità (5 contro 5 o 11 contro 11) e il calcolo usa solo i personaggi che rispettano la regola dei tag.",
+     "en": "New \"Battle towers\" page after Bosses, with the 6 five-a-side and 4 eleven-a-side towers. The tower fixes the mode and the calculation only uses characters that satisfy the tag rule.",
+     "ja": "ボスの後に新ページ「バトルタワー」を追加（5vs5が6種、11vs11が4種）。タワーがモードを固定し、タグ条件を満たすキャラだけで計算します。"
     }
    ]
   },
