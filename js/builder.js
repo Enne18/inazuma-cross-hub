@@ -181,21 +181,68 @@
   function loadOpp() { try { var o = JSON.parse(window.localStorage.getItem(KEY_OPP) || 'null'); if (o && typeof o === 'object') { opp = { on: !!o.on, coach: o.coach || opp.coach, lv: +o.lv || 350, clv: +o.clv || 10, rar: o.rar === undefined ? 9 : +o.rar, slots: o.slots || {} }; } } catch (e) { /* ignora */ } }
   function saveOpp() { try { window.localStorage.setItem(KEY_OPP, JSON.stringify(opp)); } catch (e) { /* ignora */ } }
   function oppCoach() { return coaches.filter(function (c) { return c.id === opp.coach; })[0] || null; }
-  function renderOppSlots() {
-    var box = $('b-opp-slots'), co = oppCoach(); box.textContent = '';
-    if (!co) return;
-    window.IECEngine.Engine.prototype.rolesFromLayout.call(null, co.layout).forEach(function (role, i) {
-      var row = el('label', 'b-opp-slot'), inp = el('input'), id = opp.slots[i + 1];
-      row.appendChild(el('span', 'slotn', (i + 1) + ' · ' + role));
-      inp.setAttribute('list', 'b-names'); inp.placeholder = 'scrivi un nome e scegli…'; inp.autocomplete = 'off';
-      inp.value = id && byId[id] ? label(byId[id]) : '';
-      inp.addEventListener('change', function () {
-        var m = this.value.match(/\[(\d+)\]\s*$/);
-        if (m && byId[m[1]]) opp.slots[i + 1] = m[1]; else if (!this.value) delete opp.slots[i + 1];
-        saveOpp();
+  // Campo dell'avversario: gli slot stanno nelle posizioni del tecnico scelto (pitch_layouts.json); un clic apre il selettore.
+  var picker = null;
+  function closePicker() { if (picker) { picker.remove(); picker = null; document.removeEventListener('keydown', onPickKey); } }
+  function onPickKey(e) { if (e.key === 'Escape') closePicker(); }
+  function openPicker(slot, role) {
+    closePicker();
+    var ov = el('div', 'b-pick-ov'), box = el('div', 'b-pick-box'), q = el('input'), list = el('div', 'b-pick-list');
+    ov.addEventListener('click', function (e) { if (e.target === ov) closePicker(); });
+    box.appendChild(el('strong', null, 'Slot ' + slot + ' · ' + role));
+    q.type = 'search'; q.placeholder = 'Cerca per nome…'; q.setAttribute('aria-label', 'Cerca personaggio'); box.appendChild(q);
+    var acts = el('div', 'b-pick-act'), rm = el('button', 'btn small', 'Svuota lo slot'), cl = el('button', 'btn small', 'Chiudi');
+    rm.type = 'button'; cl.type = 'button';
+    rm.addEventListener('click', function () { delete opp.slots[slot]; saveOpp(); renderOppPitch(); closePicker(); });
+    cl.addEventListener('click', closePicker); acts.appendChild(rm); acts.appendChild(cl); box.appendChild(acts);
+    var all = data.chars.slice().sort(function (x, y) { return (y.rarity - x.rarity) || ((x.name_en || x.name_ja) < (y.name_en || y.name_ja) ? -1 : 1); });
+    function paint() {
+      var t = q.value.trim().toLowerCase(), shown = 0; list.textContent = '';
+      all.forEach(function (c) {
+        if (shown >= 60) return;
+        if (t && (label(c) + ' ' + c.name_ja).toLowerCase().indexOf(t) < 0) return;
+        var row = el('button', 'b-pick-row'); row.type = 'button'; row.style.setProperty('--el', 'var(--' + c.element + ')');
+        row.appendChild(window.IECUI.avatar(c, 'sm'));
+        var tx = el('span', 'b-pick-tx'); tx.appendChild(el('b', null, nm(c) + (c.version ? ' (' + c.version + ')' : '')));
+        tx.appendChild(el('small', 'muted', data.meta.elements[c.element].it + ' · ' + c.position + ' · ' + '★'.repeat(c.rarity) + (c.position !== role ? ' · fuori ruolo' : '')));
+        row.appendChild(tx);
+        row.addEventListener('click', function () { opp.slots[slot] = c.id; saveOpp(); renderOppPitch(); closePicker(); });
+        list.appendChild(row); shown++;
       });
-      row.appendChild(inp); box.appendChild(row);
-    });
+      if (!shown) list.appendChild(el('p', 'muted small', 'Nessun personaggio trovato.'));
+    }
+    q.addEventListener('input', paint); paint();
+    box.appendChild(list); ov.appendChild(box); document.body.appendChild(ov); picker = ov;
+    document.addEventListener('keydown', onPickKey); q.focus();
+  }
+  function renderOppPitch() {
+    var box = $('b-opp-pitch'), co = oppCoach(); box.textContent = '';
+    if (!co) return;
+    var roles = window.IECEngine.Engine.prototype.rolesFromLayout.call(null, co.layout), pos = PL && PL[co.id], pitch = el('div', 'pitch' + (pos ? ' abs' : '')), filled = 0;
+    if (pos) { pitch.appendChild(el('div', 'pbox ptop')); pitch.appendChild(el('div', 'pbox pbot')); pitch.appendChild(el('div', 'pmid')); pitch.appendChild(el('div', 'pcirc')); }
+    function token(i) {
+      var slot = i + 1, role = roles[i], id = opp.slots[slot], c = id && byId[id], p = el('button', 'pt b-opp-tok' + (c ? '' : ' empty')); p.type = 'button';
+      if (c) {
+        filled++; p.style.setProperty('--el', 'var(--' + c.element + ')');
+        p.appendChild(window.IECUI.avatar(c, 'md'));
+        p.appendChild(el('span', 'pname', nm(c)));
+        p.appendChild(el('small', 'pinfo', (c.position !== role ? 'nativo ' + c.position + ' · ' : '') + data.meta.elements[c.element].it));
+        p.title = nm(c) + ' · slot ' + slot + ' (' + role + ') — clic per cambiare';
+      } else {
+        p.appendChild(el('span', 'b-opp-add', '+')); p.appendChild(el('span', 'b-opp-role r-' + role, role));
+        p.title = 'Slot ' + slot + ' (' + role + ') — clic per scegliere il giocatore';
+      }
+      p.appendChild(el('span', 'slotn', String(slot)));
+      p.addEventListener('click', function () { openPicker(slot, role); });
+      return p;
+    }
+    if (pos) {
+      roles.forEach(function (_, i) { var xy = pos[i + 1], t = token(i); if (xy) { t.style.left = (xy[0] * 100) + '%'; t.style.top = (xy[1] * 100) + '%'; } pitch.appendChild(t); });
+    } else {
+      ORDER.forEach(function (role) { var row = el('div', 'prow'); roles.forEach(function (r, i) { if (r === role) row.appendChild(token(i)); }); if (row.childNodes.length) pitch.appendChild(row); });
+    }
+    box.appendChild(pitch);
+    $('b-opp-count').textContent = filled + ' di ' + roles.length + ' slot compilati' + (filled < roles.length && opp.on ? ' — completa tutti gli slot per usarlo nel calcolo.' : '.');
   }
   function setupOpp() {
     loadOpp();
@@ -203,13 +250,13 @@
     $('b-opp-coach').value = oppCoach() ? opp.coach : coaches[0].id; opp.coach = $('b-opp-coach').value;
     (window.IECData.RARITY_NAMES || []).forEach(function (n, i) { var o = el('option', null, n); o.value = String(i); $('b-opp-rar').appendChild(o); });
     $('b-opp-rar').value = String(opp.rar); $('b-opp-on').checked = opp.on; $('b-opp-clv').value = opp.clv; $('b-opp-lv').value = opp.lv;
-    $('b-opp-on').addEventListener('change', function () { opp.on = this.checked; saveOpp(); });
+    $('b-opp-on').addEventListener('change', function () { opp.on = this.checked; saveOpp(); renderOppPitch(); });
     $('b-opp-clv').addEventListener('change', function () { opp.clv = Math.max(1, Math.min(10, +this.value || 10)); saveOpp(); });
     $('b-opp-lv').addEventListener('change', function () { opp.lv = Math.max(1, Math.min(440, +this.value || 350)); saveOpp(); });
     $('b-opp-rar').addEventListener('change', function () { opp.rar = +this.value; saveOpp(); });
-    $('b-opp-coach').addEventListener('change', function () { opp.coach = this.value; opp.slots = {}; saveOpp(); renderOppSlots(); });
-    renderOppSlots();
-    $('b-opp').open = opp.on;
+    $('b-opp-coach').addEventListener('change', function () { opp.coach = this.value; saveOpp(); renderOppPitch(); });   // gli slot restano: cambia solo dove sono sul campo
+    $('b-opp-clear').addEventListener('click', function () { opp.slots = {}; saveOpp(); renderOppPitch(); });
+    renderOppPitch();
   }
   // Squadra avversaria pronta per il motore, o un messaggio d'errore
   function oppPack(eng0) {

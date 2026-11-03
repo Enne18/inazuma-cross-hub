@@ -31,10 +31,17 @@
     $('bo-target-wrap').hidden = kind() !== 'daily';
     onBoss();
   }
+  // Difficoltà (potenza del boss): le tabelle di attacco e difesa sono diverse; cambiando boss resta scelta la stessa difficoltà (predefinita «Senza fine»)
+  var KEY_DIFF = 'iecross.bossdiff.v1', diffName = null;
+  function loadDiff() { try { diffName = window.localStorage.getItem(KEY_DIFF); } catch (e) { diffName = null; } }
   function onBoss() {
     if (kind() !== 'daily') return;
-    var b = B.daily.bosses[+$('bo-boss').value];
-    $('bo-target').value = String(B.daily.target[b.mode]);
+    var b = B.daily.bosses[+$('bo-boss').value], tab = (B.daily.difficulty && B.daily.difficulty[b.mode]) || [['Senza fine', B.daily.target[b.mode]]], sel = $('bo-target');
+    var keep = diffName || tab[tab.length - 1][0];
+    if (!tab.some(function (r) { return r[0] === keep; })) keep = tab[tab.length - 1][0];
+    sel.textContent = '';
+    tab.forEach(function (r) { var o = el('option', null, r[0] + ' · ' + fmt(r[1])); o.value = String(r[1]); o.setAttribute('data-name', r[0]); sel.appendChild(o); });
+    for (var i = 0; i < sel.options.length; i++) if (sel.options[i].getAttribute('data-name') === keep) sel.selectedIndex = i;
   }
 
   // riquadro "oggi": boss in corso, quanto manca al cambio (22:00 ora di Roma), boss di domani
@@ -141,9 +148,10 @@
     if (ready || !(window.IEC && window.IEC.loaded)) return;
     data = window.IEC.state; data.chars.forEach(function (c) { byId[c.id] = c; });
     Promise.all([getJSON('data/bosses.json'), getJSON('data/tag_aliases.json')]).then(function (r) {
-      B = r[0]; aliases = r[1]; ready = true;
+      B = r[0]; aliases = r[1]; ready = true; loadDiff();
       $('bo-kind').addEventListener('change', fillBosses);
       $('bo-boss').addEventListener('change', onBoss);
+      $('bo-target').addEventListener('change', function () { var o = this.options[this.selectedIndex]; diffName = o ? o.getAttribute('data-name') : null; try { window.localStorage.setItem(KEY_DIFF, diffName || ''); } catch (e) { /* ignora */ } });
       $('bo-run').addEventListener('click', run);
       fillBosses(); renderToday();
       setInterval(function () { if (!$('boss').hidden) renderToday(); }, 60000);

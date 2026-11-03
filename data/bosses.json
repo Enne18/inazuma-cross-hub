@@ -65,7 +65,69 @@
     "tech": "Colpo Supremo Makina"
    }
   ],
-  "field_bonus": 20
+  "field_bonus": 20,
+  "difficulty": {
+   "defense": [
+    [
+     "Principiante",
+     500
+    ],
+    [
+     "Normale",
+     2500
+    ],
+    [
+     "Difficile",
+     12000
+    ],
+    [
+     "Molto difficile",
+     35000
+    ],
+    [
+     "Inferno",
+     120000
+    ],
+    [
+     "Estremo",
+     200000
+    ],
+    [
+     "Senza fine",
+     500000
+    ]
+   ],
+   "attack": [
+    [
+     "Principiante",
+     500
+    ],
+    [
+     "Normale",
+     3000
+    ],
+    [
+     "Difficile",
+     15000
+    ],
+    [
+     "Molto difficile",
+     50000
+    ],
+    [
+     "Inferno",
+     150000
+    ],
+    [
+     "Estremo",
+     250000
+    ],
+    [
+     "Senza fine",
+     650000
+    ]
+   ]
+  }
  },
  "club": {
   "attempts": 3,

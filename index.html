@@ -18,7 +18,7 @@
   <title>Inazuma Eleven Cross Hub</title>
   <meta name="description" content="Catalogo non ufficiale dei personaggi di Inazuma Eleven Cross: elementi, statistiche, tecniche e passive.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%231f6feb'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="css/style.css?v=57">
+  <link rel="stylesheet" href="css/style.css?v=58">
 </head>
 <body>
   <header class="top">
@@ -86,6 +86,8 @@
       <div id="co-grid" class="grid"></div>
     </section>
     <section id="builder" hidden>
+    <div class="b-layout">
+    <div class="b-main">
       <p class="muted">Propone le migliori squadre con i personaggi che hai segnato in "In possesso" (pagina Personaggi). Il punteggio usa la formula di potenza verificata (statistica, risveglio, equipaggiamento, passive, elemento) contro un rivale di riferimento: è una stima, non il risultato esatto di una partita. Considera tecnico (passiva sempre attiva, passiva di formazione solo se tutte le condizioni sono soddisfatte), ruoli liberi e 5v5 senza tecnico.</p>
       <div class="b-controls">
         <label>Modalità
@@ -109,21 +111,25 @@
           <span id="b-ex-chips" class="chips"></span></div>
         <datalist id="b-names"></datalist>
       </div>
-      <details id="b-opp" class="b-opp">
-        <summary>Avversario (facoltativo): cerca la squadra migliore per batterlo</summary>
-        <p class="muted small">Inserisci la formazione avversaria (dalla schermata prima della partita): tecnico, livello dei giocatori e i giocatori slot per slot. Il tiro di un attaccante viene parato dai due difensori del suo lato e poi dal portiere; la formazione avversaria è specchiata (la sua destra blocca la mia sinistra). Grado, allenamenti e adesivi dell'avversario non si vedono: si assume lo stesso grado per tutti e nessun allenamento. Il resto è una stima del sito, non un valore del gioco. Vale solo per l'11 contro 11.</p>
-        <label class="chk"><input id="b-opp-on" type="checkbox"> Usa l'avversario nel calcolo</label>
-        <div class="b-controls">
-          <label>Tecnico avversario <select id="b-opp-coach"></select></label>
-          <label>Livello tecnico <input id="b-opp-clv" type="number" min="1" max="10" value="10"></label>
-          <label>Livello giocatori <input id="b-opp-lv" type="number" min="1" max="440" value="350"></label>
-          <label>Grado <select id="b-opp-rar"></select></label>
-        </div>
-        <div id="b-opp-slots" class="b-opp-slots"></div>
-      </details>
       <p><button id="b-run" type="button" class="btn primary">Calcola le migliori squadre</button></p>
       <p id="b-msg" class="muted" aria-live="polite"></p>
       <div id="b-out"></div>
+        </div>
+      <aside id="b-opp" class="b-oppcol">
+        <div class="b-opp-h"><strong>Avversario</strong>
+          <label class="chk"><input id="b-opp-on" type="checkbox"> Usa nel calcolo</label>
+          <button id="b-opp-clear" type="button" class="btn small">Svuota</button></div>
+        <p class="muted small">Clicca uno slot per scegliere il giocatore avversario (il campo cambia col tecnico). Il tiro di un attaccante viene parato dai due difensori del suo lato e poi dal portiere; la formazione avversaria è specchiata. Grado, allenamenti e adesivi non si vedono: stesso grado per tutti e nessun allenamento. Stima del sito, non un valore del gioco. Solo per l'11 contro 11.</p>
+        <div class="b-opp-ctl">
+          <label>Tecnico <select id="b-opp-coach"></select></label>
+          <label>Liv. tecnico <input id="b-opp-clv" type="number" min="1" max="10" value="10"></label>
+          <label>Liv. giocatori <input id="b-opp-lv" type="number" min="1" max="440" value="350"></label>
+          <label>Grado <select id="b-opp-rar"></select></label>
+        </div>
+        <div id="b-opp-pitch"></div>
+        <p id="b-opp-count" class="muted small"></p>
+      </aside>
+    </div>
     </section>
     <section id="boss" hidden>
         <h2>Boss</h2>
@@ -133,7 +139,7 @@
           <label class="field"><span>Tipo di prova</span><select id="bo-kind"><option value="daily">Prova giornaliera</option><option value="club">Boss del club</option></select></label>
           <label class="field"><span>Boss</span><select id="bo-boss"></select></label>
           <label class="field"><span>Giocatori</span><select id="bo-pool"><option value="owned">Solo la mia collezione</option><option value="all">Tutti i personaggi</option></select></label>
-          <label class="field" id="bo-target-wrap"><span>Potenza del boss (Senza fine)</span><input type="number" id="bo-target" min="0" step="1000"></label>
+          <label class="field" id="bo-target-wrap"><span>Difficoltà (potenza del boss)</span><select id="bo-target"></select></label>
         </div>
         <p><button id="bo-run" class="btn primary" type="button">Calcola la squadra</button> <span id="bo-msg" class="muted small"></span></p>
         <div id="bo-out"></div>
@@ -143,24 +149,24 @@
   <footer class="wrap muted small">
     Sito non ufficiale, fatto da fan. Inazuma Eleven è un marchio di LEVEL-5. Dati principali da <a href="https://inazumaelevencrosshub.com" target="_blank" rel="noopener">Inazuma Eleven Cross HUB</a>; riferimenti da
     <a href="https://appmedia.jp/inazuma-cross" target="_blank" rel="noopener">AppMedia</a> e
-    <a href="https://game8.jp/inazuma-cross" target="_blank" rel="noopener">Game8</a>; possono contenere errori. <span id="build-ver" class="muted">Versione 2.1</span>
+    <a href="https://game8.jp/inazuma-cross" target="_blank" rel="noopener">Game8</a>; possono contenere errori. <span id="build-ver" class="muted">Versione 2.2</span>
   </footer>
 
-  <script src="js/i18n.js?v=57"></script>
-  <script src="js/passives.js?v=57"></script>
-  <script src="js/training.js?v=57"></script>
-  <script src="js/stickers.js?v=57"></script>
-  <script src="js/engine.js?v=57"></script>
-  <script src="js/iecdata.js?v=57"></script>
-  <script src="js/ui.js?v=57"></script>
-  <script src="js/catalog.js?v=57"></script>
-  <script src="js/builder.js?v=57"></script>
-  <script src="js/coaches.js?v=57"></script>
-  <script src="js/boss.js?v=57"></script>
-  <script src="js/detail.js?v=57"></script>
-  <script src="js/sync.js?v=57"></script>
-  <script src="js/syncui.js?v=57"></script>
-  <script src="js/news.js?v=57"></script>
+  <script src="js/i18n.js?v=58"></script>
+  <script src="js/passives.js?v=58"></script>
+  <script src="js/training.js?v=58"></script>
+  <script src="js/stickers.js?v=58"></script>
+  <script src="js/engine.js?v=58"></script>
+  <script src="js/iecdata.js?v=58"></script>
+  <script src="js/ui.js?v=58"></script>
+  <script src="js/catalog.js?v=58"></script>
+  <script src="js/builder.js?v=58"></script>
+  <script src="js/coaches.js?v=58"></script>
+  <script src="js/boss.js?v=58"></script>
+  <script src="js/detail.js?v=58"></script>
+  <script src="js/sync.js?v=58"></script>
+  <script src="js/syncui.js?v=58"></script>
+  <script src="js/news.js?v=58"></script>
   <div class="fab" id="fab">
     <a class="fab-btn fab-gh" href="https://github.com/enne18/inazuma-cross-hub" target="_blank" rel="noopener noreferrer" aria-label="Il progetto su GitHub" title="Il progetto su GitHub">
       <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>

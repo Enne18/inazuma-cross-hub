@@ -508,10 +508,26 @@ main.wrap { padding-top: 26px; }
 .hc-rec { min-width: 0; overflow-wrap: anywhere; }
 .hc-rec .hc-move { grid-template-columns: minmax(0, 1fr); }
 .hc-rec .hc-move .mname { white-space: normal; overflow: visible; text-overflow: clip; max-width: none; }
-/* Tappa 54: avversario nel Team Builder */
-.b-opp { margin: 8px 0; padding: 8px 10px; border: 1px dashed var(--line); border-radius: 8px; }
-.b-opp > summary { cursor: pointer; font-weight: 600; }
-.b-opp-slots { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 6px; margin-top: 8px; }
-.b-opp-slot { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 6px; align-items: center; }
-.b-opp-slot input { min-width: 0; }
+/* Tappa 54: avversario nel Team Builder (campo a destra, le mie squadre a sinistra) */
 .b-match { margin: 4px 0 8px; font-size: .88rem; }
+
+.b-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 380px); gap: 16px; align-items: start; }
+.b-main { min-width: 0; }
+.b-oppcol { position: sticky; top: 8px; border: 1px solid var(--line); border-radius: 10px; padding: 10px; background: var(--panel); min-width: 0; max-height: calc(100vh - 16px); overflow: auto; }
+.b-opp-h { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
+.b-opp-ctl { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 6px 0; }
+.b-opp-ctl label { display: grid; gap: 2px; font-size: .78rem; color: var(--muted); min-width: 0; }
+.b-opp-ctl label:first-child { grid-column: 1 / -1; }
+.b-opp-ctl select, .b-opp-ctl input { min-width: 0; }
+@media (max-width: 1000px) { .b-layout { grid-template-columns: 1fr; } .b-oppcol { position: static; max-height: none; } }
+button.pt { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; }
+.pt.b-opp-tok.empty .b-opp-add { width: 50px; height: 50px; border-radius: 50%; border: 2px dashed rgba(255,255,255,.85); background: rgba(8,16,30,.35); color: #fff; font-size: 1.6rem; line-height: 46px; text-align: center; }
+.pt.b-opp-tok .b-opp-role { margin-top: 4px; background: rgba(8,16,30,.82); color: #fff; font-size: .66rem; font-weight: 700; border-radius: 6px; padding: 0 6px; }
+.b-oppcol .pitch.abs { max-width: 100%; }
+.b-pick-ov { position: fixed; inset: 0; background: rgba(0,0,0,.55); display: flex; align-items: center; justify-content: center; z-index: 50; padding: 12px; }
+.b-pick-box { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 12px; padding: 12px; width: min(460px, 100%); max-height: min(80vh, 640px); display: grid; grid-template-rows: auto auto auto minmax(0, 1fr); gap: 8px; }
+.b-pick-act { display: flex; gap: 8px; justify-content: space-between; }
+.b-pick-list { overflow: auto; display: grid; gap: 4px; align-content: start; }
+.b-pick-row { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px; align-items: center; text-align: left; padding: 4px 6px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.b-pick-row:hover { border-color: var(--el, var(--line)); background: color-mix(in srgb, var(--el, #888) 12%, transparent); }
+.b-pick-tx { display: grid; min-width: 0; }

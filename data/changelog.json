@@ -60,6 +60,30 @@
  ],
  "releases": [
   {
+   "version": "2.2",
+   "date": "2026-11-03",
+   "title": {
+    "it": "Avversario sul campo e difficoltà dei boss",
+    "en": "Opponent on the pitch and boss difficulty",
+    "ja": "対戦相手をフィールドで指定・ボス難易度"
+   },
+   "icon": "🏟️",
+   "items": [
+    {
+     "icon": "🏟️",
+     "it": "Team Builder: a destra resta fisso il campo dell'avversario; clicca uno slot per scegliere il giocatore (con immagine). Gli slot si spostano in base al tecnico scelto. A sinistra restano le tue squadre.",
+     "en": "Team Builder: the opponent's pitch stays on the right; click a slot to pick the player (with picture). Slots move with the chosen coach. Your teams stay on the left.",
+     "ja": "チームビルダー：右側に相手のフィールドを固定表示。スロットをクリックして選手（画像付き）を選択。コーチに合わせてスロット位置が変わります。左側にあなたのチーム。"
+    },
+    {
+     "icon": "🎚️",
+     "it": "Boss: menu a tendina della difficoltà (da Principiante a Senza fine) con le potenze diverse per le prove di attacco e di difesa; cambiando boss resta la stessa difficoltà. Predefinita: Senza fine.",
+     "en": "Bosses: a difficulty drop-down (Beginner to Endless) with different powers for attack and defense trials; the same difficulty stays selected when you change boss. Default: Endless.",
+     "ja": "ボス：難易度のプルダウン（初級〜エンドレス）。攻撃と防衛で威力が異なり、ボスを変えても同じ難易度のまま。初期値はエンドレス。"
+    }
+   ]
+  },
+  {
    "version": "2.1",
    "date": "2026-11-03",
    "title": {
