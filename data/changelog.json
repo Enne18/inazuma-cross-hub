@@ -155,9 +155,9 @@
     },
     {
      "icon": "🎯",
-     "it": "Boss giornaliero: le tecniche con vantaggio di elemento ricevono +22 di potenza (ricavato da 6 prove reali); i totali tornano entro lo 0,1% del gioco.",
-     "en": "Daily boss: moves with an element advantage get +22 power (derived from 6 real trials); totals now match the game within 0.1%.",
-     "ja": "デイリーボス：属性有利の技に威力+22（実測6回から算出）。ゲーム内の数値との差は0.1%以内。"
+     "it": "Boss giornaliero: le tecniche con vantaggio di elemento ricevono +20 di potenza (valore indicato dalla fonte; 6 prove reali tornano entro lo 0,4%).",
+     "en": "Daily boss: moves with an element advantage get +20 power (value given by the source; 6 real trials match within 0.4%).",
+     "ja": "デイリーボス：属性有利の技に威力+20（情報源の値。実測6回との差は0.4%以内）。"
     }
    ]
   },

@@ -34,7 +34,7 @@
     "name": "Riccardo Di Rigo",
     "mode": "defense",
     "element": "Forest",
-    "tech": null
+    "tech": "Tiro Sonoro"
    },
    {
     "id": "d4",
@@ -65,7 +65,7 @@
     "tech": "Colpo Supremo Makina"
    }
   ],
-  "field_bonus": 22
+  "field_bonus": 20
  },
  "club": {
   "attempts": 3,
