@@ -16,17 +16,18 @@
   function pn(n) { var P = window.IECPassives, L = window.IECI18N ? window.IECI18N.lang() : 'it'; if (!P || L === 'ja' || !n) return n; return P.trName(n, L) || n; }
   function nm(c) { var b = (window.IEC && window.IEC.state.byId[c.id]) || c; return window.IECI18N ? window.IECI18N.primaryName(b) : (b.name_en || b.name_ja); }
 
-  var coaches = [], f5 = [], PL = null, ZC = {}, ZS = {};
+  var coaches = [], f5 = [], PL = null, ZC = {}, ZS = {}, towers = [];
   function init() {
     if (data) return;
     data = window.IEC.state;
     data.chars.forEach(function (c) { byId[c.id] = c; });
-    Promise.all([getJSON('data/coaches.json'), getJSON('data/tag_aliases.json'), getJSON('data/pitch_layouts.json').catch(function () { return { layouts: {} }; }), getJSON('data/zones.json').catch(function () { return { zones: {} }; }), getJSON('data/zone_slots.json').catch(function () { return { slots: {} }; })]).then(function (r) {
-      PL = r[2].layouts; ZC = r[3].zones; ZS = r[4].slots; coaches = r[0].coaches; f5 = r[0].five_vs_five_formations.formations; aliases = r[1];
+    Promise.all([getJSON('data/coaches.json'), getJSON('data/tag_aliases.json'), getJSON('data/pitch_layouts.json').catch(function () { return { layouts: {} }; }), getJSON('data/zones.json').catch(function () { return { zones: {} }; }), getJSON('data/zone_slots.json').catch(function () { return { slots: {} }; }), getJSON('data/battle_towers.json').catch(function () { return { towers: [] }; })]).then(function (r) {
+      PL = r[2].layouts; ZC = r[3].zones; ZS = r[4].slots; towers = r[5].towers || []; coaches = r[0].coaches; f5 = r[0].five_vs_five_formations.formations; aliases = r[1];
       $('b-mode').addEventListener('change', onMode);
       $('b-run').addEventListener('click', run);
       setupPick();
       setupOpp();
+      setupTower();
       loadCoachLv();
       onMode();
     }).catch(function (e) { $('b-msg').textContent = 'Impossibile caricare i dati dei tecnici: ' + e.message; });
@@ -272,12 +273,51 @@
     return { pack: oe.opponentPack({ chars: chars, roles: roles, coach: window.IECEngine.coachAtLevel(co, opp.clv) }) };
   }
 
+  // ---------- torri lotta: regola di formazione (ogni giocatore deve avere almeno uno dei tag elencati) ----------
+  var KEY_TW = 'iecross.tower.v1';
+  function curTower() { var id = $('b-tower').value; return towers.filter(function (t) { return t.id === id; })[0] || null; }
+  function towerOk(t, c) { var b = window.IEC.state.byId[c.id] || c, tg = b.tags_ja || c.tags_ja || []; return t.tags.some(function (x) { return tg.indexOf(x) >= 0; }); }
+  function towerHint() {
+    var t = curTower(), h = $('b-tower-hint');
+    if (!t) { h.hidden = true; return; }
+    var all = data.chars.filter(function (c) { return towerOk(t, c); }), mine = window.IEC.ownedChars().filter(function (c) { return towerOk(t, c); });
+    h.hidden = false;
+    h.textContent = 'Torre ' + (t.mode === '5v5' ? '5 contro 5' : '11 contro 11') + ' n. ' + t.n + ': ogni giocatore deve avere almeno uno tra questi tag: ' + t.it + '. Personaggi validi: ' + all.length + ' in tutto, ' + mine.length + ' tuoi' + (mine.length < (t.mode === '5v5' ? 5 : 11) ? ' — ne servono almeno ' + (t.mode === '5v5' ? 5 : 11) + ' (puoi provare con «Tutti»)' : '') + '. (Regola e corrispondenza dei tag assunte, non verificate in tutti i casi.)';
+  }
+  function setupTower() {
+    var sel = $('b-tower'); if (sel.options.length > 1) return;
+    [['5v5', '5 contro 5'], ['11v11', '11 contro 11']].forEach(function (g) {
+      var og = document.createElement('optgroup'); og.label = g[1];
+      towers.filter(function (t) { return t.mode === g[0]; }).forEach(function (t) { var o = el('option', null, 'Torre ' + t.n + ' · ' + t.it); o.value = t.id; og.appendChild(o); });
+      sel.appendChild(og);
+    });
+    try { var v = window.localStorage.getItem(KEY_TW); if (v && towers.some(function (t) { return t.id === v; })) sel.value = v; } catch (e) { /* ignora */ }
+    function sync() {
+      var t = curTower();
+      try { window.localStorage.setItem(KEY_TW, sel.value); } catch (e) { /* ignora */ }
+      if (t) { $('b-mode').value = t.mode === '5v5' ? '5v5' : 'coach'; onMode(); }
+      towerHint();
+    }
+    sel.addEventListener('change', sync);
+    $('b-mode').addEventListener('change', function () { var t = curTower(); if (t && (t.mode === '5v5') !== ($('b-mode').value === '5v5')) { sel.value = ''; try { window.localStorage.setItem(KEY_TW, ''); } catch (e) { /* ignora */ } towerHint(); } });
+    document.addEventListener('iec-collection', towerHint);
+    if (curTower()) sync(); else towerHint();
+  }
+
   function run() {
     loadCoachLv();
     var out = $('b-out'), msg = $('b-msg');
     out.textContent = '';
     var pool = $('b-pool').value === 'owned' ? window.IEC.ownedChars() : data.chars.slice();
     pool = pool.filter(function (c) { return excl.indexOf(c.id) < 0; });
+    var tw = curTower();
+    if (tw) {
+      pool = pool.filter(function (c) { return towerOk(tw, c); });
+      var badLock = lock.filter(function (id) { return !towerOk(tw, byId[id]); });
+      if (badLock.length) { msg.textContent = 'Torre lotta: tra gli «Obbligatori» c\'è chi non rispetta la regola (' + badLock.map(function (id) { return nm(byId[id]); }).join(', ') + ').'; return; }
+      var need = tw.mode === '5v5' ? 5 : 11;
+      if (pool.length < need) { msg.textContent = 'Torre lotta: servono almeno ' + need + ' personaggi validi, ne hai ' + pool.length + (tw.mode === '5v5' ? '' : ' (prova con «Tutti»)') + '.'; return; }
+    }
     lock.forEach(function (id) { if (!pool.some(function (c) { return c.id === id; })) pool.push(byId[id]); });
     if (!pool.length) { msg.textContent = 'La collezione è vuota: segna i personaggi con "Ce l\'ho" nella pagina Personaggi (oppure scegli "Tutti").'; return; }
     msg.textContent = 'Calcolo in corso…';

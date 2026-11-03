@@ -1,0 +1,114 @@
+{
+ "_doc": "Torri lotta (sfide con regole sulla formazione), inserite dall'utente il 3/11/2026. Regola assunta: OGNI giocatore deve avere almeno uno dei tag elencati (tags = nomi giapponesi dei tag del database: squadra, tipo o serie, come in tags_ja). Corrispondenza dei nomi del gioco: Raimon=雷門中 (雷門OB e 革命の雷門 non contano, confermato 28/10), Royal Academy=帝国学園, Brainwashing=御影専農 (nome del sito), Shuriken=戦国伊賀島, Tabellone dei legami (Senza squadra)=無所属, Trequartista=セカンドトップ e difensore centrale=ストッパー (ASSUNTI: da confermare), Bloccante dei tiri=シュートブロッカー.",
+ "towers": [
+  {
+   "id": "t5_1",
+   "mode": "5v5",
+   "n": 1,
+   "it": "Raimon",
+   "tags": [
+    "雷門中"
+   ]
+  },
+  {
+   "id": "t5_2",
+   "mode": "5v5",
+   "n": 2,
+   "it": "Royal Academy",
+   "tags": [
+    "帝国学園"
+   ]
+  },
+  {
+   "id": "t5_3",
+   "mode": "5v5",
+   "n": 3,
+   "it": "Inazuma Japan",
+   "tags": [
+    "イナズマジャパン"
+   ]
+  },
+  {
+   "id": "t5_4",
+   "mode": "5v5",
+   "n": 4,
+   "it": "Occult, Otaku, Kirkwood, Trequartista, difensore centrale",
+   "tags": [
+    "尾刈斗中",
+    "秋葉名戸",
+    "木戸川清修",
+    "セカンドトップ",
+    "ストッパー"
+   ]
+  },
+  {
+   "id": "t5_5",
+   "mode": "5v5",
+   "n": 5,
+   "it": "Brainwashing, Inazuma KFC, Shuriken, Bloccante dei tiri, Wild",
+   "tags": [
+    "御影専農",
+    "稲妻KFC",
+    "戦国伊賀島",
+    "シュートブロッカー",
+    "野生中"
+   ]
+  },
+  {
+   "id": "t5_6",
+   "mode": "5v5",
+   "n": 6,
+   "it": "Young Inazuma",
+   "tags": [
+    "ヤングイナズマ"
+   ]
+  },
+  {
+   "id": "t11_1",
+   "mode": "11v11",
+   "n": 1,
+   "it": "Raimon, Tabellone dei legami (Senza squadra), Chaos, Brainwashing",
+   "tags": [
+    "雷門中",
+    "無所属",
+    "カオス",
+    "御影専農"
+   ]
+  },
+  {
+   "id": "t11_2",
+   "mode": "11v11",
+   "n": 2,
+   "it": "Inazuma Japan, Inazuma Eleven 2",
+   "tags": [
+    "イナズマジャパン",
+    "イナイレ2"
+   ]
+  },
+  {
+   "id": "t11_3",
+   "mode": "11v11",
+   "n": 3,
+   "it": "Royal Academy, Kirkwood, Occult, Trequartista, difensore centrale",
+   "tags": [
+    "帝国学園",
+    "木戸川清修",
+    "尾刈斗中",
+    "セカンドトップ",
+    "ストッパー"
+   ]
+  },
+  {
+   "id": "t11_4",
+   "mode": "11v11",
+   "n": 4,
+   "it": "Young Inazuma, Zeus, Inazuma Eleven Cross, Raimon",
+   "tags": [
+    "ヤングイナズマ",
+    "世宇子",
+    "イナイレクロス",
+    "雷門中"
+   ]
+  }
+ ]
+}
