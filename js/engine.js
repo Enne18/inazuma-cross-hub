@@ -487,18 +487,18 @@
   // ---------- partita contro una formazione avversaria ----------
   // Posizioni sul campo (x in 0..1, vista della propria squadra) per tecnico e slot: Engine.setLayouts(pitch_layouts.layouts).
   // Regola (utente, 3/11): il tiro dell'attaccante che arriva da un lato viene parato dai difensori di QUEL lato; la formazione avversaria è
-  // specchiata (la sua destra blocca la mia sinistra). Quanti difensori provano a fermarlo: 2, poi il portiere (osservato dall'utente).
+  // specchiata (la sua destra blocca la mia sinistra). Possono bloccare TUTTI i giocatori con «Blocca tiro» vicini alla traiettoria (anche centrocampisti, osservato il 4/11: 4 su un tiro), per vicinanza; poi il portiere. Soglia di vicinanza 0,3 e massimo 4 sono stime.
   // Il resto (probabilità di parata = winProb del rapporto di potenza, vantaggio di elemento ±0,1) è una stima del sito, non verificata.
   Engine.prototype.setLayouts = function (L) { this.layouts = L || null; };
   Engine.prototype.slotX = function (coachId, slot) { var l = this.layouts && coachId && this.layouts[coachId]; return l && l[slot] ? l[slot][0] : null; };
   function elemMult(att, def) { return att && def && BEATS[att] === def ? 1.1 : (att && def && BEATS[def] === att ? 0.9 : 1); }
   // side = { members, tab (moveTable con shotBlock), xs (x per membro, vista propria o null) }
   Engine.prototype.attackChance = function (att, def) {
-    var cfg = this.cfg, E = cfg.duelExp, SW = [0.55, 0.3, 0.15], defs = [], keeper = null, shooters = [];
+    var cfg = this.cfg, E = cfg.duelExp, SW = [0.55, 0.3, 0.15], defs = [], keeper = null, shooters = [], LANE = 0.3, MAXB = 4;   // LANE e MAXB: stime del sito (partita reale 4/11: 4 bloccanti su un tiro centrale)
     def.members.forEach(function (m, j) {
       var b = def.tab[j];
       if (m.position === 'GK' && b.catch) keeper = b.catch;
-      else if (m.position === 'DF' && b.block) defs.push({ j: j, t: b.block, x: def.xs && def.xs[j] != null ? 1 - def.xs[j] : null });   // x nella vista di chi attacca
+      else if (b.block) defs.push({ j: j, t: b.block, x: def.xs && def.xs[j] != null ? 1 - def.xs[j] : null });   // x nella vista di chi attacca
     });
     att.members.forEach(function (m, i) {
       var t = att.tab[i].kick; if (!t) return;
@@ -506,10 +506,11 @@
       if (pr < 0.5) return;
       var x = att.xs && att.xs[i] != null ? att.xs[i] : null, w = Math.min(1, pr + 0.1) * (m.position === 'FW' ? 1 : 0.6);
       var cand = defs.slice();
+      if (x !== null) cand = cand.filter(function (d) { return d.x === null || Math.abs(d.x - x) <= LANE; });   // solo chi sta vicino alla traiettoria
       if (x !== null) cand.sort(function (a, b) { return (a.x === null ? 9 : Math.abs(a.x - x)) - (b.x === null ? 9 : Math.abs(b.x - x)); });
       else cand.sort(function (a, b) { return b.t.d - a.t.d; });
       var pass = 1, names = [];
-      cand.slice(0, 2).forEach(function (b) {
+      cand.slice(0, MAXB).forEach(function (b) {
         pass *= 1 - winProb(b.t.d / Math.max(1, t.d * elemMult(t.element, b.t.element)), E); names.push(def.members[b.j].id);
       });
       pass *= 1 - (keeper ? winProb(keeper.d / Math.max(1, t.d * elemMult(t.element, keeper.element)), E) : 0);

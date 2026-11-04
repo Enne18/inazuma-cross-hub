@@ -65,13 +65,13 @@
     h.appendChild(document.createTextNode(' (somma dei danni della mossa migliore di ogni giocatore, con bonus di sinergie e tecnico)'));
     box.appendChild(h);
     if (d.matchup) {
-      var M = d.matchup, nmOf = function (id) { return byId[id] ? nm(byId[id]) : id; };
-      var mt = el('div', 'b-match');
-      mt.appendChild(el('b', null, 'Contro l\'avversario (stima): '));
-      mt.appendChild(document.createTextNode('occasioni da gol tue ' + (M.mine.chance * 100).toFixed(0) + '% · sue ' + (M.theirs.chance * 100).toFixed(0) + '% (saldo ' + (M.score >= 0 ? '+' : '') + M.score.toFixed(1) + '). '));
+      var M = d.matchup, nmOf = function (id) { return byId[id] ? nm(byId[id]) : id; }, mt = el('div', 'b-match');
+      mt.appendChild(el('b', null, 'Contro l\'avversario (stima):'));
+      mt.appendChild(document.createTextNode(' '));
+      mt.appendChild(el('span', null, 'occasioni da gol tue ' + (M.mine.chance * 100).toFixed(0) + '% · sue ' + (M.theirs.chance * 100).toFixed(0) + '% (saldo ' + (M.score >= 0 ? '+' : '') + M.score.toFixed(1) + ').'));
       var sh = M.mine.shooters[0], sh2 = M.theirs.shooters[0];
-      if (sh) mt.appendChild(el('span', 'muted', 'Il tuo tiro migliore (' + nmOf(sh.id) + ') ' + (sh.blockers.length ? 'trova ' + sh.blockers.map(nmOf).join(' e ') + ' sul suo lato. ' : 'non trova difensori con tecnica «Blocca tiro» sul suo lato. ')));
-      if (sh2) mt.appendChild(el('span', 'muted', 'Il loro tiro migliore (' + nmOf(sh2.id) + ') ' + (sh2.blockers.length ? 'trova ' + sh2.blockers.map(nmOf).join(' e ') + '.' : 'non trova difensori con tecnica «Blocca tiro» sul suo lato.')));
+      if (sh) { mt.appendChild(document.createTextNode(' ')); mt.appendChild(el('span', 'muted', sh.blockers.length ? 'Il tuo tiro migliore (' + nmOf(sh.id) + ') trova ' + sh.blockers.map(nmOf).join(', ') + ' sul suo lato.' : 'Il tuo tiro migliore (' + nmOf(sh.id) + ') non trova difensori con tecnica «Blocca tiro» sul suo lato.')); }
+      if (sh2) { mt.appendChild(document.createTextNode(' ')); mt.appendChild(el('span', 'muted', sh2.blockers.length ? 'Il loro tiro migliore (' + nmOf(sh2.id) + ') trova ' + sh2.blockers.map(nmOf).join(', ') + '.' : 'Il loro tiro migliore (' + nmOf(sh2.id) + ') non trova difensori con tecnica «Blocca tiro» sul suo lato.')); }
       box.appendChild(mt);
     }
     if (d.estimated) box.appendChild(el('div', 'warn', d.estimated + ' giocatori hanno statistiche stimate (dati mancanti nella fonte): il punteggio è meno affidabile.'));
@@ -278,9 +278,14 @@
   function towerOk(t, c) { var b = window.IEC.state.byId[c.id] || c, tg = b.tags_ja || c.tags_ja || []; return t.tags.some(function (x) { return tg.indexOf(x) >= 0; }); }
   function curTower() { var id = $('t-tower').value; return towers.filter(function (t) { return t.id === id; })[0] || null; }
   function towerHint() {
-    var t = curTower(), h = $('t-hint'); if (!t) { h.textContent = ''; return; }
+    var t = curTower(), h = $('t-hint'); h.textContent = ''; if (!t) return;
     var need = t.mode === '5v5' ? 5 : 11, all = data.chars.filter(function (c) { return towerOk(t, c); }), mine = window.IEC.ownedChars().filter(function (c) { return towerOk(t, c); });
-    h.textContent = 'Modalità fissata dalla torre: ' + (t.mode === '5v5' ? '5 contro 5' : '11 contro 11') + '. Ogni giocatore deve avere almeno uno tra questi tag: ' + t.it + '. Personaggi validi: ' + all.length + ' in tutto, ' + mine.length + ' tuoi' + (mine.length < need ? ' — ne servono almeno ' + need + ' (puoi provare con «Tutti»)' : '') + '.';
+    h.appendChild(el('span', null, 'Modalità fissata dalla torre: ' + (t.mode === '5v5' ? '5 contro 5' : '11 contro 11') + '.'));
+    h.appendChild(document.createTextNode(' '));
+    h.appendChild(el('span', null, 'Ogni giocatore deve avere almeno uno tra questi tag: ' + t.it + '.'));
+    h.appendChild(document.createTextNode(' '));
+    h.appendChild(el('span', null, 'Personaggi validi: ' + all.length + ' in tutto, ' + mine.length + ' tuoi.'));
+    if (mine.length < need) { h.appendChild(document.createTextNode(' ')); h.appendChild(el('span', null, 'Ne servono almeno ' + need + ' (puoi provare con «Tutti»).')); }
   }
   function towerMode() { var t = curTower(); $('t-coach-wrap').hidden = !t || t.mode === '5v5'; $('t-f5-wrap').hidden = !t || t.mode !== '5v5'; towerHint(); }
   function setupTower() {
@@ -333,7 +338,7 @@
         var ov = null, oppNote = '';
         if (ctx.useOpp && opp.on && m !== '5v5') {
           var op = oppPack(eng); if (op.err) { msg.textContent = op.err; return; }
-          ov = { opponentPack: op.pack }; oppNote = ' Contro l\'avversario (stima): punteggio = confronto per lato + punteggio generale.';
+          ov = { opponentPack: op.pack }; oppNote = 'Contro l\'avversario (stima): punteggio = confronto per lato + punteggio generale.';
         }
         if (m === '5v5') {
           if (ctx.f5Id === 'all') {            // la migliore tra tutte le formazioni 5v5
@@ -357,7 +362,8 @@
           res = eng.build(pool, eng.rolesFromLayout(co.layout), leveled(co), ov);
         }
         var miss = res.missing && res.missing.slots ? ' Attenzione: mancano ' + res.missing.slots + ' personaggi per completare la formazione.' : '';
-        msg.textContent = res.teams.length + ' squadre proposte da ' + res.poolSize + ' personaggi (' + ((Date.now() - t0) / 1000).toFixed(1) + ' s).' + miss + oppNote;
+        msg.textContent = res.teams.length + ' squadre proposte da ' + res.poolSize + ' personaggi (' + ((Date.now() - t0) / 1000).toFixed(1) + ' s).' + miss;
+        if (oppNote) { msg.appendChild(document.createTextNode(' ')); msg.appendChild(el('span', null, oppNote)); }
         res.teams.forEach(function (t, i) { out.appendChild(teamBox(t, i + 1)); });
       } catch (e) { msg.textContent = 'Errore nel calcolo: ' + e.message; }
     }, 20);

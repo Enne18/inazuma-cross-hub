@@ -531,3 +531,16 @@ button.pt { background: none; border: 0; padding: 0; font: inherit; color: inher
 .b-pick-row { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px; align-items: center; text-align: left; padding: 4px 6px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
 .b-pick-row:hover { border-color: var(--el, var(--line)); background: color-mix(in srgb, var(--el, #888) 12%, transparent); }
 .b-pick-tx { display: grid; min-width: 0; }
+
+/* «Altro»: su cellulare Boss e Torri lotta stanno in una piccola scheda */
+.tab-more, .more-menu { display: none; }
+@media (max-width: 640px) {
+  .tab[data-tab=boss], .tab[data-tab=towers] { display: none; }
+  .tab-more { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 44px; padding: 8px 2px; font: inherit; font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.78); background: none; border: 0; border-radius: 12px; cursor: pointer; }
+  .tab-more::before { content: '⋯'; font-size: 1.3rem; line-height: 1; }
+  .tab-more.active, .tab-more[aria-expanded=true] { background: #fff; color: #0b1f5c; }
+  .more-menu:not([hidden]) { display: flex; flex-direction: column; position: fixed; right: 8px; bottom: calc(74px + env(safe-area-inset-bottom)); z-index: 60; min-width: 180px; padding: 6px; background: #fff; border-radius: 14px; box-shadow: 0 6px 24px rgba(0,0,0,.35); }
+  .more-menu button { text-align: left; padding: 12px 14px; font: inherit; font-weight: 600; color: #0b1f5c; background: none; border: 0; border-radius: 10px; cursor: pointer; }
+  .more-menu button:hover, .more-menu button.active { background: #e8edff; }
+  .more-menu button[data-go=boss]::before { content: '👹  '; } .more-menu button[data-go=towers]::before { content: '🏰  '; }
+}

@@ -497,10 +497,21 @@
     document.dispatchEvent(new CustomEvent('iec-tab', { detail: name }));
     Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (b) {
       b.classList.toggle('active', b.getAttribute('data-tab') === (name === 'detail' ? 'catalog' : name === 'cdetail' ? 'coaches' : name));
-    });
+    });    var more = $('tab-more'), menu = $('more-menu'), inMore = name === 'boss' || name === 'towers';
+    if (more) more.classList.toggle('active', inMore);
+    if (menu) { menu.hidden = true; if (more) more.setAttribute('aria-expanded', 'false'); Array.prototype.forEach.call(menu.querySelectorAll('button'), function (b) { b.classList.toggle('active', b.getAttribute('data-go') === name); }); }
+  }
+  function setupMore() {
+    var more = $('tab-more'), menu = $('more-menu'); if (!more || !menu) return;
+    function set(o) { menu.hidden = !o; more.setAttribute('aria-expanded', o ? 'true' : 'false'); }
+    more.addEventListener('click', function (e) { e.stopPropagation(); set(menu.hidden); });
+    Array.prototype.forEach.call(menu.querySelectorAll('button'), function (b) { b.addEventListener('click', function () { showTab(b.getAttribute('data-go')); }); });
+    document.addEventListener('click', function (e) { if (!menu.hidden && !menu.contains(e.target)) set(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
   }
 
   function setupCollection() {
+    setupMore();
     Array.prototype.forEach.call(document.querySelectorAll('.tab:not([disabled])'), function (b) {
       b.addEventListener('click', function () { showTab(b.getAttribute('data-tab')); });
     });

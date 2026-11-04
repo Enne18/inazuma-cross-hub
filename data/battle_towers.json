@@ -1,5 +1,5 @@
 {
- "_doc": "Torri lotta (sfide con regole sulla formazione), inserite dall'utente il 3/11/2026. Regola assunta: OGNI giocatore deve avere almeno uno dei tag elencati (tags = nomi giapponesi dei tag del database: squadra, tipo o serie, come in tags_ja). Corrispondenza dei nomi del gioco: Raimon=雷門中 (雷門OB e 革命の雷門 non contano, confermato 28/10), Royal Academy=帝国学園, Brainwashing=御影専農 (nome del sito), Shuriken=戦国伊賀島, Tabellone dei legami (Senza squadra)=無所属, Trequartista=セカンドトップ e difensore centrale=ストッパー (ASSUNTI: da confermare), Bloccante dei tiri=シュートブロッカー.",
+ "_doc": "Torri lotta (sfide con regole sulla formazione), inserite dall'utente il 3/11/2026. Regola assunta: OGNI giocatore deve avere almeno uno dei tag elencati (tags = nomi giapponesi dei tag del database: squadra, tipo o serie, come in tags_ja). Corrispondenza dei nomi del gioco (tipi confermati dall'utente il 3/11, elenco per elenco): Portiere=キーパー, Terzino=サイドバック, Bloccante dei tiri=シュートブロッカー, Difensore centrale=ストッパー, Attaccante=ストライカー, Seconda punta=セカンドトップ, Mediano=ディフェンシブハーフ, Trequartista=プレイメイカー, Motivatore=モチベーター, Tiratore dalla distanza=ロングシューター. Squadre: Raimon=雷門中 (雷門OB e 革命の雷門 non contano), Royal Academy=帝国学園, Brainwashing=御影専農 (nome del sito), Shuriken=戦国伊賀島, Tabellone dei legami (Senza squadra)=無所属.",
  "towers": [
   {
    "id": "t5_1",
@@ -37,7 +37,7 @@
     "尾刈斗中",
     "秋葉名戸",
     "木戸川清修",
-    "セカンドトップ",
+    "プレイメイカー",
     "ストッパー"
    ]
   },
@@ -94,7 +94,7 @@
     "帝国学園",
     "木戸川清修",
     "尾刈斗中",
-    "セカンドトップ",
+    "プレイメイカー",
     "ストッパー"
    ]
   },

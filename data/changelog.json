@@ -60,6 +60,36 @@
  ],
  "releases": [
   {
+   "version": "2.4",
+   "date": "2026-11-04",
+   "title": {
+    "it": "Blocchi più realistici, traduzioni, menu Altro",
+    "en": "More realistic blocks, translations, More menu",
+    "ja": "ブロック判定の改善・翻訳・「その他」メニュー"
+   },
+   "icon": "🛡️",
+   "items": [
+    {
+     "icon": "🛡️",
+     "it": "Contro un avversario, il tiro può essere parato da tutti i giocatori con «Blocca tiro» vicini alla traiettoria (fino a 4, anche a centrocampo), poi dal portiere. Soglia e massimo sono stime, non verificati.",
+     "en": "Against an opponent, a shot can be blocked by every player with \"Shot Block\" near its path (up to 4, midfielders included), then by the goalkeeper. Threshold and maximum are estimates, not verified.",
+     "ja": "対戦相手がいる場合、シュートは軌道の近くにいる「シュートブロック」持ちの全選手（最大4人、MFも含む）が止め、その後GKが止めます。範囲と上限は推定で未確認です。"
+    },
+    {
+     "icon": "🌐",
+     "it": "Tradotti in inglese e giapponese i testi di avversario, torri lotta, difficoltà boss e sincronizzazione.",
+     "en": "Opponent, battle towers, boss difficulty and sync texts are now translated into English and Japanese.",
+     "ja": "対戦相手、バトルタワー、ボス難易度、同期の文言を英語・日本語に翻訳しました。"
+    },
+    {
+     "icon": "⋯",
+     "it": "Su cellulare Boss e Torri lotta stanno nel menu «Altro» della barra in basso.",
+     "en": "On mobile, Boss and Battle Towers are in the \"More\" menu of the bottom bar.",
+     "ja": "スマホでは、ボスとバトルタワーは下部バーの「その他」メニューにあります。"
+    }
+   ]
+  },
+  {
    "version": "2.3",
    "date": "2026-11-03",
    "title": {

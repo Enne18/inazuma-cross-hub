@@ -809,6 +809,378 @@
   "I 15 tecnici: condizioni di formazione, passive e livello. Il livello che imposti qui è lo stesso usato dal Team Builder.": {
    "en": "The 15 coaches: formation conditions, passives and level. The level you set here is the same one the Team Builder uses.",
    "ja": "15人の監督：フォーメーション条件・パッシブ・レベル。ここで設定したレベルはチームビルダーでも使われます。"
+  },
+  "Torri lotta": {
+   "en": "Battle Towers",
+   "ja": "バトルタワー"
+  },
+  "Torre": {
+   "en": "Tower",
+   "ja": "タワー"
+  },
+  "Altro": {
+   "en": "More",
+   "ja": "その他"
+  },
+  "Sezioni": {
+   "en": "Sections",
+   "ja": "セクション"
+  },
+  "Avversario": {
+   "en": "Opponent",
+   "ja": "対戦相手"
+  },
+  "Usa nel calcolo": {
+   "en": "Use in calculation",
+   "ja": "計算に使う"
+  },
+  "Svuota": {
+   "en": "Clear",
+   "ja": "クリア"
+  },
+  "Liv. tecnico": {
+   "en": "Coach Lv.",
+   "ja": "監督Lv."
+  },
+  "Liv. giocatori": {
+   "en": "Player Lv.",
+   "ja": "選手Lv."
+  },
+  "Difficoltà (potenza del boss)": {
+   "en": "Difficulty (boss power)",
+   "ja": "難易度（ボスの強さ）"
+  },
+  "Cerca per nome…": {
+   "en": "Search by name…",
+   "ja": "名前で検索…"
+  },
+  "Cerca personaggio": {
+   "en": "Search character",
+   "ja": "キャラクター検索"
+  },
+  "Svuota lo slot": {
+   "en": "Clear slot",
+   "ja": "スロットを空にする"
+  },
+  "Chiudi": {
+   "en": "Close",
+   "ja": "閉じる"
+  },
+  "Nessun personaggio trovato.": {
+   "en": "No character found.",
+   "ja": "キャラクターが見つかりません。"
+  },
+  "5 contro 5": {
+   "en": "5 vs 5",
+   "ja": "5対5"
+  },
+  "11 contro 11": {
+   "en": "11 vs 11",
+   "ja": "11対11"
+  },
+  "Apri la scheda di {0}": {
+   "en": "Open the page of {0}",
+   "ja": "{0}のページを開く"
+  },
+  "Il progetto su GitHub": {
+   "en": "The project on GitHub",
+   "ja": "GitHubのプロジェクト"
+  },
+  "Offrimi un caffè": {
+   "en": "Buy me a coffee",
+   "ja": "コーヒーをおごる"
+  },
+  "Livello mossa": {
+   "en": "Move level",
+   "ja": "技レベル"
+  },
+  "Terza mossa": {
+   "en": "Third move",
+   "ja": "3つ目の技"
+  },
+  "Versione {0}": {
+   "en": "Version {0}",
+   "ja": "バージョン {0}"
+  },
+  "Principiante · {0}": {
+   "en": "Beginner · {0}",
+   "ja": "初級 · {0}"
+  },
+  "Normale · {0}": {
+   "en": "Normal · {0}",
+   "ja": "通常 · {0}"
+  },
+  "Difficile · {0}": {
+   "en": "Hard · {0}",
+   "ja": "上級 · {0}"
+  },
+  "Molto difficile · {0}": {
+   "en": "Very hard · {0}",
+   "ja": "超上級 · {0}"
+  },
+  "Inferno · {0}": {
+   "en": "Inferno · {0}",
+   "ja": "インフェルノ · {0}"
+  },
+  "Estremo · {0}": {
+   "en": "Extreme · {0}",
+   "ja": "エクストリーム · {0}"
+  },
+  "Senza fine · {0}": {
+   "en": "Endless · {0}",
+   "ja": "エンドレス · {0}"
+  },
+  "Clicca uno slot per scegliere il giocatore avversario (il campo cambia col tecnico). Il tiro di un attaccante viene parato dai giocatori con «Blocca tiro» vicini alla sua traiettoria (fino a 4, anche a centrocampo) e poi dal portiere; la formazione avversaria è specchiata. Grado, allenamenti e adesivi non si vedono: stesso grado per tutti e nessun allenamento. Stima del sito, non un valore del gioco. Solo per l'11 contro 11.": {
+   "en": "Click a slot to choose the opposing player (the pitch changes with the coach). An attacker's shot is blocked by the players with “Shot Block” near its path (up to 4, midfielders included) and then by the goalkeeper; the opposing formation is mirrored. Rank, training and stickers are not visible: same rank for everyone and no training. Site estimate, not a game value. 11 vs 11 only.",
+   "ja": "スロットをクリックして相手選手を選びます（フィールドは監督で変わります）。アタッカーのシュートは、軌道の近くにいる「シュートブロック」持ちの選手（最大4人、MFも含む）が止め、その後GKが止めます。相手の布陣は左右反転です。ランク・トレーニング・ステッカーは見えないため、全員同じランク・トレーニングなしとします。サイトの推定値で、ゲームの数値ではありません。11対11のみ。"
+  },
+  "Sfide con una regola sulla formazione: ogni giocatore deve avere almeno uno dei tag della torre. La modalità (5 contro 5 o 11 contro 11) è fissata dalla torre che scegli. Il calcolo è quello del Team Builder, con il pool ristretto ai personaggi validi. Regola e corrispondenza dei tag assunte, non verificate in tutti i casi.": {
+   "en": "Challenges with a lineup rule: every player must have at least one of the tower's tags. The mode (5 vs 5 or 11 vs 11) is fixed by the tower you choose. The calculation is the Team Builder's, with the pool limited to valid characters. Rule and tag matching are assumed, not verified in every case.",
+   "ja": "編成にルールがあるチャレンジです。全員がタワーのタグのいずれかを持つ必要があります。モード（5対5／11対11）は選んだタワーで決まります。計算はチームビルダーと同じで、候補は条件を満たすキャラのみです。ルールとタグの対応は推定で、すべてのケースでは未確認です。"
+  },
+  "Slot {0} · {1}": {
+   "en": "Slot {0} · {1}",
+   "ja": "スロット{0} · {1}"
+  },
+  "{0} di {1} slot compilati.": {
+   "en": "{0} of {1} slots filled.",
+   "ja": "{1}スロット中{0}が設定済み。"
+  },
+  "{0} di {1} slot compilati — completa tutti gli slot per usarlo nel calcolo.": {
+   "en": "{0} of {1} slots filled — fill every slot to use it in the calculation.",
+   "ja": "{1}スロット中{0}が設定済み — 計算に使うには全スロットを埋めてください。"
+  },
+  "{0} · slot {1} ({2}) — clic per cambiare": {
+   "en": "{0} · slot {1} ({2}) — click to change",
+   "ja": "{0} · スロット{1}（{2}）— クリックで変更"
+  },
+  "Slot {0} ({1}) — clic per scegliere il giocatore": {
+   "en": "Slot {0} ({1}) — click to choose the player",
+   "ja": "スロット{0}（{1}）— クリックで選手を選ぶ"
+  },
+  "nativo {0}": {
+   "en": "native {0}",
+   "ja": "本来 {0}"
+  },
+  "fuori ruolo": {
+   "en": "off-role",
+   "ja": "ロール外"
+  },
+  "Contro l'avversario (stima):": {
+   "en": "Against the opponent (estimate):",
+   "ja": "対戦相手との比較（推定）："
+  },
+  "Contro l'avversario (stima): punteggio = confronto per lato + punteggio generale.": {
+   "en": "Against the opponent (estimate): score = side-by-side comparison + overall score.",
+   "ja": "対戦相手との比較（推定）：スコア＝左右別の比較＋総合スコア。"
+  },
+  "occasioni da gol tue {0}% · sue {1}% (saldo {2}).": {
+   "en": "your scoring chances {0}% · theirs {1}% (balance {2}).",
+   "ja": "あなたの得点機会 {0}% · 相手 {1}%（差 {2}）。"
+  },
+  "Il tuo tiro migliore ({0}) trova {1} sul suo lato.": {
+   "en": "Your best shot ({0}) meets {1} on its side.",
+   "ja": "あなたの最強シュート（{0}）は、その側で{1}に当たります。"
+  },
+  "Il tuo tiro migliore ({0}) non trova difensori con tecnica «Blocca tiro» sul suo lato.": {
+   "en": "Your best shot ({0}) meets no defender with a “Shot Block” technique on its side.",
+   "ja": "あなたの最強シュート（{0}）の側には「シュートブロック」持ちの選手がいません。"
+  },
+  "Il loro tiro migliore ({0}) trova {1}.": {
+   "en": "Their best shot ({0}) meets {1}.",
+   "ja": "相手の最強シュート（{0}）は{1}に当たります。"
+  },
+  "Il loro tiro migliore ({0}) non trova difensori con tecnica «Blocca tiro» sul suo lato.": {
+   "en": "Their best shot ({0}) meets no defender with a “Shot Block” technique on its side.",
+   "ja": "相手の最強シュート（{0}）の側には「シュートブロック」持ちの選手がいません。"
+  },
+  "passiva tecnico ({0})": {
+   "en": "coach passive ({0})",
+   "ja": "監督パッシブ（{0}）"
+  },
+  "Torre lotta: servono almeno {0} personaggi validi, ne hai {1} (prova con «Tutti»).": {
+   "en": "Battle Tower: at least {0} valid characters are needed, you have {1} (try “All”).",
+   "ja": "バトルタワー：有効なキャラが最低{0}人必要です（現在{1}人）（「全員」で試してください）。"
+  },
+  "Torre lotta: servono almeno {0} personaggi validi, ne hai {1}.": {
+   "en": "Battle Tower: at least {0} valid characters are needed, you have {1}.",
+   "ja": "バトルタワー：有効なキャラが最低{0}人必要です（現在{1}人）。"
+  },
+  "Scegli il tecnico avversario.": {
+   "en": "Choose the opposing coach.",
+   "ja": "対戦相手の監督を選んでください。"
+  },
+  "Avversario: manca il giocatore dello slot {0} ({1}).": {
+   "en": "Opponent: the player of slot {0} ({1}) is missing.",
+   "ja": "対戦相手：スロット{0}（{1}）の選手が未設定です。"
+  },
+  "Modalità fissata dalla torre: {0}.": {
+   "en": "Mode fixed by the tower: {0}.",
+   "ja": "タワーで固定されたモード：{0}。"
+  },
+  "Ogni giocatore deve avere almeno uno tra questi tag: {0}.": {
+   "en": "Every player must have at least one of these tags: {0}.",
+   "ja": "全員が次のタグのいずれかを持つ必要があります：{0}。"
+  },
+  "Personaggi validi: {0} in tutto, {1} tuoi.": {
+   "en": "Valid characters: {0} in total, {1} yours.",
+   "ja": "有効なキャラ：全{0}人、うち所持{1}人。"
+  },
+  "Ne servono almeno {0} (puoi provare con «Tutti»).": {
+   "en": "At least {0} are needed (you can try “All”).",
+   "ja": "最低{0}人必要です（「全員」で試せます）。"
+  },
+  "Torre {0} · {1}": {
+   "en": "Tower {0} · {1}",
+   "ja": "タワー{0} · {1}"
+  },
+  "Raimon": {
+   "en": "Raimon",
+   "ja": "雷門中"
+  },
+  "Royal Academy": {
+   "en": "Royal Academy",
+   "ja": "帝国学園"
+  },
+  "Inazuma Japan": {
+   "en": "Inazuma Japan",
+   "ja": "イナズマジャパン"
+  },
+  "Occult, Otaku, Kirkwood, Trequartista, difensore centrale": {
+   "en": "Occult, Otaku, Kirkwood, Playmaker, center back",
+   "ja": "尾刈斗中、秋葉名戸、木戸川清修、プレイメイカー、ストッパー"
+  },
+  "Brainwashing, Inazuma KFC, Shuriken, Bloccante dei tiri, Wild": {
+   "en": "Brainwashing, Inazuma KFC, Shuriken, Shot blocker, Wild",
+   "ja": "御影専農、稲妻KFC、戦国伊賀島、シュートブロッカー、野生中"
+  },
+  "Young Inazuma": {
+   "en": "Young Inazuma",
+   "ja": "ヤングイナズマ"
+  },
+  "Raimon, Tabellone dei legami (Senza squadra), Chaos, Brainwashing": {
+   "en": "Raimon, Bond Board (No team), Chaos, Brainwashing",
+   "ja": "雷門中、無所属、カオス、御影専農"
+  },
+  "Inazuma Japan, Inazuma Eleven 2": {
+   "en": "Inazuma Japan, Inazuma Eleven 2",
+   "ja": "イナズマジャパン、イナイレ2"
+  },
+  "Royal Academy, Kirkwood, Occult, Trequartista, difensore centrale": {
+   "en": "Royal Academy, Kirkwood, Occult, Playmaker, center back",
+   "ja": "帝国学園、木戸川清修、尾刈斗中、プレイメイカー、ストッパー"
+  },
+  "Young Inazuma, Zeus, Inazuma Eleven Cross, Raimon": {
+   "en": "Young Inazuma, Zeus, Inazuma Eleven Cross, Raimon",
+   "ja": "ヤングイナズマ、ゼウス、イナイレクロス、雷門中"
+  },
+  "Ultima sincronizzazione: {0}": {
+   "en": "Last sync: {0}",
+   "ja": "最終同期：{0}"
+  },
+  "Errore: {0}": {
+   "en": "Error: {0}",
+   "ja": "エラー：{0}"
+  },
+  "Sincronizza tra computer (GitHub, gratuito)": {
+   "en": "Sync between computers (GitHub, free)",
+   "ja": "PC間で同期（GitHub・無料）"
+  },
+  "I dati vanno in un Gist privato del tuo account GitHub. Serve un token con il solo permesso «Gist» (Settings → Developer settings → Fine-grained tokens o Tokens classic). Il token resta solo in questo browser: non usarlo su computer condivisi.": {
+   "en": "Your data goes into a private Gist of your GitHub account. You need a token with the “Gist” permission only (Settings → Developer settings → Fine-grained tokens or Tokens classic). The token stays only in this browser: do not use it on shared computers.",
+   "ja": "データはGitHubアカウントの非公開Gistに保存されます。「Gist」権限のみのトークンが必要です（Settings → Developer settings → Fine-grained tokens または Tokens classic）。トークンはこのブラウザ内にのみ保存されます。共用PCでは使わないでください。"
+  },
+  "Incolla qui il token GitHub": {
+   "en": "Paste the GitHub token here",
+   "ja": "GitHubトークンをここに貼り付け"
+  },
+  "Token GitHub": {
+   "en": "GitHub token",
+   "ja": "GitHubトークン"
+  },
+  "Collega": {
+   "en": "Connect",
+   "ja": "接続"
+  },
+  "Salva sul cloud": {
+   "en": "Save to cloud",
+   "ja": "クラウドに保存"
+  },
+  "Scarica dal cloud": {
+   "en": "Download from cloud",
+   "ja": "クラウドから読み込む"
+  },
+  "Salva automaticamente dopo ogni modifica": {
+   "en": "Save automatically after every change",
+   "ja": "変更のたびに自動保存"
+  },
+  "Scollega questo computer": {
+   "en": "Disconnect this computer",
+   "ja": "このPCの接続を解除"
+  },
+  "Salvataggio sul cloud…": {
+   "en": "Saving to the cloud…",
+   "ja": "クラウドに保存中…"
+  },
+  "Lettura dal cloud…": {
+   "en": "Reading from the cloud…",
+   "ja": "クラウドから読み込み中…"
+  },
+  "Sul cloud ci sono modifiche più recenti ({0}) fatte da un altro computer. Sovrascriverle con i dati di questo computer?": {
+   "en": "The cloud has newer changes ({0}) made on another computer. Overwrite them with this computer's data?",
+   "ja": "クラウドに別のPCによる新しい変更（{0}）があります。このPCのデータで上書きしますか？"
+  },
+  "Salvataggio annullato. Usa \"Scarica dal cloud\" per prendere i dati del cloud.": {
+   "en": "Save cancelled. Use \"Download from cloud\" to get the cloud data.",
+   "ja": "保存を中止しました。クラウドのデータは「クラウドから読み込む」で取得してください。"
+  },
+  "Salvato sul cloud ({0} elementi, {1}).": {
+   "en": "Saved to the cloud ({0} items, {1}).",
+   "ja": "クラウドに保存しました（{0}件、{1}）。"
+  },
+  "Sul cloud non c'è ancora nulla: usa \"Salva sul cloud\" da questo computer.": {
+   "en": "Nothing on the cloud yet: use \"Save to cloud\" from this computer.",
+   "ja": "クラウドにはまだ何もありません。このPCで「クラウドに保存」を使ってください。"
+  },
+  "Sostituire i dati di questo computer con quelli del cloud ({0} elementi, salvati il {1})?": {
+   "en": "Replace this computer's data with the cloud data ({0} items, saved on {1})?",
+   "ja": "このPCのデータをクラウドのデータ（{0}件、{1}に保存）で置き換えますか？"
+  },
+  "Operazione annullata.": {
+   "en": "Operation cancelled.",
+   "ja": "操作を中止しました。"
+  },
+  "Dati scaricati: ricarico la pagina…": {
+   "en": "Data downloaded: reloading the page…",
+   "ja": "データを読み込みました。ページを再読み込みします…"
+  },
+  "Salvataggio automatico sospeso: il cloud ha modifiche più recenti. Scegli \"Scarica\" o \"Salva\" a mano.": {
+   "en": "Auto-save paused: the cloud has newer changes. Choose \"Download\" or \"Save\" manually.",
+   "ja": "自動保存を一時停止しました：クラウドに新しい変更があります。「読み込む」または「保存」を手動で選んでください。"
+  },
+  "Salvato automaticamente ({0}).": {
+   "en": "Saved automatically ({0}).",
+   "ja": "自動保存しました（{0}）。"
+  },
+  "Scollegare questo computer? I dati sul cloud restano; i dati locali non vengono toccati.": {
+   "en": "Disconnect this computer? Cloud data stays; local data is not touched.",
+   "ja": "このPCの接続を解除しますか？クラウドのデータは残り、ローカルのデータには影響しません。"
+  },
+  "Scollegato.": {
+   "en": "Disconnected.",
+   "ja": "接続を解除しました。"
+  },
+  "Token salvato. Controllo il cloud…": {
+   "en": "Token saved. Checking the cloud…",
+   "ja": "トークンを保存しました。クラウドを確認中…"
+  },
+  "Trovata una collezione sul cloud: usa \"Scarica dal cloud\" per averla qui, oppure \"Salva sul cloud\" per sostituirla.": {
+   "en": "A collection was found on the cloud: use \"Download from cloud\" to get it here, or \"Save to cloud\" to replace it.",
+   "ja": "クラウドにコレクションが見つかりました。「クラウドから読み込む」で取り込むか、「クラウドに保存」で置き換えてください。"
+  },
+  "Collegato. Sul cloud non c'è ancora nulla: usa \"Salva sul cloud\".": {
+   "en": "Connected. Nothing on the cloud yet: use \"Save to cloud\".",
+   "ja": "接続しました。クラウドにはまだ何もありません。「クラウドに保存」を使ってください。"
   }
  }
 }

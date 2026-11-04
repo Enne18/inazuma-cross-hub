@@ -95,15 +95,15 @@
   },
   "シュートブロッカー": {
    "en": "Shoot Blocker",
-   "it": "Blocca-tiri"
+   "it": "Bloccante dei tiri"
   },
   "ストッパー": {
    "en": "Stopper",
-   "it": "Stopper"
+   "it": "Difensore centrale"
   },
   "ストライカー": {
    "en": "Striker",
-   "it": "Striker"
+   "it": "Attaccante"
   },
   "セカンドトップ": {
    "en": "Second Top",
@@ -111,11 +111,11 @@
   },
   "ディフェンシブハーフ": {
    "en": "Defensive Half",
-   "it": "Mediano difensivo"
+   "it": "Mediano"
   },
   "プレイメイカー": {
    "en": "Playmaker",
-   "it": "Regista"
+   "it": "Trequartista"
   },
   "モチベーター": {
    "en": "Motivator",
@@ -123,7 +123,7 @@
   },
   "ロングシューター": {
    "en": "Long Shooter",
-   "it": "Tiratore da lontano"
+   "it": "Tiratore dalla distanza"
   },
   "イナイレ1": {
    "en": "Inazuma Eleven 1",

@@ -19,7 +19,7 @@
     say('Salvataggio sul cloud…');
     return S.push(force).then(function (r) {
       if (r.conflict) {
-        if (window.confirm('Sul cloud ci sono modifiche più recenti (' + fmt(r.cloudUpdated) + ') fatte da un altro computer. Sovrascriverle con i dati di questo computer?')) return push(true);
+        if (window.confirm(window.IECI18N.t('Sul cloud ci sono modifiche più recenti (' + fmt(r.cloudUpdated) + ') fatte da un altro computer. Sovrascriverle con i dati di questo computer?'))) return push(true);
         say('Salvataggio annullato. Usa "Scarica dal cloud" per prendere i dati del cloud.', true); return;
       }
       say('Salvato sul cloud (' + r.count + ' elementi, ' + fmt(r.updated) + ').'); paint();
@@ -30,7 +30,7 @@
     return S.pull().then(function (r) {
       if (r.empty) { say('Sul cloud non c\'è ancora nulla: usa "Salva sul cloud" da questo computer.'); return; }
       var n = Object.keys(r.bundle.data).length;
-      if (!window.confirm('Sostituire i dati di questo computer con quelli del cloud (' + n + ' elementi, salvati il ' + fmt(r.bundle.updated) + ')?')) { say('Operazione annullata.'); return; }
+      if (!window.confirm(window.IECI18N.t('Sostituire i dati di questo computer con quelli del cloud (' + n + ' elementi, salvati il ' + fmt(r.bundle.updated) + ')?'))) { say('Operazione annullata.'); return; }
       S.apply(r.bundle); say('Dati scaricati: ricarico la pagina…'); window.setTimeout(function () { window.location.reload(); }, 600);
     }).catch(fail);
   }
@@ -45,7 +45,7 @@
     var m = $('manage'); if (!m || $('sy-box')) return;
     var box = document.createElement('div'); box.id = 'sy-box'; box.className = 'sy-box';
     box.innerHTML = '<h4>Sincronizza tra computer (GitHub, gratuito)</h4>' +
-      '<p class="muted small">I dati vanno in un Gist <b>privato</b> del tuo account GitHub. Serve un token con il solo permesso «Gist» (Settings → Developer settings → Fine-grained tokens o Tokens classic). Il token resta solo in questo browser: non usarlo su computer condivisi.</p>' +
+      '<p class="muted small">I dati vanno in un Gist privato del tuo account GitHub. Serve un token con il solo permesso «Gist» (Settings → Developer settings → Fine-grained tokens o Tokens classic). Il token resta solo in questo browser: non usarlo su computer condivisi.</p>' +
       '<div id="sy-token-row" class="toolbar"><input id="sy-token" type="password" autocomplete="off" placeholder="Incolla qui il token GitHub" aria-label="Token GitHub"><button id="sy-save-token" type="button" class="btn">Collega</button></div>' +
       '<div id="sy-actions" class="toolbar" hidden><button id="sy-push" type="button" class="btn">Salva sul cloud</button><button id="sy-pull" type="button" class="btn">Scarica dal cloud</button>' +
       '<label class="chk"><input id="sy-auto" type="checkbox"> Salva automaticamente dopo ogni modifica</label><button id="sy-forget" type="button" class="btn danger">Scollega questo computer</button></div>' +
@@ -59,7 +59,7 @@
     $('sy-push').addEventListener('click', function () { push(false); });
     $('sy-pull').addEventListener('click', pull);
     $('sy-auto').addEventListener('change', function () { S.setAuto(this.checked); schedule(); });
-    $('sy-forget').addEventListener('click', function () { if (window.confirm('Scollegare questo computer? I dati sul cloud restano; i dati locali non vengono toccati.')) { S.forget(); paint(); say('Scollegato.'); } });
+    $('sy-forget').addEventListener('click', function () { if (window.confirm(window.IECI18N.t('Scollegare questo computer? I dati sul cloud restano; i dati locali non vengono toccati.'))) { S.forget(); paint(); say('Scollegato.'); } });
     paint();
   }
   document.addEventListener('iec-collection', schedule);
