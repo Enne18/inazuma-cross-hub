@@ -76,3 +76,8 @@ Non modificato nulla: servono più dati su bloccanti per posizione (riga del cam
 
 ## Genesis (6/11/2026) – 10 nuovi
 Dati dell'utente da iecrossdb.com (italiano); nomi JA di Gran e delle tecniche di Nero confermati da AppMedia (7/11). Da verificare: id 2034 di Gail (il link dell'utente era quello di Xene); nome JA di Xavier Foster (グラン dedotto); nomi JA delle tecniche di Nero (Rete Impenetrabile, Barriera Temporale); stat Lv1 e valori intermedi delle passive (stimati); immagini (percorso /img/Assets/... sul sito HUB, non verificato per i nuovi id); nome «Xavier Foster» condiviso con Hiroto Kiyama (3018): i due omonimi sono distinti dall'etichetta della squadra.
+
+### Aggiornamento 7/11/2026 (risposte dell'utente)
+- Confermati dall'utente: id 2034 (Gail); bonus campo boss giornaliero = **20** (non 22); i nomi giapponesi di «Battle Tower» (バトルタワー), delle difficoltà (初級/通常/上級/超上級/インフェルノ/エクストリーム/エンドレス) e «Passiva tempra» (パッシブ鍛錬) tradotti da Claude vanno tenuti come definitivi.
+- Genesis: pagine AppMedia lette (Gran, Nero, Ark, Hauser, Gail, Wittz, Kormer, Zohen, Kiburn, Kiwill). Nomi JA di personaggi, tecniche e passive confermati; corretto Croce di Fuoco = サザンクロスカット (era メテオシャワー). I valori numerici di AppMedia sono a un livello diverso da quelli dell'utente (es. Tecnica+ 1881 contro 2016): si tengono i dati dell'utente.
+- **DA RICORDARE ALL'UTENTE:** le statistiche al livello 1 dei 10 Genesis (ora stimate); lui le fornirà.

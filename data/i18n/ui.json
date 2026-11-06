@@ -1181,6 +1181,10 @@
   "Collegato. Sul cloud non c'è ancora nulla: usa \"Salva sul cloud\".": {
    "en": "Connected. Nothing on the cloud yet: use \"Save to cloud\".",
    "ja": "接続しました。クラウドにはまだ何もありません。「クラウドに保存」を使ってください。"
+  },
+  "Passiva tempra": {
+   "en": "Training passive",
+   "ja": "パッシブ鍛錬"
   }
  }
 }

@@ -565,6 +565,11 @@
    "element": "Wind",
    "name_it": "Barriera Temporale (時空の壁)",
    "kind": "Parata"
+  },
+  "サザンクロスカット": {
+   "element": "Forest",
+   "name_it": "Croce di Fuoco (サザンクロスカット)",
+   "kind": "Dribbling"
   }
  }
 }
