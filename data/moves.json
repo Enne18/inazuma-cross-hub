@@ -525,6 +525,46 @@
    "element": "Forest",
    "name_it": "Pinguino Illusorio (Halloween)",
    "kind": "Tiro"
+  },
+  "スーパーノヴァ": {
+   "element": "Forest",
+   "name_it": "Supernova (スーパーノヴァ)",
+   "kind": "Tiro"
+  },
+  "Rete Impenetrabile": {
+   "element": "Wind",
+   "name_it": "Rete Impenetrabile",
+   "kind": "Parata"
+  },
+  "Barriera Temporale": {
+   "element": "Wind",
+   "name_it": "Barriera Temporale",
+   "kind": "Parata"
+  },
+  "フォトンフラッシュ": {
+   "element": "Fire",
+   "name_it": "Flash Fotonico (フォトンフラッシュ)",
+   "kind": "Blocco"
+  },
+  "グラビテイション": {
+   "element": "Mountain",
+   "name_it": "Gravità Massima (グラビテイション)",
+   "kind": "Blocco"
+  },
+  "四股踏み": {
+   "element": "Mountain",
+   "name_it": "Pestone Sumo (四股踏み)",
+   "kind": "Blocco"
+  },
+  "アステロイドベルト": {
+   "element": "Forest",
+   "name_it": "Furia Stellare (アステロイドベルト)",
+   "kind": "Blocco"
+  },
+  "ガニメデプロトン": {
+   "element": "Forest",
+   "name_it": "Laser Fotonico (ガニメデプロトン)",
+   "kind": "Tiro"
   }
  }
 }

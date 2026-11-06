@@ -64,3 +64,15 @@ Squadra consigliata dal sito (Gazelle, Axel Blaze IJ, Torch in attacco) contro L
 - Tiro di Axel: parato da **4** giocatori (Nathan, Jude, Goldie, Garret) prima del portiere → non solo 2 difensori; contano anche giocatori di centrocampo/attacco sul percorso.
 - Tiro di Gazelle: **nessun** blocco, mentre il sito prevedeva Jack Wallside + Garret sul suo lato → lato/specchio o condizione delle mosse "Blocca tiro" da rivedere.
 Da fare: raccogliere altre partite per calibrare (quanti bloccanti, quali lati).
+
+## Partite reali 5-6/11/2026 (4 incontri, avversario Lina Schiller 4-4-2, giocatori Lv ~327-352, grado Legendary+)
+Tutte con la squadra consigliata dal sito (v2.4). Previsione del sito tra parentesi.
+1. (occasioni tue 49% / sue 11%) Lui tira con Gazelle → io blocco con Gabi e Jack (2; il sito ne prevedeva 4: Goldie, Gabi, Jack, Garret). Io tiro con Arion → bloccato da Lionne e Bobby (2). Io tiro con Gazelle → Lionne, Nathan, Garret, Gabi, poi portiere (4). Finale 0-0. Nota utente: forse Lionne ha la terza mossa di blocco insegnata.
+2. (39% / 11%) Lui Gazelle → io blocco solo con Goldie (1; previsti 4), gol subito. Io Torch → Gabi e Goldie, poi portiere (2). Finale 0-1.
+3. (stessa schermata mobile non salvata) Lui Gazelle → blocco solo Gabi (1), gol subito. Io Torch → Lionne, Goldie, Garret (3); io Gazelle (x2) → Seymour Giovane (GK nativo in slot di campo) e Garret (2). Nessun gol mio: il portiere avversario, potenziato da passive, parava senza abilità con 240k contro i miei 200k (dopo i blocchi arrivavo a molto meno). Finale 0-1.
+4. (opp. Shadow Feldt, Gazelle, Heat, Lionne, Jude, Bellatrix, Goldie, Seymour G., Garret, Gabi, Silvia; tecnico 7, giocatori 342 vs miei 9/360) 0-0, nessun dettaglio.
+Osservazioni: (a) lato specchiato confermato nei casi in difesa (Gazelle avversario a destra nel suo campo → bloccano i miei a sinistra: Gabi, Goldie, Jack); (b) numero di bloccanti 1-4, il sito ne prevede troppi quando difendo (3 casi su 3: prev. 4, reali 1-2) e va bene quando attacco; (c) un GK nativo in slot di campo può bloccare; (d) il portiere avversario con passive è più forte del modello: le occasioni da gol del sito (39-49%) sono sovrastimate (reali: 0 gol su ~8 tiri miei).
+Non modificato nulla: servono più dati su bloccanti per posizione (riga del campo) e sulla forza dei portieri.
+
+## Genesis (6/11/2026) – 10 nuovi
+Dati dell'utente da iecrossdb.com (italiano). Da verificare: id 2034 di Gail (il link dell'utente era quello di Xene); nome JA di Xavier Foster (グラン dedotto); nomi JA delle tecniche di Nero (Rete Impenetrabile, Barriera Temporale); stat Lv1 e valori intermedi delle passive (stimati); immagini (percorso /img/Assets/... sul sito HUB, non verificato per i nuovi id); nome «Xavier Foster» condiviso con Hiroto Kiyama (3018): i due omonimi sono distinti dall'etichetta della squadra.

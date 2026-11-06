@@ -34,7 +34,7 @@ t('parsePassive: % e TP ignorati, non finiscono tra i non interpretati', () => {
   const q = E.parsePassive({ unlock: 'Lv41', name_ja: 'x', effect_ja: '自身のドリブル技が成功するたび、自身のテクニックをX上昇'.replace('X', '967') });
   assert.strictEqual(q.clauses.length, 1);
 });
-t('tutte le passive dei 126 personaggi: nessuna eccezione, valori finiti', () => {
+t('tutte le passive dei 136 personaggi: nessuna eccezione, valori finiti', () => {
   const eng = new E.Engine(chars, aliases);
   let clauses = 0, unparsed = 0, total = 0;
   chars.forEach(c => { total += c.passives.length; eng.passivesOf(c).forEach(p => { clauses += p.clauses.length; unparsed += p.unparsed.length; p.clauses.forEach(cl => assert.ok(Number.isFinite(cl.value))); }); });
@@ -54,8 +54,8 @@ t('stima: personaggio con statistiche mancanti -> base > 0 e marcato stimato', (
   const nul = Object.assign({}, chars.find(c => c.position === 'FW'), { id: 'x', stats_max: { tp: 100, kick: null, technique: null, block: null, catch: null, speed: 4 } });
   const b = eng.baseOf(nul); assert.ok(b.estimated && b.value > 0);
 });
-t('dati sito: 126 personaggi, tutte le statistiche presenti, 1 squadra+1 tipo+1 serie ciascuno', () => {
-  assert.strictEqual(chars.length, 126);
+t('dati sito: 136 personaggi, tutte le statistiche presenti, 1 squadra+1 tipo+1 serie ciascuno', () => {
+  assert.strictEqual(chars.length, 136);
   chars.forEach(c => { ['kick', 'technique', 'block', 'catch'].forEach(k => assert.ok(c.stats_max[k] > 0, c.name_ja)); assert.ok(c.team_ja && c.type_ja && c.series_ja, c.name_ja); });
 });
 t('adattatore: livello 1 = stat Lv1; livello 440 = stat Lv440; intermedi crescenti; tp/velocità costanti', () => {

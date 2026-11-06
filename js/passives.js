@@ -244,6 +244,7 @@
     }
     if (/^(自身|自分)がゴールを入れる(?:た)?$/.test(e0)) return function (L) { return L === 'it' ? 'il giocatore segna un gol' : 'the player scores a goal'; };
     if (/^敵からゴールを入れられる$/.test(e0)) return function (L) { return L === 'it' ? 'la squadra subisce un gol' : 'the team concedes a goal'; };
+    if (/^味方がゴールを(?:入れる|入れた|決めた)$/.test(e0)) return function (L) { return L === 'it' ? 'un alleato segna un gol' : 'an ally scores a goal'; };
     if (/^味方が(?:敵の)?シュートを止め(?:る|た)$/.test(e0)) return function (L) { return L === 'it' ? 'un alleato ferma un tiro avversario' : 'an ally stops an opponent shot'; };
     if (/^敵に味方のシュートが止められる$/.test(e0)) return function (L) { return L === 'it' ? 'un tiro alleato viene fermato' : 'an allied shot is stopped'; };
     if (/^自身がシュート技を使用(?:する|した)$/.test(e0)) return function (L) { return L === 'it' ? 'il giocatore usa una tecnica di tiro' : 'the player uses a shot move'; };
@@ -325,7 +326,7 @@
   // ---------- nomi delle passive ----------
   var BR = { '結束': ['Coesione', 'Unity'], '破竹': ['Slancio', 'Momentum'], '阻止': ['Parata', 'Stop'], '連動': ['Sinergia', 'Link'], '共鳴': ['Risonanza', 'Resonance'],
     '逆境': ['Avversità', 'Adversity'], '救援': ['Soccorso', 'Rescue'], '累': ['cumulativa', 'stacking'], '自得点': ['Gol proprio', 'Own goal'], '連鎖': ['Catena', 'Chain'],
-    '発動': ['Attivazione', 'Trigger'], '奮起': ['Riscossa', 'Rally'], '好機': ['Occasione', 'Chance'], '改': ['potenziata', 'upgraded'], '失点': ['Gol subito', 'Conceded'], '決定機': ['Occasione decisiva', 'Key chance'], '劣勢': ['Svantaggio', 'Behind'], '攻勢': ['Offensiva', 'Attacking'], '守勢': ['Difensiva', 'Defending'], '受球': ['Passaggio ricevuto', 'Pass received'] };
+    '発動': ['Attivazione', 'Trigger'], '奮起': ['Riscossa', 'Rally'], '好機': ['Occasione', 'Chance'], '改': ['potenziata', 'upgraded'], '失点': ['Gol subito', 'Conceded'], '決定機': ['Occasione decisiva', 'Key chance'], '劣勢': ['Svantaggio', 'Behind'], '攻勢': ['Offensiva', 'Attacking'], '守勢': ['Difensiva', 'Defending'], '受球': ['Passaggio ricevuto', 'Pass received'], '得点': ['Gol', 'Goal'], '連続': ['Serie', 'Streak'] };
   var NW = [
     ['シュートチェイン', 'Catena di tiro', 'Shot chain'], ['ファウル率減少', 'Fallo −', 'Foul rate −'], ['ファウル率増', 'Fallo +', 'Foul rate +'],
     ['ドリブルパワー', 'Pot. dribbling', 'Dribble power'], ['シュートパワー', 'Pot. tiro', 'Shot power'], ['ブロックパワー', 'Pot. blocco', 'Block power'],
