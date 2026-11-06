@@ -531,16 +531,6 @@
    "name_it": "Supernova (スーパーノヴァ)",
    "kind": "Tiro"
   },
-  "Rete Impenetrabile": {
-   "element": "Wind",
-   "name_it": "Rete Impenetrabile",
-   "kind": "Parata"
-  },
-  "Barriera Temporale": {
-   "element": "Wind",
-   "name_it": "Barriera Temporale",
-   "kind": "Parata"
-  },
   "フォトンフラッシュ": {
    "element": "Fire",
    "name_it": "Flash Fotonico (フォトンフラッシュ)",
@@ -565,6 +555,16 @@
    "element": "Forest",
    "name_it": "Laser Fotonico (ガニメデプロトン)",
    "kind": "Tiro"
+  },
+  "プロキオンネット": {
+   "element": "Wind",
+   "name_it": "Rete Impenetrabile (プロキオンネット)",
+   "kind": "Parata"
+  },
+  "時空の壁": {
+   "element": "Wind",
+   "name_it": "Barriera Temporale (時空の壁)",
+   "kind": "Parata"
   }
  }
 }
